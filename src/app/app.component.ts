@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { RouterOutlet } from '@angular/router';
+import { slideInAnimation } from './animations';
+
+import { AuthService }      from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
+  animations: [ slideInAnimation ]
 })
 export class AppComponent {
-  title = 'daf-app';
 
-  constructor(public dialog: MatDialog) {};
+logged: string;
 
-  openDialog() {
-    const dialogRef = this.dialog.open(AppComponent, {
-      height: '350px'
-    });
+constructor(private authService: AuthService) {}
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+
+
+  getAnimationData(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
-
 }

@@ -1,37 +1,58 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule }       from '@angular/core';
+import { BrowserModule }  from '@angular/platform-browser';
+import { FormsModule }    from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule }   from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LayoutModule }   from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+          MatCardModule,
+          MatInputModule,
+          MatTableModule,
+          MatMenuModule,
+          MatProgressSpinnerModule } from '@angular/material';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
-import { MyNavComponent } from './my-nav/my-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { DafForm1Component } from './daf-form1/daf-form1.component';
-import { DafForm2Component } from './daf-form2/daf-form2.component';
+import { Router } from '@angular/router';
 
+import { AppComponent }            from './app.component';
+import { PageNotFoundComponent }   from './page-not-found/page-not-found.component';
+
+import { AppRoutingModule }        from './app-routing.module';
+import { AuthModule }              from './auth/auth.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MyNavComponent,
-    DafForm1Component,
-    DafForm2Component
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    AuthModule,
+    AppRoutingModule,
     MatDialogModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    CommonModule,
+    MatCardModule,
+    MatInputModule,
+    MatTableModule,
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+  ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+  // Diagnostic only: inspect router configuration
+  constructor(router: Router) {
+    // Use a custom replacer to display function names in the route configs
+    // const replacer = (key, value) => (typeof value === 'function') ? value.name : value;
+
+    // console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
+  }
+}

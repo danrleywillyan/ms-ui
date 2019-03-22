@@ -1,1 +1,14 @@
-<app-my-nav></app-my-nav>
+<mat-toolbar color="primary">
+<mat-toolbar-row>
+<span>Aplicação DAF</span>
+    <span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink="/">Início</button>
+   <button (click)="this.authService.logout()" *ngIf="this.authService.isLoggedIn">Sair</button>
+ </mat-toolbar-row>
+</mat-toolbar>
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>
+<router-outlet name="popup"></router-outlet>
