@@ -3,15 +3,8 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule }   from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
 import { LayoutModule }   from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-          MatCardModule,
-          MatInputModule,
-          MatTableModule,
-          MatMenuModule,
-          MatProgressSpinnerModule } from '@angular/material';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 
 import { AppComponent }            from './app.component';
@@ -27,19 +20,9 @@ import { AuthModule }              from './auth/auth.module';
     FormsModule,
     AuthModule,
     AppRoutingModule,
-    MatDialogModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     CommonModule,
-    MatCardModule,
-    MatInputModule,
-    MatTableModule,
-    MatMenuModule,
-    MatProgressSpinnerModule
+    FlexLayoutModule
   ],
   declarations: [
     AppComponent,

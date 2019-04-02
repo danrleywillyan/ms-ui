@@ -1,13 +1,20 @@
-<mat-toolbar color="primary">
-<mat-toolbar-row>
-<span>Aplicação DAF</span>
-    <span class="example-fill-remaining-space"></span>
-    <span class="align-center"></span>
-    <span class="example-spacer"></span>
-    <button mat-button routerLink="/">Início</button>
-   <button (click)="this.authService.logout()" *ngIf="this.authService.isLoggedIn">Sair</button>
- </mat-toolbar-row>
-</mat-toolbar>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Aplicação DAF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">Home</span></a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <a class="nav-link" (click)="this.authService.logout()" *ngIf="this.authService.isLoggedIn">Sair</a>
+    </span>
+  </div>
+</nav>
 <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>

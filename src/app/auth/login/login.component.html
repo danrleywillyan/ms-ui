@@ -1,33 +1,23 @@
-<mat-card class="example-card">
-   <mat-card-header>
-
-     <mat-card-title>Login</mat-card-title>
-   </mat-card-header>
-   <mat-card-content center>
-     <form class="login-form">
-       <table class="example-full-width" cellspacing="0">
-         <tr>
-           <td>
-             <mat-form-field class="example-full-width">
-             <input matInput placeholder="Usuário" [(ngModel)]="username" name="username" required>
-             </mat-form-field>
-           </td>
-         </tr>
-         <tr>
-         <td><mat-form-field class="example-full-width">
-           <input matInput placeholder="Senha" [(ngModel)]="password" type="password" name="password" required>
-         </mat-form-field></td>
-       </tr></table>
-     </form>
-     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-     <div >
-       {{message}}
-     </div>
-   </mat-card-content>
-   <mat-card-actions>
-     <button mat-raised-button (click)="login()" color="primary">Login</button>
-   </mat-card-actions>
- </mat-card>
+<div class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col-5">
+      <form action="#">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input class="form-control" placeholder="Usuário" [(ngModel)]="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input class="form-control"  placeholder="Senha" [(ngModel)]="password" type="password" name="password" required>
+          </div>
+          <div>
+            {{message}}
+          </div>
+          <button  (click)="login()" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!--
 Copyright Google LLC. All Rights Reserved.
