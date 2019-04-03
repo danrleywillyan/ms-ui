@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-10 offset-2 pt-4 ">
-    <form>
+    <form action="#">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <input type="input" class="form-control" id="cod_transacao" placeholder="Código da Transação">
+      <input type="input" class="form-control" [(ngModel)]="codTransacao" name="codTransacao" id="codTransacao" placeholder="Código da Transação" required>
     </div>
   </div>
   <div class="form-row">
       <div class="form-group col-4">
           <label for="inputState">Código da Ocorrência</label>
-          <select class="custom-select" id="inputGroupSelect02">
+          <select class="custom-select" [(ngModel)]="codOcorrencia" name="codOcorrencia" id="codOcorrencia" required>
             <option selected>Selecione o Código da Ocorrência...</option>
             <option value="1">01 - [Assinatura] do paciente não conforme documento oficial</option>
             <option value="2">02 - [Assinatura] do procurador  no documento pessoal diverge da apresentada no cupom vinculado</option>
@@ -64,7 +64,7 @@
       <div class="form-group col-4">
         <label for="inputState">Dia da Transação</label>
         <div class="input-group mb-3">
-          <input type="date" class="form-control" id="date" placeholder="Data da Transação">
+          <input type="date" class="form-control" [(ngModel)]="dataTransacao" name="dataTransacao" id="dataTransacao" placeholder="Data da Transação" required>
           <div class="ml-2">
           <button type="button" class="btn btn-primary sidebar-icon "><i class="fa fa-plus"></i></button>
           </div>
@@ -83,28 +83,11 @@
         </tr>
       </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let paragrafo of list; index as i;">
+      <td>{{paragrafo.codTransacao}}</td>
+      <td>{{paragrafo.codOcorrencia}}</td>
+      <td>{{paragrafo.dataTransacao}}</td>
+      <td id="{{i}}"><button type="button" (click)="deleteParagrafo(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-trash-o"></i></button></td>
     </tr>
   </tbody>
 </table>
@@ -122,9 +105,8 @@
   </div>
   <div class="form-row justify-content-md-center">
     <div class="form-group  ">
-      <button type="submit" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
+      <button (click)="inserirParagrafo()" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
     </div>
-
   </div>
 
 
