@@ -1,0 +1,141 @@
+<div class="row">
+  <div class="col-10 offset-2 pt-4 ">
+    <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="input" class="form-control" id="cod_transacao" placeholder="Código da Transação">
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-4">
+          <label for="inputState">Código da Ocorrência</label>
+          <select class="custom-select" id="inputGroupSelect02">
+            <option selected>Selecione o Código da Ocorrência...</option>
+            <option value="1">01 - [Assinatura] do paciente não conforme documento oficial</option>
+            <option value="2">02 - [Assinatura] do procurador  no documento pessoal diverge da apresentada no cupom vinculado</option>
+            <option value="3">03 - [Ausência] da cópia do documento do procurador</option>
+            <option value="4">04 - [Ausência] de endereço da instituição</option>
+            <option value="5">05 - [Ausência] da assinatura do médico</option>
+            <option value="6">06 - [Ausência] da assinatura no cupom vinculado</option>
+            <option value="7">07 - [Ausência] da data de emissão na receita médica</option>
+            <option value="8">08 - [Ausência] da documentação do paciente (CPF)</option>
+            <option value="9">09 - [Ausência] da documentação do responsável (menor) </option>
+            <option value="10">10 - [Ausência] da receita médica</option>
+            <option value="11">11 - [Ausência] de endereço do paciente na receita médica</option>
+            <option value="12">12 - [Ausência] de endereço do paciente no cupom vinculado</option>
+            <option value="13">13 - [Ausência] de toda documentação solicitada</option>
+            <option value="14">14 - [Ausência] do cupom fiscal</option>
+            <option value="15">15 - [Ausência] do cupom vinculado</option>
+            <option value="16">16 - [Ausência] do CRM e nome do médico</option>
+            <option value="17">17 - [Ausência] do nome do paciente na receita médica</option>
+            <option value="18">18 - [Ausência] de autenticação da procuração em cartório</option>
+            <option value="19">19 - [Ausencia] da posologia do medicamento</option>
+            <option value="20">20 - [Cópia] do cupom fiscal ilegível</option>
+            <option value="21">21 - [Cópia] do cupom vinculado ilegível</option>
+            <option value="22">22 - [Cópia] da receita médica ilegível</option>
+            <option value="23">23 - [Cópia] dos documentos do paciente ilegíveis</option>
+            <option value="24">24 - [Cópia] da receita medica com nome ou CRM do médico ilegível</option>
+            <option value="25">25 - [Cópia] da receita médica com CRM do médico diferente do apresentado no sistema autorizador de vendas</option>
+            <option value="26">26 - [Cópia] do cupom vinculado não possui relação com o cupom fiscal</option>
+            <option value="27">27 - [Cópia] da receita medica com data de emissão vencida</option>
+            <option value="28">28 - [Cópia] do cupom vinculado assinado, porém o paciente não é alfabetizado</option>
+            <option value="29">29 - [Cópia] da procuração ilegível</option>
+            <option value="30">30 - [Cópia] da receita médica com data posterior ao dia da autorização</option>
+            <option value="31">31 - [Cópia] da receita medica rasurada</option>
+            <option value="32">32 - [Cópia] da procuração incompleta</option>
+            <option value="33">33 - [Cópia] da documentação do paciente incompleta</option>
+            <option value="34">34 - [Cópia] do cupom fiscal incompleta</option>
+            <option value="35">35 - [Cópia] do cupom vinculado incompleta</option>
+            <option value="36">36 - [Cópia] da documentação do procurador incompleta</option>
+            <option value="37">37 - [Cópia] da receita medica com Data de emissão ilegível</option>
+            <option value="38">38 - [Cópia] da receita medica com endereço do paciente ilegível</option>
+            <option value="39">39 - [Cópia] do cupom vinculado assinado pelo paciente menor de idade</option>
+            <option value="40">40 - [Cópia] do cupom vinculado com endereço do paciente divergente do apresentado na receita</option>
+            <option value="41">41 - [Cópia] da receita medica com o nome do paciente ilegível</option>
+            <option value="42">42 - [Dispensação] de medicamento sem procuração</option>
+            <option value="43">43 - [Dispensação] de medicamento não prescrito na receita médica</option>
+            <option value="44">44 - [Dispensação] de fralda geriátrica para paciente com idade inferior a 60 anos, ou ser pessoa sem deficiência</option>
+            <option value="45">45 - [Dispensação] Intercambialidade incorreta do medicamento</option>
+            <option value="46">46 - [Dispensação] Troca de dosagem do medicamento</option>
+            <option value="47">47 - [Documento] do paciente divergente do apresentado no cupom vinculado</option>
+            <option value="48">48 - [Procuração] com data posterior a dispensação do medicamento</option>
+          </select>
+      </div>
+      <div class="form-group col-4">
+        <label for="inputState">Dia da Transação</label>
+        <div class="input-group mb-3">
+          <input type="date" class="form-control" id="date" placeholder="Data da Transação">
+          <div class="ml-2">
+          <button type="button" class="btn btn-primary sidebar-icon "><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="form-group">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Código da Transação</th>
+          <th scope="col">Código da Ocorrência</th>
+          <th scope="col">Data</th>
+          <th scope="col">Remover</th>
+        </tr>
+      </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <div class="form-row text-center">
+    <div class="form-group col-md-10">
+      <label>
+      <input type="radio" name="options" id="option1" autocomplete="off" checked> Agrupar por Ocorrência
+      </label>
+      <label class="ml-4">
+        <input type="radio" name="options" id="option1" autocomplete="off" > Agrupar por Transação
+      </label>
+    </div>
+
+  </div>
+  <div class="form-row justify-content-md-center">
+    <div class="form-group  ">
+      <button type="submit" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
+    </div>
+
+  </div>
+
+
+</form>
+<div class="form-row text-center">
+  <div class="form-group col-md-10">
+    <h1>
+    Parágrafo Gerado
+    </h1>
+  </div>
+
+</div>
+</div>
+</div>

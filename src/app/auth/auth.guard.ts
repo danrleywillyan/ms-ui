@@ -32,6 +32,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   checkLogin(url: string): boolean {
+
+//colocar em sessão e retirar este retorno
+return true;
+
     if (this.authService.isLoggedIn) { return true; }
 
     // Store the attempted URL for redirecting

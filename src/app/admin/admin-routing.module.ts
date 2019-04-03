@@ -5,6 +5,7 @@ import { AdminComponent }           from './admin/admin.component';
 import { AdminDashboardComponent }  from './admin-dashboard/admin-dashboard.component';
 import { DafForm1Component }        from './daf-form1/daf-form1.component';
 import { DafForm2Component }        from './daf-form2/daf-form2.component';
+import { DafForm3Component }        from './daf-form3/daf-form3.component';
 
 import { AuthGuard }                from '../auth/auth.guard';
 
@@ -20,6 +21,7 @@ const adminRoutes: Routes = [
         children: [
           { path: 'daf-form1', component: DafForm1Component },
           { path: 'daf-form2', component: DafForm2Component },
+          { path: 'daf-form3', component: DafForm3Component },
           { path: '', component: AdminDashboardComponent }
         ]
       }
