@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -76,6 +77,7 @@ export class RequestElucidationComponent implements OnInit {
   }
 
   registerOccurrence() {
+    // TODO validate form
     const occurrence = {code: '', occurredAt: '', transaction: ''};
     occurrence.code = this.occurrenceFormBuilder.controls.code.value;
     occurrence.occurredAt = this.occurrenceFormBuilder.controls.occurredAt.value;
@@ -102,14 +104,32 @@ export class RequestElucidationComponent implements OnInit {
     this.paragraphs = {};
     this.paragraphs['byTransaction'] = [];
     this.paragraphs['byOccurrenceType'] = [];
+    const tmpByOccurrenceType = {};
 
     for(const occurrence of this.occurrences) {
       const transaction = occurrence.transaction;
       const occurredAt = occurrence.occurredAt;
       const occurrenceTypeName = this.occurrenceTypes[occurrence.code].name;
+      const occurrenceTypeId = parseInt(occurrenceTypeName.substr(0, 2), 10);
       const occurrenceType = occurrenceTypeName.substr(5, occurrenceTypeName.length);
 
       this.paragraphs['byTransaction'].push(`${transaction} - ${occurredAt} - ${occurrenceType};`);
+
+      if(!tmpByOccurrenceType[occurrenceTypeId]) tmpByOccurrenceType[occurrenceTypeId] = {};
+      if(tmpByOccurrenceType[occurrenceTypeId][occurredAt]) tmpByOccurrenceType[occurrenceTypeId][occurredAt].push(transaction);
+      else tmpByOccurrenceType[occurrenceTypeId][occurredAt] = [transaction];
     }
+
+    Object.keys(tmpByOccurrenceType).forEach(occurrenceTypeId => {
+      const occurrenceTypeName = this.occurrenceTypes[occurrenceTypeId].name;
+      Object.keys(tmpByOccurrenceType[occurrenceTypeId]).forEach(occurredAt => {
+        const transactions = tmpByOccurrenceType[occurrenceTypeId][occurredAt];
+        let transactionsStr = '';
+        for(const transaction of transactions) transactionsStr += transaction+';';
+
+        this.paragraphs['byOccurrenceType'].push(`${occurrenceTypeName} (${occurredAt}): ${transactionsStr}`);
+      });
+    });
   }
+
 }
