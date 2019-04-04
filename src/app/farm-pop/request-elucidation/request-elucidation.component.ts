@@ -64,7 +64,7 @@ export class RequestElucidationComponent implements OnInit {
     {id: 48, name: '48 - [Procuração] com data posterior a dispensação do medicamento'}
   ];
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private datePipe: DatePipe) {
     this.occurrenceFormBuilder = new FormGroup({
       code: new FormControl(null),
       transaction: new FormControl(null, Validators.minLength(2)),
@@ -74,6 +74,10 @@ export class RequestElucidationComponent implements OnInit {
 
   ngOnInit() {
     if(localStorage.occurrences) this.occurrences = JSON.parse(localStorage.occurrences);
+  }
+
+  transformDate(date) {
+    return this.datePipe.transform(date, 'dd/MM/yyyy');
   }
 
   registerOccurrence() {
@@ -113,7 +117,7 @@ export class RequestElucidationComponent implements OnInit {
       const occurrenceTypeId = parseInt(occurrenceTypeName.substr(0, 2), 10);
       const occurrenceType = occurrenceTypeName.substr(5, occurrenceTypeName.length);
 
-      this.paragraphs['byTransaction'].push(`${transaction} - ${occurredAt} - ${occurrenceType};`);
+      this.paragraphs['byTransaction'].push(`${transaction} - ${this.transformDate(occurredAt)} - ${occurrenceType};`);
 
       if(!tmpByOccurrenceType[occurrenceTypeId]) tmpByOccurrenceType[occurrenceTypeId] = {};
       if(tmpByOccurrenceType[occurrenceTypeId][occurredAt]) tmpByOccurrenceType[occurrenceTypeId][occurredAt].push(transaction);
@@ -127,7 +131,7 @@ export class RequestElucidationComponent implements OnInit {
         let transactionsStr = '';
         for(const transaction of transactions) transactionsStr += transaction+';';
 
-        this.paragraphs['byOccurrenceType'].push(`${occurrenceTypeName} (${occurredAt}): ${transactionsStr}`);
+        this.paragraphs['byOccurrenceType'].push(`${occurrenceTypeName} (${this.transformDate(occurredAt)}): ${transactionsStr}`);
       });
     });
   }

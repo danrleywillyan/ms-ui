@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {FarmPopComponent} from './farm-pop/farm-pop.component';
 import {FarmPopRoutingModule} from './farm-pop-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,6 +19,9 @@ import {RequestElucidationComponent} from './request-elucidation/request-elucida
     FarmPopComponent,
     RequestElucidationComponent
   ],
-  providers: [LocalStorageService],
+  providers: [
+    DatePipe,
+    LocalStorageService
+  ],
 })
 export class FarmPopModule { }
