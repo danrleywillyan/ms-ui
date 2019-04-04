@@ -49,7 +49,7 @@
             <td>{{occurrence.transaction}}</td>
             <td>{{occurrence.code}}</td>
             <td>{{occurrence.occurredAt | date: 'dd/MM/yyyy'}}</td>
-            <td id="{{i}}"><button type="button" (click)="deleteParagrafo(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-trash-o"></i></button></td>
+            <td id="{{i}}"><button type="button" (click)="removeOccurrence(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-trash-o"></i></button></td>
           </tr>
           </tbody>
         </table>

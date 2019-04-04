@@ -87,6 +87,11 @@ export class RequestElucidationComponent implements OnInit {
     this.occurrenceFormBuilder.controls.transaction.setValue(null);
   }
 
+  removeOccurrence(id) {
+    this.occurrences.splice(id, 1);
+    localStorage.occurrences = JSON.stringify(this.occurrences);
+  }
+
   generateParagraph() {
 
   }
