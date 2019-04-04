@@ -92,6 +92,11 @@ export class RequestElucidationComponent implements OnInit {
     localStorage.occurrences = JSON.stringify(this.occurrences);
   }
 
+  newRequest() {
+    localStorage.clear();
+    this.occurrences = [];
+  }
+
   generateParagraph() {
 
   }

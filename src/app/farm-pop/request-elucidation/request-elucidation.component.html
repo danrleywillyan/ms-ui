@@ -14,6 +14,10 @@
           <label for="transaction">Código da Transação</label>
           <input type="input" class="form-control" formControlName="transaction" name="transaction" id="transaction" placeholder="Código da Transação" required>
         </div>
+
+        <div class="form-group col-md-5 offset-1">
+          <a class="btn btn-primary sidebar-icon" (click)="newRequest()"> Nova Solicitação (apagará os dados atuais) </a>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-4">
@@ -38,6 +42,7 @@
         <table class="table table-bordered">
           <thead>
           <tr>
+
             <th scope="col">Código da Transação</th>
             <th scope="col">Código da Ocorrência</th>
             <th scope="col">Data</th>
