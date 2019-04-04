@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class RequestElucidationComponent implements OnInit {
 
+  paragraphs = null;
   occurrences = [];
   occurrenceFormBuilder: FormGroup;
   occurrenceTypes = [
@@ -98,6 +99,17 @@ export class RequestElucidationComponent implements OnInit {
   }
 
   generateParagraph() {
+    this.paragraphs = {};
+    this.paragraphs['byTransaction'] = [];
+    this.paragraphs['byOccurrenceType'] = [];
 
+    for(const occurrence of this.occurrences) {
+      const transaction = occurrence.transaction;
+      const occurredAt = occurrence.occurredAt;
+      const occurrenceTypeName = this.occurrenceTypes[occurrence.code].name;
+      const occurrenceType = occurrenceTypeName.substr(5, occurrenceTypeName.length);
+
+      this.paragraphs['byTransaction'].push(`${transaction} - ${occurredAt} - ${occurrenceType};`);
+    }
   }
 }

@@ -64,9 +64,21 @@
     <br>
     <div class="form-row justify-content-md-center">
       <div class="form-group  ">
-        <button (click)="inserirParagrafo()" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
+        <button (click)="generateParagraph()" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
       </div>
     </div>
     <br>
+
+    <div *ngIf="paragraphs">
+      <h5 class="text-center">Agrupado por Transações</h5>
+      <ul>
+        <li *ngFor="let paragraph of paragraphs['byTransaction']"> {{paragraph}} </li>
+      </ul>
+
+      <h5 class="text-center">Agrupado por Tipo de Ocorrência</h5>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
   </div>
 </div>
