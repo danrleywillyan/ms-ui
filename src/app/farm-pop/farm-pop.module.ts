@@ -5,7 +5,7 @@ import {FarmPopRoutingModule} from './farm-pop-routing.module';
 import {FormsModule} from '@angular/forms';
 import {LayoutModule} from '@angular/cdk/layout';
 import {LocalStorageService} from '../admin/services/admin-storage-service';
-import {SolicitacaoEsclarescimentoComponent} from './solicitacao-esclarescimento/solicitacao-esclarescimento.component';
+import {RequestElucidationComponent} from './request-elucidation/request-elucidation.component';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import {SolicitacaoEsclarescimentoComponent} from './solicitacao-esclarescimento
   ],
   declarations: [
     FarmPopComponent,
-    SolicitacaoEsclarescimentoComponent
+    RequestElucidationComponent
   ],
   providers: [LocalStorageService],
 })
