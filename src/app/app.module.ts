@@ -1,22 +1,23 @@
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule }   from '@angular/common';
-import { LayoutModule }   from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
+import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 
-import { AppComponent }            from './app.component';
-import { PageNotFoundComponent }   from './page-not-found/page-not-found.component';
+import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import { AppRoutingModule }        from './app-routing.module';
-import { AuthModule }              from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     AuthModule,
     AppRoutingModule,
@@ -27,6 +28,10 @@ import { AuthModule }              from './auth/auth.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [ AppComponent ]
 })
