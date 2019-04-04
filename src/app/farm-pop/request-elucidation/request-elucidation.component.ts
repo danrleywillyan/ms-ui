@@ -71,6 +71,7 @@ export class RequestElucidationComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.occurrences) this.occurrences = JSON.parse(localStorage.occurrences);
   }
 
   registerOccurrence() {
@@ -79,7 +80,7 @@ export class RequestElucidationComponent implements OnInit {
     occurrence.occurredAt = this.occurrenceFormBuilder.controls.occurredAt.value;
     occurrence.transaction = this.occurrenceFormBuilder.controls.transaction.value;
     this.occurrences.push(occurrence);
-    window['occurrences'] = this.occurrences;
+    localStorage.occurrences = JSON.stringify(this.occurrences);
 
     this.occurrenceFormBuilder.controls.code.setValue(null);
     this.occurrenceFormBuilder.controls.occurredAt.setValue(null);
