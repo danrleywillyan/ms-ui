@@ -1,0 +1,117 @@
+image: hahoo/nodejs-dind #canopyiq/python-dind-builder #frolvlad/alpine-python3
+services:
+  - docker:dind
+
+# System Variables
+variables:
+  IMAGE_NAME: ui #TODO: rename to the name of your project
+  DOCKER_HOST: tcp://docker:2375
+  VERSION: 0.0.1
+
+# Cache dependencies for all jobs in the same branch (prevent loop of installations)
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+
+# Setup commands definition
+.setup_install: &setup_install_arr
+    - &setup_install
+      npm uninstall -g angular-cli @angular/cli &&
+      npm cache clean &&
+      npm install -g @angular/cli
+.setup_builder:
+    - &setup_builder
+      ng serve
+
+# Install dependencies (pip / venv) for all jobs
+before_script: *setup_install_arr
+
+# Define Runners (shell=stf_local; cloud=gitlab)
+.stfdigital-shell-runner: &stfdigital-shell-runner
+  tags:
+    - stfdigital-shell
+.stfdigital-cloud-runner: &stfdigital-cloud-runner
+  tags:
+    - docker
+    - linux
+
+# Define configs
+.tests_config: &tests_config
+  artifacts:
+    paths:
+    - target/
+  cache:
+    policy: pull
+  <<: *stfdigital-cloud-runner
+
+# Def expected stages
+stages:
+  - Build
+  - Package
+  - Test
+  - Analyze
+  - Deploy
+
+# Run all pythons code to check if there is any fatal error (syntax...)
+build:ANN_model:
+  stage: Build
+  script: *setup_builder
+build:REST_API:
+  stage: Build
+  script: *setup_builder
+
+# Package it image
+package:image:
+  stage: Package
+  script:
+    - *setup_install
+    - *setup_builder
+    - time docker build -f Dockerfile -t $IMAGE_NAME .
+    - mkdir image
+    - docker save $IMAGE_NAME>image/service.tar
+  artifacts:
+    paths:
+      - image
+  cache:
+    policy: pull
+  <<: *stfdigital-cloud-runner
+
+# Unit test of ANN (generating coverage static output file)
+test:unit:ANN_model:
+  stage: Test
+  script: &run_test
+    - coverage run --source app -m py.test && coverage report
+  <<: *tests_config
+
+# Unit test of REST API (generating coverage static output file)
+test:unit:REST_API:
+  stage: Test
+  script: *run_test
+  <<: *tests_config
+
+# using numbers to force sequenced jobs
+test:integration:EXTERNAL_DATA:
+  stage: Test
+  script: *run_test
+  <<: *tests_config
+
+# using numbers to force sequenced jobs
+test:component:ANN_REST:
+  stage: Test
+  script: *run_test
+#  dependencies:
+#    - unit_test
+
+analyze:security:
+  stage: Analyze
+  script: *run_test
+
+analyze:sonar:
+  stage: Analyze
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+  script:
+    - sonar-scanner -Dsonar.host.url=https://sonar.stf.jus.br -Dsonar.analysis.mode=preview -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.gitlab.commit_sha=$CI_BUILD_REF -Dsonar.gitlab.ref_name=$CI_BUILD_REF_NAME -Dsonar.projectVersion=$CI_BUILD_ID -Dsonar.branch=$CI_BUILD_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_URL
+
+deploy:image:
+  stage: Deploy
+  script: *run_test
