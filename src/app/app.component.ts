@@ -11,12 +11,9 @@ import { AuthService }      from './auth/auth.service';
   animations: [ slideInAnimation ]
 })
 export class AppComponent {
+  logged: string;
 
-logged: string;
-
-constructor(private authService: AuthService) {}
-
-
+  constructor(public authService: AuthService) {}
 
   getAnimationData(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
