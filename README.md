@@ -19,9 +19,25 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Build (ng)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project in __development__. To build homolog run `npm run buildhomolog` and for __production__ run `npm run buildprod`.
+
+## Build (docker)
+
+Run `docker image build -t ui:1.0 .`. __Remember to update it version!__
+
+## Running (docker)
+
+ Run `docker run -d -p 4200:80 --name ui -it imageID`. IF stuck __or to kill the containr__ use this command to remove container: `docker rm -f containerID`.
+
+## Docker publish
+
+1. Com a imagem ja criada digite o seguinte código no terminal
+`docker tag nome_da_imagem id_docker_hub/nome_da_imagem_hub:tag_version`
+
+2. Insira o seguinte código para dar um push para o DockeHub e aguarde
+`docker push id_docker_hub/nome_da_imagem_hub:tag_version`
 
 ## Running unit tests
 
