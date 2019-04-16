@@ -29,7 +29,7 @@ Run `docker image build -t ui:1.0 .`. __Remember to update it version!__
 
 ## Running (docker)
 
- Run `docker run -d -p 4200:80 --name ui -it imageID`. IF stuck __or to kill the containr__ use this command to remove container: `docker rm -f containerID`.
+ Run `docker run -d -p 4200:80 --name ui -it imageID`. IF stuck __or to kill the containr__ use this command to remove container: `docker rm -f containerID`. To access the Docker as BASH: ``$ docker run -it --rm containerID /bin/sh``
 
 ## Docker publish
 
@@ -38,6 +38,13 @@ Run `docker image build -t ui:1.0 .`. __Remember to update it version!__
 
 2. Insira o seguinte código para dar um push para o DockeHub e aguarde
 `docker push id_docker_hub/nome_da_imagem_hub:tag_version`
+
+## Python for Eureka
+
+1. Install python3
+2. Install venv ``$ pip3 install virtualenv``
+3. Create venv at registry folder: ``$ cd registry && python3 -m virtualenv venv``
+4. Install python dependencies: ``$ pip install -r requirements.txt``
 
 ## Running unit tests
 
