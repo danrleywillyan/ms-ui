@@ -1,9 +1,4 @@
-FROM nginx:alpine
-
-RUN apk --update add python3
-RUN pip3 install --upgrade pip
-
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM msdaf/nginx-alpine-python
 
 WORKDIR /usr/share/nginx/html
 

@@ -13,7 +13,7 @@ port = 5000
 
 home_page_url = 'manage/info'
 manage_health_path = 'manage/health'
-eureka_url = 'http://0.0.0.0:8761/eureka'
+eureka_url = 'http://172.17.0.1:8761/eureka'
 
 your_rest_server_port = 5000
 # The flowing code will register your server to eureka server and also start to send heartbeat every 30 seconds
