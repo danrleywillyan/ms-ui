@@ -1,3 +1,4 @@
+import os
 import py_eureka_client.eureka_client as eureka_client
 
 # TODO: retrieve config
@@ -13,7 +14,7 @@ port = 5000
 
 home_page_url = 'manage/info'
 manage_health_path = 'manage/health'
-eureka_url = 'http://172.17.0.1:8761/eureka'
+eureka_url = 'http://discovery:8761/eureka'
 
 your_rest_server_port = 5000
 # The flowing code will register your server to eureka server and also start to send heartbeat every 30 seconds
@@ -28,17 +29,22 @@ registry_client.send_heart_beat()
 import json
 from flask import Flask
 
+# set the project root directory as the static folder, you can set others.
 app = Flask(__name__)
-
-@app.route("/")
-def hello():
-    return "Hello World!"
 
 @app.route("/manage/health")
 def manage_health():
     return json.dumps({"status":"UP"})
 
-
 @app.route("/manage/info")
 def manage_info():
-    return json.dumps({"app":"autosprocessuais-pecas-textos"})
+    return json.dumps({"app":"ui"})
+
+@app.route('/')
+def dist():
+    return app.send_static_file('index.html')
+
+@app.route('/<path:path>')
+def static_proxy(path):
+  # send_static_file will guess the correct MIME type
+  return send_from_directory('./', path)

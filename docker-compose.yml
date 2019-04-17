@@ -35,9 +35,9 @@ services:
       - "8080:8080"
 
   ui:
-    image: "msdaf/ui"
+    image: "ui:0.0.1" #msdaf/ui
     hostname: ui
-    restart: always
+    # restart: always
     links:
       - discovery
       - config
@@ -45,7 +45,5 @@ services:
     environment:
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
-    expose:
-      - "80"
     ports:
-      - "8447:80" #8443 reserved for SSL (HTTPS)
+      - "8447:5000" #8443 reserved for SSL (HTTPS)
