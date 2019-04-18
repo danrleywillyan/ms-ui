@@ -35,7 +35,7 @@ services:
       - "8080:8080"
 
   anvisa:
-    image: "msdaf/anvisa"
+    image: "msdaf/anvisa:0.1.0" #"msdaf/anvisa" #"anvisa"
     hostname: anvisa
     restart: always
     links:

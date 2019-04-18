@@ -11,7 +11,7 @@ def registry():
     # This needs to be an IP accessible by anyone that
     # may want to discover, connect and/or use your service.
     flask_port = 5000
-    ip = 'localhost' #'127.0.0.1'
+    ip = 'ui' #'127.0.0.1'
     your_rest_server_port = 8447
 
     home_page_url = 'manage/info'
@@ -52,3 +52,5 @@ def dist():
 def static_proxy(path):
   # send_static_file will guess the correct MIME type
   return send_from_directory('./', path)
+
+registry()
