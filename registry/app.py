@@ -27,18 +27,18 @@ registry_client.send_heart_beat()
 # discovery_client.start()
 
 import json
-from flask import Flask
+from flask import Flask, send_from_directory
 
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__)
 
-@app.route("/manage/health")
+@app.route('/manage/health')
 def manage_health():
-    return json.dumps({"status":"UP"})
+    return json.dumps({'status':'UP'})
 
-@app.route("/manage/info")
+@app.route('/manage/info')
 def manage_info():
-    return json.dumps({"app":"ui"})
+    return json.dumps({'app':'ui'})
 
 @app.route('/')
 def dist():
