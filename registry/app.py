@@ -19,7 +19,7 @@ def registry():
     eureka_url = 'http://discovery:8761/eureka'
 
     try:
-        # The flowing code will register your server to eureka server and also start to send heartbeat every 30 seconds
+        sleep(15)
         registry_client, discovery_client = eureka_client.init(eureka_server=eureka_url,
                                                                app_name=service_name,
                                                                instance_ip=ip,
@@ -28,7 +28,6 @@ def registry():
         registry_client.send_heart_beat()
         # discovery_client.start()
     except Exception as e:
-        sleep(5)
         return registry()
 
 import json
