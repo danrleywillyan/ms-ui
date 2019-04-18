@@ -25,7 +25,7 @@ Run `ng build` to build the project in __development__. To build homolog run `np
 
 ## Build (docker)
 
-Run `docker build -t ui:0.0.1 .`. __Remember to update it version!__
+Run `docker build -t ui:latest .`. __Remember to update it version!__
 
 ## Running (docker)
 

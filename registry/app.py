@@ -16,7 +16,7 @@ def registry():
 
     home_page_url = 'manage/info'
     manage_health_path = 'manage/health'
-    eureka_url = 'http://discovery:8761/eureka'
+    eureka_url = "http://%s:%s/eureka" % (os.environ['EUREKA_HOST'], os.environ['EUREKA_PORT'])  #http://discovery:8761/eureka
 
     try:
         sleep(15)
