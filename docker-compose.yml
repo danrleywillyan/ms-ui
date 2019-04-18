@@ -34,14 +34,29 @@ services:
     ports:
       - "8080:8080"
 
-  ui:
-    image: "ui:0.0.1" #msdaf/ui
-    hostname: ui
-    # restart: always
+  anvisa:
+    image: "msdaf/anvisa"
+    hostname: anvisa
+    restart: always
     links:
       - discovery
       - config
       - gateway
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8542:5000"
+
+  ui:
+    image: "msdaf/ui" #msdaf/ui #ui:0.0.1
+    hostname: ui
+    restart: always
+    links:
+      - discovery
+      - config
+      - gateway
+      - anvisa
     environment:
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
