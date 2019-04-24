@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     loadChildren: './farm-pop/farm-pop.module#FarmPopModule',
     // canLoad: [AuthGuard]
   },
-  // { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

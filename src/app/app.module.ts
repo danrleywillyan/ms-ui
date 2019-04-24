@@ -27,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
   ],
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   exports: [
     FormsModule,

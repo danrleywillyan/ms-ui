@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-10 offset-2 pt-4 ">
+    <div class="form-row text-center">
+      <div class="form-group col-md-12">
+        <h2>
+          Gerador de Parágrafos para Solicitação de Esclarecimento - V1
+        </h2>
+      </div>
+    </div>
+
+    <form [formGroup]="occurrenceFormBuilder" (ngSubmit)="registerOccurrence()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nup">NUP</label>
+          <input type="input" class="form-control" formControlName="nup" name="nup" id="nup" placeholder="NUP" required>
+        </div>
+        <div class="form-group col-md-5 offset-1">
+          <a class="btn btn-primary sidebar-icon" (click)="newRequest()"> Nova Solicitação (apagará os dados atuais) </a>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="transaction">Número da Autorização</label>
+          <input type="input" class="form-control" formControlName="transaction" name="transaction" id="transaction" placeholder="Número da Autorização" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label for="code">Código da Ocorrência</label>
+          <select formControlName="code" class="custom-select" name="code" id="code" multiple required>
+            <option selected="selected">Selecione o Código da Ocorrência...</option>
+            <option *ngFor="let occurrenceType of occurrenceTypes" [value]="occurrenceType.id"> {{occurrenceType.name}} </option>
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="occurredAt">Dia da Autorização</label>
+          <div class="input-group mb-4">
+            <input type="date" class="form-control" formControlName="occurredAt" name="occurredAt" id="occurredAt" placeholder="Data da Transação" required>
+            <div class="ml-4">
+              <button type="submit" class="btn btn-primary sidebar-icon mr-1 "><i class="fa fa-plus"></i> Registrar ocorrência</button>
+              <button  (click)="clearOccurrence()" class="btn btn-secondary sidebar-icon "><i class="fa fa-eraser"></i> Limpar Dados</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </form>
+      <div class="form-group">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">NUP</th>
+            <th scope="col">Código da Autorização</th>
+            <th scope="col">Código da Ocorrência</th>
+            <th scope="col">Data</th>
+            <th scope="col">Medicação/Dosagem</th>
+            <th scope="col">Remover</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let occurrence of occurrences; index as i;">
+            <td *ngIf="(editId != i)">{{occurrence.nup}}</td>
+            <td *ngIf="(editId == i)"><input type="text" class="small" [(ngModel)]="occurrence.nup"></td>
+            <td *ngIf="(editId != i)">{{occurrence.transaction}}</td>
+            <td *ngIf="(editId == i)"><input type="text" class="small" [(ngModel)]="occurrence.transaction"></td>
+            <td *ngIf="(editId != i)">{{occurrence.code}}</td>
+            <td *ngIf="(editId == i)"><input type="text" [(ngModel)]="occurrence.code"></td>
+            <td *ngIf="(editId != i)">{{occurrence.occurredAt | date: 'dd/MM/yyyy'}}</td>
+            <td *ngIf="(editId == i)"><input type="date" [(ngModel)]="occurrence.occurredAt"></td>
+            <td *ngIf="(editId != i)">{{occurrence.medicine}}</td>
+            <td *ngIf="(editId == i)"><input type="text" name="" [(ngModel)]="occurrence.medicine"></td>
+            <td id="{{i}}">
+              <button type="button" (click)="removeOccurrence(i)" class="btn btn-primary sidebar-icon mr-1 "><i class="fa fa-trash-o"></i></button>
+              <button *ngIf="(editId != i)" type="button" (click)="alterOccurrence(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-pencil"></i></button>
+              <button *ngIf="(editId == i)" type="button" (click)="saveOccurrence(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-save"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    <br>
+    <div class="form-row justify-content-md-center">
+      <div class="form-group  ">
+        <button (click)="generateParagraph()" class="btn btn-primary btn-lg">Gerar Parágrafo</button>
+      </div>
+    </div>
+    <br>
+
+    <div *ngIf="paragraphs">
+      <h5 class="text-center">Agrupado por Transações</h5>
+      <ul>
+        <li *ngFor="let paragraph of paragraphs['byTransaction']"> {{paragraph}} </li>
+      </ul>
+
+      <h5 class="text-center">Agrupado por Tipo de Ocorrência</h5>
+      <ul>
+        <li *ngFor="let paragraph of paragraphs['byOccurrenceType']"> {{paragraph}} </li>
+      </ul>
+    </div>
+  </div>
+</div>

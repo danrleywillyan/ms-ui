@@ -23,7 +23,7 @@
         <div class="form-group col-4">
           <label for="code">Código da Ocorrência</label>
           <select formControlName="code" class="custom-select" name="code" id="code" required>
-            <option selected="selected">Selecione o Código da Ocorrência...</option>
+            <option selected >Selecione o Código da Ocorrência...</option>
             <option *ngFor="let occurrenceType of occurrenceTypes" [value]="occurrenceType.id"> {{occurrenceType.name}} </option>
           </select>
         </div>

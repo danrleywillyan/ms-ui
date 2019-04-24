@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-10 offset-2 pt-4 ">
+    <div class="form-row text-center">
+      <div class="form-group col-md-10">
+        <h1>
+          Manter Ocorrência
+        </h1>
+      </div>
+    </div>
+    <form [formGroup]="keepOccurrenceFormBuilder" (ngSubmit)="saveOccurrence()">
+      <input type="hidden" formControlName="idOccurrenceAlter" id="idOccurrenceAlter" name="idOccurrenceAlter" value="">
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="id">Código da Ocorrência</label>
+          <input type="input" class="form-control" formControlName="id" name="id" id="id" placeholder="Cód. da Ocorrência" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-8">
+          <label for="name">Descrição da Ocorrência</label>
+          <input type="input" class="form-control" formControlName="name" name="name" id="name" placeholder="Descrição da Transação" required>
+        </div>
+      </div>
+    </form>
+    <br>
+    <div class="form-row justify-content-md-center">
+      <div class="form-group  ">
+        <button (click)="registerKeepOccurrence()" class="btn btn-primary">Salvar Ocorrência</button>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="keepOccurrences">
+      <div class="form-group">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">Código da Ocorrência</th>
+            <th scope="col">Descrição da Ocorrência</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let occurrence of keepOccurrences; index as i;">
+            <td>{{occurrence.id}}</td>
+            <td>{{occurrence.name}}</td>
+            <td id="{{i}}">
+              <button type="button" (click)="removeOccurrence(i)" class="btn btn-primary sidebar-icon mr-2"><i class="fa fa-trash-o"></i></button>
+              <button type="button" (click)="alterOccurrence(i)" class="btn btn-primary sidebar-icon "><i class="fa fa-pencil"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

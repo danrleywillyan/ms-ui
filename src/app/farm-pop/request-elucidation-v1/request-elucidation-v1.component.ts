@@ -4,19 +4,21 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 
 @Component({
-  selector: 'request-elucidation-form',
-  templateUrl: './request-elucidation.component.html',
-  styleUrls: ['./request-elucidation.component.css']
+  selector: 'request-elucidation-v1-form',
+  templateUrl: './request-elucidation-v1.component.html',
+  styleUrls: ['./request-elucidation-v1.component.css']
 })
-export class RequestElucidationComponent implements OnInit {
+export class RequestElucidationV1Component implements OnInit {
 
   paragraphs = null;
+  editId = -1;
   occurrences = [];
   occurrenceTypes = [];
   occurrenceFormBuilder: FormGroup;
 
   constructor(fb: FormBuilder, private datePipe: DatePipe) {
     this.occurrenceFormBuilder = new FormGroup({
+      nup: new FormControl(null),
       code: new FormControl(null),
       transaction: new FormControl(null, Validators.minLength(2)),
       occurredAt: new FormControl(null),
@@ -33,22 +35,33 @@ export class RequestElucidationComponent implements OnInit {
   }
 
   registerOccurrence() {
-    // TODO validate form
-    const occurrence = {code: '', occurredAt: '', transaction: ''};
-    occurrence.code = this.occurrenceFormBuilder.controls.code.value;
-    occurrence.occurredAt = this.occurrenceFormBuilder.controls.occurredAt.value;
-    occurrence.transaction = this.occurrenceFormBuilder.controls.transaction.value;
-    this.occurrences.push(occurrence);
-    localStorage.occurrences = JSON.stringify(this.occurrences);
 
-    this.occurrenceFormBuilder.controls.code.setValue(null);
-    this.occurrenceFormBuilder.controls.occurredAt.setValue(null);
-    this.occurrenceFormBuilder.controls.transaction.setValue(null);
+     for(const ocurrence of this.occurrenceFormBuilder.controls.code.value){
+       // TODO validate form
+       const occurrence = {nup:'', code: '', occurredAt: '', transaction: ''};
+       occurrence.nup = this.occurrenceFormBuilder.controls.nup.value;
+       occurrence.code = ocurrence;
+       occurrence.medicine = '---';
+       occurrence.occurredAt = this.occurrenceFormBuilder.controls.occurredAt.value;
+       occurrence.transaction = this.occurrenceFormBuilder.controls.transaction.value;
+       this.occurrences.push(occurrence);
+     }
+
+     localStorage.occurrences = JSON.stringify(this.occurrences);
+     this.occurrenceFormBuilder.controls.code.setValue(null);
   }
 
   removeOccurrence(id) {
+    this.editId = -1;
     this.occurrences.splice(id, 1);
     localStorage.occurrences = JSON.stringify(this.occurrences);
+  }
+
+  clearOccurrence(){
+    this.occurrenceFormBuilder.controls.nup.setValue(null);
+    this.occurrenceFormBuilder.controls.transaction.setValue(null);
+    this.occurrenceFormBuilder.controls.code.setValue(null);
+    this.occurrenceFormBuilder.controls.occurredAt.setValue(null);
   }
 
   newRequest() {
@@ -63,6 +76,7 @@ export class RequestElucidationComponent implements OnInit {
     const tmpByOccurrenceType = {};
 
     for(const occurrence of this.occurrences) {
+      const nup = occurrence.nup;
       const transaction = occurrence.transaction;
       const occurredAt = occurrence.occurredAt;
       const occurrenceTypeName = this.occurrenceTypes[occurrence.code].name;
@@ -89,6 +103,18 @@ export class RequestElucidationComponent implements OnInit {
         this.paragraphs['byOccurrenceType'].push(`${newOccurrenceTypeName} (${this.transformDate(occurredAt)}): ${transactionsStr}`);
       });
     });
+  }
+
+  alterOccurrence(id){
+    this.editId = id;
+  }
+
+  saveOccurrence(id){
+    this.editId = -1;
+    var occurrences = this.occurrences;
+    var occurrence  = this.occurrences[id];
+    localStorage.occurrences = JSON.stringify(occurrences);
+    this.occurrences = occurrences;
   }
 
 }
