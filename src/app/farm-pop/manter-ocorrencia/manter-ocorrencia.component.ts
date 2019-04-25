@@ -26,9 +26,9 @@ export class ManterOcorrenciaComponent implements OnInit {
 
   registerKeepOccurrence() {
 
-    if(this.keepOccurrenceFormBuilder.controls.idOccurrenceAlter.value != null){
+    if(this.keepOccurrenceFormBuilder.controls.idOccurrenceAlter.value != null) {
       this.saveOccurrence(this.keepOccurrenceFormBuilder.controls.idOccurrenceAlter.value);
-    }else{
+    } else {
       // TODO validate form
       const keepOccurrence = {id: '', name: ''};
       keepOccurrence.id = this.keepOccurrenceFormBuilder.controls.id.value;
@@ -49,21 +49,21 @@ export class ManterOcorrenciaComponent implements OnInit {
     localStorage.keepOccurrences = JSON.stringify(this.keepOccurrences);
   }
 
-  alterOccurrence(id){
-   var occurrence = JSON.parse(localStorage.keepOccurrences);
+  alterOccurrence(id) {
+   const occurrence = JSON.parse(localStorage.keepOccurrences);
    this.keepOccurrenceFormBuilder.controls.id.setValue(occurrence[id].id);
    this.keepOccurrenceFormBuilder.controls.name.setValue(occurrence[id].name);
    this.keepOccurrenceFormBuilder.controls.idOccurrenceAlter.setValue(id);
   }
 
-  saveOccurrence(id){
-    var occurrences = JSON.parse(localStorage.keepOccurrences);
-    var occurrence  = JSON.parse(localStorage.keepOccurrences)[id];
-
-    occurrence.id = this.keepOccurrenceFormBuilder.controls.id.value;
-    occurrence.name = this.keepOccurrenceFormBuilder.controls.name.value;
-
-    occurrences[id] = occurrence;
+  saveOccurrence(id=null) {
+    const occurrences = JSON.parse(localStorage.keepOccurrences);
+    if(id) {
+      const occurrence  = JSON.parse(localStorage.keepOccurrences)[id];
+      occurrence.id = this.keepOccurrenceFormBuilder.controls.id.value;
+      occurrence.name = this.keepOccurrenceFormBuilder.controls.name.value;
+      occurrences[id] = occurrence;
+    }
 
     localStorage.keepOccurrences = JSON.stringify(occurrences);
     this.keepOccurrences = occurrences;

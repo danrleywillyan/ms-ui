@@ -54,6 +54,14 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Firebase test server
+
+1. Login to firebase ```$ firebase login```
+2. Init firebase in the root project directory, select hosting option & use default public folder ```$ firebase init```
+3. Generate the production build running ```$ npm run buildprod```
+4. move all files from dist to public and move all assets from public root to static folder
+5. Firebase deploy: ```$ firebase deploy``` 
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

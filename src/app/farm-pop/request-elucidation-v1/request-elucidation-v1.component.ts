@@ -36,9 +36,9 @@ export class RequestElucidationV1Component implements OnInit {
 
   registerOccurrence() {
 
-     for(const ocurrence of this.occurrenceFormBuilder.controls.code.value){
+     for(const ocurrence of this.occurrenceFormBuilder.controls.code.value) {
        // TODO validate form
-       const occurrence = {nup:'', code: '', occurredAt: '', transaction: ''};
+       const occurrence = {nup:'', code: '', occurredAt: '', transaction: '', medicine: ''};
        occurrence.nup = this.occurrenceFormBuilder.controls.nup.value;
        occurrence.code = ocurrence;
        occurrence.medicine = '---';
@@ -57,7 +57,7 @@ export class RequestElucidationV1Component implements OnInit {
     localStorage.occurrences = JSON.stringify(this.occurrences);
   }
 
-  clearOccurrence(){
+  clearOccurrence() {
     this.occurrenceFormBuilder.controls.nup.setValue(null);
     this.occurrenceFormBuilder.controls.transaction.setValue(null);
     this.occurrenceFormBuilder.controls.code.setValue(null);
@@ -105,14 +105,14 @@ export class RequestElucidationV1Component implements OnInit {
     });
   }
 
-  alterOccurrence(id){
+  alterOccurrence(id) {
     this.editId = id;
   }
 
-  saveOccurrence(id){
+  saveOccurrence(id) {
     this.editId = -1;
-    var occurrences = this.occurrences;
-    var occurrence  = this.occurrences[id];
+    const occurrences = this.occurrences;
+    const occurrence  = this.occurrences[id];
     localStorage.occurrences = JSON.stringify(occurrences);
     this.occurrences = occurrences;
   }

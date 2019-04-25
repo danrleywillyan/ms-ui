@@ -48,6 +48,20 @@ services:
     ports:
       - "8542:5000"
 
+  ibge:
+    image: "msdaf/ibge" #"msdaf/ibge" #"ibge"
+    hostname: ibge
+    restart: always
+    links:
+      - discovery
+      - config
+      - gateway
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8531:5000"
+
   ui:
     image: "msdaf/ui" #msdaf/ui #ui:0.0.1
     hostname: ui
@@ -57,6 +71,7 @@ services:
       - config
       - gateway
       - anvisa
+      - ibge
     environment:
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
