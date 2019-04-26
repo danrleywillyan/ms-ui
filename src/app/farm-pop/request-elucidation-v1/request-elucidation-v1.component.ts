@@ -73,13 +73,15 @@ export class RequestElucidationV1Component implements OnInit {
     this.paragraphs = {};
     this.paragraphs['byTransaction'] = [];
     this.paragraphs['byOccurrenceType'] = [];
+    this.occurrenceTypes = JSON.parse(localStorage.keepOccurrences);
     const tmpByOccurrenceType = {};
 
     for(const occurrence of this.occurrences) {
       const nup = occurrence.nup;
       const transaction = occurrence.transaction;
       const occurredAt = occurrence.occurredAt;
-      const occurrenceTypeName = this.occurrenceTypes[occurrence.code].name;
+      const occurrenceTypeName = this.occurrenceTypes[parseInt(occurrence.code)].name;
+
       let occurrenceTypeId = parseInt(occurrenceTypeName.substr(0, 2), 10);
       const occurrenceType = occurrenceTypeName.substr(5, occurrenceTypeName.length);
 
