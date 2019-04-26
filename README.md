@@ -23,6 +23,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project in __development__. To build homolog run `npm run buildhomolog` and for __production__ run `npm run buildprod`.
 
+## Clean (docker)
+
+Stop all services & remove all images: ```$ docker stop $(docker ps -aq) && docker rm $(docker ps -qa) &&  docker rmi -f $(docker images -qa)```
+
 ## Build (docker)
 
 Run `docker build -t ui:latest .`. __Remember to update it version!__
@@ -60,7 +64,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 2. Init firebase in the root project directory, select hosting option & use default public folder ```$ firebase init```
 3. Generate the production build running ```$ npm run buildprod```
 4. move all files from dist to public and move all assets from public root to static folder
-5. Firebase deploy: ```$ firebase deploy``` 
+5. Firebase deploy: ```$ firebase deploy```
 
 ## Further help
 
