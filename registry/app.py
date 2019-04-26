@@ -12,7 +12,7 @@ def registry():
     # may want to discover, connect and/or use your service.
     flask_port = 5000
     ip = 'ui' #'127.0.0.1'
-    your_rest_server_port = 8447
+    your_rest_server_port = 5000
 
     home_page_url = 'manage/info'
     manage_health_path = 'manage/health'
