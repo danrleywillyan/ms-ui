@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RequestElucidationComponent } from './request-elucidation/request-elucidation.component';
 import { RequestElucidationV1Component } from './request-elucidation-v1/request-elucidation-v1.component';
 import { ManterOcorrenciaComponent } from './manter-ocorrencia/manter-ocorrencia.component';
+import { ImportAuthorizationComponent } from './import-authorization/import-authorization.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ManterOcorrenciaComponent } from './manter-ocorrencia/manter-ocorrencia
     FarmPopComponent,
     RequestElucidationComponent,
     RequestElucidationV1Component,
-    ManterOcorrenciaComponent
+    ManterOcorrenciaComponent,
+    ImportAuthorizationComponent
   ],
   providers: [
     DatePipe,

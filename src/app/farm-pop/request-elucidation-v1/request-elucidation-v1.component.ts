@@ -82,12 +82,13 @@ export class RequestElucidationV1Component implements OnInit {
       const occurredAt = occurrence.occurredAt;
       const occurrenceTypeName = this.occurrenceTypes[parseInt(occurrence.code)].name;
 
-      let occurrenceTypeId = parseInt(occurrenceTypeName.substr(0, 2), 10);
-      const occurrenceType = occurrenceTypeName.substr(5, occurrenceTypeName.length);
+      let occurrenceTypeId = parseInt(occurrence.code);
+      const occurrenceType = occurrenceTypeName;
 
       this.paragraphs['byTransaction'].push(`${transaction} - ${this.transformDate(occurredAt)} - ${occurrenceType};`);
 
-      occurrenceTypeId = occurrenceTypeId-2;
+      occurrenceTypeId = occurrenceTypeId;
+
       if(!tmpByOccurrenceType[occurrenceTypeId]) tmpByOccurrenceType[occurrenceTypeId] = {};
       if(tmpByOccurrenceType[occurrenceTypeId][occurredAt]) tmpByOccurrenceType[occurrenceTypeId][occurredAt].push(transaction);
       else tmpByOccurrenceType[occurrenceTypeId][occurredAt] = [transaction];
@@ -95,13 +96,16 @@ export class RequestElucidationV1Component implements OnInit {
 
     window['tmpByOccurrenceType'] = tmpByOccurrenceType;
     Object.keys(tmpByOccurrenceType).forEach(occurrenceTypeId => {
+      console.log(this.occurrenceTypes);
+      console.log(occurrenceTypeId);
       const occurrenceTypeName = this.occurrenceTypes[occurrenceTypeId].name;
       Object.keys(tmpByOccurrenceType[occurrenceTypeId]).forEach(occurredAt => {
         const transactions = tmpByOccurrenceType[occurrenceTypeId][occurredAt];
         let transactionsStr = '';
         for(const transaction of transactions) transactionsStr += transaction+';';
 
-        const newOccurrenceTypeName = occurrenceTypeName.substr(4, occurrenceTypeName.length);
+        const newOccurrenceTypeName = occurrenceTypeName;
+        console.log(newOccurrenceTypeName);
         this.paragraphs['byOccurrenceType'].push(`${newOccurrenceTypeName} (${this.transformDate(occurredAt)}): ${transactionsStr}`);
       });
     });
