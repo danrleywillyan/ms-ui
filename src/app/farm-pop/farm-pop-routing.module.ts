@@ -4,6 +4,7 @@ import {FarmPopComponent} from './farm-pop/farm-pop.component';
 import {RequestElucidationComponent} from './request-elucidation/request-elucidation.component';
 import {RequestElucidationV1Component} from './request-elucidation-v1/request-elucidation-v1.component';
 import {ManterOcorrenciaComponent} from './manter-ocorrencia/manter-ocorrencia.component';
+import {ImportAuthorizationComponent} from './import-authorization/import-authorization.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // import { AuthGuard } from '../auth/auth.guard';
@@ -20,7 +21,8 @@ const farmPopRoutes: Routes = [
         children: [
           { path: 'solicitacao-esclarecimento', component: RequestElucidationComponent },
           { path: 'solicitacao-esclarecimento-v1', component: RequestElucidationV1Component },
-          { path: 'manter-ocorrencia', component: ManterOcorrenciaComponent }
+          { path: 'manter-ocorrencia', component: ManterOcorrenciaComponent },
+          { path: 'importacao', component: ImportAuthorizationComponent }
           // { path: 'daf-form2', component: DafForm2Component },
           // { path: 'daf-form3', component: DafForm3Component },
           // { path: '', component: AdminDashboardComponent }
