@@ -13,6 +13,7 @@ export class RequestElucidationV1Component implements OnInit {
   paragraphs = null;
   editId = -1;
   occurrences = [];
+  nups = [];
   occurrenceTypes = [];
   occurrenceFormBuilder: FormGroup;
 
@@ -26,8 +27,10 @@ export class RequestElucidationV1Component implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.occurrences) this.occurrences = JSON.parse(localStorage.occurrences);
+    localStorage.removeItem('occurrences');
+    this.occurrences = [];
     if(localStorage.keepOccurrences) this.occurrenceTypes = JSON.parse(localStorage.keepOccurrences);
+    if(localStorage.nups) this.nups = JSON.parse(localStorage.nups);
   }
 
   transformDate(date) {
@@ -45,9 +48,11 @@ export class RequestElucidationV1Component implements OnInit {
        occurrence.occurredAt = this.occurrenceFormBuilder.controls.occurredAt.value;
        occurrence.transaction = this.occurrenceFormBuilder.controls.transaction.value;
        this.occurrences.push(occurrence);
+       this.nups.push(occurrence);
      }
 
-     localStorage.occurrences = JSON.stringify(this.occurrences);
+     localStorage.occurrences[this.occurrenceFormBuilder.controls.nup.value] = JSON.stringify(this.occurrences);
+     localStorage.nups = JSON.stringify(this.nups);
      this.occurrenceFormBuilder.controls.code.setValue(null);
   }
 
@@ -65,7 +70,7 @@ export class RequestElucidationV1Component implements OnInit {
   }
 
   newRequest() {
-    localStorage.clear();
+    localStorage.removeItem('occurrences');
     this.occurrences = [];
   }
 
@@ -96,16 +101,13 @@ export class RequestElucidationV1Component implements OnInit {
 
     window['tmpByOccurrenceType'] = tmpByOccurrenceType;
     Object.keys(tmpByOccurrenceType).forEach(occurrenceTypeId => {
-      console.log(this.occurrenceTypes);
-      console.log(occurrenceTypeId);
+
       const occurrenceTypeName = this.occurrenceTypes[occurrenceTypeId].name;
       Object.keys(tmpByOccurrenceType[occurrenceTypeId]).forEach(occurredAt => {
         const transactions = tmpByOccurrenceType[occurrenceTypeId][occurredAt];
         let transactionsStr = '';
         for(const transaction of transactions) transactionsStr += transaction+';';
-
         const newOccurrenceTypeName = occurrenceTypeName;
-        console.log(newOccurrenceTypeName);
         this.paragraphs['byOccurrenceType'].push(`${newOccurrenceTypeName} (${this.transformDate(occurredAt)}): ${transactionsStr}`);
       });
     });
@@ -121,6 +123,38 @@ export class RequestElucidationV1Component implements OnInit {
     const occurrence  = this.occurrences[id];
     localStorage.occurrences = JSON.stringify(occurrences);
     this.occurrences = occurrences;
+  }
+
+  searchNup(e:any){
+    this.occurrenceFormBuilder.controls.occurredAt.setValue(null);
+    this.occurrenceFormBuilder.controls.transaction.setValue(null);
+    this.occurrences = this.nups.filter((d)=>(d.nup == e));
+
+    if(!e){
+      this.occurrences = [];
+    }
+  }
+
+  searchAuthorization(e:any){
+    const searchAuthorization = JSON.parse(localStorage.authorizations);
+    const resultSearch = searchAuthorization.filter((d)=>(d[0] == e));
+    if(resultSearch.length > 0){
+      let date = resultSearch[0][2].split(" ")[0];
+      const dateEn = this.formatDateEn(date);
+      this.occurrenceFormBuilder.controls.occurredAt.setValue(dateEn);
+    }else{
+      this.occurrenceFormBuilder.controls.occurredAt.setValue(null);
+    }
+  }
+
+  formatDateEn(date){
+    let myDate1 = date.replace(/[\/"]/g, '-')  ;
+    var arrDate = myDate1.split('-');
+    var dateFormat = arrDate[1] + '-' + arrDate[0] + '-' +  arrDate[2];
+    var data = new Date(dateFormat);
+
+    let newDate = this.datePipe.transform(data, 'yyyy-MM-dd');
+    return newDate;
   }
 
 }

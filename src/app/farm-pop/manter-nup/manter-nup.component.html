@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-10 offset-2 pt-4 ">
+    <div class="form-row text-center">
+      <div class="form-group col-md-10">
+        <h1>
+          Manter Nup
+        </h1>
+      </div>
+    </div>
+      <div class="form-row">
+        <div class="form-group col-8">
+          <input type="input" class="form-control" #numberNup name="nup" (input)="searchNup(numberNup.value)" nup placeholder="Pesquisar por NUP..." required>
+        </div>
+      </div>
+    <br>
+    <div *ngIf="nups">
+      <div class="form-group">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">NUP</th>
+            <th scope="col">Código da Autorização</th>
+            <th scope="col">Código da Ocorrência</th>
+            <th scope="col">Data</th>
+            <th scope="col">Medicação/Dosagem</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let nup of nups; index as i;">
+            <td>{{nup.nup}}</td>
+            <td>{{nup.transaction}}</td>
+            <td>{{nup.code}}</td>
+            <td>{{nup.occurredAt | date: 'dd/MM/yyyy'}}</td>
+            <td>{{nup.medicine}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

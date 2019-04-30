@@ -10,6 +10,7 @@ import { RequestElucidationComponent } from './request-elucidation/request-eluci
 import { RequestElucidationV1Component } from './request-elucidation-v1/request-elucidation-v1.component';
 import { ManterOcorrenciaComponent } from './manter-ocorrencia/manter-ocorrencia.component';
 import { ImportAuthorizationComponent } from './import-authorization/import-authorization.component';
+import { ManterNupComponent } from './manter-nup/manter-nup.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ImportAuthorizationComponent } from './import-authorization/import-auth
     RequestElucidationComponent,
     RequestElucidationV1Component,
     ManterOcorrenciaComponent,
-    ImportAuthorizationComponent
+    ImportAuthorizationComponent,
+    ManterNupComponent
   ],
   providers: [
     DatePipe,
