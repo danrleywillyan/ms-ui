@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppLayoutRoutes } from './app-layout.routing';
-import { DashboardComponent } from '../../pages/templates/dashboard/dashboard.component';
+// import { DashboardComponent } from '../../pages/templates/dashboard/dashboard.component';
 import { IconsComponent } from '../../pages/templates/icons/icons.component';
 import { MapsComponent } from '../../pages/templates/maps/maps.component';
 import { UserProfileComponent } from '../../pages/templates/user-profile/user-profile.component';
@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ClipboardModule
   ],
   declarations: [
-    DashboardComponent,
+    // DashboardComponent,
     UserProfileComponent,
     TablesComponent,
     IconsComponent,

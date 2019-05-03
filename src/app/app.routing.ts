@@ -4,7 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { TemplatesLayoutComponent } from './layouts/templates-layout/templates-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {AppLayoutComponent} from './layouts/app-layout/app-layout.component';
 
@@ -15,27 +15,29 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+        loadChildren: './layouts/app-layout/app-layout.module#AppLayoutModule'
       }
     ]
   },
 
   // Template Routes
+  // {
+  //   path: 'admin',
+  //   redirectTo: 'templates/dashboard',
+  //   pathMatch: 'full',
+  // },
+
   {
-    path: 'admin',
-    redirectTo: 'templates/dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: 'admin',
-    component: AdminLayoutComponent,
+    path: 'templates',
+    component: TemplatesLayoutComponent,
     children: [
       {
-        path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+        path: 'index',
+        loadChildren: './layouts/templates-layout/templates-layout.module#TemplatesLayoutModule'
       }
     ]
   },
+
   {
     path: 'auth',
     component: AuthLayoutComponent,
