@@ -7,6 +7,7 @@ import { UserProfileComponent } from '../../pages/templates/user-profile/user-pr
 import { TablesComponent } from '../../pages/templates/tables/tables.component';
 
 export const TemplatesLayoutRoutes: Routes = [
+    { path: '',               component: DashboardComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },

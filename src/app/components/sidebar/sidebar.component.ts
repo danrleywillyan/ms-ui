@@ -20,7 +20,11 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'farm-pop', path: '/farmacia-pop', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/farm-pop/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/farm-pop/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/farm-pop/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/farm-pop/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/farm-pop/notificacao', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/farm-pop/multa', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]}
+  { id: 'farm-pop', path: '/farmacia-pop', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/farm-pop/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/farm-pop/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/farm-pop/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/farm-pop/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/farm-pop/notificacao', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/farm-pop/multa', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo' }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo' }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo' }]}
 ];
 
 @Component({

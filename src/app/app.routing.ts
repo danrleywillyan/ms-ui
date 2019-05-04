@@ -5,9 +5,7 @@ import {Routes, RouterModule, Route} from '@angular/router';
 
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
 import { TemplatesLayoutComponent } from './layouts/templates-layout/templates-layout.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {AppLayoutComponent} from './layouts/app-layout/app-layout.component';
-import {IconsComponent} from './pages/templates/icons/icons.component';
 
 const routes: Routes = [
   // Real & Final layout routes
@@ -34,48 +32,11 @@ const routes: Routes = [
     ]
   },
 
-  // {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-
-  // {
-  //   path: 'icons',
-  //   component: IconsComponent
-  // },
-
-  // Template Routes
-  // {
-  //   path: 'admin',
-  //   redirectTo: 'templates/dashboard',
-  //   pathMatch: 'full',
-  // },
-
-  // {
-  //   path: 'templates',
-  //   component: TemplatesLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       loadChildren: './layouts/templates-layout/templates-layout.module#TemplatesLayoutModule'
-  //     },
-  //     // {
-  //     //   path: 'icons',
-  //     //   component: IconsComponent
-  //     // },
-  //   ]
-  // },
-  //
-  // {
-  //   path: 'auth',
-  //   component: AuthLayoutComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-  //     }
-  //   ]
-  // }, {
-  //   path: '**',
-  //   redirectTo: 'dashboard'
-  // }
+  // Generic/Error Pages
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({
