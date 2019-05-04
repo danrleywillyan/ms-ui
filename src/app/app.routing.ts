@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, Route} from '@angular/router';
 
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
 import { TemplatesLayoutComponent } from './layouts/templates-layout/templates-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {AppLayoutComponent} from './layouts/app-layout/app-layout.component';
+import {IconsComponent} from './pages/templates/icons/icons.component';
 
 const routes: Routes = [
+  // Real & Final layout routes
   {
     path: '',
     component: AppLayoutComponent,
@@ -20,6 +22,25 @@ const routes: Routes = [
     ]
   },
 
+  // Templates & documentations routes
+  {
+    path: 'templates',
+    component: TemplatesLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layouts/templates-layout/templates-layout.module#TemplatesLayoutModule'
+      }
+    ]
+  },
+
+  // {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+
+  // {
+  //   path: 'icons',
+  //   component: IconsComponent
+  // },
+
   // Template Routes
   // {
   //   path: 'admin',
@@ -27,30 +48,34 @@ const routes: Routes = [
   //   pathMatch: 'full',
   // },
 
-  {
-    path: 'templates',
-    component: TemplatesLayoutComponent,
-    children: [
-      {
-        path: 'index',
-        loadChildren: './layouts/templates-layout/templates-layout.module#TemplatesLayoutModule'
-      }
-    ]
-  },
-
-  {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-      }
-    ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  // {
+  //   path: 'templates',
+  //   component: TemplatesLayoutComponent,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       loadChildren: './layouts/templates-layout/templates-layout.module#TemplatesLayoutModule'
+  //     },
+  //     // {
+  //     //   path: 'icons',
+  //     //   component: IconsComponent
+  //     // },
+  //   ]
+  // },
+  //
+  // {
+  //   path: 'auth',
+  //   component: AuthLayoutComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+  //     }
+  //   ]
+  // }, {
+  //   path: '**',
+  //   redirectTo: 'dashboard'
+  // }
 ];
 
 @NgModule({
@@ -65,6 +90,7 @@ const routes: Routes = [
     })
   ],
   exports: [
+    RouterModule
   ],
 })
 export class AppRoutingModule { }
