@@ -77,3 +77,11 @@
 
 // FontAwesome
 @import "../vendor/@fortawesome/fontawesome-free/css/all.min.css";
+
+
+.nav-link[data-toggle].collapsed:after {
+  content: "▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+  content: "▴";
+}

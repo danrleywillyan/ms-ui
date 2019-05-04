@@ -92,12 +92,23 @@
 
       <!-- Navigation -->
       <ul class="navbar-nav">
-          <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-                  <i class="ni {{menuItem.icon}}"></i>
-                  {{menuItem.title}}
-              </a>
-          </li>
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+          <a routerLinkActive="active" class="nav-link" data-toggle="collapse" [attr.data-target]="'#' + menuItem.id">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+
+          <div class="collapse" id="{{menuItem.id}}" aria-expanded="false">
+            <ul class="flex-column pl-2 nav">
+              <li class="nav-item" *ngFor="let subItem of menuItem.subItems">
+                <a class="nav-link " href="#"> <!-- py-0 class to remove padding -->
+                  <i class="ni {{subItem.icon}}"></i>
+                  {{subItem.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

@@ -2,15 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare interface RouteInfo {
+    id?: string;
     path: string;
     title: string;
     icon: string;
     class: string;
+    subItems?: [{}];
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Orçamento',  icon: 'ni-money-coins text-primary', class: '' },
-    { path: '/maps', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '' },
-    { path: '/icons', title: 'Farmácia Popular',  icon: 'ni-planet text-blue', class: '' }
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/remedy-lifecycle', title: 'Ciclo de vida dos Medicamentos', icon: 'ni-vector text-teal' }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange' }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange' }, { path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange' }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'farm-pop', path: '/farmacia-pop', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/farm-pop/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/farm-pop/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/farm-pop/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/farm-pop/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/farm-pop/notificacao', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/farm-pop/multa', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]}
 ];
 
 @Component({

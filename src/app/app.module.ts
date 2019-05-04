@@ -13,7 +13,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
-import {IconsComponent} from './pages/templates/icons/icons.component';
 
 
 @NgModule({
@@ -30,8 +29,7 @@ import {IconsComponent} from './pages/templates/icons/icons.component';
     AppComponent,
     AppLayoutComponent,
     TemplatesLayoutComponent,
-    AuthLayoutComponent,
-    // IconsComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
