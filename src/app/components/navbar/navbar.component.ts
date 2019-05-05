@@ -28,27 +28,21 @@ export class NavbarComponent implements OnInit {
     for (const i in ROUTES) {
       const route = ROUTES[i];
       const currentLocation = window.location.href.indexOf(route.id) >= 0;
+      console.log('currentLocation', currentLocation);
       if (currentLocation === this.lastRoute && this.title) { return this.title; }
 
       // tslint:disable-next-line:forin
       for (const sii in route.subItems) {
         const iRoute = route.subItems[sii];
-        if (window.location.href.indexOf(iRoute['id']) >= 0) {
+        console.log('iRoute', iRoute);
+        if (window.location.href.indexOf(iRoute['path']) >= 0) {
+          console.log('this.title', this.title);
           return this.title = iRoute['title'];
         }
       }
     }
 
-    let titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.charAt(0) === '#'){
-        titlee = titlee.slice( 2 );
-    }
-    for(var item = 0; item < this.listTitles.length; item++){
-        if(this.listTitles[item].path === titlee){
-            return this.listTitles[item].title;
-        }
-    }
-    return 'Painel Orçamentário';
+    if (!this.title) { return 'Título Padrão'; }
   }
 
 }
