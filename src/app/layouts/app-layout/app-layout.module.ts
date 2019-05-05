@@ -9,6 +9,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
+import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
+import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
     ClipboardModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    ElucidationComponent,
+    NotificationComponent
   ]
 })
 
