@@ -35,7 +35,7 @@ const routes: Routes = [
   // Generic/Error Pages
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'budget/dashboard'
   }
 ];
 

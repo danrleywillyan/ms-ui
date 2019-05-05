@@ -9,6 +9,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
+import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
     ClipboardModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    RemedyLifecycleComponent
   ]
 })
 

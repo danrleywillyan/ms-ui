@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/budget/dashboard']">
       <img src="static/assets/img/brand/logo-ms.png" class="navbar-brand-img" alt="...">
     </a>
     <!-- User -->
@@ -65,8 +65,8 @@
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a  routerLinkActive="active" [routerLink]="['/dashboard']">
-              <img src="static/assets/img/brand/blue.png">
+            <a  routerLinkActive="active" [routerLink]="['/budget/dashboard']">
+              <img src="static/assets/img/brand/logo-ms.png">
             </a>
           </div>
           <div class="col-6 collapse-close">
@@ -101,7 +101,7 @@
           <div class="collapse" id="{{menuItem.id}}" aria-expanded="false">
             <ul class="flex-column pl-2 nav">
               <li class="nav-item" *ngFor="let subItem of menuItem.subItems">
-                <a class="nav-link " routerLinkActive="active" > <!-- py-0 class to remove padding -->
+                <a class="nav-link " routerLinkActive="active" [attr.href]="subItem.path"> <!-- py-0 class to remove padding -->
                   <i class="ni {{subItem.icon}}"></i>
                   {{subItem.title}}
                 </a>
