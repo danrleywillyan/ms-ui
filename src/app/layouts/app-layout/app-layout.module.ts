@@ -2,18 +2,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppLayoutRoutes } from './app-layout.routing';
-// import { DashboardComponent } from '../../pages/templates/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/templates/icons/icons.component';
-import { MapsComponent } from '../../pages/templates/maps/maps.component';
-// import { UserProfileComponent } from '../../pages/templates/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/templates/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -25,11 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ClipboardModule
   ],
   declarations: [
-    // DashboardComponent,
-    // UserProfileComponent,
-    // TablesComponent,
-    // IconsComponent,
-    // MapsComponent
+    DashboardComponent
   ]
 })
 

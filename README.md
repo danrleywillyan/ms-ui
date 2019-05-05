@@ -17,7 +17,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component pages/module_name/component_name --module=layouts/app-layout/app-layout.module` to generate a new component as page. As example: `ng generate component pages/budget/dashboard --module=layouts/app-layout/app-layout.module`. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build (ng)
 

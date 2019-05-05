@@ -101,7 +101,7 @@
           <div class="collapse" id="{{menuItem.id}}" aria-expanded="false">
             <ul class="flex-column pl-2 nav">
               <li class="nav-item" *ngFor="let subItem of menuItem.subItems">
-                <a class="nav-link " href="#"> <!-- py-0 class to remove padding -->
+                <a class="nav-link " routerLinkActive="active" > <!-- py-0 class to remove padding -->
                   <i class="ni {{subItem.icon}}"></i>
                   {{subItem.title}}
                 </a>

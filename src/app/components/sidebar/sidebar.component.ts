@@ -20,7 +20,7 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'farm-pop', path: '/farmacia-pop', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/farm-pop/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/farm-pop/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/farm-pop/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/farm-pop/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/farm-pop/notificacao', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/farm-pop/multa', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/popular-pharmacy/notificacao', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/multa', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
