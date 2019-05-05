@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
+import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,9 @@ import { NotificationComponent } from '../../pages/popular-pharmacy/notification
   declarations: [
     DashboardComponent,
     ElucidationComponent,
-    NotificationComponent
+    NotificationComponent,
+    DashboardComponent,
+    RemedyLifecycleComponent
   ]
 })
 
