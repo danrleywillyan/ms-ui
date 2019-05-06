@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, OnInit, ElementRef, Injectable} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
+@Injectable()
 export class NavbarComponent implements OnInit {
-  public title;
   public focus;
-  public lastRoute;
+  public title;
+  public pageTitle;
+  public lastRoute = '/';
   public listTitles: any[];
   public location: Location;
   constructor(location: Location,  private element: ElementRef, private router: Router) {
@@ -28,21 +31,22 @@ export class NavbarComponent implements OnInit {
     for (const i in ROUTES) {
       const route = ROUTES[i];
       const currentLocation = window.location.href.indexOf(route.id) >= 0;
-      console.log('currentLocation', currentLocation);
-      if (currentLocation === this.lastRoute && this.title) { return this.title; }
-
-      // tslint:disable-next-line:forin
-      for (const sii in route.subItems) {
-        const iRoute = route.subItems[sii];
-        console.log('iRoute', iRoute);
-        if (window.location.href.indexOf(iRoute['path']) >= 0) {
-          console.log('this.title', this.title);
-          return this.title = iRoute['title'];
+      if (currentLocation) {
+        // tslint:disable-next-line:forin
+        for (const sii in route.subItems) {
+          const iRoute = route.subItems[sii];
+          if (window.location.href.indexOf(iRoute['path']) >= 0) {
+            this.lastRoute = iRoute['path'];
+            return this.title = iRoute['title'];
+          }
         }
       }
     }
 
-    if (!this.title) { return 'Título Padrão'; }
+    if (!this.title) {
+      this.lastRoute = '/budget/dashboard';
+      return 'Título Padrão';
+    }
   }
 
 }
