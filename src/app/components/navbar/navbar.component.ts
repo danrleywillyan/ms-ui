@@ -26,12 +26,16 @@ export class NavbarComponent implements OnInit {
   }
 
   getTitle() {
-    // ROUTES
+    const currentLocation = window.location.href;
+
+    if (currentLocation.split('/')[3] === '') return this.title = 'Painel Orçamentário';
+    if (currentLocation.indexOf('templates') >= 0) return this.title = 'Template URL';
+
     // tslint:disable-next-line:forin
     for (const i in ROUTES) {
       const route = ROUTES[i];
-      const currentLocation = window.location.href.indexOf(route.id) >= 0;
-      if (currentLocation) {
+      const foundRoute = currentLocation.indexOf(route.id) >= 0;
+      if (foundRoute) {
         // tslint:disable-next-line:forin
         for (const sii in route.subItems) {
           const iRoute = route.subItems[sii];
@@ -41,11 +45,6 @@ export class NavbarComponent implements OnInit {
           }
         }
       }
-    }
-
-    if (!this.title) {
-      this.lastRoute = '/budget/dashboard';
-      return 'Título Padrão';
     }
   }
 

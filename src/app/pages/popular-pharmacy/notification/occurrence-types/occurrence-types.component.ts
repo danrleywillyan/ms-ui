@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+export class OccurrenceType {
+  id: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-occurrence-types',
   templateUrl: './occurrence-types.component.html',
@@ -8,10 +13,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class OccurrenceTypesComponent implements OnInit {
 
-  public occurrencesTypes: any = [];
+  public occurrencesTypes: OccurrenceType[] = [];
   public occurrencesTypesFormBuilder: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.occurrencesTypesFormBuilder = new FormGroup({
       id: new FormControl(null),
       idOccurrenceEdit: new FormControl(null),
