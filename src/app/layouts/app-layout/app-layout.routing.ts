@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
+import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 
 export const AppLayoutRoutes: Routes = [
   // Budget paths (Orçamento)
@@ -12,5 +13,6 @@ export const AppLayoutRoutes: Routes = [
   // Predictive paths
 
   // Popular Pharmacy
-  { path: 'popular-pharmacy/notification', component: NotificationComponent }
+  { path: 'popular-pharmacy/notification', component: NotificationComponent },
+  { path: 'popular-pharmacy/notification/elucidation', component: ElucidationComponent }
 ];

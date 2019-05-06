@@ -12,6 +12,7 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
+import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/re
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,
-    RemedyLifecycleComponent
+    RemedyLifecycleComponent,
+    OccurrenceTypesComponent
   ]
 })
 
