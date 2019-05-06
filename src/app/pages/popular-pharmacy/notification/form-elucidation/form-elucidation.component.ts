@@ -13,6 +13,7 @@ export class Authorization {
 
 export class Elucidation {
   nup: string;
+  date?: Date;
   authorizations: Authorization[];
 }
 
@@ -34,6 +35,7 @@ export class FormElucidationComponent implements OnInit {
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
+      date: new FormControl(null),
       authorizations: new FormControl(null)
     });
 
@@ -42,17 +44,6 @@ export class FormElucidationComponent implements OnInit {
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
       occurrences: new FormControl(null, null)
     });
-
-
-
-    //
-    // this.authorizationsCtrl = this.fb.array([], Validators.minLength(1));
-    // // this.profile.emails.forEach((email: any) => this.emailsCtrl.push(this.initEmail(email)));
-    //
-    //
-    // // date: new FormControl(null, Validators.minLength(2)),
-    // //   codes: new FormControl(null),
-    // //   authorization: new FormControl(null, Validators.minLength(2))
   }
 
   ngOnInit() {
@@ -66,7 +57,6 @@ export class FormElucidationComponent implements OnInit {
     let alreadyPersisted = false;
     const authorization = {
       id: this.authorizationFormGroup.value.authorizationCode,
-      date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.authorizationFormGroup.value.occurrences
     } as Authorization;
 
@@ -79,11 +69,35 @@ export class FormElucidationComponent implements OnInit {
       }
     }
 
+    // @ts-ignore
+    $('#occurrences option:selected').prop('selected', false);
+    this.authorizationFormGroup.controls['authorizationCode'].setValue('');
     if (!alreadyPersisted) this.authorizations.push(authorization);
   }
 
   save() {
+    let elucidations = [];
+    if (localStorage.elucidations) elucidations = JSON.parse(localStorage.elucidations);
 
+    const elucidation: Elucidation = {
+      nup: this.elucidationFormGroup.value.nup,
+      date: this.elucidationFormGroup.value.date,
+      authorizations: this.authorizations
+    };
+
+    elucidations.push(elucidation);
+    localStorage.elucidations = JSON.stringify(elucidations);
+
+    this.clearInputs();
+    alert('Solicitação registrada com sucesso!');
+  }
+
+  clearInputs() {
+    this.authorizations = [];
+    this.elucidationFormGroup.controls['nup'].setValue('');
+    this.elucidationFormGroup.controls['date'].setValue('');
+    this.authorizationFormGroup.controls['authorizedAt'].setValue('');
+    this.authorizationFormGroup.controls['authorizationCode'].setValue('');
   }
 
 }

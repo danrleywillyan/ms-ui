@@ -45,46 +45,53 @@
                     <input type="text" class="form-control form-control-alternative" formControlName="nup" name="nup" id="nup" placeholder="Número Único do Processo desta Solicitação" required>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <hr class="my-4" />
-            <div class="row">
-              <div class="col-lg-8">
-                <h6 class="heading-small text-muted mb-4">Dados das Transações com pendências deste NUP</h6>
-              </div>
-              <div class="col-lg-4 text-right">
-                <button class="btn btn-sm btn-warning" (click)="add()" [disabled]="(!authorizationFormGroup.value.authorizationCode || !authorizationFormGroup.value.authorizedAt || !authorizationFormGroup.value.occurrences)">Adicionar Autorização à Solicitação</button>
-              </div>
-            </div>
-
-            <form [formGroup]="authorizationFormGroup" (ngSubmit)="add()">
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="authorizationCode">Número da Autorização</label>
-                      <input type="text" class="form-control form-control-alternative" formControlName="authorizationCode" name="authorizationCode" id="authorizationCode" placeholder="Informe uma Autorização já importada ou crie uma nova!" required>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="authorizedAt">Data da Autorização</label>
-                      <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-12">
-                    <label for="occurrences">Selecione os códigos das ocorrências para esta transação (segure o control e clique nos que se aplicam)</label>
-                    <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" multiple required>
-                      <option selected="selected">Selecione os Códigos dos tipos de Ocorrências...</option>
-                      <option *ngFor="let occurrenceType of occurrencesTypes" [value]="occurrenceType.id">{{occurrenceType.id}} - {{occurrenceType.name}} </option>
-                    </select>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="date">Data das Autorizações</label>
+                    <input type="date" class="form-control form-control-alternative" formControlName="date" name="date" id="date" placeholder="Data da Autorização" required>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
+          </form>
+
+          <hr class="my-4" />
+          <div class="row">
+            <div class="col-lg-8">
+              <h6 class="heading-small text-muted mb-4">Dados das Transações com pendências deste NUP</h6>
+            </div>
+            <div class="col-lg-4 text-right">
+              <button class="btn btn-sm btn-warning" (click)="add()" [disabled]="(!authorizationFormGroup.value.authorizationCode || !authorizationFormGroup.value.occurrences)">Adicionar Autorização à Solicitação</button>
+            </div>
+          </div>
+
+          <form [formGroup]="authorizationFormGroup" (ngSubmit)="add()">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="authorizationCode">Número da Autorização</label>
+                    <input type="text" class="form-control form-control-alternative" formControlName="authorizationCode" name="authorizationCode" id="authorizationCode" placeholder="Informe uma Autorização já importada ou crie uma nova!" required>
+                  </div>
+                </div>
+
+                <!--                  <div class="col-lg-6">-->
+                <!--                    <div class="form-group">-->
+                <!--                      <label class="form-control-label" for="authorizedAt">Data das Autorizações</label>-->
+                <!--                      <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+
+                <div class="col-lg-12">
+                  <label for="occurrences">Selecione os códigos das ocorrências para esta transação (segure o control e clique nos que se aplicam)</label>
+                  <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" multiple required>
+                    <option selected="selected">Selecione os Códigos dos tipos de Ocorrências...</option>
+                    <option *ngFor="let occurrenceType of occurrencesTypes" [value]="occurrenceType.id">{{occurrenceType.id}} - {{occurrenceType.name}} </option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </form>
 
           <hr class="my-4" />
@@ -97,7 +104,7 @@
                 <thead class="thead-light">
                 <tr>
                   <th scope="col">Cód.</th>
-                  <th scope="col">Data</th>
+<!--                  <th scope="col">Data</th>-->
                   <th scope="col">Ocorrências</th>
                   <th scope="col">Ações</th>
                 </tr>
@@ -107,9 +114,9 @@
                   <td>
                     {{authorization.id}}
                   </td>
-                  <td class="cell-truncate">
-                    <span>{{authorization.date | date: 'dd/MM/yyyy'}}</span>
-                  </td>
+<!--                  <td>-->
+<!--                    <span>{{authorization.date | date: 'dd/MM/yyyy'}}</span>-->
+<!--                  </td>-->
                   <td>
                     {{authorization.occurrences.join()}}
                   </td>
