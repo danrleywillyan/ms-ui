@@ -2,3 +2,33 @@
 [routerLinkActive="active"] {
   cursor: pointer;
 }
+
+.cell-truncate {
+  //max-width: 350px;
+  span {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+  }
+}
+
+.container-fluid.breadcrumbs {
+  top: 55px;
+  left: -15px;
+  position: absolute;
+
+  ol {
+    background: none;
+    li {
+      a {
+        color: white;
+      }
+
+      &.active {
+        color: #c1c1c1;
+      }
+    }
+  }
+}

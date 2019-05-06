@@ -1,4 +1,16 @@
 <div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Farmácia Popular</li>
+        <li class="breadcrumb-item"><a href="#">Notificação</a></li>
+        <li class="breadcrumb-item"><a href="#">Pedido de Esclarecimento</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tipos de Ocorrências</li>
+      </ol>
+    </nav>
+  </div>
+
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
@@ -9,17 +21,17 @@
     </div>
   </div>
 </div>
-<div class="container-fluid mt--8">
+<div class="container-fluid mt--7">
   <div class="row">
-    <div class="col-xl-5">
+    <div class="col-xl-7">
       <div class="card bg-secondary shadow">
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
-            <div class="col-8">
-              <h3 class="mb-0">Cadastrar Tipo de Ocorrência</h3>
+            <div class="col-7">
+              <h3 class="mb-0">Cadastrar novo Tipo de Ocorrência</h3>
             </div>
             <div class="col-4 text-right">
-              <a href="#!" class="btn btn-sm btn-warning">Salvar novo Tipo</a>
+              <a href="#!" class="btn btn-sm btn-warning">Salvar novo Tipo de Ocorrência</a>
             </div>
           </div>
         </div>
@@ -50,19 +62,19 @@
         </div>
       </div>
     </div>
-
-    <div class="col-xl-7 mb-5 mb-xl-0">
+    <div class="col-xl-5 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
               <h3 class="mb-0">Tipos de Ocorrências</h3>
             </div>
+
             <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">
-                <i class="fas fa-search mr-1"></i>
-                Buscar
-              </a>
+              <button class="btn btn-sm btn-primary" (click)="reset()">
+                <i class="fas fa-sync-alt mr-1"></i>
+                Reiniciar Lista
+              </button>
             </div>
           </div>
         </div>
@@ -77,45 +89,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let occurrenceType of occurrencesTypes; index as i;">
               <td>
-                1
+                {{occurrenceType.id}}
+              </td>
+              <td class="cell-truncate">
+                <span>{{occurrenceType.name}}</span>
               </td>
               <td>
-                Assinatura do paciente não conforme documento oficial
-              </td>
-              <td>
-                <button type="button" (click)="null" class="btn btn-outline-primary sidebar-icon "><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" (click)="null" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
+                <button type="button" (click)="editOccurrenceType(i)" class="btn btn-outline-primary sidebar-icon "><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" (click)="removeOccurrenceType(i)" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
               </td>
             </tr>
             </tbody>
           </table>
-        </div>
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>
