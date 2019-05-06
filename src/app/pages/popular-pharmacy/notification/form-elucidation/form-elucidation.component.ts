@@ -58,12 +58,28 @@ export class FormElucidationComponent implements OnInit {
   ngOnInit() {
   }
 
-  remove(i) {
-
+  remove(authorizationId) {
+    this.authorizations.splice(authorizationId, 1);
   }
 
   add() {
+    let alreadyPersisted = false;
+    const authorization = {
+      id: this.authorizationFormGroup.value.authorizationCode,
+      date: this.authorizationFormGroup.value.authorizedAt,
+      occurrences: this.authorizationFormGroup.value.occurrences
+    } as Authorization;
 
+    // tslint:disable-next-line:forin
+    for (const i in this.authorizations) {
+      const iAuthorization = this.authorizations[i];
+      if (iAuthorization.id === authorization.id) {
+        alreadyPersisted = true;
+        this.authorizations[i] = authorization;
+      }
+    }
+
+    if (!alreadyPersisted) this.authorizations.push(authorization);
   }
 
   save() {
