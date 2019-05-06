@@ -32,6 +32,7 @@ export class OccurrenceTypesComponent implements OnInit {
     occurrence.id = this.occurrencesTypesFormBuilder.controls.id.value;
     occurrence.name = this.occurrencesTypesFormBuilder.controls.name.value;
 
+    // tslint:disable-next-line:radix
     const occurrence_id = parseInt(occurrence.id) - 1;
     this.occurrencesTypes[occurrence_id] = occurrence;
     localStorage.occurrencesTypes = JSON.stringify(this.occurrencesTypes);
@@ -40,13 +41,6 @@ export class OccurrenceTypesComponent implements OnInit {
   removeOccurrenceType(id) {
     this.occurrencesTypes.splice(id, 1);
     localStorage.occurrencesTypes = JSON.stringify(this.occurrencesTypes);
-  }
-
-  editOccurrenceType(id) {
-    // const occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
-    // this.keepOccurrenceFormBuilder.controls.id.setValue(occurrencesTypes[id].id);
-    // this.keepOccurrenceFormBuilder.controls.name.setValue(occurrencesTypes[id].name);
-    // this.keepOccurrenceFormBuilder.controls.idOccurrenceAlter.setValue(id);
   }
 
   reset() {
