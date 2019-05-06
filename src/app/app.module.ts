@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -30,6 +30,10 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     AppLayoutComponent,
     TemplatesLayoutComponent,
     AuthLayoutComponent
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

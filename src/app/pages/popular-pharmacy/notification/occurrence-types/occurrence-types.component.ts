@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-occurrence-types',
@@ -8,12 +9,32 @@ import { Component, OnInit } from '@angular/core';
 export class OccurrenceTypesComponent implements OnInit {
 
   public occurrencesTypes: any = [];
+  public occurrencesTypesFormBuilder: FormGroup;
 
-
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.occurrencesTypesFormBuilder = new FormGroup({
+      id: new FormControl(null),
+      idOccurrenceEdit: new FormControl(null),
+      name: new FormControl(null, Validators.minLength(2))
+    });
+  }
 
   ngOnInit() {
     this.setupList();
+  }
+
+  saveOccurrenceType(id = null) {
+    let occurrence;
+
+    if (id) occurrence = this.occurrencesTypes[id];
+    else occurrence = {};
+
+    occurrence.id = this.occurrencesTypesFormBuilder.controls.id.value;
+    occurrence.name = this.occurrencesTypesFormBuilder.controls.name.value;
+
+    const occurrence_id = parseInt(occurrence.id) - 1;
+    this.occurrencesTypes[occurrence_id] = occurrence;
+    localStorage.occurrencesTypes = JSON.stringify(this.occurrencesTypes);
   }
 
   removeOccurrenceType(id) {

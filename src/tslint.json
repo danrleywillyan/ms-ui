@@ -1,6 +1,7 @@
 {
     "extends": "../tslint.json",
     "rules": {
+        "curly": [true, "ignore-same-line"],
         "directive-selector": [
             true,
             "attribute",
