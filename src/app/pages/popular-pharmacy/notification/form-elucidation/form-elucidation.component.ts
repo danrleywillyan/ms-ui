@@ -25,6 +25,7 @@ export class Elucidation {
 export class FormElucidationComponent implements OnInit {
 
   public date: Date;
+  public csvTransactions = [];
   public authorizations: Authorization[];
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
@@ -32,6 +33,12 @@ export class FormElucidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.authorizations = [];
+
+    if (window['csv_authorizations']) {
+      this.csvTransactions = window['csv_authorizations'];
+      this.csvTransactions = this.csvTransactions.slice(1);
+      console.log(this.csvTransactions);
+    }
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
