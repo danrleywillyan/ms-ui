@@ -26,13 +26,14 @@ export class FormElucidationComponent implements OnInit {
 
   public date: Date;
   public csvTransactions = [];
+  public occurrencesTypes: object;
   public authorizations: Authorization[];
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
-  public occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
 
   constructor(private fb: FormBuilder) {
     this.authorizations = [];
+    if (localStorage.occurrencesTypes) this.occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
 
     if (window['csv_authorizations']) {
       this.csvTransactions = window['csv_authorizations'];

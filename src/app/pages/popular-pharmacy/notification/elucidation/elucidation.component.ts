@@ -13,7 +13,13 @@ export class ElucidationComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (localStorage.elucidations) this.elucidations = JSON.parse(localStorage.elucidations);
+    if (localStorage.elucidations) {
+      try {
+        this.elucidations = JSON.parse(localStorage.elucidations);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 
   getAuthorizationsIds(elucidation) {
