@@ -50,7 +50,8 @@ export class OccurrenceTypesComponent implements OnInit {
 
   reset() {
     this.occurrencesTypes = null;
-    delete localStorage.occurrencesTypes;
+    // delete localStorage.occurrencesTypes;
+    localStorage.clear();
     this.setupList();
   }
 

@@ -8,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class ElucidationComponent implements OnInit {
 
   public elucidations = [];
+  public csv_authorizations = [];
 
   constructor() {}
 
@@ -31,6 +32,60 @@ export class ElucidationComponent implements OnInit {
     }
 
     return authorizations.join();
+  }
+
+  processCSV($event) {
+    if ($event.target.files && $event.target.files[0]) {
+      // Check for the various File API support.
+      if (!window['FileReader']) return alert('FileReader are not supported in this browser.');
+      else this.getAsText($event.target.files[0]);
+
+      // @ts-ignore
+      $('#csvTransactions').val('');
+    } else {
+      return alert('Nenhum arquivo encontrado, tente novamente');
+    }
+  }
+
+  getAsText(fileToRead) {
+    const reader = new FileReader();
+
+    // attach event, that will be fired, when read is end
+    reader.addEventListener('loadend', function() {
+      // reader.result contains the contents of blob as a typed array
+      // console.log('reader.result', reader.result);
+    });
+
+    // start reading a loaded file
+    reader.readAsText(fileToRead);
+
+    // Handle errors load
+    reader.onload = this.loadHandler;
+    reader.onerror = this.errorHandler;
+  }
+
+  loadHandler(event) {
+    const csv = event.target.result;
+    const allTextLines = csv.split(/\r\n|\n/);
+    const lines = [];
+    for (let i = 0; i < allTextLines.length; i++) {
+      const data = allTextLines[i].split(';');
+      const tarr = [];
+      for (let j = 0; j < data.length; j++) {
+        tarr.push(data[j]);
+      }
+      lines.push(tarr);
+    }
+
+    this.csv_authorizations = lines;
+    window['csv_authorizations'] = lines;
+    alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
+  }
+
+  errorHandler(evt) {
+    if (evt.target.error.name === 'NotReadableError') {
+      alert('O arquivo não é legível!');
+    }
   }
 
 }

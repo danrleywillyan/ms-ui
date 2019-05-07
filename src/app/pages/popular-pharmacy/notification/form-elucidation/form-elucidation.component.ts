@@ -57,6 +57,7 @@ export class FormElucidationComponent implements OnInit {
     let alreadyPersisted = false;
     const authorization = {
       id: this.authorizationFormGroup.value.authorizationCode,
+      date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.authorizationFormGroup.value.occurrences
     } as Authorization;
 

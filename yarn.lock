@@ -3949,6 +3949,11 @@ jasminewd2@^2.1.0:
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
   integrity sha1-43zwsX8ZnM4jvqcbIDk5Uka07E4=
 
+jquery-csv@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jquery-csv/-/jquery-csv-1.0.0.tgz#b61b9a00e0fd63a9b7cc95a3d247795d8b1fc1a0"
+  integrity sha512-sz2+z9WuT7MIPMRGTjiHSQG2Z9mFN1kJZKHwIa/4kFE6b0SvLneTTARUxtc76quBldboxlC7rYSuV8x5NRT9aA==
+
 jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"

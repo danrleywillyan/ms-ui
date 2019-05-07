@@ -48,7 +48,7 @@
 
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="date">Data das Autorizações</label>
+                    <label class="form-control-label" for="date">Data do NUP</label>
                     <input type="date" class="form-control form-control-alternative" formControlName="date" name="date" id="date" placeholder="Data da Autorização" required>
                   </div>
                 </div>
@@ -76,12 +76,12 @@
                   </div>
                 </div>
 
-                <!--                  <div class="col-lg-6">-->
-                <!--                    <div class="form-group">-->
-                <!--                      <label class="form-control-label" for="authorizedAt">Data das Autorizações</label>-->
-                <!--                      <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>-->
-                <!--                    </div>-->
-                <!--                  </div>-->
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="authorizedAt">Data das Autorizações</label>
+                    <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
+                  </div>
+                </div>
 
                 <div class="col-lg-12">
                   <label for="occurrences">Selecione os códigos das ocorrências para esta transação (segure o control e clique nos que se aplicam)</label>
@@ -104,7 +104,7 @@
                 <thead class="thead-light">
                 <tr>
                   <th scope="col">Cód.</th>
-<!--                  <th scope="col">Data</th>-->
+                  <th scope="col">Data</th>
                   <th scope="col">Ocorrências</th>
                   <th scope="col">Ações</th>
                 </tr>
@@ -114,14 +114,14 @@
                   <td>
                     {{authorization.id}}
                   </td>
-<!--                  <td>-->
-<!--                    <span>{{authorization.date | date: 'dd/MM/yyyy'}}</span>-->
-<!--                  </td>-->
+                  <td>
+                    <span>{{authorization.date | date: 'dd/MM/yyyy'}}</span>
+                  </td>
                   <td>
                     {{authorization.occurrences.join()}}
                   </td>
                   <td>
-                    <button type="button" (click)="remove(authorizationId)" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
+                    <button type="button" (click)="remove(i)" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>
                 </tbody>
