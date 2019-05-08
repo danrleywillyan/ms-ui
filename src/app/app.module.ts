@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -24,7 +23,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     NgbModule,
     RouterModule,
     AppRoutingModule
-  ],
+    ],
   declarations: [
     AppComponent,
     AppLayoutComponent,
