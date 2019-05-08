@@ -53,274 +53,36 @@
               </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let remedy of remedyData">
               <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
+                <a href="/budget/remedy-lifecycle">{{remedy.nome}}</a>
               </td>
               <td>
-                4,569
+                <tr *ngFor="let acaoItem of remedy.acao">
+                  {{acaoItem}}
+                </tr>
               </td>
               <td>
-                340
+                <tr *ngFor="let grupoItem of remedy.grupo_cp">
+                  {{grupoItem}}
+                </tr>
               </td>
               <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                <tr *ngFor="let estoque of remedy.estoque">
+                  {{estoque}}
+                </tr>
               </td>
               <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
+                <tr *ngFor="let gp of remedy.grupo_cp; let i = index;">
+                  <i *ngIf="i == 0" class="fas fa-check-circle text-success ml-3"></i>
+                  <i *ngIf="i == 1" class="fas fa-exclamation-circle  text-warning ml-3"></i>
+                  <i *ngIf="i == 2" class="fas fa-times-circle text-danger ml-3"></i>
+                </tr>
               </td>
               <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">
-                <a href="/budget/remedy-lifecycle">ABATACEPTE 125 MG</a>
-              </td>
-              <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                <tr *ngFor="let estoque of remedy.estoque">
+                  -
+                </tr>
               </td>
             </tr>
             </tbody>
