@@ -9,12 +9,12 @@ import * as data from './remedy-output.json';
 
 export class RemedyLifecycleComponent implements OnInit {
 
-  remedyData:any = data['default'];
+  remedyData: any = data['default'];
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.remedyData)
+    console.log(this.remedyData);
   }
 
 }
