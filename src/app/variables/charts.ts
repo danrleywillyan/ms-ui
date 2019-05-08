@@ -299,13 +299,27 @@ export const chartExample1 = {
     }
   },
   data: {
-    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    labels: ['20AE',
+    '20AH',
+    '20K5',
+    '20YR',
+    '20YS',
+    '4368',
+    '4705'],
     datasets: [{
-      label: 'Performance',
-      data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+      label: 'Valores',
+      data: [5, 20, 10, 30, 15, 40, 20, 60]
     }]
   }
 }
+
+// '20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde',
+// '20AH - Organização dos serviços de assistência farmacêutica no SUS',
+// '20K5 - Apoio ao uso de plantas medicinais e fitoterápicos no SUS',
+// '20YR - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de gratuidade',
+// '20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento',
+// '4368 - Promoção da assistência farmacêutica por meio da aquisição de medicamentos do componente estratégico',
+// '4705 - Apoio financeiro para aquisição e distribuição de medicamentos do componente especializado da assistencia farmaceutica'
 
 export const chartExample2 = {
   options: {
