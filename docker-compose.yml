@@ -2,15 +2,15 @@ version: "2"
 
 services:
   discovery:
-    image: "msdaf/discovery-service" #test local build
-#    image: "gaesi/discovery" #production cloud build
+#    image: "msdaf/discovery-service" #test local build
+    image: "gaesi/discovery" #production cloud build
     hostname: discovery
     ports:
       - "8761:8761"
 
   config:
-    image: "msdaf/config-server" #test local build
-#    image: "gaesi/config" #production cloud build
+#    image: "msdaf/config-server" #test local build
+    image: "gaesi/config" #production cloud build
     hostname: config
     restart: always
     links:
@@ -23,8 +23,8 @@ services:
       - "8888:8888"
 
   gateway:
-    image: "msdaf/gateway-service"
-#    image: "gaesi/gateway"
+#    image: "msdaf/gateway-service"
+    image: "gaesi/gateway"
     hostname: gateway
     restart: always
     links:

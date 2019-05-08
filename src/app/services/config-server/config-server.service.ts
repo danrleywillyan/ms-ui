@@ -12,13 +12,25 @@ export class ConfigServerService extends GatewayService {
     this.app = 'config';
   }
 
-  getRoutes() {
+  getUIConfig() {
     this.method = 'get';
-    this.path = 'eureka/default';
+    this.path = 'ui/default';
     const promise = this.perform();
 
     promise.subscribe( data => {
-      console.log('getAuthorizations data', data);
+      console.log('UIConfig from ZUUL', data);
+    });
+
+    return promise;
+  }
+
+  getRoutes() {
+    this.method = 'get';
+    this.path = 'routes';
+    const promise = this.http.request(this.method, `${this.protocol}://${this.host}:${this.port}/${this.path}`, {});
+
+    promise.subscribe( data => {
+      console.log('getRoutes from ZUUL', data);
     });
 
     return promise;

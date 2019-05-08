@@ -11,6 +11,7 @@ export class AppComponent {
 
   constructor(configServer: ConfigServerService) {
     configServer.getRoutes();
+    configServer.getUIConfig();
   }
 
 }
