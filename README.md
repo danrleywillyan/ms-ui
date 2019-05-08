@@ -15,9 +15,13 @@ npm install -g @angular/cli
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Code scaffolding - Page
 
 Run `ng generate component pages/module_name/component_name --module=layouts/app-layout/app-layout.module` to generate a new component as page. As example: `ng generate component pages/budget/dashboard --module=layouts/app-layout/app-layout.module`. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Code scaffolding - Service
+
+Run `ng generate service services/module_name/service_name` to generate a new service as http client. As example: `ng generate service services/elucidation/occurrences_types`.
 
 ## Build (ng)
 
