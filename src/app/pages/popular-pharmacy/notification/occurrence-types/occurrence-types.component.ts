@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 
 export class OccurrenceType {
   id: number;
@@ -16,7 +17,7 @@ export class OccurrenceTypesComponent implements OnInit {
   public occurrencesTypes: OccurrenceType[] = [];
   public occurrencesTypesFormBuilder: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.occurrencesTypesFormBuilder = new FormGroup({
       id: new FormControl(null),
       idOccurrenceEdit: new FormControl(null),
@@ -56,6 +57,8 @@ export class OccurrenceTypesComponent implements OnInit {
   }
 
   setupList() {
+    this.elucidationService.getOccurrencesTypes();
+
     if (localStorage.occurrencesTypes) {
       this.occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
     } else {

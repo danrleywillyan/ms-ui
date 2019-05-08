@@ -1,6 +1,13 @@
 version: "2"
 
 services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
   discovery:
 #    image: "msdaf/discovery-service" #test local build
     image: "gaesi/discovery" #production cloud build
@@ -36,6 +43,8 @@ services:
     ports:
       - "8080:8080"
 
+
+
   # anvisa:
   #   image: "gaesi/anvisa" #"msdaf/anvisa" #"anvisa"
   #   hostname: anvisa
@@ -64,8 +73,20 @@ services:
   #   ports:
   #     - "8531:5000"
 
+  elucidation:
+    image: "msdaf/elucidation"
+    hostname: elucidation
+    restart: always
+    links:
+      - mongo
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8446:5000"
+
   ui:
-    image: "msdaf/ui" #msdaf/ui #ui:0.0.1
+    image: "msdaf/ui"
     hostname: ui
     restart: always
     links:
