@@ -3,26 +3,27 @@ version: "2"
 services:
   discovery:
     # image: "msdaf/discovery-service" #test local build
-    image: "msdaf/netflix-eureka" #production cloud build
+    image: "gaesi/discovery" #production cloud build
     hostname: discovery
     ports:
       - "8761:8761"
 
   config:
     # image: "msdaf/config-server" #test local build
-    image: "msdaf/config" #production cloud build
+    image: "gaesi/config" #production cloud build
     hostname: config
     restart: always
     links:
       - discovery
     environment:
+       REPOSITORY_HOST: https://gitlab.com/gaesi/msdaf/config.git
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
     ports:
       - "8888:8888"
 
   gateway:
-    image: "msdaf/netflix-zuul"
+    image: "gaesi/gateway"
     hostname: gateway
     restart: always
     links:
@@ -34,33 +35,33 @@ services:
     ports:
       - "8080:8080"
 
-  anvisa:
-    image: "msdaf/anvisa" #"msdaf/anvisa" #"anvisa"
-    hostname: anvisa
-    restart: always
-    links:
-      - discovery
-      - config
-      - gateway
-    environment:
-      EUREKA_HOST: discovery
-      EUREKA_PORT: 8761
-    ports:
-      - "8542:5000"
-
-  ibge:
-    image: "msdaf/ibge" #"msdaf/ibge" #"ibge"
-    hostname: ibge
-    restart: always
-    links:
-      - discovery
-      - config
-      - gateway
-    environment:
-      EUREKA_HOST: discovery
-      EUREKA_PORT: 8761
-    ports:
-      - "8531:5000"
+  # anvisa:
+  #   image: "gaesi/anvisa" #"msdaf/anvisa" #"anvisa"
+  #   hostname: anvisa
+  #   restart: always
+  #   links:
+  #     - discovery
+  #     - config
+  #     - gateway
+  #   environment:
+  #     EUREKA_HOST: discovery
+  #     EUREKA_PORT: 8761
+  #   ports:
+  #     - "8542:5000"
+  #
+  # ibge:
+  #   image: "gaesi/ibge" #"msdaf/ibge" #"ibge"
+  #   hostname: ibge
+  #   restart: always
+  #   links:
+  #     - discovery
+  #     - config
+  #     - gateway
+  #   environment:
+  #     EUREKA_HOST: discovery
+  #     EUREKA_PORT: 8761
+  #   ports:
+  #     - "8531:5000"
 
   ui:
     image: "msdaf/ui" #msdaf/ui #ui:0.0.1
@@ -70,8 +71,8 @@ services:
       - discovery
       - config
       - gateway
-      - anvisa
-      - ibge
+      # - anvisa
+      # - ibge
     environment:
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
