@@ -173,7 +173,7 @@ export function chartOptions() {
           padding: 0
         },
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           labels: {
             usePointStyle: true,
@@ -296,30 +296,134 @@ export const chartExample1 = {
           }
         }
       }]
-    }
+    },
+    stacked: true
   },
   data: {
-    labels: ['20AE',
-    '20AH',
-    '20K5',
-    '20YR',
-    '20YS',
-    '4368',
-    '4705'],
+    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
     datasets: [{
-      label: 'Valores',
-      data: [5, 20, 10, 30, 15, 40, 20, 60]
-    }]
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Dotação Atualizada',
+        data: [1810000000, 88728508, 0, 2040000000, 562353000, 333000000, 5535000000],
+        backgroundColor: [
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+        ],
+        borderColor: [
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+          'rgba(255, 250, 0, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20AH - Organização dos serviços de assistência farmacêutica no SUS
+        label: 'Empenhado',
+        data: [504282824.58, 0, 0, 586211380.38, 140702249.16, 21468296.91, 1752881924.67],
+        backgroundColor: [
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+        ],
+        borderColor: [
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+          'rgba(235, 0, 220, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20K5 - Apoio ao uso de plantas medicinais e fitoterápicos no SUS
+        label: 'Liquidado',
+        data: [385928659.66, 0, 0, 586125835.98, 140697803.39, 21468296.91, 298213837.88],
+        backgroundColor: [
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+        ],
+        borderColor: [
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+          'rgba(0, 255, 250, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20YR - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de gratuidade
+        label: 'Pago',
+        data: [385928659.66, 0, 0, 586125835.98, 140697803.39, 21468296.91, 247413593.42],
+        backgroundColor: [
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+        ],
+        borderColor: [
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+          'rgba(0, 235, 25, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento
+        label: 'Disponível',
+        data: [1305717175.42, 88728508, 0, 1445789218.62, 421650750.84, 239770445.76, 3490720529.31],
+        backgroundColor: [
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+        ],
+        borderColor: [
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+          'rgba(0, 25, 255, 1)',
+        ],
+        borderWidth: 1
+      },
+    ]
   }
 }
-
-// '20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde',
-// '20AH - Organização dos serviços de assistência farmacêutica no SUS',
-// '20K5 - Apoio ao uso de plantas medicinais e fitoterápicos no SUS',
-// '20YR - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de gratuidade',
-// '20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento',
-// '4368 - Promoção da assistência farmacêutica por meio da aquisição de medicamentos do componente estratégico',
-// '4705 - Apoio financeiro para aquisição e distribuição de medicamentos do componente especializado da assistencia farmaceutica'
 
 export const chartExample2 = {
   options: {
@@ -333,7 +437,8 @@ export const chartExample2 = {
                 return value;
               }
             }
-          }
+          },
+          stacked: true
         }
       ]
     },
