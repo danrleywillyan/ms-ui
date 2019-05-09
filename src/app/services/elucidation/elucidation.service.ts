@@ -20,28 +20,79 @@ export class ElucidationService extends GatewayService {
   getOccurrencesTypes() {
     this.method = 'get';
     this.path = 'occurrence_codes';
-    console.log('getOccurrencesTypes CALLED');
     const promise = this.perform();
-
-    promise.subscribe( data => {
-      console.log('getOccurrencesTypes data', data);
-    });
 
     return promise;
   }
 
+  // INSERT Occurrences records
+  insertOccurrenceTypes(params) {
+    this.method = 'post';
+    this.path = 'occurrence_codes';
+    this.params = params;
+    const promise = this.perform();
 
-  /*
-  [19:43, 8/5/2019] Arthur Jahn: as rotas:
-list e add elucidations -  @app.route('/elucidations', methods=['POST', 'GET'])
-get remove e update @app.route('/elucidations/<id>', methods=['PUT', 'DELETE', 'GET'])
+    return promise;
+  }
 
-list e add ocurrence_codes - @app.route('/occurrence_codes', methods=['POST', 'GET'])
-get remove e update @app.route('/occurrence_codes/<id>', methods=['PUT', 'DELETE', 'GET'])
+  // UPDATE Occurrences records
+  updateOccurrenceTypes(params) {
+    this.method = 'put';
+    this.path = `occurrence_codes/${params._id}`;
+    delete params._id;
+    this.params = params;
+    const promise = this.perform();
 
-get e add @app.route('/authorizations', methods=['POST', 'GET'])
-[19:43, 8/5/2019] Arthur Jahn: o POST em authorizations substitui o que tinha lá antes
-   */
+    return promise;
+  }
+
+  // DELETE Occurrences records
+  deleteOccurrenceTypes(params) {
+    this.method = 'delete';
+    this.path = `occurrence_codes/${params._id}`;
+    const promise = this.perform();
+
+    return promise;
+  }
+
+  // Elucidations CRUD
+  getElucidations() {
+    this.method = 'get';
+    this.path = 'elucidations';
+    const promise = this.perform();
+
+    return promise;
+  }
+
+  // INSERT Occurrences records
+  insertElucidation(params) {
+    this.method = 'post';
+    this.path = 'elucidations';
+    this.params = params;
+    const promise = this.perform();
+
+    return promise;
+  }
+
+  // UPDATE Elucidations records
+  updateElucidations(params) {
+    this.method = 'put';
+    this.path = `elucidations/${params._id}`;
+    delete params._id;
+    this.params = params;
+    const promise = this.perform();
+
+    return promise;
+  }
+
+  // DELETE Elucidations records
+  deleteElucidations(params) {
+    this.method = 'delete';
+    this.path = `elucidations/${params._id}`;
+    const promise = this.perform();
+
+    return promise;
+  }
 
   /**
    * AUTHORIZATIONS CRUD METHODS
@@ -53,9 +104,15 @@ get e add @app.route('/authorizations', methods=['POST', 'GET'])
     this.path = 'authorizations';
     const promise = this.perform();
 
-    promise.subscribe( data => {
-      console.log('getAuthorizations data', data);
-    });
+   return promise;
+  }
+
+  // INSERT Authorizations records
+  insertAuthorizations(params) {
+    this.method = 'post';
+    this.path = 'authorizations';
+    this.params = params;
+    const promise = this.perform();
 
    return promise;
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 
 export class Occurrence {
   id: number;
@@ -31,15 +32,16 @@ export class FormElucidationComponent implements OnInit {
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
     if (localStorage.occurrencesTypes) this.occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
 
-    if (window['csv_authorizations']) {
+    this.elucidationService.getAuthorizations()
+      .subscribe((data:any) => {
+      window['csv_authorizations'] = data.data;
       this.csvTransactions = window['csv_authorizations'];
       this.csvTransactions = this.csvTransactions.slice(1);
-      console.log(this.csvTransactions);
-    }
+    });
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
@@ -85,20 +87,18 @@ export class FormElucidationComponent implements OnInit {
   }
 
   save() {
-    let elucidations = [];
-    if (localStorage.elucidations) elucidations = JSON.parse(localStorage.elucidations);
 
     const elucidation: Elucidation = {
       nup: this.elucidationFormGroup.value.nup,
       date: this.elucidationFormGroup.value.date,
       authorizations: this.authorizations
     };
-
-    elucidations.push(elucidation);
-    localStorage.elucidations = JSON.stringify(elucidations);
-
-    this.clearInputs();
-    alert('Solicitação registrada com sucesso!');
+  
+    this.elucidationService.insertElucidation(elucidation)
+      .subscribe((data) => {
+        this.clearInputs();
+        alert('Solicitação registrada com sucesso!');
+      });
   }
 
   clearInputs() {

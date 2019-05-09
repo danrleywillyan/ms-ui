@@ -1,4 +1,4 @@
-FROM msdaf/nginx-alpine-python
+FROM gaesi/nginx-alpine-python
 
 WORKDIR /usr/share/nginx/registry
 

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 
 @Component({
   selector: 'app-elucidation',
@@ -10,16 +11,10 @@ export class ElucidationComponent implements OnInit {
   public elucidations = [];
   public csv_authorizations = [];
 
-  constructor() {}
+  constructor(private elucidationService: ElucidationService) {}
 
   ngOnInit() {
-    if (localStorage.elucidations) {
-      try {
-        this.elucidations = JSON.parse(localStorage.elucidations);
-      } catch (e) {
-        console.log(e);
-      }
-    }
+    this.setupList();
   }
 
   getAuthorizationsIds(elucidation) {
@@ -66,8 +61,8 @@ export class ElucidationComponent implements OnInit {
     reader.readAsText(fileToRead);
 
     // Handle errors load
-    reader.onload = this.loadHandler;
-    reader.onerror = this.errorHandler;
+    reader.onload = this.loadHandler.bind(this);
+    reader.onerror = this.errorHandler.bind(this);
   }
 
   loadHandler(event) {
@@ -84,14 +79,30 @@ export class ElucidationComponent implements OnInit {
     }
 
     this.csv_authorizations = lines;
-    window['csv_authorizations'] = lines;
-    alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
+    this.elucidationService.insertAuthorizations({ data: lines })
+      .subscribe((data:any) => {
+      this.csv_authorizations = data.data;
+      window['csv_authorizations'] = this.csv_authorizations;
+      alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
+    });
   }
 
   errorHandler(evt) {
     if (evt.target.error.name === 'NotReadableError') {
       alert('O arquivo não é legível!');
     }
+  }
+
+  setupList() {
+    this.elucidationService.getElucidations()
+      .subscribe((data:Array<any>) => {
+      this.elucidations = data;
+    });
+    this.elucidationService.getAuthorizations()
+      .subscribe((data:any) => {
+      this.csv_authorizations = data.data;
+      window['csv_authorizations'] = this.csv_authorizations;
+    });
   }
 
 }
