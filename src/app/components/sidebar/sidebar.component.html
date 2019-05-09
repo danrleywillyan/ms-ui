@@ -1,7 +1,7 @@
 <nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="app-sidenav-main">
   <div class="container-fluid">
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
        aria-controls="sidenav-collapse-main">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -70,7 +70,7 @@
             </a>
           </div>
           <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main">
               <span></span>
               <span></span>
             </button>
