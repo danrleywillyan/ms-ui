@@ -11,7 +11,7 @@ export class GatewayService {
   public method: string;
 
   public port = '8080';
-  public host = 'gateway';
+  public host = 'docker';
   public protocol = 'http';
 
   public params: object;
