@@ -35,6 +35,10 @@ export class ElucidationComponent implements OnInit {
     return authorizations.join();
   }
 
+  removeElucidation(id) {
+
+  }
+
   processCSV($event) {
     if ($event.target.files && $event.target.files[0]) {
       // Check for the various File API support.
@@ -71,16 +75,16 @@ export class ElucidationComponent implements OnInit {
     const lines = [];
     for (let i = 0; i < allTextLines.length; i++) {
       const data = allTextLines[i].split(';');
-      const tarr = [];
+      const tArr = [];
       for (let j = 0; j < data.length; j++) {
-        tarr.push(data[j]);
+        tArr.push(data[j]);
       }
-      lines.push(tarr);
+      lines.push(tArr);
     }
 
     this.csv_authorizations = lines;
     this.elucidationService.insertAuthorizations({ data: lines })
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
       alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
@@ -88,18 +92,18 @@ export class ElucidationComponent implements OnInit {
   }
 
   errorHandler(evt) {
-    if (evt.target.error.name === 'NotReadableError') {
+    if (evt.target.error.name === 'NotReadableError' || !this.csv_authorizations) {
       alert('O arquivo não é legível!');
     }
   }
 
   setupList() {
     this.elucidationService.getElucidations()
-      .subscribe((data:Array<any>) => {
+      .subscribe((data: Array<any>) => {
       this.elucidations = data;
     });
     this.elucidationService.getAuthorizations()
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
     });

@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TemplateSidebarComponent } from './templates-sidebar/templates-sidebar.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   imports: [

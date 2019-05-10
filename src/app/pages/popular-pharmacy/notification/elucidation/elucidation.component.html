@@ -50,7 +50,7 @@
         </div>
         <div class="col-xl-4 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/elucidation/new']">
+            <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/elucidation/form']">
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Solicitar Esclarescimento</h5>
@@ -99,7 +99,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let elucidation of elucidations">
+            <tr *ngFor="let elucidation of elucidations; index as i;">
               <td>
                 {{elucidation.nup}}
               </td>
@@ -114,7 +114,7 @@
               </td>
               <td>
                 <button type="button" class="btn btn-outline-primary sidebar-icon mr-2"><i class="fas fa-file"></i></button> <!--(click)="remove(authorizationId)" -->
-                <button type="button" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button> <!--(click)="remove(authorizationId)" -->
+                <button type="button" class="btn btn-outline-danger sidebar-icon mr-2" (click)="removeElucidation(i)"><i class="fas fa-trash"></i></button> <!--(click)="remove(authorizationId)" -->
               </td>
             </tr>
             </tbody>

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {GatewayService} from '../gateway.service';
 import {HttpClient} from '@angular/common/http';
+import {LoaderComponent} from '../../components/loader/loader.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigServerService extends GatewayService {
 
-  constructor(protected http: HttpClient) {
-    super(http);
+  constructor(protected http: HttpClient, protected loader: LoaderComponent) {
+    super(http, loader);
     this.app = 'config';
   }
 

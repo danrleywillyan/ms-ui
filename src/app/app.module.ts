@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import {LoaderComponent} from './components/loader/loader.component';
+import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
 
 @NgModule({
   imports: [
@@ -22,8 +24,9 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
-    ],
+    AppRoutingModule,
+    AppLayoutModule
+  ],
   declarations: [
     AppComponent,
     AppLayoutComponent,
@@ -34,7 +37,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

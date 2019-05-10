@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GatewayService} from '../gateway.service';
+import {LoaderComponent} from '../../components/loader/loader.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElucidationService extends GatewayService {
 
-  constructor(protected http: HttpClient) {
-    super(http);
+  constructor(protected http: HttpClient, protected loader: LoaderComponent) {
+    super(http, loader);
     this.app = 'elucidation';
   }
 
@@ -21,6 +22,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'get';
     this.path = 'occurrence_codes';
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -31,6 +33,7 @@ export class ElucidationService extends GatewayService {
     this.path = 'occurrence_codes';
     this.params = params;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -42,6 +45,7 @@ export class ElucidationService extends GatewayService {
     delete params._id;
     this.params = params;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -51,6 +55,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'delete';
     this.path = `occurrence_codes/${params._id}`;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -60,6 +65,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'get';
     this.path = 'elucidations';
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -70,6 +76,7 @@ export class ElucidationService extends GatewayService {
     this.path = 'elucidations';
     this.params = params;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -81,6 +88,7 @@ export class ElucidationService extends GatewayService {
     delete params._id;
     this.params = params;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -90,6 +98,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'delete';
     this.path = `elucidations/${params._id}`;
     const promise = this.perform();
+    this.loading(promise);
 
     return promise;
   }
@@ -103,6 +112,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'get';
     this.path = 'authorizations';
     const promise = this.perform();
+    this.loading(promise);
 
    return promise;
   }
@@ -113,6 +123,7 @@ export class ElucidationService extends GatewayService {
     this.path = 'authorizations';
     this.params = params;
     const promise = this.perform();
+    this.loading(promise);
 
    return promise;
   }

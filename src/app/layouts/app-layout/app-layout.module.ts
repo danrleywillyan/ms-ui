@@ -14,6 +14,7 @@ import { NotificationComponent } from '../../pages/popular-pharmacy/notification
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
+import {LoaderComponent} from '../../components/loader/loader.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,11 @@ import { FormElucidationComponent } from '../../pages/popular-pharmacy/notificat
     ClipboardModule,
     ReactiveFormsModule
   ],
+  exports: [
+    LoaderComponent
+  ],
   declarations: [
+    LoaderComponent,
     DashboardComponent,
     ElucidationComponent,
     NotificationComponent,

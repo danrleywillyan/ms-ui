@@ -31,20 +31,23 @@ export class OccurrenceTypesComponent implements OnInit {
   }
 
   saveOccurrenceType() {
-    let occ_id = this.occurrencesTypesFormBuilder.controls.id.value;
-    const occurrence = this.occurrencesTypes.filter(i => i.id == occ_id)[0] || new OccurrenceType();
+    const occ_id = this.occurrencesTypesFormBuilder.controls.id.value;
+    const occurrence = this.occurrencesTypes.filter(i => i.id === occ_id)[0] || new OccurrenceType();
     occurrence.id = occ_id;
     occurrence.name = this.occurrencesTypesFormBuilder.controls.name.value;
 
-    if(occurrence._id) this.elucidationService.updateOccurrenceTypes(occurrence)
-      .subscribe(() => this.setupList());
-    else this.elucidationService.insertOccurrenceTypes(occurrence)
-      .subscribe(() => this.setupList());
+    if (occurrence._id) {
+      this.elucidationService.updateOccurrenceTypes(occurrence)
+        .subscribe(() => this.setupList());
+    } else {
+      this.elucidationService.insertOccurrenceTypes(occurrence)
+        .subscribe(() => this.setupList());
+    }
   }
 
   removeOccurrenceType(id) {
-    const occurrence = this.occurrencesTypes.filter(i => i.id == id)[0];
-    console.log(occurrence)
+    const occurrence = this.occurrencesTypes.filter(i => i.id === id)[0];
+
     this.elucidationService.deleteOccurrenceTypes(occurrence)
       .subscribe(() => this.setupList());
   }
@@ -55,8 +58,8 @@ export class OccurrenceTypesComponent implements OnInit {
 
   setupList() {
     this.elucidationService.getOccurrencesTypes()
-      .subscribe((data:Array<any>) => {
-      this.occurrencesTypes = data.sort((a,b) => a.id - b.id);
+      .subscribe((data: Array<any>) => {
+      this.occurrencesTypes = data.sort((a, b) => a.id - b.id);
     });
   }
 
