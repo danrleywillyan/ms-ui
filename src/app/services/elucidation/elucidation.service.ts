@@ -21,10 +21,7 @@ export class ElucidationService extends GatewayService {
   getOccurrencesTypes() {
     this.method = 'get';
     this.path = 'occurrence_codes';
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // INSERT Occurrences records
@@ -32,10 +29,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'post';
     this.path = 'occurrence_codes';
     this.params = params;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // UPDATE Occurrences records
@@ -44,30 +38,21 @@ export class ElucidationService extends GatewayService {
     this.path = `occurrence_codes/${params._id}`;
     delete params._id;
     this.params = params;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // DELETE Occurrences records
   deleteOccurrenceTypes(params) {
     this.method = 'delete';
     this.path = `occurrence_codes/${params._id}`;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // Elucidations CRUD
   getElucidations() {
     this.method = 'get';
     this.path = 'elucidations';
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // INSERT Occurrences records
@@ -75,10 +60,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'post';
     this.path = 'elucidations';
     this.params = params;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // UPDATE Elucidations records
@@ -87,20 +69,14 @@ export class ElucidationService extends GatewayService {
     this.path = `elucidations/${params._id}`;
     delete params._id;
     this.params = params;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   // DELETE Elucidations records
   deleteElucidations(params) {
     this.method = 'delete';
     this.path = `elucidations/${params._id}`;
-    const promise = this.perform();
-    this.loading(promise);
-
-    return promise;
+    return this.perform();
   }
 
   /**
@@ -111,10 +87,7 @@ export class ElucidationService extends GatewayService {
   getAuthorizations() {
     this.method = 'get';
     this.path = 'authorizations';
-    const promise = this.perform();
-    this.loading(promise);
-
-   return promise;
+    return this.perform();
   }
 
   // INSERT Authorizations records
@@ -122,9 +95,6 @@ export class ElucidationService extends GatewayService {
     this.method = 'post';
     this.path = 'authorizations';
     this.params = params;
-    const promise = this.perform();
-    this.loading(promise);
-
-   return promise;
+    return this.perform();
   }
 }

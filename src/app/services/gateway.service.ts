@@ -21,6 +21,7 @@ export class GatewayService {
 
   protected loading(promise) {
     this.loader.start();
+    console.log('className', this.constructor.name);
 
     promise.subscribe( data => {
       console.log('data', data);
@@ -32,7 +33,9 @@ export class GatewayService {
   }
 
   protected perform() {
-    return this.http.request(this.method, this.mountURL(), this.options());
+    const promise = this.http.request(this.method, this.mountURL(), this.options());
+    this.loading(promise);
+    return promise;
   }
 
   private options() {
