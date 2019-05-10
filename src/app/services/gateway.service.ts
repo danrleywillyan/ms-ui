@@ -10,6 +10,7 @@ export class GatewayService {
   public app: string;
   public path: string;
   public method: string;
+  public debugMsg: string;
 
   public port = '8080';
   public host = 'docker';
@@ -21,7 +22,12 @@ export class GatewayService {
 
   protected loading(promise) {
     this.loader.start();
-    console.log('className', this.constructor.name);
+    if (this.debugMsg) {
+      console.log('className', this.constructor.name);
+      console.log('debug message: ', this.debugMsg);
+    }
+
+    this.debugMsg = null;
 
     promise.subscribe( data => {
       console.log('data', data);
