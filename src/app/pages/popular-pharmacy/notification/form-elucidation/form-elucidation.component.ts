@@ -27,12 +27,12 @@ export class FormElucidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
-    this.elucidationService.getOccurrencesTypes().subscribe( (data: any) => {
+    this.elucidationService.getOccurrencesTypes().then( (data: any) => {
       this.occurrencesTypes = data;
     });
 
     this.elucidationService.getAuthorizations()
-      .subscribe((data: any) => {
+      .then((data: any) => {
       window['csv_authorizations'] = data.data;
       this.csvTransactions = window['csv_authorizations'];
       this.csvTransactions = this.csvTransactions.slice(1);
@@ -108,7 +108,7 @@ export class FormElucidationComponent implements OnInit {
     };
 
     this.elucidationService.insertElucidation(elucidation)
-      .subscribe((data) => {
+      .then((data) => {
         this.clearInputs();
         setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
       });

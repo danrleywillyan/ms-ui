@@ -85,7 +85,7 @@ export class ElucidationComponent implements OnInit {
 
     this.csv_authorizations = lines;
     this.elucidationService.insertAuthorizations({ data: lines })
-      .subscribe((data: any) => {
+      .then((data: any) => {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
       alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
@@ -100,11 +100,11 @@ export class ElucidationComponent implements OnInit {
 
   setupList() {
     this.elucidationService.getElucidations()
-      .subscribe((data: Array<any>) => {
+      .then((data: Array<any>) => {
       this.elucidations = data;
     });
     this.elucidationService.getAuthorizations()
-      .subscribe((data: any) => {
+      .then((data: any) => {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
     });
