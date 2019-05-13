@@ -35,8 +35,9 @@ export class ElucidationComponent implements OnInit {
     return authorizations.join();
   }
 
-  removeElucidation(id) {
-
+  remove(elucidation) {
+    this.elucidationService.deleteElucidations(elucidation);
+    this.setupList();
   }
 
   processCSV($event) {

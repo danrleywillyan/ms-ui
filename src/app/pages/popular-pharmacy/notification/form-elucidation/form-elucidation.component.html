@@ -62,14 +62,11 @@
               <div class="col-lg-8">
                 <h6 class="heading-small text-muted mb-4">Transações encontradas no arquivo CSV enviado</h6>
               </div>
-              <div class="col-lg-4 text-right">
-                <button class="btn btn-sm btn-warning" (click)="add()" [disabled]="(!authorizationFormGroup.value.authorizationCode || !authorizationFormGroup.value.occurrences)">Adicionar Autorização à Solicitação</button>
-              </div>
             </div>
 
-            <select class="custom-select" name="csvTransaction" id="csvTransaction" multiple required>
-              <option selected="selected">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
-              <option *ngFor="let csvTransaction of csvTransactions" [value]="csvTransaction[0]"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
+            <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" multiple required>
+              <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
+              <option *ngFor="let csvTransaction of csvTransactions; index as i;" [value]="i"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
             </select>
           </div>
 
@@ -92,7 +89,6 @@
                     <input type="text" class="form-control form-control-alternative" formControlName="authorizationCode" name="authorizationCode" id="authorizationCode" placeholder="Informe uma Autorização já importada ou crie uma nova!" required>
                   </div>
                 </div>
-
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="authorizedAt">Data das Autorizações</label>

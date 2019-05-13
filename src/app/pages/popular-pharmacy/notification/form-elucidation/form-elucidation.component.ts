@@ -25,19 +25,14 @@ export class Elucidation {
 })
 export class FormElucidationComponent implements OnInit {
 
-  public date: Date;
-  public csvTransactions = [];
-  public occurrencesTypes: object;
-  public authorizations: Authorization[];
-  public elucidationFormGroup: FormGroup;
-  public authorizationFormGroup: FormGroup;
-
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
-    if (localStorage.occurrencesTypes) this.occurrencesTypes = JSON.parse(localStorage.occurrencesTypes);
+    this.elucidationService.getOccurrencesTypes().subscribe( (data: any) => {
+      this.occurrencesTypes = data;
+    });
 
     this.elucidationService.getAuthorizations()
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
       window['csv_authorizations'] = data.data;
       this.csvTransactions = window['csv_authorizations'];
       this.csvTransactions = this.csvTransactions.slice(1);
@@ -54,6 +49,25 @@ export class FormElucidationComponent implements OnInit {
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
       occurrences: new FormControl(null, null)
     });
+  }
+
+  public date: Date;
+  public csvTransactions = [];
+  public occurrencesTypes = [];
+  public csvSelectedTransaction: object;
+  public authorizations: Authorization[];
+  public elucidationFormGroup: FormGroup;
+  public authorizationFormGroup: FormGroup;
+
+  public static formattedDate(deformedVal) {
+    const datePieces = deformedVal.split('/');
+
+    let day = datePieces[0];
+    const month = datePieces[1];
+    const year = datePieces[2].split(' ')[0];
+
+    if (day.length === 1) day = `0${day}`;
+    return `${year}-${month}-${day}`;
   }
 
   ngOnInit() {
@@ -87,17 +101,16 @@ export class FormElucidationComponent implements OnInit {
   }
 
   save() {
-
     const elucidation: Elucidation = {
       nup: this.elucidationFormGroup.value.nup,
       date: this.elucidationFormGroup.value.date,
       authorizations: this.authorizations
     };
-  
+
     this.elucidationService.insertElucidation(elucidation)
       .subscribe((data) => {
         this.clearInputs();
-        alert('Solicitação registrada com sucesso!');
+        setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
       });
   }
 
@@ -109,4 +122,13 @@ export class FormElucidationComponent implements OnInit {
     this.authorizationFormGroup.controls['authorizationCode'].setValue('');
   }
 
+  selectTransaction(csvTransactionID) {
+    const csvTransaction = this.csvTransactions[csvTransactionID];
+    this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
+    console.log('formatted date: ', FormElucidationComponent.formattedDate(csvTransaction[2]));
+    this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[2]));
+    window['ev'] = csvTransactionID;
+    console.log('EVENT selectTransaction', this.csvTransactions[csvTransactionID]);
+    console.log('selectedTransaction', this.csvSelectedTransaction);
+  }
 }
