@@ -16,6 +16,7 @@ export class Elucidation {
   nup: string;
   cnpj: string;
   date?: Date;
+  _id?: string;
   authorizations: Authorization[];
 }
 
@@ -32,7 +33,7 @@ export class FormElucidationComponent implements OnInit {
       this.occurrencesTypes = data;
     });
 
-    this.elucidation = {};
+    this.elucidation = new Elucidation();
     if(window['elucidation']) {
       this.elucidation = window['elucidation'];
       window['elucidation'] = undefined;

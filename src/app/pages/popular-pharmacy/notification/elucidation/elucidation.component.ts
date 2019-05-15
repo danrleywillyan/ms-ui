@@ -37,7 +37,7 @@ export class ElucidationComponent implements OnInit {
   }
 
   remove(elucidation) {
-    this.elucidationService.deleteElucidations(elucidation);
+    this.elucidationService.deleteElucidation(elucidation);
     this.setupList();
   }
 
