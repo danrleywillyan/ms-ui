@@ -10,6 +10,8 @@ import { ElucidationService } from '../../../../services/elucidation/elucidation
 export class ElucidationComponent implements OnInit {
 
   public elucidations = [];
+  public elucidation = {};
+  public paragraph = '';
   public csv_authorizations = [];
 
   constructor(private elucidationService: ElucidationService, private router: Router) {}
@@ -114,6 +116,14 @@ export class ElucidationComponent implements OnInit {
   editElucidation(elucidation) {
     window['elucidation'] = elucidation;
     this.router.navigate(['/popular-pharmacy/notification/elucidation/form']);
+  }
+
+  getParagraph(elucidation) {
+    this.elucidation = elucidation;
+    this.elucidationService.getElucidationBody(elucidation)
+      .then((data: any) => {
+        this.paragraph = data.body;
+      });
   }
 
 }
