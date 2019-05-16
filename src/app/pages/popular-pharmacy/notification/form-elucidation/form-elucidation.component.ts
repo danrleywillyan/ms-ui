@@ -97,7 +97,8 @@ export class FormElucidationComponent implements OnInit {
       date: this.elucidationFormGroup.value.date || this.elucidation.date,
       authorizations: this.authorizations
     };
-    return !this.elucidation.nup || !this.elucidation.cnpj || !this.elucidation.date || this.authorizations.length == 0; 
+
+    return !this.elucidation.nup || !this.elucidation.cnpj || this.authorizations.length === 0;
   }
 
   add() {
