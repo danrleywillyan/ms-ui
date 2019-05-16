@@ -31,7 +31,8 @@ export class OccurrenceTypesComponent implements OnInit {
   }
 
   saveOccurrenceType() {
-    const occ_id = this.occurrencesTypesFormBuilder.controls.id.value;
+    // tslint:disable-next-line:radix
+    const occ_id = parseInt(this.occurrencesTypesFormBuilder.controls.id.value);
     const occurrence = this.occurrencesTypes.filter(i => i.id === occ_id)[0] || new OccurrenceType();
     occurrence.id = occ_id;
     occurrence.name = this.occurrencesTypesFormBuilder.controls.name.value;
@@ -53,7 +54,9 @@ export class OccurrenceTypesComponent implements OnInit {
   }
 
   reset() {
-    this.setupList();
+    this.elucidationService.renewOccurrenceTypes().then(() => {
+      this.setupList();
+    });
   }
 
   setupList() {

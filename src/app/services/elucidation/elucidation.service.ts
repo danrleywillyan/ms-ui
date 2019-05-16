@@ -48,6 +48,13 @@ export class ElucidationService extends GatewayService {
     return this.perform();
   }
 
+  // RENEW Occurrences records (delete all & insert default)
+  renewOccurrenceTypes() {
+    this.method = 'delete';
+    this.path = `occurrence_codes/renew`;
+    return this.perform();
+  }
+
   // Elucidations CRUD
   getElucidations() {
     this.method = 'get';
