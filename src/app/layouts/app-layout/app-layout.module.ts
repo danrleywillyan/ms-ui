@@ -16,6 +16,7 @@ import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notificat
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
+import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pipe';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.compone
     RemedyLifecycleComponent,
     OccurrenceTypesComponent,
     FormElucidationComponent,
-    MulctComponent
+    MulctComponent,
+    TransactionsFilterPipe
   ]
 })
 

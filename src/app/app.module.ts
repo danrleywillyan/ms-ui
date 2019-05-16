@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
+import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe';
 
 @NgModule({
   imports: [

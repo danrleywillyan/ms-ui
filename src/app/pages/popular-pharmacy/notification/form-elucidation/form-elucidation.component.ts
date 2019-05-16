@@ -28,6 +28,8 @@ export class Elucidation {
 })
 export class FormElucidationComponent implements OnInit {
 
+  public filterTransactions: string;
+
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
     this.elucidationService.getOccurrencesTypes().then( (data: any) => {
@@ -35,7 +37,7 @@ export class FormElucidationComponent implements OnInit {
     });
 
     this.elucidation = new Elucidation();
-    if(window['elucidation']) {
+    if (window['elucidation']) {
       this.elucidation = window['elucidation'];
       window['elucidation'] = undefined;
       this.authorizations = this.elucidation.authorizations;

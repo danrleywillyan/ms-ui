@@ -71,9 +71,14 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="form-control-label" for="cnpj">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
+              <input type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
+            </div>
+
             <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" multiple required>
               <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
-              <option *ngFor="let csvTransaction of csvTransactions; index as i;" [value]="i"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
+              <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions; index as i;" [value]="i"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
             </select>
           </div>
 
