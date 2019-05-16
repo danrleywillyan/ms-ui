@@ -14,7 +14,9 @@ export class Authorization {
 
 export class Elucidation {
   nup: string;
+  cnpj: string;
   date?: Date;
+  _id?: string;
   authorizations: Authorization[];
 }
 
@@ -27,12 +29,19 @@ export class FormElucidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
-    this.elucidationService.getOccurrencesTypes().subscribe( (data: any) => {
+    this.elucidationService.getOccurrencesTypes().then( (data: any) => {
       this.occurrencesTypes = data;
     });
 
+    this.elucidation = new Elucidation();
+    if(window['elucidation']) {
+      this.elucidation = window['elucidation'];
+      window['elucidation'] = undefined;
+      this.authorizations = this.elucidation.authorizations;
+    }
+
     this.elucidationService.getAuthorizations()
-      .subscribe((data: any) => {
+      .then((data: any) => {
       window['csv_authorizations'] = data.data;
       this.csvTransactions = window['csv_authorizations'];
       this.csvTransactions = this.csvTransactions.slice(1);
@@ -40,6 +49,7 @@ export class FormElucidationComponent implements OnInit {
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
+      cnpj: new FormControl(null, Validators.minLength(2)),
       date: new FormControl(null),
       authorizations: new FormControl(null)
     });
@@ -56,17 +66,17 @@ export class FormElucidationComponent implements OnInit {
   public occurrencesTypes = [];
   public csvSelectedTransaction: object;
   public authorizations: Authorization[];
+  public elucidation: Elucidation;
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
 
   public static formattedDate(deformedVal) {
     const datePieces = deformedVal.split('/');
 
-    let day = datePieces[0];
-    const month = datePieces[1];
+    const day = `0${datePieces[0]}`.slice(-2);
+    const month = `0${datePieces[1]}`.slice(-2);
     const year = datePieces[2].split(' ')[0];
 
-    if (day.length === 1) day = `0${day}`;
     return `${year}-${month}-${day}`;
   }
 
@@ -75,6 +85,17 @@ export class FormElucidationComponent implements OnInit {
 
   remove(authorizationId) {
     this.authorizations.splice(authorizationId, 1);
+  }
+
+  _validateForm() {
+    this.elucidation = {
+      _id: this.elucidation._id,
+      nup: this.elucidationFormGroup.value.nup || this.elucidation.nup,
+      cnpj: this.elucidationFormGroup.value.cnpj || this.elucidation.cnpj,
+      date: this.elucidationFormGroup.value.date || this.elucidation.date,
+      authorizations: this.authorizations
+    };
+    return !this.elucidation.nup || !this.elucidation.cnpj || !this.elucidation.date || this.authorizations.length == 0; 
   }
 
   add() {
@@ -101,22 +122,25 @@ export class FormElucidationComponent implements OnInit {
   }
 
   save() {
-    const elucidation: Elucidation = {
-      nup: this.elucidationFormGroup.value.nup,
-      date: this.elucidationFormGroup.value.date,
-      authorizations: this.authorizations
-    };
-
-    this.elucidationService.insertElucidation(elucidation)
-      .subscribe((data) => {
-        this.clearInputs();
-        setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
-      });
+    if (!this.elucidation._id) {
+      this.elucidationService.insertElucidation(this.elucidation)
+        .then((data) => {
+          this.clearInputs();
+          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+        });
+    } else {
+      this.elucidationService.updateElucidation(this.elucidation)
+        .then((data) => {
+          this.clearInputs();
+          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+        });
+    }
   }
 
   clearInputs() {
     this.authorizations = [];
     this.elucidationFormGroup.controls['nup'].setValue('');
+    this.elucidationFormGroup.controls['cnpj'].setValue('');
     this.elucidationFormGroup.controls['date'].setValue('');
     this.authorizationFormGroup.controls['authorizedAt'].setValue('');
     this.authorizationFormGroup.controls['authorizationCode'].setValue('');

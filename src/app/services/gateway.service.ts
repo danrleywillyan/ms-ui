@@ -13,7 +13,7 @@ export class GatewayService {
   public debugMsg: string;
 
   public port = '8080';
-  public host = 'docker';
+  public host = 'gateway';
   public protocol = 'http';
 
   public params: object;
@@ -29,7 +29,7 @@ export class GatewayService {
 
     this.debugMsg = null;
 
-    promise.subscribe( data => {
+    promise.then( data => {
       console.log('data', data);
       setTimeout( () => { this.loader.stop(); }, 500);
     }, error => {
@@ -39,7 +39,7 @@ export class GatewayService {
   }
 
   protected perform() {
-    const promise = this.http.request(this.method, this.mountURL(), this.options());
+    const promise = this.http.request(this.method, this.mountURL(), this.options()).toPromise();
     this.loading(promise);
     return promise;
   }

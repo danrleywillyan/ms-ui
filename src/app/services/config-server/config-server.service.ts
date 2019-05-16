@@ -18,7 +18,7 @@ export class ConfigServerService extends GatewayService {
     this.path = 'ui/default';
     const promise = this.perform();
 
-    promise.subscribe( data => {
+    promise.then( data => {
       console.log('UIConfig from ZUUL', data);
     });
 
@@ -28,9 +28,9 @@ export class ConfigServerService extends GatewayService {
   getRoutes() {
     this.method = 'get';
     this.path = 'routes';
-    const promise = this.http.request(this.method, `${this.protocol}://${this.host}:${this.port}/${this.path}`, {});
+    const promise = this.http.request(this.method, `${this.protocol}://${this.host}:${this.port}/${this.path}`, {}).toPromise();
 
-    promise.subscribe( data => {
+    promise.then( data => {
       console.log('getRoutes from ZUUL', data);
     });
 

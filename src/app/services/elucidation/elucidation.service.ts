@@ -64,7 +64,7 @@ export class ElucidationService extends GatewayService {
   }
 
   // UPDATE Elucidations records
-  updateElucidations(params) {
+  updateElucidation(params) {
     this.method = 'put';
     this.path = `elucidations/${params._id}`;
     delete params._id;
@@ -73,7 +73,7 @@ export class ElucidationService extends GatewayService {
   }
 
   // DELETE Elucidations records
-  deleteElucidations(params) {
+  deleteElucidation(params) {
     this.method = 'delete';
     this.path = `elucidations/${params._id}`;
     return this.perform();

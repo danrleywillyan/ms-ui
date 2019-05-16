@@ -38,10 +38,10 @@ export class OccurrenceTypesComponent implements OnInit {
 
     if (occurrence._id) {
       this.elucidationService.updateOccurrenceTypes(occurrence)
-        .subscribe(() => this.setupList());
+        .then(() => this.setupList());
     } else {
       this.elucidationService.insertOccurrenceTypes(occurrence)
-        .subscribe(() => this.setupList());
+        .then(() => this.setupList());
     }
   }
 
@@ -49,7 +49,7 @@ export class OccurrenceTypesComponent implements OnInit {
     const occurrence = this.occurrencesTypes.filter(i => i.id === id)[0];
 
     this.elucidationService.deleteOccurrenceTypes(occurrence)
-      .subscribe(() => this.setupList());
+      .then(() => this.setupList());
   }
 
   reset() {
@@ -58,7 +58,7 @@ export class OccurrenceTypesComponent implements OnInit {
 
   setupList() {
     this.elucidationService.getOccurrencesTypes()
-      .subscribe((data: Array<any>) => {
+      .then((data: Array<any>) => {
       this.occurrencesTypes = data.sort((a, b) => a.id - b.id);
     });
   }
