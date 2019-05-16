@@ -1,0 +1,56 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Farmácia Popular</li>
+        <li class="breadcrumb-item"><a routerLinkActive="active" [routerLink]="['/popular-pharmacy/multa']">Multa</a></li>
+      </ol>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <a href="https://gaesi.gitlab.io/msdaf/wiki/parse-da-farmacia-popular/">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Acesso ao Manual</h5>
+                    <p class="h5 font-weight-bold mb-0">Acesse o manual para download do arquivo CSV com as informações necessárias para a conversão.</p>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-teal text-white rounded-circle shadow">
+                      <i class="ni ni-bullet-list-67"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" data-toggle="modal" data-target="#csvUploadModal">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Importar CSV</h5>
+                  <p class="h5 font-weight-bold mb-0">Envie seu aquivo em formato CSV con as informações já exportadas, para conversão dos dados.</p>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+                    <i class="ni ni-cloud-upload-96"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

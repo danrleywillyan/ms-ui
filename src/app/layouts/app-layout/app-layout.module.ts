@@ -15,6 +15,7 @@ import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/re
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import {LoaderComponent} from '../../components/loader/loader.component';
+import { MultaComponent } from '../../pages/popular-pharmacy/multa/multa.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import {LoaderComponent} from '../../components/loader/loader.component';
     DashboardComponent,
     RemedyLifecycleComponent,
     OccurrenceTypesComponent,
-    FormElucidationComponent
+    FormElucidationComponent,
+    MultaComponent
   ]
 })
 
