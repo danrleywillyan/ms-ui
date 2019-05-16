@@ -16,15 +16,15 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange' }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange' }, { path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange' }]},
+  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, { path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue' }, { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue' }, { path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue' }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue' }, { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true }, { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, { path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Multa', icon: 'ni-single-copy-04 text-blue' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo' }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo' }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo' }]}
+  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]}
 ];
 
 @Component({

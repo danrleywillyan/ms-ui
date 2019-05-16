@@ -36,3 +36,7 @@
 select[multiple].custom-select {
   height: 170px;
 }
+
+.disabled {
+  pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+}
