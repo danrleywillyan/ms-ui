@@ -12,6 +12,7 @@ export class GatewayService {
   public method: string;
   public debugMsg: string;
 
+  public headers = {};
   public port = '8080';
   public host = 'gateway';
   public protocol = 'http';
@@ -41,17 +42,19 @@ export class GatewayService {
   protected perform() {
     const promise = this.http.request(this.method, this.mountURL(), this.options()).toPromise();
     this.loading(promise);
+    this.headers = {};
     return promise;
+  }
+
+  protected mountURL() {
+    return `${this.protocol}://${this.host}:${this.port}/${this.app}/${this.path}`;
   }
 
   private options() {
     return {
-      body: this.params
+      body: this.params,
+      headers: this.headers
     };
-  }
-
-  private mountURL() {
-    return `${this.protocol}://${this.host}:${this.port}/${this.app}/${this.path}`;
   }
 
 }

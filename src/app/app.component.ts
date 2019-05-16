@@ -10,8 +10,8 @@ export class AppComponent {
   title = 'argon-dashboard-angular';
 
   constructor(configServer: ConfigServerService) {
-    configServer.getRoutes();
-    configServer.getUIConfig();
+    // configServer.getRoutes();
+    // configServer.getUIConfig();
   }
 
 }

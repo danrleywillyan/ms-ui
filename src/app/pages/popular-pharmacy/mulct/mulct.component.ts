@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {MulctParserService} from '../../../services/refund/mulct-parser.service';
 
 @Component({
   selector: 'app-mulct',
@@ -10,8 +11,7 @@ export class MulctComponent implements OnInit {
 
   private filesToUpload = null;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private mulctParserService: MulctParserService) {}
 
   ngOnInit() {
   }
@@ -25,32 +25,27 @@ export class MulctComponent implements OnInit {
   }
 
   // calls the micro service Parser / Refund passing POST the csv file for conversion
-  upload() {
+  upload(counterTest = 0) {
     const formData = new FormData();
     const files = this.filesToUpload;
     formData.append(`file`, files.item(0), files.item(0).name);
-
-    this.http.post('http://0.0.0.0:5000/refund', formData).subscribe(response => response);
-    alert('Arquivo Convertido com sucesso!');
-    this.downloadMulct();
-
-    // @ts-ignore
-    $('#file').val('');
+    const promise = this.mulctParserService.parseMulct(formData);
+    promise.then(() => {
+      this.downloadMulct();
+      // @ts-ignore
+      $('#file').val('');
+    }).catch((error) => {
+      console.log('error mulct parser error: ', error);
+      if (counterTest <= 2) return this.upload(counterTest++);
+      alert('Não foi possível processar seu arquivo, tente novamente.');
+    });
   }
 
   /**
    * calls the micro service Parser / Refund via GET receiving the converted file
    */
   downloadMulct() {
-    this.http.get('http://0.0.0.0:5000/refund', {responseType: 'blob'}).subscribe(r => {
-      const blob = new Blob([r], {type: 'application/txt'});
-      const url = window.URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.download = 'GRU.txt';
-      anchor.href = url;
-      anchor.click();
-
-    });
+    this.mulctParserService.downloadParsedMulct();
   }
 
 }
