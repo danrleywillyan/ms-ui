@@ -72,8 +72,8 @@
             </div>
 
             <div class="form-group">
-              <label class="form-control-label" for="cnpj">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
-              <input type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
+              <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
+              <input id="filter" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
             </div>
 
             <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" multiple required>
@@ -107,7 +107,13 @@
                     <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
                   </div>
                 </div>
-                <input type="date" hidden class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="authorizedAt">Nome da Medicação e/ou observação</label>
+                    <input type="text" class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required>
+                  </div>
+                </div>
 
                 <div class="col-lg-12">
                   <label for="occurrences">Selecione os códigos das ocorrências para esta transação (segure o control e clique nos que se aplicam)</label>
