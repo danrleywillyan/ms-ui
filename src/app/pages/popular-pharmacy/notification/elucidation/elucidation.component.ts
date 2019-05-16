@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ElucidationService } from '../../../../services/elucidation/elucidation.service';
 
 @Component({
   selector: 'app-elucidation',
@@ -11,7 +12,7 @@ export class ElucidationComponent implements OnInit {
   public elucidations = [];
   public csv_authorizations = [];
 
-  constructor(private elucidationService: ElucidationService) {}
+  constructor(private elucidationService: ElucidationService, private router: Router) {}
 
   ngOnInit() {
     this.setupList();
@@ -36,7 +37,7 @@ export class ElucidationComponent implements OnInit {
   }
 
   remove(elucidation) {
-    this.elucidationService.deleteElucidations(elucidation);
+    this.elucidationService.deleteElucidation(elucidation);
     this.setupList();
   }
 
@@ -108,6 +109,11 @@ export class ElucidationComponent implements OnInit {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
     });
+  }
+
+  editElucidation(elucidation) {
+    window['elucidation'] = elucidation;
+    this.router.navigate(['/popular-pharmacy/notification/elucidation/form']);
   }
 
 }

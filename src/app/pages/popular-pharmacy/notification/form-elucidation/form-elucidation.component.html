@@ -30,7 +30,7 @@
               <h3 class="mb-0">Cadastrar ou alterar Solicitação de Esclarecimento</h3>
             </div>
             <div class="col-4 text-right">
-              <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="(!elucidationFormGroup.valid) || authorizations.length == 0">Salvar Solicitação de Esclarecimento</button>
+              <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="_validateForm()">Salvar Solicitação</button>
             </div>
           </div>
         </div>
@@ -39,17 +39,24 @@
             <h6 class="heading-small text-muted mb-4">Informações desta Solicitação</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="nup">Número Único do Processo (NUP)</label>
-                    <input type="text" class="form-control form-control-alternative" formControlName="nup" name="nup" id="nup" placeholder="Número Único do Processo desta Solicitação" required>
+                    <input type="text" class="form-control form-control-alternative" formControlName="nup" name="nup" id="nup" placeholder="Número Único do Processo desta Solicitação" required value="{{elucidation.nup}}">
                   </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="cnpj">CNPJ vinculado</label>
+                    <input type="text" class="form-control form-control-alternative" formControlName="cnpj" name="cnpj" id="cnpj" placeholder="CNPJ da empresa notificada" required value="{{elucidation.cnpj}}">
+                  </div>
+                </div>
+
+                <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="date">Data do NUP</label>
-                    <input type="date" class="form-control form-control-alternative" formControlName="date" name="date" id="date" placeholder="Data da Autorização" required>
+                    <input type="date" class="form-control form-control-alternative" formControlName="date" name="date" id="date" placeholder="Data da Autorização" required value="{{elucidation.date}}">
                   </div>
                 </div>
               </div>

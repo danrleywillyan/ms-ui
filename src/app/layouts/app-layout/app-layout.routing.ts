@@ -5,6 +5,7 @@ import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/re
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import {FormElucidationComponent} from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import {OccurrenceTypesComponent} from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
+import { MultaComponent } from '../../pages/popular-pharmacy/multa/multa.component';//Nathan
 
 export const AppLayoutRoutes: Routes = [
   // Budget paths (Orçamento)
@@ -19,5 +20,8 @@ export const AppLayoutRoutes: Routes = [
   { path: 'popular-pharmacy/notification', component: NotificationComponent },
   { path: 'popular-pharmacy/notification/elucidation', component: ElucidationComponent },
   { path: 'popular-pharmacy/notification/elucidation/form', component: FormElucidationComponent },
-  { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent }
+  { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
+  { path: 'popular-pharmacy/multa', component: MultaComponent } //Nathan
+
+
 ];
