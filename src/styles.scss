@@ -37,6 +37,14 @@ select[multiple].custom-select {
   height: 170px;
 }
 
+.nav-link {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
 .disabled {
   pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
 }
