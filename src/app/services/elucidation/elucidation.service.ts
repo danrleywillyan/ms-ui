@@ -97,4 +97,10 @@ export class ElucidationService extends GatewayService {
     this.params = params;
     return this.perform();
   }
+
+  getElucidationBody(params) {
+    this.method = 'get';
+    this.path = `elucidations/${params._id}/body`;
+    return this.perform();
+  }
 }
