@@ -42,10 +42,10 @@ Run `docker build -t ui:latest .`. __Remember to update it version!__
 ## Docker publish
 
 1. Com a imagem ja criada digite o seguinte código no terminal
-`docker tag nome_da_imagem id_docker_hub/nome_da_imagem_hub:tag_version`
+`docker tag ui msdaf/ui:latest`
 
 2. Insira o seguinte código para dar um push para o DockeHub e aguarde
-`docker push id_docker_hub/nome_da_imagem_hub:tag_version`
+`docker push msdaf/ui:latest`
 
 ## Python for Eureka
 
