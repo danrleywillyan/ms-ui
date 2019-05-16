@@ -71,7 +71,7 @@ services:
   #     - "8531:5000"
 
   parsers:
-    image: "parsers"
+    image: "msdaf/parsers"
     hostname: parsers
     restart: always
     links:
