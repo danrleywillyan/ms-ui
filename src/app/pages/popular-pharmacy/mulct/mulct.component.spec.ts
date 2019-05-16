@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MultaComponent } from './multa.component';
+import { MulctComponent } from './mulct.component';
 
-describe('MultaComponent', () => {
-  let component: MultaComponent;
-  let fixture: ComponentFixture<MultaComponent>;
+describe('MulctComponent', () => {
+  let component: MulctComponent;
+  let fixture: ComponentFixture<MulctComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultaComponent ]
+      declarations: [ MulctComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MultaComponent);
+    fixture = TestBed.createComponent(MulctComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
