@@ -8,6 +8,7 @@ export class Occurrence {
 
 export class Authorization {
   id: number;
+  remedy: string;
   date: Date;
   occurrences: Occurrence[];
 }
