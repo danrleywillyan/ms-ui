@@ -8,6 +8,7 @@ export class Occurrence {
 
 export class Authorization {
   id: number;
+  remedy: string;
   date: Date;
   occurrences: Occurrence[];
 }
@@ -56,6 +57,7 @@ export class FormElucidationComponent implements OnInit {
 
     this.authorizationFormGroup = new FormGroup({
       authorizationCode: new FormControl(null, Validators.minLength(2)),
+      remedyName: new FormControl(null, Validators.minLength(2)),
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
       occurrences: new FormControl(null, null)
     });
@@ -102,6 +104,7 @@ export class FormElucidationComponent implements OnInit {
     let alreadyPersisted = false;
     const authorization = {
       id: this.authorizationFormGroup.value.authorizationCode,
+      remedy: this.authorizationFormGroup.value.remedyName,
       date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.authorizationFormGroup.value.occurrences
     } as Authorization;
@@ -109,7 +112,7 @@ export class FormElucidationComponent implements OnInit {
     // tslint:disable-next-line:forin
     for (const i in this.authorizations) {
       const iAuthorization = this.authorizations[i];
-      if (iAuthorization.id === authorization.id) {
+      if (iAuthorization.id === authorization.id && iAuthorization.remedy === authorization.remedy) {
         alreadyPersisted = true;
         this.authorizations[i] = authorization;
       }
@@ -149,7 +152,7 @@ export class FormElucidationComponent implements OnInit {
   selectTransaction(csvTransactionID) {
     const csvTransaction = this.csvTransactions[csvTransactionID];
     this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
-    console.log('formatted date: ', FormElucidationComponent.formattedDate(csvTransaction[2]));
+    this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[4]);
     this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[2]));
     window['ev'] = csvTransactionID;
     console.log('EVENT selectTransaction', this.csvTransactions[csvTransactionID]);
