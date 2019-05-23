@@ -162,6 +162,10 @@
         </button>
       </div>
       <div class="modal-body">
+        <div *ngIf="csv_authorizations.length > 0">
+          <h1>Total de autorizações já cadastradas: {{csv_authorizations.length}}</h1>
+          <br><br>
+        </div>
 
         <input id="csvTransactions"
                type="file"
@@ -171,11 +175,6 @@
 
         <br><br>
         <a href="./static/assets/samples/consolidated_authorizations.csv" target="_blank"><h4>Caso não possua o arquivo modelo, baixe-o clicando aqui.</h4></a>
-
-        <div *ngIf="csv_authorizations.length > 0">
-          <br><br>
-          <h4>Total de itens cadastrados no documento: {{csv_authorizations.length}}</h4>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -190,13 +189,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h5>
+        <h5 class="modal-title">Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        {{paragraph}}
+        <ul>
+          <li *ngFor="let line of paragraph; index as i;">
+            {{line}}
+          </li>
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

@@ -6,6 +6,7 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 @Injectable({
   providedIn: 'root'
 })
+// @ts-ignore
 export class ElucidationService extends GatewayService {
 
   constructor(protected http: HttpClient, protected loader: LoaderComponent) {

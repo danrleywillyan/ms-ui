@@ -91,7 +91,14 @@ export class ElucidationComponent implements OnInit {
       .then((data: any) => {
       this.csv_authorizations = data.data;
       window['csv_authorizations'] = this.csv_authorizations;
-      alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`);
+
+      // @ts-ignore
+      this.elucidationService.loader.stop();
+
+      // @ts-ignore
+      $('[data-dismiss="modal"]').click();
+
+      setTimeout( () => { alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`); }, 2000);
     });
   }
 

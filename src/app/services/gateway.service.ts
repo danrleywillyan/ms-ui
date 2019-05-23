@@ -18,8 +18,11 @@ export class GatewayService {
   public protocol = 'http';
 
   public params: object;
+  public loader: LoaderComponent;
 
-  constructor(protected http: HttpClient, protected loader: LoaderComponent) { }
+  constructor(protected http: HttpClient, public lc: LoaderComponent) {
+    this.loader = lc;
+  }
 
   protected loading(promise) {
     this.loader.start();
@@ -32,10 +35,10 @@ export class GatewayService {
 
     promise.then( data => {
       console.log('data', data);
-      setTimeout( () => { this.loader.stop(); }, 500);
+      setTimeout( () => { this.loader.stop(); }, 1000);
     }, error => {
       console.log('error', error);
-      setTimeout( () => { this.loader.stop(); }, 500);
+      setTimeout( () => { this.loader.stop(); }, 1000);
     });
   }
 
