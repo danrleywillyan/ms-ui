@@ -129,7 +129,7 @@ export class ElucidationComponent implements OnInit {
     this.elucidation = elucidation;
     this.elucidationService.getElucidationBody(elucidation)
       .then((data: any) => {
-        this.paragraph = data.body;
+        this.paragraph = data.body.map(line => line.replace(/\(([0-9]{4})-([0-9]{2})-([0-9]{2})\)/g,'($3/$2/$1)')).filter((line, i, data) => line !== data[i+1]);
       });
   }
 

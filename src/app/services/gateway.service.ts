@@ -18,7 +18,7 @@ export class GatewayService {
   public protocol = 'http';
 
   public params: object;
-  public loader: LoaderComponent;
+  protected loader: LoaderComponent;
 
   constructor(protected http: HttpClient, public lc: LoaderComponent) {
     this.loader = lc;
