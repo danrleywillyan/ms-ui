@@ -88,17 +88,18 @@ export class ElucidationComponent implements OnInit {
 
     this.csv_authorizations = lines;
     this.elucidationService.insertAuthorizations({ data: lines })
-      .then((data: any) => {
-      this.csv_authorizations = data.data;
-      window['csv_authorizations'] = this.csv_authorizations;
+      .then((auths: any) => {
+        console.log(auths);
+        this.csv_authorizations = [].concat(...auths.map(a => a.data));
+        window['csv_authorizations'] = this.csv_authorizations;
 
-      // @ts-ignore
-      this.elucidationService.loader.stop();
+        // @ts-ignore
+        this.elucidationService.loader.stop();
 
-      // @ts-ignore
-      $('[data-dismiss="modal"]').click();
+        // @ts-ignore
+        $('[data-dismiss="modal"]').click();
 
-      setTimeout( () => { alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`); }, 2000);
+        setTimeout( () => { alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`); }, 2000);
     });
   }
 
@@ -110,7 +111,7 @@ export class ElucidationComponent implements OnInit {
 
   setupList() {
     this.elucidationService.getElucidations()
-      .then((data: Array<any>) => {
+    .then((data: Array<any>) => {
       this.elucidations = data;
     });
     this.elucidationService.getAuthorizations()

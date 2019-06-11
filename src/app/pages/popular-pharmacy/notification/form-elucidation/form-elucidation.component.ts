@@ -44,8 +44,8 @@ export class FormElucidationComponent implements OnInit {
     }
 
     this.elucidationService.getAuthorizations()
-      .then((data: any) => {
-      window['csv_authorizations'] = data.data;
+    .then((auths: any) => {
+      window['csv_authorizations'] = [].concat(...auths.map(a => a.data));
       this.csvTransactions = window['csv_authorizations'].slice(1).filter(i => i[0] !== '');
     });
 
