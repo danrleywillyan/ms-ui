@@ -78,7 +78,7 @@
 
             <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" multiple required>
               <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
-              <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions; index as i;" [value]="i"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
+              <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
             </select>
           </div>
 
