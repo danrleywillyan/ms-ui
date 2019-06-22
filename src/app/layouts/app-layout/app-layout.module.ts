@@ -41,7 +41,7 @@ import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pi
     OccurrenceTypesComponent,
     FormElucidationComponent,
     MulctComponent,
-    TransactionsFilterPipe
+    TransactionsFilterPipe,
   ]
 })
 
