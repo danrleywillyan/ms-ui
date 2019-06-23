@@ -82,6 +82,16 @@ services:
     ports:
       - "8445:5000"
 
+  consultgru:
+    image: "consultgru"
+    hostname: consultgru
+    restart: always
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8450:5000"
+
   elucidation:
     image: "msdaf/elucidation"
     hostname: elucidation
