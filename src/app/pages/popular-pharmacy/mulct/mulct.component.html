@@ -69,13 +69,91 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+
+
+
+<div class="container-fluid mt--7" id="showGRUs" *ngIf="hideElement">
+  <div class="row">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">GRUs</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">ID</th>
+              <!-- <th scope="col">ugEmitente</th>
+              <th scope="col">ugArrecadadora</th> -->
+              <th scope="col">Data Emissão</th>
+              <th scope="col">Data Contabiliz.</th>
+              <!-- <th scope="col">recolhimentoContabilizado</th> -->
+              <th scope="col">Contribuinte</th>
+              <th scope="col">Referência</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Situação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gru of grus;">
+              <td>
+                {{gru.id}}
+              </td>
+              <!-- <td>
+                {{gru.ugEmitente}}
+              </td>
+              <td>
+                {{gru.ugArrecadadora}}
+              </td> -->
+              <td>
+                {{gru.dtEmissao}}
+              </td>
+              <td>
+                {{gru.dtContabilizacaoSiafi}}
+              </td>
+              <!-- <td>
+                {{gru.recolhimentoContabilizado}}
+              </td> -->
+              <td>
+                {{gru.codigoRecolhedor}}
+              </td>
+              <td>
+                {{gru.numReferencia}}
+              </td>
+              <td>
+                {{gru.vlTotal}}
+              </td>
+              <td>
+                {{gru.situacao}}
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
       </div>
     </div>
   </div>
-
 </div>
+
+
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="csvUploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -114,10 +192,10 @@
      aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form (ngSubmit)="loginExec()">
-      <div class="modal-content">
+      <div class="modal-content" ng-controller="controlador" ng-app="app">
         <div class="modal-header">
 
-          <h3 class="modal-title" id="exampleModalLabel">Login</h3>
+          <h3 class="modal-title" id="exampleModalLabel">{{name}}</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -126,16 +204,36 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="form-control-label" for="login">Login</label>
-            <input type="text" class="form-control form-control-alternative" name="login" id="login" placeholder="Digite o Login do SIAFI" required (change)="loginUser($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="login" id="login" placeholder="Digite o Login do SIAFI" required (change)="loginfc($event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Senha</label>
-            <input type="text" class="form-control form-control-alternative" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required (change)="passw($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required (change)="passfc($event.target.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="pass">UG Arrecadadora</label>
+            <input type="text" class="form-control form-control-alternative" name="ugArrecadadora" id="ugArrecadadora" placeholder="Digite a UG Arrecadadora" required (change)="ugArrecadadorafc($event.target.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="pass">UG Emitente</label>
+            <input type="text" class="form-control form-control-alternative" name="ugEmitente" id="ugEmitente" placeholder="Digite a UG Emitente" required (change)="ugEmitentefc($event.target.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="pass">Contribuinte</label>
+            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite O CPF/CNPJ do COntribuinte" required (change)="codigoRecolhedorfc($event.target.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="pass">Data Inicial</label>
+            <input type="text" class="form-control form-control-alternative" name="dtEmissaoIN" id="dtEmissaoIN" placeholder="Digite a data inicial da consulta" required (change)="dtEmissaoINfc($event.target.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="pass">Data Final</label>
+            <input type="text" class="form-control form-control-alternative" name="dtEmissaoFI" id="dtEmissaoFI" placeholder="Digite a data final da consulta" required (change)="dtEmissaoFIfc($event.target.value)">
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Converter</button>
+          <button type="submit" class="btn btn-primary" >Consultar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
