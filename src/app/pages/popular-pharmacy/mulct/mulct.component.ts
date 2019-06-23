@@ -24,7 +24,6 @@ export class MulctComponent implements OnInit {
   }
 
   ngOnInit() {
-      // $('#showGRUs').setAttribute("hidden","true");
   }
 
   /**
@@ -59,10 +58,6 @@ export class MulctComponent implements OnInit {
 
 
 
-
-
-
-
   // calls the micro service Parser / Refund passing POST the csv file for conversion
   upload(counterTest = 0) {
     const formData = new FormData();
@@ -71,7 +66,6 @@ export class MulctComponent implements OnInit {
     const promise = this.mulctParserService.parseMulct(formData);
     promise.then(() => {
       this.downloadMulct();
-      // @ts-ignore
       $('#file').val('');
     }).catch((error) => {
       console.log('error mulct parser error: ', error);
@@ -100,6 +94,7 @@ export class MulctComponent implements OnInit {
     this.requestXML(formData);
 
 
+
     // const promdise = this.consultSisGRUService.consultSisGRU(formData);
     // promdise.then(() => {
     //   alert(promdise);
@@ -117,26 +112,18 @@ export class MulctComponent implements OnInit {
   downloadMulct() {
     this.mulctParserService.downloadParsedMulct();
   }
-  requestXML(formData) {//calls the microservice Parser / Refund via GET receiving the converted file
-   // alert("teste");
+  requestXML(formData) {//calls the microservice consultGRU
     this.http.post('http://127.0.0.1:5000/requiremen',formData,{ responseType: "json"}).subscribe(r => {
-      // var arr = Object.entries(r).map(([type, value]) => ({type, value}));
-      // const peopleArray = Object.keys(r).map(i => peopleObj[i])
 
-      // alert(JSON.stringify(r.length));
       this.contructTable(r);
     });
-
-    //alert(response);
   }
   contructTable(obj){
-    // alert(JSON.stringify(obj[0]))
     var x=obj.length-1
     var i=0
     while(x>i){
       var array=obj[i]
       var data = []
-      // alert(JSON.stringify(array["id"]))
       data["id"]=JSON.stringify(array["id"]).replace(`\"`, '').replace(`\"`, '');
       // data["ugEmitente"]=JSON.stringify(array["ugEmitente"]).replace(`\"`, '').replace(`\"`, '');
       // data["ugArrecadadora"]=JSON.stringify(array["ugArrecadadora"]).replace(`\"`, '').replace(`\"`, '');
@@ -155,9 +142,6 @@ export class MulctComponent implements OnInit {
     this.hideElement=true;
     $('[data-dismiss="modal"]').click();
 
-    //   alert(JSON.stringify(obj[i]["situacao"]));
-    //   x--;
-    // }
 
   }
 
