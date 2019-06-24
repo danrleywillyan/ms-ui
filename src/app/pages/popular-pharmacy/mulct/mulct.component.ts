@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MulctParserService} from '../../../services/refund/mulct-parser.service';
 import {ConsultsisgruService} from '../../../services/refund/consultsisgru.service';
+declare var $: any;
 
 @Component({
   selector: 'app-mulct',
@@ -19,6 +20,8 @@ export class MulctComponent implements OnInit {
   private dtEmissaoIN = null;
   private dtEmissaoFI = null;
   public hideElement= false;
+
+
 
   constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private http: HttpClient) {
   }
@@ -138,7 +141,7 @@ export class MulctComponent implements OnInit {
       this.grus[i]= data;
       i++;
     }
-    alert(this.grus[0]["id"]);
+    // alert(this.grus[0]["id"]);
     this.hideElement=true;
     $('[data-dismiss="modal"]').click();
 
