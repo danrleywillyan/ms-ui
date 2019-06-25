@@ -17,6 +17,7 @@ import { FormElucidationComponent } from '../../pages/popular-pharmacy/notificat
 import {LoaderComponent} from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pipe';
+import {ReplacePipe} from '../../pipes/filters/replace.pipe'
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pi
     FormElucidationComponent,
     MulctComponent,
     TransactionsFilterPipe,
+    ReplacePipe,
   ]
 })
 

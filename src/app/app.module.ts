@@ -17,6 +17,7 @@ import {LoaderComponent} from './components/loader/loader.component';
 import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
 import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,

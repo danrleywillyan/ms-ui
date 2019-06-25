@@ -131,7 +131,7 @@
                 {{gru.numReferencia}}
               </td>
               <td>
-                {{gru.vlTotal}}
+                {{gru.vlTotal | currency:'R$' | replace:',':' ' | replace:'.':',' | replace:' ':'.'}}
               </td>
               <td>
                 {{gru.situacao}}
@@ -218,7 +218,7 @@
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Contribuinte</label>
-            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite O CPF/CNPJ do Contribuinte" required (change)="codigoRecolhedorfc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite o CPF/CNPJ do Contribuinte" required (change)="codigoRecolhedorfc($event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Data Inicial</label>

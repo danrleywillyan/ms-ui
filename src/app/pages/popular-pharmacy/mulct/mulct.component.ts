@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MulctParserService} from '../../../services/refund/mulct-parser.service';
 import {ConsultsisgruService} from '../../../services/refund/consultsisgru.service';
+
 declare var $: any;
 
 @Component({
@@ -20,8 +21,6 @@ export class MulctComponent implements OnInit {
   private dtEmissaoIN = null;
   private dtEmissaoFI = null;
   public hideElement= false;
-
-
 
   constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private http: HttpClient) {
   }
@@ -58,9 +57,6 @@ export class MulctComponent implements OnInit {
   dtEmissaoFIfc (dtEmissaoFI){
     this.dtEmissaoFI = dtEmissaoFI;
   }
-
-
-
   // calls the micro service Parser / Refund passing POST the csv file for conversion
   upload(counterTest = 0) {
     const formData = new FormData();
@@ -95,8 +91,6 @@ export class MulctComponent implements OnInit {
     formData.append(`dtEmissaoFI`, dtEmissaoFI);
 
     this.requestXML(formData);
-
-
 
     // const promdise = this.consultSisGRUService.consultSisGRU(formData);
     // promdise.then(() => {
@@ -137,17 +131,10 @@ export class MulctComponent implements OnInit {
       data["numReferencia"]=JSON.stringify(array["numReferencia"]).replace(`\"`, '').replace(`\"`, '');
       data["vlTotal"]=JSON.stringify(array["vlTotal"]).replace(`\"`, '').replace(`\"`, '');
       data["situacao"]=JSON.stringify(array["situacao"]).replace(`\"`, '').replace(`\"`, '');
-
       this.grus[i]= data;
       i++;
     }
-    // alert(this.grus[0]["id"]);
     this.hideElement=true;
     $('[data-dismiss="modal"]').click();
-
-
   }
-
-
-
 }
