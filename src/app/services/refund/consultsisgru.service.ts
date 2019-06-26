@@ -10,7 +10,7 @@ export class ConsultsisgruService extends GatewayService{
 
   constructor(protected http: HttpClient, protected loader: LoaderComponent) {
     super(http, loader);
-    this.app = 'consultSisGRU';
+    this.app = 'consultgru';
   }
 
   consultSisGRU(params){
