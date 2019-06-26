@@ -83,7 +83,7 @@ services:
       - "8445:5000"
 
   consultgru:
-    image: "consultgru"
+    image: "msdaf/consultgru"
     hostname: consultgru
     restart: always
     environment:

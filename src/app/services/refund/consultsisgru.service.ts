@@ -15,7 +15,7 @@ export class ConsultsisgruService extends GatewayService{
 
   consultSisGRU(params){
     this.method = 'post';
-    this.path = 'encodes';
+    this.path = 'requirement';
     this.params = params;
     return this.perform();
 

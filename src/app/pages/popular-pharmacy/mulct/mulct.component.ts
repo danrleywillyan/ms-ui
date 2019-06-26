@@ -90,16 +90,16 @@ export class MulctComponent implements OnInit {
     formData.append(`dtEmissaoIN`, dtEmissaoIN);
     formData.append(`dtEmissaoFI`, dtEmissaoFI);
 
-    this.requestXML(formData);
+    // this.requestXML(formData);
 
-    // const promise = this.consultSisGRUService.consultSisGRU(formData);
-    // promise.then(() => {
-    //   this.contructTable(promise);
-    // }).catch((error) => {
-    //   console.log('error consult SISGRU error: ', error);
-    //   if (counterTest <= 2) return this.upload(counterTest++);
-    //   alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
-    // });
+    const promise = this.consultSisGRUService.consultSisGRU(formData);
+    promise.then((res) => {
+      this.contructTable(res);
+    }).catch((error) => {
+      console.log('error consult SISGRU error: ', error);
+      if (counterTest <= 2) return this.upload(counterTest++);
+      alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
+    });
   }
 
   /**
