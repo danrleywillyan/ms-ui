@@ -90,17 +90,16 @@ export class MulctComponent implements OnInit {
     formData.append(`dtEmissaoIN`, dtEmissaoIN);
     formData.append(`dtEmissaoFI`, dtEmissaoFI);
 
-    this.requestXML(formData);
+    // this.requestXML(formData);
 
-    // const promdise = this.consultSisGRUService.consultSisGRU(formData);
-    // promdise.then(() => {
-    //   alert(promdise);
-    // }).catch((error) => {
-    //   console.log('error consult SISGRU error: ', error);
-    //   if (counterTest <= 2) return this.upload(counterTest++);
-    //   alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
-    // });
-    // alert(login);
+    const promise = this.consultSisGRUService.consultSisGRU(formData);
+    promise.then(() => {
+      contructTable(promise);
+    }).catch((error) => {
+      console.log('error consult SISGRU error: ', error);
+      if (counterTest <= 2) return this.upload(counterTest++);
+      alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
+    });
   }
 
   /**
@@ -109,7 +108,7 @@ export class MulctComponent implements OnInit {
   downloadMulct() {
     this.mulctParserService.downloadParsedMulct();
   }
-  requestXML(formData) {//calls the microservice consultGRU
+  requestXML(formData) {//calls the api consultGRU
     this.http.post('http://127.0.0.1:5000/requiremen',formData,{ responseType: "json"}).subscribe(r => {
 
       this.contructTable(r);
