@@ -19,6 +19,7 @@ export class Elucidation {
   date?: Date;
   _id?: string;
   authorizations: Authorization[];
+  csv_authorizations?: any[];
 }
 
 @Component({
@@ -41,19 +42,16 @@ export class FormElucidationComponent implements OnInit {
       this.elucidation = window['elucidation'];
       window['elucidation'] = undefined;
       this.authorizations = this.elucidation.authorizations;
+      this.csvTransactions = this.elucidation.csv_authorizations;
     }
 
-    this.elucidationService.getAuthorizations()
-    .then((auths: any) => {
-      window['csv_authorizations'] = [].concat(...auths.map(a => a.data));
-      this.csvTransactions = window['csv_authorizations'].slice(1).filter(i => i[0] !== '');
-    });
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
       cnpj: new FormControl(null, Validators.minLength(2)),
       date: new FormControl(null),
-      authorizations: new FormControl(null)
+      authorizations: new FormControl(null),
+      csv: new FormControl(null, null)
     });
 
     this.authorizationFormGroup = new FormGroup({
@@ -61,6 +59,7 @@ export class FormElucidationComponent implements OnInit {
       remedyName: new FormControl(null, Validators.minLength(2)),
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
       occurrences: new FormControl(null, null)
+
     });
   }
 
@@ -96,10 +95,11 @@ export class FormElucidationComponent implements OnInit {
       nup: this.elucidationFormGroup.value.nup || this.elucidation.nup,
       cnpj: this.elucidationFormGroup.value.cnpj || this.elucidation.cnpj,
       date: this.elucidationFormGroup.value.date || this.elucidation.date,
-      authorizations: this.authorizations
+      authorizations: this.authorizations,
+      csv_authorizations: this.elucidation.csv_authorizations
     };
 
-    return !this.elucidation.nup || !this.elucidation.cnpj || this.authorizations.length === 0;
+    return !this.elucidation.nup || !this.elucidation.cnpj ;
   }
 
   add() {
@@ -129,13 +129,17 @@ export class FormElucidationComponent implements OnInit {
   save() {
     if (!this.elucidation._id) {
       this.elucidationService.insertElucidation(this.elucidation)
-        .then((data) => {
+        .then((data:Elucidation) => {
+          this.csvTransactions = data.csv_authorizations;
+          this.elucidation = data;
           setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
         });
     } else {
       this.elucidationService.updateElucidation(this.elucidation)
-        .then((data) => {
-          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+        .then((data:Elucidation) => {
+          this.csvTransactions = data.csv_authorizations;
+          this.elucidation = data;
+          setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
         });
     }
   }
@@ -151,7 +155,7 @@ export class FormElucidationComponent implements OnInit {
       this.elucidationService.updateElucidation(this.elucidation)
         .then((data) => {
           this.clearInputs();
-          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+          setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
         });
     }
   }
@@ -163,6 +167,7 @@ export class FormElucidationComponent implements OnInit {
     this.elucidationFormGroup.controls['date'].setValue('');
     this.authorizationFormGroup.controls['authorizedAt'].setValue('');
     this.authorizationFormGroup.controls['authorizationCode'].setValue('');
+    this.csvTransactions = [];
   }
 
   selectTransaction(csvTransactionID) {
@@ -174,4 +179,63 @@ export class FormElucidationComponent implements OnInit {
     console.log('EVENT selectTransaction', this.csvTransactions[csvTransactionID]);
     console.log('selectedTransaction', this.csvSelectedTransaction);
   }
+
+  processCSV($event) {
+    if ($event.target.files && $event.target.files[0]) {
+      // Check for the various File API support.
+      if (!window['FileReader']) return alert('FileReader are not supported in this browser.');
+      else this.getAsText($event.target.files[0]);
+
+      // @ts-ignore
+      $('#csvTransactions').val('');
+    } else {
+      return alert('Nenhum arquivo encontrado, tente novamente');
+    }
+  }
+
+  getAsText(fileToRead) {
+    const reader = new FileReader();
+
+    // attach event, that will be fired, when read is end
+    reader.addEventListener('loadend', function() {
+      // reader.result contains the contents of blob as a typed array
+      // console.log('reader.result', reader.result);
+    });
+
+    // start reading a loaded file
+    reader.readAsText(fileToRead);
+
+    // Handle errors load
+    reader.onload = this.loadHandler.bind(this);
+    reader.onerror = this.errorHandler.bind(this);
+  }
+
+  loadHandler(event) {
+    const csv = event.target.result;
+    const allTextLines = csv.split(/\r\n|\n/);
+    const lines = [];
+    for (let i = 0; i < allTextLines.length; i++) {
+      const data = allTextLines[i].split(';');
+      const tArr = [];
+      for (let j = 0; j < data.length; j++) {
+        tArr.push(data[j]);
+      }
+      if(i!==0)lines.push(tArr);
+    }
+
+    this.elucidation.csv_authorizations = lines;
+
+  }
+
+  errorHandler(evt) {
+    if (evt.target.error.name === 'NotReadableError' || !this.elucidation.csv_authorizations) {
+      alert('O arquivo não é legível!');
+    }
+  }
+
+
+
+
+
+
 }
