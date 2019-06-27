@@ -130,6 +130,20 @@ export class FormElucidationComponent implements OnInit {
     if (!this.elucidation._id) {
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data) => {
+          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+        });
+    } else {
+      this.elucidationService.updateElucidation(this.elucidation)
+        .then((data) => {
+          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+        });
+    }
+  }
+
+  saveAndClear() {
+    if (!this.elucidation._id) {
+      this.elucidationService.insertElucidation(this.elucidation)
+        .then((data) => {
           this.clearInputs();
           setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
         });

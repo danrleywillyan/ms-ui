@@ -30,7 +30,8 @@
               <h3 class="mb-0">Cadastrar ou alterar Solicitação de Esclarecimento</h3>
             </div>
             <div class="col-4 text-right">
-              <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="_validateForm()">Salvar Solicitação</button>
+              <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="_validateForm()">Salvar</button>
+              <button class="btn btn-sm btn-outline-warning" style="border:none;padding: 0.3rem 0.5rem;" (click)="saveAndClear()" [disabled]="_validateForm()">Salvar e sair</button>
             </div>
           </div>
         </div>
