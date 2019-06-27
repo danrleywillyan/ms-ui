@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 
+declare var $: any;
+
 export class Occurrence {
   id: number;
+  remedy: string;
 }
 
 export class Authorization {
   id: number;
-  remedy: string;
   date: Date;
   occurrences: Occurrence[];
 }
@@ -33,6 +35,7 @@ export class FormElucidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
     this.authorizations = [];
+    this.occurrences = [];
     this.elucidationService.getOccurrencesTypes().then( (data: any) => {
       this.occurrencesTypes = data;
     });
@@ -68,6 +71,8 @@ export class FormElucidationComponent implements OnInit {
   public occurrencesTypes = [];
   public csvSelectedTransaction: object;
   public authorizations: Authorization[];
+  public authorization: Authorization;
+  public occurrences: Occurrence[];
   public elucidation: Elucidation;
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
@@ -89,6 +94,15 @@ export class FormElucidationComponent implements OnInit {
     this.authorizations.splice(authorizationId, 1);
   }
 
+  edit(authorizationId) {
+    this.authorization = this.authorizations[authorizationId];
+    this.authorizationFormGroup.controls['authorizationCode'].setValue(this.authorization.id);
+    this.authorizationFormGroup.controls['authorizedAt'].setValue(this.authorization.date);
+    this.occurrences = this.authorization.occurrences;
+    $('#authorization')[0].scrollIntoView();
+  }
+
+
   _validateForm() {
     this.elucidation = {
       _id: this.elucidation._id,
@@ -104,17 +118,31 @@ export class FormElucidationComponent implements OnInit {
 
   add() {
     let alreadyPersisted = false;
-    const authorization = {
-      id: this.authorizationFormGroup.value.authorizationCode,
+    const occurrence = {
+      id: this.authorizationFormGroup.value.occurrences,
       remedy: this.authorizationFormGroup.value.remedyName,
+    } as Occurrence;
+
+    for (const c in this.occurrences) {
+      const iOccurrence = this.occurrences[c];
+      if (iOccurrence.id === occurrence.id) {
+        alreadyPersisted = true;
+        this.occurrences[c] = occurrence;
+      }
+    }
+    if (!alreadyPersisted) this.occurrences.push(occurrence);
+
+    alreadyPersisted = false;
+    const authorization = this.authorization = {
+      id: this.authorizationFormGroup.value.authorizationCode,
       date: this.authorizationFormGroup.value.authorizedAt,
-      occurrences: this.authorizationFormGroup.value.occurrences
+      occurrences: this.occurrences
     } as Authorization;
 
     // tslint:disable-next-line:forin
     for (const i in this.authorizations) {
       const iAuthorization = this.authorizations[i];
-      if (iAuthorization.id === authorization.id && iAuthorization.remedy === authorization.remedy) {
+      if (iAuthorization.id === authorization.id) {
         alreadyPersisted = true;
         this.authorizations[i] = authorization;
       }
@@ -122,8 +150,11 @@ export class FormElucidationComponent implements OnInit {
 
     // @ts-ignore
     $('#occurrences option:selected').prop('selected', false);
-    this.authorizationFormGroup.controls['authorizationCode'].setValue('');
     if (!alreadyPersisted) this.authorizations.push(authorization);
+  }
+
+  removeOccurence(id) {
+    this.occurrences.splice(id, 1);
   }
 
   save() {
@@ -142,6 +173,7 @@ export class FormElucidationComponent implements OnInit {
           setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
         });
     }
+    this.authorizationFormGroup.controls['authorizationCode'].setValue('');
   }
 
   saveAndClear() {
@@ -171,13 +203,17 @@ export class FormElucidationComponent implements OnInit {
   }
 
   selectTransaction(csvTransactionID) {
+    if (!csvTransactionID) return;
     const csvTransaction = this.csvTransactions[csvTransactionID];
     this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
     this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[4]);
     this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[2]));
-    window['ev'] = csvTransactionID;
-    console.log('EVENT selectTransaction', this.csvTransactions[csvTransactionID]);
-    console.log('selectedTransaction', this.csvSelectedTransaction);
+    if (csvTransaction[0] !== this.authorization.id) this.occurrences = [];
+    const authorization = this.authorization = {
+      id: csvTransaction[0],
+      date: new Date(csvTransaction[2]),
+      occurrences: this.occurrences
+    } as Authorization;
   }
 
   processCSV($event) {

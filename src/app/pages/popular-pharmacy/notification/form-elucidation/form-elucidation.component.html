@@ -79,7 +79,7 @@
               <input id="filter" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
             </div>
 
-            <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" multiple required>
+            <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
               <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
               <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
             </select>
@@ -88,14 +88,11 @@
           <hr class="my-4" />
           <div class="row">
             <div class="col-lg-8">
-              <h6 class="heading-small text-muted mb-4">Dados das Transações com pendências deste NUP</h6>
-            </div>
-            <div class="col-lg-4 text-right">
-              <button class="btn btn-sm btn-warning" (click)="add()" [disabled]="(!authorizationFormGroup.value.authorizationCode || !authorizationFormGroup.value.occurrences)">Adicionar Autorização à Solicitação</button>
+              <h6 class="heading-small text-muted mb-4" id="authorization">Cadastrar Transação com pendências</h6>
             </div>
           </div>
 
-          <form [formGroup]="authorizationFormGroup" (ngSubmit)="add()">
+          <form [formGroup]="authorizationFormGroup">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -106,30 +103,67 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="authorizedAt">Data das Autorizações</label>
+                    <label class="form-control-label" for="authorizedAt">Data da Autorização</label>
                     <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
                   </div>
                 </div>
-
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="authorizedAt">Nome da Medicação e/ou observação</label>
-                    <input type="text" class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required>
-                  </div>
-                </div>
-
-                <div class="col-lg-12">
-                  <label for="occurrences">Selecione os códigos das ocorrências para esta transação (segure o control e clique nos que se aplicam)</label>
-                  <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" multiple required>
+              </div>
+              <h4>Ocorrências para a Autorização selecionada</h4>
+              <div class="row">
+                <div class="col-lg-5">
+                  <label for="occurrences">Código da ocorrência</label>
+                  <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
                     <option selected="selected">Selecione os Códigos dos tipos de Ocorrências...</option>
                     <option *ngFor="let occurrenceType of occurrencesTypes" [value]="occurrenceType.id">{{occurrenceType.id}} - {{occurrenceType.name}} </option>
                   </select>
+                </div>
+                <div class="col-lg-5">
+                  <div class="form-group">
+                    <label class="form-control-label" for="remedyName">Nome da Medicação e/ou observação</label>
+                    <input type="text" class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                  <button style="margin-top: 40px;width: 100%;" class="btn btn-sm btn-warning" (click)="add()" [disabled]="(!authorizationFormGroup.value.occurrences)">Adicionar</button>
                 </div>
               </div>
             </div>
           </form>
 
-          <hr class="my-4" />
+          <div *ngIf="authorization">
+            <hr class="my-4"/>
+            <h6 class="heading-small text-muted mb-4">Ocorrências Cadastradas</h6>
+            
+            <div class="card shadow">
+              <div class="table-responsive">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Cód.</th>
+                    <th scope="col">Medicamento/Observação</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let occurrence of occurrences; index as i;">
+                    <td>
+                      {{occurrence.id}}
+                    </td>
+                    <td>
+                      <span>{{occurrence.remedy}}</span>
+                    </td>
+                    <td>
+                      <button type="button" (click)="removeOccurence(i)" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
           <h6 class="heading-small text-muted mb-4">Autorizações Cadastradas</h6>
 
           <div class="card shadow">
@@ -152,11 +186,12 @@
                   <td>
                     <span>{{authorization.date | date: 'dd/MM/yyyy'}}</span>
                   </td>
-                  <td>
-                    {{authorization.occurrences.join()}}
+                  <td *ngIf="authorization.occurrences">
+                    <span *ngFor="let occ of authorization.occurrences">{{occ.id}},</span>
                   </td>
                   <td>
                     <button type="button" (click)="remove(i)" class="btn btn-outline-danger sidebar-icon mr-2"><i class="fas fa-trash"></i></button>
+                    <button type="button" (click)="edit(i)" class="btn btn-outline-primary sidebar-icon mr-2"><i class="fas fa-edit"></i></button>
                   </td>
                 </tr>
                 </tbody>
