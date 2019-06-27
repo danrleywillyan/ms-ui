@@ -14,7 +14,7 @@ export class GatewayService {
 
   public headers = {};
   public port = '8080';
-  public host = '34.74.146.146';
+  public host = 'gateway';
   public protocol = 'http';
 
   public params: object;
