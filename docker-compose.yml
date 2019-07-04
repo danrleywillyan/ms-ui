@@ -6,14 +6,12 @@ services:
     restart: always
 
   discovery:
-#    image: "msdaf/discovery-service" #test local build
     image: "gaesi/discovery" #production cloud build
     hostname: discovery
     ports:
       - "8761:8761"
 
   config:
-#    image: "msdaf/config-server" #test local build
     image: "gaesi/config" #production cloud build
     hostname: config
     restart: always
@@ -27,7 +25,6 @@ services:
       - "8888:8888"
 
   gateway:
-#    image: "msdaf/gateway-service"
     image: "gaesi/gateway"
     hostname: gateway
     restart: always
@@ -39,8 +36,6 @@ services:
        EUREKA_PORT: 8761
     ports:
       - "8080:8080"
-
-
 
   # anvisa:
   #   image: "gaesi/anvisa" #"msdaf/anvisa" #"anvisa"
@@ -119,3 +114,4 @@ services:
        EUREKA_PORT: 8761
     ports:
       - "8447:5000" #8443 reserved for SSL (HTTPS)
+

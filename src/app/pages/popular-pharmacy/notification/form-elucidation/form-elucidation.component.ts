@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
+import {Router} from '@angular/router';
 
 declare var $: any;
 
@@ -33,11 +34,11 @@ export class FormElucidationComponent implements OnInit {
 
   public filterTransactions: string;
 
-  constructor(private fb: FormBuilder, private elucidationService: ElucidationService) {
+  constructor(private fb: FormBuilder, private elucidationService: ElucidationService, private router: Router) {
     this.authorizations = [];
     this.occurrences = [];
     this.elucidationService.getOccurrencesTypes().then( (data: any) => {
-      this.occurrencesTypes = data;
+      this.occurrencesTypes = data.sort((a, b) => a.id - b.id);
     });
 
     this.elucidation = new Elucidation();
@@ -181,13 +182,19 @@ export class FormElucidationComponent implements OnInit {
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data) => {
           this.clearInputs();
-          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+          setTimeout(() => {
+            alert('Solicitação registrada com sucesso!');
+            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+          }, 300);
         });
     } else {
       this.elucidationService.updateElucidation(this.elucidation)
         .then((data) => {
           this.clearInputs();
-          setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
+          setTimeout(() => {
+            alert('Solicitação alterada com sucesso!');
+            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+          }, 300);
         });
     }
   }
