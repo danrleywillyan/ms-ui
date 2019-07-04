@@ -13,26 +13,7 @@
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
-        <div class="col-xl-4 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <a href="https://gaesi.gitlab.io/msdaf/wiki/parse-da-farmacia-popular/" target="_blank">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Acesso ao Manual</h5>
-                    <p class="h5 font-weight-bold mb-0">Acesse o manual para download do arquivo CSV com as informações
-                      necessárias para a conversão.</p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-gradient-teal text-white rounded-circle shadow">
-                      <i class="ni ni-bullet-list-67"></i>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+
         <div class="col-xl-4 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body" data-toggle="modal" data-target="#csvUploadModal">
@@ -66,6 +47,25 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" data-toggle="modal" data-target="#csvUploadModal3">
+
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Gerar GRU</h5>
+                    <p class="h5 font-weight-bold mb-0">Gerar uma GRU Simples diretamento no site do Tesouro Nacional.</p>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-teal text-white rounded-circle shadow">
+                      <i class="fa fa-barcode"></i>
+                    </div>
+                  </div>
+                </div>
+
             </div>
           </div>
         </div>
@@ -166,7 +166,9 @@
           </button>
 
         </div>
+
         <div class="modal-body">
+
           <input id="file"
                  type="file"
                  name="file"
@@ -175,6 +177,7 @@
         </div>
 
         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="location.href='https://gaesi.gitlab.io/msdaf/wiki/parse-da-farmacia-popular/Gerar'">Acesse Manual</button>
           <button type="submit" class="btn btn-primary">Converter</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
@@ -202,32 +205,154 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="form-control-label" for="login">Login</label>
-            <input type="text" class="form-control form-control-alternative" name="login" id="login" placeholder="Digite o Login do SIAFI" required (change)="loginfc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="login" id="login" placeholder="Digite o Login do SIAFI" required (change)="consultGRUConstruct(login,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Senha</label>
-            <input type="password" class="form-control form-control-alternative" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required (change)="passfc($event.target.value)">
+            <input type="password" class="form-control form-control-alternative" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required (change)="consultGRUConstruct(pass,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">UG Arrecadadora</label>
-            <input type="text" class="form-control form-control-alternative" name="ugArrecadadora" id="ugArrecadadora" placeholder="Digite a UG Arrecadadora" required (change)="ugArrecadadorafc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="ugArrecadadora" id="ugArrecadadora" placeholder="Digite a UG Arrecadadora" required (change)="consultGRUConstruct(ugArrecadadora,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">UG Emitente</label>
-            <input type="text" class="form-control form-control-alternative" name="ugEmitente" id="ugEmitente" placeholder="Digite a UG Emitente" required (change)="ugEmitentefc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="ugEmitente" id="ugEmitente" placeholder="Digite a UG Emitente" required (change)="consultGRUConstruct(ugEmitente,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Contribuinte</label>
-            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite o CPF/CNPJ do Contribuinte" required (change)="codigoRecolhedorfc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite o CPF/CNPJ do Contribuinte" required (change)="consultGRUConstruct(codigoRecolhedor,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Data Inicial</label>
-            <input type="text" class="form-control form-control-alternative" name="dtEmissaoIN" id="dtEmissaoIN" placeholder="Digite a data inicial da consulta" required (change)="dtEmissaoINfc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="dtEmissaoIN" id="dtEmissaoIN" placeholder="Digite a data inicial da consulta" required (change)="consultGRUConstruct(dtEmissaoIN,$event.target.value)">
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Data Final</label>
-            <input type="text" class="form-control form-control-alternative" name="dtEmissaoFI" id="dtEmissaoFI" placeholder="Digite a data final da consulta" required (change)="dtEmissaoFIfc($event.target.value)">
+            <input type="text" class="form-control form-control-alternative" name="dtEmissaoFI" id="dtEmissaoFI" placeholder="Digite a data final da consulta" required (change)="consultGRUConstruct(dtEmissaoFI,$event.target.value)">
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" >Consultar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="csvUploadModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <form ngNoForm action="http://consulta.tesouro.fazenda.gov.br/gru_novosite/gerarPDF.asp" method="POST" target="_blank">
+
+      <div class="modal-content" ng-controller="controlador" ng-app="app">
+        <div class="modal-header">
+          <input type="hidden" class="form-control form-control-alternative" name="codigo_favorecido" id="codigo_favorecido" value="257001">
+          <input type="hidden" class="form-control form-control-alternative" name="gestao" id="gestao" value="00001">
+          <input type="hidden" class="form-control form-control-alternative" name="codigo_correlacao" id="codigo_correlacao" value="4399">
+          <input type="hidden" class="form-control form-control-alternative" name="nome_favorecido" id="nome_favorecido" value="DIRETORIA EXECUTIVA DO FUNDO NAC. DE SAUDE">
+          <input type="hidden" class="form-control form-control-alternative" name="codigo_recolhimento" id="codigo_recolhimento" value="28852-7">
+          <input type="hidden" class="form-control form-control-alternative" name="nome_recolhimento" id="nome_recolhimento" value="OUTRAS RESTITUIÇÕES">
+          <input type="hidden" class="form-control form-control-alternative" name="boleto" id="boleto" value="1">
+          <input type="hidden" class="form-control form-control-alternative" name="impressao" id="impressao" value="SA">
+          <input type="hidden" class="form-control form-control-alternative" name="pagamento" id="pagamento" value="0">
+          <input type="hidden" class="form-control form-control-alternative" name="campo" id="campo" value="NRCR">
+          <input type="hidden" class="form-control form-control-alternative" name="ind" id="ind" value="0">
+
+          <h3 class="modal-title" id="exampleModalLabel">{{name}}</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Número de Referência </label>
+                  <input type="text" class="form-control form-control-alternative" name="referencia" id="referencia" placeholder="Digite o Número de Referência" required >
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Competência (mm/aaaa)</label>
+                  <input type="text" class="form-control form-control-alternative" name="competencia" id="competencia" placeholder="Digite a Competência">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Vencimento (dd/mm/aaaa)</label>
+                  <input type="text" class="form-control form-control-alternative" name="vencimento" id="vencimento" placeholder="Digite o Vencimento">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">CNPJ ou CPF do Contribuinte</label>
+                  <input type="text" class="form-control form-control-alternative" name="cnpj_cpf" id="cnpj_cpf" placeholder="Digite o CNPJ ou CPF do Contribuinte" required>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Nome do Contribuinte / Recolhedor</label>
+                  <input type="text" class="form-control form-control-alternative" name="nome_contribuinte" id="nome_contribuinte" placeholder="Digite o Nome do Contribuinte / Recolhedor" required >
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Valor Principal</label>
+                  <input type="text" class="form-control form-control-alternative" name="valorPrincipal" id="valorPrincipal" placeholder="Digite o Valor Principal" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Descontos/Abatimentos</label>
+                  <input type="text" class="form-control form-control-alternative" name="descontos" id="descontos" placeholder="Digite o Descontos/Abatimentos">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Outras Deduções</label>
+                  <input type="text" class="form-control form-control-alternative" name="deducoes" id="deducoes" placeholder="Digite Outras Deduções">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Mora/Multa</label>
+                  <input type="text" class="form-control form-control-alternative" name="multa" id="multa" placeholder="Digite as Mora/Multa">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Juros/Encargos</label>
+                  <input type="text" class="form-control form-control-alternative" name="juros" id="juros" placeholder="Digite os Juros/Encargos" required>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Outros Acréscimos</label>
+                  <input type="text" class="form-control form-control-alternative" name="acrescimos" id="acrescimos" placeholder="Digite Outros Acréscimos">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label class="form-control-label" for="pass">Valor Total</label>
+                  <input type="text" class="form-control form-control-alternative" name="valorTotal" id="valorTotal" placeholder="Digite o Valor Total" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="modal-footer">

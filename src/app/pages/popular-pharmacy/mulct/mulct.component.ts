@@ -22,6 +22,7 @@ export class MulctComponent implements OnInit {
   private dtEmissaoFI = null;
   public hideElement= false;
 
+  public consultGRU_data= [];
   constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private http: HttpClient) {
   }
 
@@ -36,27 +37,10 @@ export class MulctComponent implements OnInit {
   files(files) {
     this.filesToUpload = files;
   }
-  loginfc(user) {
-    this.login = user;
+  consultGRUConstruct(campo,data){
+    this.consultGRU_data[campo] = data;
   }
-  passfc(passw){
-    this.pass = passw;
-  }
-  ugArrecadadorafc(ugArrecadadora){
-    this.ugArrecadadora = ugArrecadadora;
-  }
-  ugEmitentefc(ugEmitente){
-    this.ugEmitente = ugEmitente;
-  }
-  codigoRecolhedorfc(codigoRecolhedor){
-    this.codigoRecolhedor = codigoRecolhedor;
-  }
-  dtEmissaoINfc(dtEmissaoIN){
-    this.dtEmissaoIN = dtEmissaoIN;
-  }
-  dtEmissaoFIfc (dtEmissaoFI){
-    this.dtEmissaoFI = dtEmissaoFI;
-  }
+
   // calls the micro service Parser / Refund passing POST the csv file for conversion
   upload(counterTest = 0) {
     const formData = new FormData();
@@ -75,13 +59,13 @@ export class MulctComponent implements OnInit {
 
   loginExec(counterTest = 0) {
     const formData = new FormData();
-    const login = this.login;
-    const pass = this.pass;
-    const ugArrecadadora = this.ugArrecadadora;
-    const ugEmitente = this.ugEmitente;
-    const codigoRecolhedor = this.codigoRecolhedor;
-    const dtEmissaoIN = this.dtEmissaoIN;
-    const dtEmissaoFI = this.dtEmissaoFI;
+    const login = this.consultGRU_data['login'];
+    const pass = this.consultGRU_data['pass'];
+    const ugArrecadadora = this.consultGRU_data['ugArrecadadora'];
+    const ugEmitente = this.consultGRU_data['ugEmitente'];
+    const codigoRecolhedor = this.consultGRU_data['codigoRecolhedor'];
+    const dtEmissaoIN = this.consultGRU_data['dtEmissaoIN'];
+    const dtEmissaoFI = this.consultGRU_data['dtEmissaoFI'];
     formData.append(`user`, login);
     formData.append(`password`, pass);
     formData.append(`ugArrecadadora`, ugArrecadadora);
