@@ -4,7 +4,7 @@ import {ElucidationService} from '../../../../services/elucidation/elucidation.s
 
 export class OccurrenceType {
   _id: string;
-  id: number;
+  id: string;
   name: string;
 }
 
