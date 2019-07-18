@@ -10,17 +10,22 @@ declare interface RouteInfo {
     subItems?: [{}];
 }
 export const ROUTES: RouteInfo[] = [
-  // @ts-ignore
-  // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/remedy-lifecycle', title: 'Ciclo de vida dos Medicamentos', icon: 'ni-vector text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, { path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }]},
+  { id:'caf', path: '/caf', title: 'Ciclo da Assistência Farmacêutica',  icon: 'ni-sound-wave text-black', class: ''},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true }, { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, { path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/dashboard', title: 'PLOA automatizada', icon: 'ni-bullet-list-67 text-teal' }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length

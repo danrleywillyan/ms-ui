@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/budget/dashboard']">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/caf']">
       <img src="static/assets/img/brand/logo-ms.png" class="navbar-brand-img" alt="...">
     </a>
     <!-- User -->
@@ -65,7 +65,7 @@
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a  routerLinkActive="active" [routerLink]="['/budget/dashboard']">
+            <a  routerLinkActive="active" [routerLink]="['/caf']">
               <img src="static/assets/img/brand/logo-ms.png">
             </a>
           </div>
@@ -93,12 +93,17 @@
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-          <a routerLinkActive="active" class="nav-link" data-toggle="collapse" [attr.aria-expanded]="isActiveRoute(menuItem)" [attr.data-target]="'#' + menuItem.id">
+          <a routerLinkActive="active" class="nav-link" data-toggle="collapse" [attr.aria-expanded]="isActiveRoute(menuItem)" [attr.data-target]="'#' + menuItem.id" *ngIf="menuItem.subItems">
             <i class="ni {{menuItem.icon}}"></i>
             {{menuItem.title}}
           </a>
 
-          <div class="collapse" [class.show]="isActiveRoute(menuItem)" id="{{menuItem.id}}" [attr.aria-expanded]="isActiveRoute(menuItem)">
+          <a routerLinkActive="active" class="nav-link" [routerLink]="[menuItem.path]" *ngIf="!menuItem.subItems">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+
+          <div class="collapse" [class.show]="isActiveRoute(menuItem)" id="{{menuItem.id}}" [attr.aria-expanded]="isActiveRoute(menuItem)" *ngIf="menuItem.subItems">
             <ul class="flex-column pl-2 nav">
               <li class="nav-item" *ngFor="let subItem of menuItem.subItems">
                 <a class="nav-link " routerLinkActive="active" [routerLink]="[subItem.path]" [ngClass]="{disabled: subItem.disabled}"> <!-- py-0 class to remove padding -->

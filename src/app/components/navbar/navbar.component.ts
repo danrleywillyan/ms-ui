@@ -22,13 +22,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = [].concat(...ROUTES.map(listTitle => listTitle.subItems));
+    this.listTitles = [].concat(...ROUTES.map(listTitle => listTitle.subItems ? listTitle.subItems : listTitle));
   }
 
   getTitle() {
     const currentLocation = window.location.href;
 
-    if (currentLocation.split('/')[3] === '') return this.title = 'Painel Orçamentário';
+    if (currentLocation.split('/')[3] === '') return this.title = 'Ciclo da Assistência Farmacêutica';
     if (currentLocation.indexOf('templates') >= 0) return this.title = 'Template URL';
 
     // tslint:disable-next-line:forin
@@ -37,8 +37,8 @@ export class NavbarComponent implements OnInit {
       const foundRoute = currentLocation.indexOf(route.id) >= 0;
       if (foundRoute) {
         // tslint:disable-next-line:forin
-        for (const sii in route.subItems) {
-          const iRoute = route.subItems[sii];
+        for (const sii in this.listTitles) {
+          const iRoute = this.listTitles[sii];
           if (window.location.href.indexOf(iRoute['path']) >= 0) {
             this.lastRoute = iRoute['path'];
             return this.title = iRoute['title'];

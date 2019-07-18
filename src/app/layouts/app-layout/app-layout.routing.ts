@@ -8,10 +8,12 @@ import {OccurrenceTypesComponent} from '../../pages/popular-pharmacy/notificatio
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 
 export const AppLayoutRoutes: Routes = [
+  // Overview paths
+  { path: '', component: RemedyLifecycleComponent },
+  { path: 'caf', component: RemedyLifecycleComponent },
+
   // Budget paths (Orçamento)
-  { path: '', component: DashboardComponent },
   { path: 'budget/dashboard', component: DashboardComponent },
-  { path: 'budget/remedy-lifecycle', component: RemedyLifecycleComponent },
 
   // Predictive paths
 
