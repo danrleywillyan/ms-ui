@@ -10,6 +10,7 @@ import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
+import { StrategicComponent } from '../../pages/budget/strategic/strategic.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
@@ -37,6 +38,7 @@ import {ReplacePipe} from '../../pipes/filters/replace.pipe'
     LoaderComponent,
     DashboardComponent,
     PloaComponent,
+    StrategicComponent,
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,

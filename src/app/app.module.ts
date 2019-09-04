@@ -16,7 +16,6 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
 import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe';
-import { StrategicComponent } from './strategic/strategic.component';
 
 @NgModule({
   imports: [
@@ -34,7 +33,6 @@ import { StrategicComponent } from './strategic/strategic.component';
     AppLayoutComponent,
     TemplatesLayoutComponent,
     AuthLayoutComponent,
-    StrategicComponent,
   ],
   exports: [
     FormsModule,
