@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+[routerLinkActive="active"], [data-toggle] {
+  cursor: pointer;
+}
+
+.cell-truncate {
+  //max-width: 350px;
+  span {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+  }
+}
+
+.container-fluid.breadcrumbs {
+  top: 55px;
+  left: -15px;
+  position: absolute;
+
+  ol {
+    background: none;
+    li {
+      a {
+        color: white;
+      }
+
+      &.active {
+        color: #c1c1c1;
+      }
+    }
+  }
+}
+
+select[multiple].custom-select {
+  height: 170px;
+}
+
+.nav-link {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.disabled {
+  pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+}

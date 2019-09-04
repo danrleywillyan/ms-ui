@@ -1,0 +1,117 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+
+  discovery:
+    image: "gaesi/discovery" #production cloud build
+    hostname: discovery
+    ports:
+      - "8761:8761"
+
+  config:
+    image: "gaesi/config" #production cloud build
+    hostname: config
+    restart: always
+    links:
+      - discovery
+    environment:
+       REPOSITORY_HOST: https://gitlab.com/gaesi/msdaf/config.git
+       EUREKA_HOST: discovery
+       EUREKA_PORT: 8761
+    ports:
+      - "8888:8888"
+
+  gateway:
+    image: "gaesi/gateway"
+    hostname: gateway
+    restart: always
+    links:
+      - discovery
+      - config
+    environment:
+       EUREKA_HOST: discovery
+       EUREKA_PORT: 8761
+    ports:
+      - "8080:8080"
+
+  # anvisa:
+  #   image: "gaesi/anvisa" #"msdaf/anvisa" #"anvisa"
+  #   hostname: anvisa
+  #   restart: always
+  #   links:
+  #     - discovery
+  #     - config
+  #     - gateway
+  #   environment:
+  #     EUREKA_HOST: discovery
+  #     EUREKA_PORT: 8761
+  #   ports:
+  #     - "8542:5000"
+  #
+  # ibge:
+  #   image: "gaesi/ibge" #"msdaf/ibge" #"ibge"
+  #   hostname: ibge
+  #   restart: always
+  #   links:
+  #     - discovery
+  #     - config
+  #     - gateway
+  #   environment:
+  #     EUREKA_HOST: discovery
+  #     EUREKA_PORT: 8761
+  #   ports:
+  #     - "8531:5000"
+
+  parsers:
+    image: "msdaf/parsers"
+    hostname: parsers
+    restart: always
+    links:
+      - mongodb
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8445:5000"
+
+  consultgru:
+    image: "msdaf/consultgru"
+    hostname: consultgru
+    restart: always
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8450:5000"
+
+  elucidation:
+    image: "msdaf/elucidation"
+    hostname: elucidation
+    restart: always
+    links:
+      - mongodb
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8446:5000"
+
+  ui:
+    image: "msdaf/ui"
+    hostname: ui
+    restart: always
+    links:
+      - discovery
+      - config
+      - gateway
+      # - anvisa
+      # - ibge
+    environment:
+       EUREKA_HOST: discovery
+       EUREKA_PORT: 8761
+    ports:
+      - "8447:5000" #8443 reserved for SSL (HTTPS)
+

@@ -1,0 +1,456 @@
+  <div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+    <div class="container-fluid breadcrumbs">
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Orçamento</li>
+          <li class="breadcrumb-item active" aria-current="page">PLOA Automatizada </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-lg-12">
+
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+              <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Pesquisar" type="text" (focus)="focus = true"
+                  (blur)="focus = false">
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <!-- <h3 class="mb-0">Card tables</h3> -->
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Ação Orçamentária</th>
+                  <th scope="col">Média de Execução até 2018 (R$)</th>
+                  <th scope="col">Dotação (R$)</th>
+                  <th scope="col">Empenhado (R$)</th>
+                  <th scope="col">Liguidado (R$)</th>
+                  <th scope="col">Pago (R$)</th>
+                  <th scope="col">PLOA 2020 Enviada (R$) </th>
+                  <th scope="col">PLOA 2020 Prevista (R$) </th>
+                  <th scope="col">PLOA 2020 (diferença %)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th class="title-action-budget" scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">20AE - Promoção da Assistência Farmacêutica e Insumos Estratégicos na Atenção Básica em Saúde</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 1.773.800.000,00
+                  </td>
+                  <td>
+                    R$ 1.810.000.000,00
+                  </td>
+                  <td>
+                    R$ 796.685.673,49
+                  </td>
+                  <td>
+                    R$ 594.822.719,30
+                  </td>
+                  <td>
+                    R$ 594.822.719,30
+                  </td>
+                  <td>
+                    R$ 2.488.750.000,00
+                  </td>
+                  <td>
+                    R$ 2.262.500.000,00
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9,09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">20AH - Organização dos Serviços de Assistência Farmacêutica no SUS</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 86.953.937,84
+                  </td>
+                  <td>
+                    R$ 88.728.508,00
+                  </td>
+                  <td>
+                    R$ 17.395.948,00
+                  </td>
+                  <td>
+                    R$ 17.395.948,00
+                  </td>
+                  <td>
+                    R$ 17.395.948,00
+                  </td>
+                  <td>
+                    R$ 122.001.698,50
+                  </td>
+                  <td>
+                    R$ 110.910.635,00
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">20K5 - Apoio ao Uso de Plantas Medicinais e Fitoterápicos no SUS</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 9.131.039,26
+                  </td>
+                  <td>
+                    R$ 9.317.387,00
+                  </td>
+                  <td>
+                    R$ -
+                  </td>
+                  <td>
+                    R$ -
+                  </td>
+                  <td>
+                    R$ -
+                  </td>
+                  <td>
+                    R$ 12.811.407,13
+                  </td>
+                  <td>
+                    R$ 11.646.733,75
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">20YR - Manutenção e Funcionamento do Programa Farmácia Popular do Brasil Pelo Sistema de Gratuidade</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 1.991.360.587,02
+                  </td>
+                  <td>
+                    R$ 2.032.000.599,00
+                  </td>
+                  <td>
+                    R$ 906.971.891,24
+                  </td>
+                  <td>
+                    R$ 741.595.121,61
+                  </td>
+                  <td>
+                    R$ 741.595.121,61
+                  </td>
+                  <td>
+                    R$ 2.794.000.823,63
+                  </td>
+                  <td>
+                    R$ 2.540.000.748,75
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">20YS - Manutenção e Funcionamento do Programa Farmácia Popular do Brasil pelo Sistema de Co-pagamento</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 551.105.940,00
+                  </td>
+                  <td>
+                    R$ 562.353.000,00
+                  </td>
+                  <td>
+                    R$ 214.947.693,76
+                  </td>
+                  <td>
+                    R$ 176.976.164,30
+                  </td>
+                  <td>
+                    R$ 176.976.164,30
+                  </td>
+                  <td>
+                    R$ 773.235.375,00
+                  </td>
+                  <td>
+                    R$ 702.941.250,00
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">4368 - Promoção da Assistência Farmacêutica por meio da aquisição de medicamentos do Componente Estratégico</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 326.340.000,00
+                  </td>
+                  <td>
+                    R$ 333.000.000,00
+                  </td>
+                  <td>
+                    R$ 118.548.040,51
+                  </td>
+                  <td>
+                    R$ 34.662.873,98
+                  </td>
+                  <td>
+                    R$ 31.947.703,10
+                  </td>
+                  <td>
+                    R$ 457.875.000,00
+                  </td>
+                  <td>
+                    R$ 416.250.000,00
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)">Abrir visualização</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                      </div>
+                    </div>
+                  </td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">4705 - Apoio Financeiro para Aquisição e Distribuição de Medicamentos do Componente Especializado da Assistência Farmacêutica</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    R$ 5.424.300.000,00
+                  </td>
+                  <td>
+                    R$ 5.535.000.000,00
+                  </td>
+                  <td>
+                    R$ 2.910.193.668,30
+                  </td>
+                  <td>
+                    R$ 787.787.318,45
+                  </td>
+                  <td>
+                    R$ 591.600.486,27
+                  </td>
+                  <td>
+                    R$ 7.610.625.000,00
+                  </td>
+                  <td>
+                    R$ 6.918.750.000,00
+                  </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">9.09%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="9.09" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="javascript:void(0)">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0)">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,193 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Farmácia Popular</li>
+        <li class="breadcrumb-item"><a routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">Notificação</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pedido de Esclarecimento</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/occurrences-types']">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Manter tipos de ocorrências</h5>
+                  <p class="h5 font-weight-bold mb-0">Cadastre, Atualize ou Remova Tipos de Ocorrências a terem pedidos de esclarecimento. </p>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-teal text-white rounded-circle shadow">
+                    <i class="ni ni-bullet-list-67"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/elucidation/form']">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Solicitar Esclarescimento</h5>
+                  <p class="h5 font-weight-bold mb-0">Cadastre uma nova solicitação de esclarecimento de uma nova ocorrência para outro NUP.</p>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
+                    <i class="fas fa-exclamation-triangle"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Pedidos de Esclarecimentos</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-sm btn-primary">
+                <i class="fas fa-search mr-1"></i>
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">NUP</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Código da Autorização</th>
+<!--              <th scope="col">Data</th>-->
+              <th scope="col">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let elucidation of elucidations; index as i;">
+              <td>
+                {{elucidation.nup}}
+              </td>
+              <td>
+                {{elucidation.cnpj}}
+              </td>
+              <td>
+                {{getAuthorizationsIds(elucidation)}}
+              </td>
+<!--              <td>-->
+<!--                {{elucidation.date | date: 'dd/MM/yyyy'}}-->
+<!--              </td>-->
+              <td>
+                <button type="button" (click)="getParagraph(elucidation)" data-toggle="modal" data-target="#paragraphModal" class="btn btn-outline-success sidebar-icon mr-2"><i class="fas fa-file"></i></button>
+                <button type="button" (click)="editElucidation(elucidation)" class="btn btn-outline-primary sidebar-icon mr-2"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-outline-danger sidebar-icon mr-2" (click)="remove(elucidation)"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="csvUploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Envio de arquivo para carga de massa de dados</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="csv_authorizations && csv_authorizations.length > 0">
+          <h1>Total de autorizações já cadastradas: {{csv_authorizations.length}}</h1>
+          <br><br>
+        </div>
+
+        <input id="csvTransactions"
+               type="file"
+               name="tmpCSVTransactions"
+               (change)="processCSV($event)"
+               accept=".csv"/>
+
+        <br><br>
+        <a href="./static/assets/samples/consolidated_authorizations.csv" target="_blank"><h4>Caso não possua o arquivo modelo, baixe-o clicando aqui.</h4></a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="paragraphModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="max-height: 80vh; overflow: scroll;">
+      <div class="modal-header">
+        <h5 class="modal-title">Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let line of paragraph; index as i;">
+            {{line}}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>

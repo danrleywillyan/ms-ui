@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- Optional JavaScript -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+
+
+
+        <title>Painel Orçamentário</title>
+        <style type="text/css">
+            th{
+                text-align: center;
+            }
+            .orcamento{
+                font-size: small;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>DAF/SCTIE/MS</h2>
+                    <h5>Painel Orçamentário</h5>
+                </div>
+                <div class="col">
+
+                    <h6 style="text-align: right">Dados atualizados em 30/04/2019</h6>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <center>
+                    <button type="button" class="btn btn-primary" >
+                        <i class="fas fa-search"> </i> Assistência Básica
+                    </button>            
+                    <button type="button" class="btn btn-primary" >
+                        <i class="fas fa-search"> </i> Assistência Especializada
+                    </button>            
+                    <button type="button" class="btn btn-primary" >
+                        <i class="fas fa-search"> </i> Assistência Estratégica
+                    </button>            
+                    <button type="button" class="btn btn-primary" >
+                        <i class="fas fa-search"> </i> Farmácia Popular
+                    </button>            
+                    <button type="button" class="btn btn-primary" >
+                        <i class="fas fa-search"> </i> Administrativo
+                    </button>
+                </center>
+            </div>
+            <br/>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-orc-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-1" aria-selected="true">
+                        Valores atuais por Ação Orçamentária
+                    </a>
+                    <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2" aria-selected="false">
+                        Percentual empenhado
+                    </a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3" aria-selected="false">
+                        Histórico dos empenhos
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4" aria-selected="false">
+                        Evolução histórica
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5" aria-selected="false">
+                        Comparativo histórico
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6" aria-selected="false">
+                        Execução de RAP atual por Ação
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7" aria-selected="false">
+                        RAP acumulado
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8" aria-selected="false">
+                        Controle % da execução 
+                    </a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
+                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+                    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+                    <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
+                    <div id="container5" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
+                    <div id="container6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
+                    <div id="container7" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
+                    <div id="container8" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+
+                <script src="dados.js"></script>
+            </div>
+
+        </div>
+
+    </body>
+</html>
