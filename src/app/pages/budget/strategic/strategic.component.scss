@@ -1,4 +1,8 @@
 .media-body {
-    max-width: 250px;
-    white-space: normal;
+  max-width: 250px;
+  white-space: normal;
+}
+.first-thead {
+  table-layout: fixed;
+  width: 100%;
 }
