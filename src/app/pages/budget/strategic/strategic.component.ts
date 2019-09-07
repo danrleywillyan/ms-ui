@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 interface OrcamentoEstrategico {
   estado: string;
@@ -37,10 +42,10 @@ const CGAFME: OrcamentoEstrategico[] = [
   {
     estado: 'Amazonas',
     pac: 865,
-    solicitado: 613,
-    emAvaliacao: 571,
-    aprovado: 438,
-    dispensado: 312,
+    solicitado: 662,
+    emAvaliacao: 531,
+    aprovado: 426,
+    dispensado: 342,
   },
   {
     estado: 'Bahia',
@@ -63,24 +68,24 @@ const CGAFME: OrcamentoEstrategico[] = [
     pac: 2608,
     solicitado: 2088,
     emAvaliacao: 1671,
-    aprovado: 1393,
-    dispensado: 1088,
+    aprovado: 1339,
+    dispensado: 1071,
   },
   {
     estado: 'Espírito Santo',
-    pac: 3884,
-    solicitado: 3025,
-    emAvaliacao: 2500,
-    aprovado: 1586,
-    dispensado: 1562,
+    pac: 3831,
+    solicitado: 3067,
+    emAvaliacao: 2455,
+    aprovado: 1966,
+    dispensado: 1573,
   },
   {
     estado: 'Goiás',
     pac: 5630,
     solicitado: 4506,
     emAvaliacao: 3605,
-    aprovado: 2884,
-    dispensado: 2306,
+    aprovado: 2886,
+    dispensado: 2309,
   },
   {
     estado: 'Maranhão',
@@ -101,7 +106,7 @@ const CGAFME: OrcamentoEstrategico[] = [
   {
     estado: 'Mato Grosso do Sul',
     pac: 17872,
-    solicitado: 14899,
+    solicitado: 14299,
     emAvaliacao: 11440,
     aprovado: 9154,
     dispensado: 7324,
@@ -109,7 +114,7 @@ const CGAFME: OrcamentoEstrategico[] = [
   {
     estado: 'Minas Gerais',
     pac: 26269,
-    solicitado: 21019,
+    solicitado: 21016,
     emAvaliacao: 16814,
     aprovado: 13453,
     dispensado: 10763,
@@ -120,125 +125,141 @@ const CGAFME: OrcamentoEstrategico[] = [
     solicitado: 30892,
     emAvaliacao: 24714,
     aprovado: 19773,
-    dispensado: 15394,
+    dispensado: 15820,
   },
   {
     estado: 'Paraíba',
-    pac: 56777,
-    solicitado: 45402,
-    emAvaliacao: 26245,
+    pac: 56758,
+    solicitado: 45408,
+    emAvaliacao: 36327,
     aprovado: 29063,
-    dispensado: 23555,
+    dispensado: 23251,
   },
   {
     estado: 'Paraná',
     pac: 83431,
-    solicitado: 66855,
-    emAvaliacao: 53666,
-    aprovado: 42788,
-    dispensado: 24005,
+    solicitado: 66747,
+    emAvaliacao: 53398,
+    aprovado: 42721,
+    dispensado: 34176,
   },
   {
     estado: 'Pernambuco',
     pac: 122640,
     solicitado: 98114,
-    emAvaliacao: 78432,
-    aprovado: 62758,
-    dispensado: 50111,
+    emAvaliacao: 78492,
+    aprovado: 62795,
+    dispensado: 50237,
   },
   {
     estado: 'Piauí',
-    pac: 180054,
+    pac: 180278,
     solicitado: 144225,
     emAvaliacao: 115381,
     aprovado: 92306,
-    dispensado: 73254,
+    dispensado: 73846,
   },
   {
     estado: 'Rio de Janeiro',
-    pac: 265,
-    solicitado: 213,
-    emAvaliacao: 171,
-    aprovado: 138,
-    dispensado: 112,
+    pac: 265007,
+    solicitado: 212007,
+    emAvaliacao: 169606,
+    aprovado: 135686,
+    dispensado: 108551,
   },
   {
     estado: 'Rio Grande do Norte',
-    pac: 385,
-    solicitado: 309,
-    emAvaliacao: 249,
-    aprovado: 200,
-    dispensado: 161,
+    pac: 389558,
+    solicitado: 311648,
+    emAvaliacao: 249319,
+    aprovado: 199457,
+    dispensado: 159567,
   },
   {
     estado: 'Rio Grande do Sul',
-    pac: 564,
-    solicitado: 451,
-    emAvaliacao: 363,
-    aprovado: 291,
-    dispensado: 235,
+    pac: 572648,
+    solicitado: 458118,
+    emAvaliacao: 366496,
+    aprovado: 293198,
+    dispensado: 234560,
   },
   {
     estado: 'Rondônia',
-    pac: 865,
-    solicitado: 613,
-    emAvaliacao: 571,
-    aprovado: 438,
-    dispensado: 312,
+    pac: 841788,
+    solicitado: 673432,
+    emAvaliacao: 538474,
+    aprovado: 430998,
+    dispensado: 344800,
   },
   {
     estado: 'Roraima',
-    pac: 1210,
-    solicitado: 970,
-    emAvaliacao: 777,
-    aprovado: 624,
-    dispensado: 501,
+    pac: 1237425,
+    solicitado: 989941,
+    emAvaliacao: 791955,
+    aprovado: 633565,
+    dispensado: 506854,
   },
   {
     estado: 'Santa Catarina',
-    pac: 1777,
-    solicitado: 1423,
-    emAvaliacao: 1139,
-    aprovado: 913,
-    dispensado: 731,
+    pac: 1819012,
+    solicitado: 1455211,
+    emAvaliacao: 1164170,
+    aprovado: 931338,
+    dispensado: 745071,
   },
   {
     estado: 'São Paulo',
-    pac: 2608,
-    solicitado: 2088,
-    emAvaliacao: 1671,
-    aprovado: 1393,
-    dispensado: 1088,
+    pac: 2673946,
+    solicitado: 2139157,
+    emAvaliacao: 1711328,
+    aprovado: 1369063,
+    dispensado: 1095252,
   },
   {
     estado: 'Sergipe',
-    pac: 3884,
-    solicitado: 3025,
-    emAvaliacao: 2500,
-    aprovado: 1586,
-    dispensado: 1562,
+    pac: 3930696,
+    solicitado: 3144558,
+    emAvaliacao: 2515649,
+    aprovado: 2012520,
+    dispensado: 1610016,
   },
   {
     estado: 'Tocatins',
-    pac: 5630,
-    solicitado: 4506,
-    emAvaliacao: 3605,
-    aprovado: 2884,
-    dispensado: 2306,
+    pac: 4359856,
+    solicitado: 3487885,
+    emAvaliacao: 2790310,
+    aprovado: 2232248,
+    dispensado: 1785799,
   }
 ]
 
+function search(text: string, pipe: PipeTransform): OrcamentoEstrategico[] {
+  return CGAFME.filter(data => {
+    const term = text.toLowerCase();
+    return data.estado.toLowerCase().includes(term);
+  });
+}
+
 @Component({
-  selector: 'app-ploa',
+  selector: '',
   templateUrl: './strategic.component.html',
-  styleUrls: ['./strategic.component.scss']
+  styleUrls: ['./strategic.component.scss'],
+  providers: [DecimalPipe]
 })
 export class StrategicComponent implements OnInit {
 
-  constructor() { }
+  cgafme$: Observable<OrcamentoEstrategico[]>;
+  filter = new FormControl('');
+
+  constructor(pipe: DecimalPipe) {
+    this.cgafme$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => search(text, pipe))
+    );
+   }
 
   ngOnInit() {
   }
 
-  cgafme = CGAFME;
+  // cgafme = CGAFME;
 }

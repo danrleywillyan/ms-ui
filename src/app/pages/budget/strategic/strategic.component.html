@@ -22,7 +22,7 @@
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                   </div>
                   <input class="form-control" placeholder="Pesquisar" type="text" (focus)="focus = true"
-                  (blur)="focus = false">
+                  (blur)="focus = false" [formControl]="filter">
                 </div>
               </div>
             </form>
@@ -55,7 +55,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of cgafme; index as i">
+                <tr *ngFor="let data of cgafme$ | async; index as i">
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">
                       <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
@@ -72,25 +72,25 @@
                     <div class="media align-items-center">
                       <div class="media-body">
                         <span class="mb-0 text-sm">
-                          {{ data.estado }} 
+                            <ngb-highlight [result]="data.estado" [term]="filter.value"></ngb-highlight> 
                         </span>
                       </div>
                     </div>
                   </th>
                   <td>
-                    {{ data.pac }}
+                    {{ data.pac | number:'3.0' }}
                   </td>
                   <td>
-                    {{ data.solicitado }}
+                    {{ data.solicitado | number:'3.0' }}
                   </td>
                   <td>
-                    {{ data.emAvaliacao }}
+                    {{ data.emAvaliacao | number:'3.0' }}
                   </td>
                   <td>
-                    {{ data.aprovado }}
+                    {{ data.aprovado | number:'3.0' }}
                   </td>
                   <td>
-                    {{ data.dispensado }}
+                    {{ data.dispensado | number:'3.0' }}
                   </td>
                 </tr>
               </tbody>
