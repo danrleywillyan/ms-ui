@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/dashboard', title: 'PLOA automatizada', icon: 'ni-bullet-list-67 text-teal' }]},
+  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'PLOA automatizada', icon: 'ni-bullet-list-67 text-teal' }, { path: '/budget/strategic', title: 'Estratégico (CGAFME)', icon: 'ni-chart-pie-35 text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length

@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
+import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
+import { StrategicComponent } from '../../pages/budget/strategic/strategic.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
@@ -14,6 +16,9 @@ export const AppLayoutRoutes: Routes = [
 
   // Budget paths (Orçamento)
   { path: 'budget/dashboard', component: DashboardComponent },
+  { path: 'budget/ploa', component: PloaComponent },
+  { path: 'budget/strategic', component: StrategicComponent },
+
 
   // Predictive paths
 

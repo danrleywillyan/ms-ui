@@ -67,3 +67,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ```$ flask run --host=0.0.0.0```
 
 ```$ FLASK_ENV=development flask run -h 0.0.0.0```
+
