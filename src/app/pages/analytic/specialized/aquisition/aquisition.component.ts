@@ -243,7 +243,7 @@ function search(text: string, pipe: PipeTransform): OrcamentoEspecializado[] {
 
 @Component({
   selector: '',
-  templateUrl: './aquisition.specialized.component.html',
+  templateUrl: './aquisition.component.html',
   styleUrls: ['./aquisition.component.scss'],
   providers: [DecimalPipe]
 })
