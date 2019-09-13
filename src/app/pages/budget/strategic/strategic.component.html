@@ -19,10 +19,23 @@
               <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <span class="input-group-text"
+                      [hidden]="service.loading$ | async"
+                    >
+                      <i class="fas fa-search"></i>
+                    </span>
+                    <span class="input-group-text"
+                      *ngIf="service.loading$ | async"
+                    >
+                      <i class="fas fa-circle-notch fa-spin"></i>
+                    </span>
                   </div>
-                  <input class="form-control" placeholder="Pesquisar" type="text" (focus)="focus = true"
-                  (blur)="focus = false" [formControl]="filter">
+                  <input
+                    class="form-control" placeholder="Pesquisar"
+                    type="text" (focus)="focus = true" name="searchTerm"
+                    (blur)="focus = false"
+                    [(ngModel)]="service.searchTerm"
+                  />
                 </div>
               </div>
             </form>
@@ -42,23 +55,31 @@
             <!-- <h3 class="mb-0">Card tables</h3> -->
           </div>
           <div class="table-responsive">
-            <table class="table align-items-center table-flush">
+            <table class="table align-items-center table-striped">
               <thead class="thead-light">
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">PAC (Un)</th>
-                  <th scope="col">Solicitado pela UF (Un)</th>
-                  <th scope="col">Em avaliação / Aquisição (Un)</th>
-                  <th scope="col">Aprovado SISMAT (Un)</th>
-                  <th scope="col">Dispensado (Un)</th>
+                  <th scope="col" sortable="estado" (sort)="onSort($event)">
+                    Estado</th>
+                  <th scope="col" sortable="pac" (sort)="onSort($event)">
+                    PAC (Un)</th>
+                  <th scope="col" sortable="solicitado" (sort)="onSort($event)">
+                    Solicitado pela UF (Un)</th>
+                  <th scope="col" sortable="emAvaliacao" (sort)="onSort($event)">
+                    Em avaliação / Aquisição (Un)</th>
+                  <th scope="col" sortable="aprovado" (sort)="onSort($event)">
+                    Aprovado SISMAT (Un)</th>
+                  <th scope="col" sortable="dispensado" (sort)="onSort($event)">
+                    Dispensado (Un)</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of cgafme$ | async; index as i">
-                  <td class="text-right">
+                <tr *ngFor="let data of cgafme$ | async">
+                  <th class="text-right" scope="row">
                     <div ngbDropdown placement="bottom-right">
-                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <a class="btn btn-sm btn-icon-only text-light"
+                        ngbDropdownToggle
+                      >
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
@@ -67,37 +88,67 @@
                         <!-- <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
                       </div>
                     </div>
-                  </td>
-                  <th class="title-action-budget" scope="row">
+                  </th>
+                  <td class="title-action-budget">
                     <div class="media align-items-center">
                       <div class="media-body">
                         <span class="mb-0 text-sm">
-                            <ngb-highlight [result]="data.estado" [term]="filter.value"></ngb-highlight> 
+                            <ngb-highlight [result]="data.estado" 
+                              [term]="service.searchTerm"
+                            >
+                            </ngb-highlight> 
                         </span>
                       </div>
                     </div>
-                  </th>
-                  <td>
-                    {{ data.pac | number:'3.0' }}
                   </td>
                   <td>
-                    {{ data.solicitado | number:'3.0' }}
+                    <ngb-highlight [result]="data.pac | number:'3.0'" 
+                    [term]="service.searchTerm"
+                    >
+                    </ngb-highlight>
                   </td>
                   <td>
-                    {{ data.emAvaliacao | number:'3.0' }}
+                    <ngb-highlight [result]="data.solicitado | number:'3.0'" 
+                    [term]="service.searchTerm"
+                    >
+                    </ngb-highlight>
                   </td>
                   <td>
-                    {{ data.aprovado | number:'3.0' }}
+                    <ngb-highlight [result]="data.emAvaliacao | number:'3.0'" 
+                    [term]="service.searchTerm"
+                    >
+                    </ngb-highlight>
                   </td>
                   <td>
-                    {{ data.dispensado | number:'3.0' }}
+                    <ngb-highlight [result]="data.aprovado | number:'3.0'" 
+                    [term]="service.searchTerm"
+                    >
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="data.dispensado | number:'3.0'" 
+                    [term]="service.searchTerm"
+                    >
+                    </ngb-highlight>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="card-footer py-4">
-            <nav aria-label="...">
+          <div class="card-footer py-4 ">
+            <ngb-pagination
+              [collectionSize]="total$ | async"
+              [(page)]="service.page" 
+              [pageSize]="service.pageSize"
+            >
+            </ngb-pagination>
+        
+            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+              <option [ngValue]="10">10 itens por página</option>
+              <option [ngValue]="15">15 itens por página</option>
+              <option [ngValue]="20">20 itens por página</option>
+            </select>
+            <!-- <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
                 <li class="page-item disabled">
                   <a class="page-link" href="javascript:void(0)" tabindex="-1">
@@ -119,7 +170,7 @@
                   </a>
                 </li>
               </ul>
-            </nav>
+            </nav> -->
           </div>
         </div>
       </div>
