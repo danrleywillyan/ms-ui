@@ -21,6 +21,11 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
+  { id: 'analytic', path: '/analytic', title: 'Analítico',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/analytic/acquisition', title: 'Aquisição Centralizada', icon: 'ni-chart-pie-35 text-teal' }, { path: '/analytic/transfer', title: 'Repasses', icon: 'ni-bullet-list-67 text-teal' }]},
+
+  
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
   { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
 
   // @ts-ignore

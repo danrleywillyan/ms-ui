@@ -18,6 +18,10 @@ export const AppLayoutRoutes: Routes = [
   { path: 'budget/dashboard', component: DashboardComponent },
   { path: 'budget/ploa', component: PloaComponent },
   { path: 'budget/strategic', component: StrategicComponent },
+  { path: 'analytic/acquisition', component: StrategicComponent },
+  { path: 'analytic/transfer', component: StrategicComponent },
+
+
 
 
   // Predictive paths
