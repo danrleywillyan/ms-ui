@@ -17,12 +17,11 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'PLOA automatizada', icon: 'ni-bullet-list-67 text-teal' }, { path: '/budget/strategic', title: 'Estratégico (CGAFME)', icon: 'ni-chart-pie-35 text-teal' }]},
+  { id: 'budget', path: '/analytic/transfer', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'analytic', path: '/analytic', title: 'Analítico',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/analytic/acquisition', title: 'Aquisição Centralizada', icon: 'ni-chart-pie-35 text-teal' }, { path: '/analytic/transfer', title: 'Repasses', icon: 'ni-bullet-list-67 text-teal' }]},
-
+  { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/tranfer', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/transfer', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/transfer', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/transfer', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
   
   // @ts-ignore
   // tslint:disable-next-line:max-line-length

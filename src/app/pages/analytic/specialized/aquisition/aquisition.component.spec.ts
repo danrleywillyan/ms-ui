@@ -1,23 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpecializedComponent  } from './aquisition.component';
-import { StrategicComponent } from '../../strategic/strategic.component';
-import { STransferComponent } from '../transfer/transfer.component';
+import { AquisitionComponent } from './Aquisition.component';
 
-describe('TransferComponent', () => {
-  let component: StrategicComponent;
-  let fixture: ComponentFixture<STransferComponent>;
+describe('AquisitionComponent', () => {
+  let component: AquisitionComponent;
+  let fixture: ComponentFixture<AquisitionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ STransferComponent ]
+      declarations: [ AquisitionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(STransferComponent);
-    component = fixture.componentInstance; STransferComponent
+    fixture = TestBed.createComponent(AquisitionComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -25,3 +23,4 @@ describe('TransferComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

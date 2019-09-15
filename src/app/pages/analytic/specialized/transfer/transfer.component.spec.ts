@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { STransferComponent  } from './transfer.component';
+import { TransferComponent } from './transfer.component';
 
 describe('TransferComponent', () => {
-  let component: STransferComponent;
-  let fixture: ComponentFixture<STransferComponent>;
+  let component: TransferComponent;
+  let fixture: ComponentFixture<TransferComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ STransferComponent ]
+      declarations: [ TransferComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(STransferComponent);
-    component = fixture.componentInstance; STransferComponent
+    fixture = TestBed.createComponent(TransferComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -23,3 +23,4 @@ describe('TransferComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

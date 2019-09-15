@@ -3,9 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import { ClipboardModule } from 'ngx-clipboard';
-
 import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
