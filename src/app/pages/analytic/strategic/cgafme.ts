@@ -1,4 +1,4 @@
-import { OrcamentoEstrategico } from './orcamentoEstrategico';
+import { OrcamentoEstrategico } from './strategicBudget';
 
 export const CGAFME: OrcamentoEstrategico[] = [
   {

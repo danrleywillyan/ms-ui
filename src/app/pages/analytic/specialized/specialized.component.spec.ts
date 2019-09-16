@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PloaComponent } from './ploa.component';
+import { SpecializedComponent } from './specialized.component';
 
-describe('PloaComponent', () => {
-  let component: PloaComponent;
-  let fixture: ComponentFixture<PloaComponent>;
+describe('SpecializedComponent', () => {
+  let component: SpecializedComponent;
+  let fixture: ComponentFixture<SpecializedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PloaComponent ]
+      declarations: [ SpecializedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PloaComponent);
+    fixture = TestBed.createComponent(SpecializedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

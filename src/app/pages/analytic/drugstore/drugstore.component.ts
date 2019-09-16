@@ -2,30 +2,30 @@ import {DecimalPipe} from '@angular/common';
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import { OrcamentoEstrategico } from './strategicBudget';
-import {OrcamentoEstrategicoService} from './strategic.service';
+import { DrugstoreAnalytic } from './drugstoreAnalytic';
+import {DrugstoreAnalyticService} from './drugstore.service';
 import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
 
 
 @Component({
   selector: 'ngbd-table-complete',
-  templateUrl: './strategic.component.html',
-  styleUrls: ['./strategic.component.scss'],
+  templateUrl: './drugstore.component.html',
+  styleUrls: ['./drugstore.component.scss'],
   providers:
   [
-    OrcamentoEstrategicoService, 
+    DrugstoreAnalyticService, 
     DecimalPipe
   ]
 })
 
-export class StrategicComponent implements OnInit {
-  cgafme$: Observable<OrcamentoEstrategico[]>;
+export class DrugstoreComponent implements OnInit {
+  cpfp$: Observable<DrugstoreAnalytic[]>;
   total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: OrcamentoEstrategicoService) {
-    this.cgafme$ = service.cgafme$;
+  constructor(public service: DrugstoreAnalyticService) {
+    this.cpfp$ = service.cpfp$;
     this.total$ = service.total$;
   }
 
