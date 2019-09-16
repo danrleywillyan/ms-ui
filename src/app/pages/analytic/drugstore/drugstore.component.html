@@ -3,8 +3,8 @@
       <!-- Breadcrumbs -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Orçamento</li>
-          <li class="breadcrumb-item active" aria-current="page">Visão Orçamentária PLOA </li>
+          <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Analítico</li>
+          <li class="breadcrumb-item active" aria-current="page">Fármacia Popular (CPFP) </li>
         </ol>
       </nav>
     </div>
@@ -59,28 +59,18 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col" sortable="acao" (sort)="onSort($event)">
-                    Ação Orçamentária</th>
-                  <th scope="col" sortable="mediaExecucao" (sort)="onSort($event)">
-                    Média de Execução até 2018 (R$)</th>
-                  <th scope="col" sortable="dotacao" (sort)="onSort($event)">
-                    Dotação (R$)</th>
-                  <th scope="col" sortable="empenhado" (sort)="onSort($event)">
-                    Empenhado (R$)</th>
-                  <th scope="col" sortable="liquidado" (sort)="onSort($event)">
-                    Liguidado (R$)</th>
-                  <th scope="col" sortable="pago" (sort)="onSort($event)">
-                    Pago (R$)</th>
-                  <th scope="col" sortable="enviada" (sort)="onSort($event)">
-                    PLOA 2020 Enviada (R$)</th>
-                  <th scope="col" sortable="prevista" (sort)="onSort($event)">
-                    PLOA 2020 Prevista (R$)</th>
-                  <th scope="col" sortable="diferenca" (sort)="onSort($event)">
-                    PLOA 2020 (diferença %)</th>
+                  <th scope="col" sortable="estado" (sort)="onSort($event)">
+                    Estado</th>
+                  <th scope="col" sortable="credenciadas" (sort)="onSort($event)">
+                    Credenciadas</th>
+                  <th scope="col" sortable="emAnalise" (sort)="onSort($event)">
+                    Em Análise</th>
+                  <th scope="col" sortable="descredenciadas" (sort)="onSort($event)">
+                    descredenciadas</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of ploa$ | async">
+                <tr *ngFor="let data of cpfp$ | async">
                   <th class="text-right" scope="row">
                     <div ngbDropdown placement="bottom-right">
                       <a class="btn btn-sm btn-icon-only text-light"
@@ -99,7 +89,7 @@
                     <div class="media align-items-center">
                       <div class="media-body">
                         <span class="mb-0 text-sm">
-                            <ngb-highlight [result]="data.acao" 
+                            <ngb-highlight [result]="data.estado" 
                               [term]="service.searchTerm"
                             >
                             </ngb-highlight> 
@@ -108,60 +98,22 @@
                     </div>
                   </td>
                   <td>
-                    <ngb-highlight [result]="data.mediaExecucao | number:'3.0'" 
+                    <ngb-highlight [result]="data.credenciadas | number:'3.0'" 
                     [term]="service.searchTerm"
                     >
                     </ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="data.dotacao | number:'3.0'" 
+                    <ngb-highlight [result]="data.emAnalise | number:'3.0'" 
                     [term]="service.searchTerm"
                     >
                     </ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="data.empenhado | number:'3.0'" 
+                    <ngb-highlight [result]="data.descredenciadas | number:'3.0'" 
                     [term]="service.searchTerm"
                     >
                     </ngb-highlight>
-                  </td>
-                  <td>
-                    <ngb-highlight [result]="data.liquidado | number:'3.0'" 
-                    [term]="service.searchTerm"
-                    >
-                    </ngb-highlight>
-                  </td>
-                  <td>
-                    <ngb-highlight [result]="data.pago | number:'3.0'" 
-                    [term]="service.searchTerm"
-                    >
-                    </ngb-highlight>
-                  </td>
-                  <td>
-                    <ngb-highlight [result]="data.enviada | number:'3.0'" 
-                    [term]="service.searchTerm"
-                    >
-                    </ngb-highlight>
-                  </td>
-                  <td>
-                    <ngb-highlight [result]="data.prevista | number:'3.0'" 
-                      [term]="service.searchTerm"
-                    >
-                    </ngb-highlight>
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <ngb-highlight [result]="data.diferenca | number:'2.0'" 
-                        [term]="service.searchTerm"
-                      >
-                      </ngb-highlight>
-                      <span class="mr-2">%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="data.diferenca" aria-valuemin="0" aria-valuemax="100" style="width: 9.09%;"></div>
-                        </div>
-                      </div>
-                    </div>
                   </td>
                 </tr>
               </tbody>
