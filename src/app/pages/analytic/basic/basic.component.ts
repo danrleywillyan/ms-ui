@@ -2,30 +2,30 @@ import {DecimalPipe} from '@angular/common';
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import { OrcamentoEstrategico } from './orcamentoEstrategico';
-import {OrcamentoEstrategicoService} from './strategic.service';
+import { BasicAnalytic } from './basicAnalytic';
+import {BasicAnalyticService} from './basic.service';
 import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
 
 
 @Component({
   selector: 'ngbd-table-complete',
-  templateUrl: './strategic.component.html',
-  styleUrls: ['./strategic.component.scss'],
+  templateUrl: './basic.component.html',
+  styleUrls: ['./basic.component.scss'],
   providers:
   [
-    OrcamentoEstrategicoService, 
+    BasicAnalyticService, 
     DecimalPipe
   ]
 })
 
-export class StrategicComponent implements OnInit {
-  cgafme$: Observable<OrcamentoEstrategico[]>;
+export class BasicComponent implements OnInit {
+  cgafb$: Observable<BasicAnalytic[]>;
   total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: OrcamentoEstrategicoService) {
-    this.cgafme$ = service.cgafme$;
+  constructor(public service: BasicAnalyticService) {
+    this.cgafb$ = service.cgafb$;
     this.total$ = service.total$;
   }
 

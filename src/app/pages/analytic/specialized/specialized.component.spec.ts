@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemedyLifecycleComponent } from './remedy-lifecycle.component';
+import { SpecializedComponent } from './specialized.component';
 
-describe('RemedyLifecycleComponent', () => {
-  let component: RemedyLifecycleComponent;
-  let fixture: ComponentFixture<RemedyLifecycleComponent>;
+describe('SpecializedComponent', () => {
+  let component: SpecializedComponent;
+  let fixture: ComponentFixture<SpecializedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemedyLifecycleComponent ]
+      declarations: [ SpecializedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RemedyLifecycleComponent);
+    fixture = TestBed.createComponent(SpecializedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

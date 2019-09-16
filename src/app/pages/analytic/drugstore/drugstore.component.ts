@@ -2,30 +2,30 @@ import {DecimalPipe} from '@angular/common';
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import { AutomatedPloa } from './ploaAutomated';
-import {AutomatedPloaService} from './ploa.service';
+import { DrugstoreAnalytic } from './drugstoreAnalytic';
+import {DrugstoreAnalyticService} from './drugstore.service';
 import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
 
 
 @Component({
   selector: 'ngbd-table-complete',
-  templateUrl: './ploa.component.html',
-  styleUrls: ['./ploa.component.scss'],
+  templateUrl: './drugstore.component.html',
+  styleUrls: ['./drugstore.component.scss'],
   providers:
   [
-    AutomatedPloaService, 
+    DrugstoreAnalyticService, 
     DecimalPipe
   ]
 })
 
-export class PloaComponent implements OnInit {
-  ploa$: Observable<AutomatedPloa[]>;
+export class DrugstoreComponent implements OnInit {
+  cpfp$: Observable<DrugstoreAnalytic[]>;
   total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: AutomatedPloaService) {
-    this.ploa$ = service.ploa$;
+  constructor(public service: DrugstoreAnalyticService) {
+    this.cpfp$ = service.cpfp$;
     this.total$ = service.total$;
   }
 

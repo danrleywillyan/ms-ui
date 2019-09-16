@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemedyLifecycleComponent } from './remedy-lifecycle.component';
+import { TransferComponent } from './transfer.component';
 
-describe('RemedyLifecycleComponent', () => {
-  let component: RemedyLifecycleComponent;
-  let fixture: ComponentFixture<RemedyLifecycleComponent>;
+describe('TransferComponent', () => {
+  let component: TransferComponent;
+  let fixture: ComponentFixture<TransferComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemedyLifecycleComponent ]
+      declarations: [ TransferComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RemedyLifecycleComponent);
+    fixture = TestBed.createComponent(TransferComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +23,4 @@ describe('RemedyLifecycleComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -2,30 +2,30 @@ import {DecimalPipe} from '@angular/common';
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import { AutomatedPloa } from './ploaAutomated';
-import {AutomatedPloaService} from './ploa.service';
-import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
+import { SpecializedBudget } from './specializedBudget';
+import { SpecializedBudgetService } from './specialized.service';
+import { NgbdSortableHeader, SortEvent } from '../sortable.directive';
 
 
 @Component({
   selector: 'ngbd-table-complete',
-  templateUrl: './ploa.component.html',
-  styleUrls: ['./ploa.component.scss'],
+  templateUrl: './specialized.component.html',
+  styleUrls: ['./specialized.component.scss'],
   providers:
   [
-    AutomatedPloaService, 
+    SpecializedBudgetService, 
     DecimalPipe
   ]
 })
 
-export class PloaComponent implements OnInit {
-  ploa$: Observable<AutomatedPloa[]>;
+export class SpecializedComponent implements OnInit {
+  ceaf$: Observable<SpecializedBudget[]>;
   total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: AutomatedPloaService) {
-    this.ploa$ = service.ploa$;
+  constructor(public service: SpecializedBudgetService) {
+    this.ceaf$ = service.ceaf$;
     this.total$ = service.total$;
   }
 
