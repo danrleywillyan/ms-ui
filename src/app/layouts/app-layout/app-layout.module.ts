@@ -9,6 +9,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { StrategicComponent } from '../../pages/analytic/strategic/strategic.component';
+import { SpecializedComponent } from '../../pages/analytic/specialized/specialized.component';
+import { BasicComponent } from '../../pages/analytic/basic/basic.component';
+import { DrugstoreComponent } from '../../pages/analytic/drugstore/drugstore.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
@@ -41,6 +44,9 @@ import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.comp
     DashboardComponent,
     PloaComponent,
     StrategicComponent,
+    SpecializedComponent,
+    BasicComponent,
+    DrugstoreComponent,
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,

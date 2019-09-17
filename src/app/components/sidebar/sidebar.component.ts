@@ -17,13 +17,17 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/analytic/transfer', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
+  { id: 'budget', path: '/budget/dashboard', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
+<<<<<<< HEAD
   { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/CGAFB', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/CEAF', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/CGAFME', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/CPFP', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
   
    
+=======
+  { id: 'analytic', path: '/analytic/basic', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/drugstore', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
+>>>>>>> f10ba7116bfd6f583fb05625d457d713d311be3e
   
   // @ts-ignore
   // tslint:disable-next-line:max-line-length

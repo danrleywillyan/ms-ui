@@ -2,14 +2,14 @@ import { Injectable, PipeTransform } from '@angular/core';
 
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
-import { OrcamentoEstrategico } from './strategicBudget';
-import { CGAFME } from './cgafme';
+import { AutomatedPloa } from './ploaAutomated';
+import { PLOA } from './ploa';
 import { DecimalPipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortDirection } from '../sortable.directive';
 
 interface SearchResult {
-  data: OrcamentoEstrategico[];
+  data: AutomatedPloa[];
   total: number;
 }
 
@@ -25,7 +25,7 @@ function compare(v1, v2) {
   return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
-function sort(data: OrcamentoEstrategico[], column: string, direction: string): OrcamentoEstrategico[] {
+function sort(data: AutomatedPloa[], column: string, direction: string): AutomatedPloa[] {
   if (direction === '') {
     return data;
   } else {
@@ -36,20 +36,23 @@ function sort(data: OrcamentoEstrategico[], column: string, direction: string): 
   }
 }
 
-function matches(data: OrcamentoEstrategico, term: string, pipe: PipeTransform) {
-  return data.estado.toLowerCase().includes(term.toLowerCase())
-    || pipe.transform(data.pac).includes(term)
-    || pipe.transform(data.solicitado).includes(term)
-    || pipe.transform(data.emAvaliacao).includes(term)
-    || pipe.transform(data.aprovado).includes(term)
-    || pipe.transform(data.dispensado).includes(term);
+function matches(data: AutomatedPloa, term: string, pipe: PipeTransform) {
+  return data.acao.toLowerCase().includes(term.toLowerCase())
+    || pipe.transform(data.mediaExecucao).includes(term)
+    || pipe.transform(data.dotacao).includes(term)
+    || pipe.transform(data.empenhado).includes(term)
+    || pipe.transform(data.liquidado).includes(term)
+    || pipe.transform(data.pago).includes(term)
+    || pipe.transform(data.enviada).includes(term)
+    || pipe.transform(data.prevista).includes(term)
+    || pipe.transform(data.diferenca).includes(term);
 }
 
 @Injectable({providedIn: 'root'})
-export class OrcamentoEstrategicoService {
+export class AutomatedPloaService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _cgafme$ = new BehaviorSubject<OrcamentoEstrategico[]>([]);
+  private _ploa$ = new BehaviorSubject<AutomatedPloa[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
   private _state: State = {
@@ -68,14 +71,14 @@ export class OrcamentoEstrategicoService {
       delay(200),
       tap(() => this._loading$.next(false))
     ).subscribe(result => {
-      this._cgafme$.next(result.data);
+      this._ploa$.next(result.data);
       this._total$.next(result.total);
     });
 
     this._search$.next();
   }
 
-  get cgafme$() { return this._cgafme$.asObservable(); }
+  get ploa$() { return this._ploa$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
   get loading$() { return this._loading$.asObservable(); }
   get page() { return this._state.page; }
@@ -97,10 +100,10 @@ export class OrcamentoEstrategicoService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
-    let data = sort(CGAFME, sortColumn, sortDirection);
+    let data = sort(PLOA, sortColumn, sortDirection);
 
     // 2. filter
-    data = data.filter(OrcamentoEstrategico => matches(OrcamentoEstrategico, searchTerm, this.pipe));
+    data = data.filter(AutomatedPloa => matches(AutomatedPloa, searchTerm, this.pipe));
     const total = data.length;
 
     // 3. paginate

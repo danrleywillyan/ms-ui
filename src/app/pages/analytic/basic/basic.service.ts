@@ -2,14 +2,14 @@ import { Injectable, PipeTransform } from '@angular/core';
 
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
-import { OrcamentoEstrategico } from './strategicBudget';
-import { CGAFME } from './cgafme';
+import { BasicAnalytic } from './basicAnalytic';
+import { CGAFB } from './cgafb';
 import { DecimalPipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortDirection } from '../sortable.directive';
 
 interface SearchResult {
-  data: OrcamentoEstrategico[];
+  data: BasicAnalytic[];
   total: number;
 }
 
@@ -25,7 +25,7 @@ function compare(v1, v2) {
   return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
-function sort(data: OrcamentoEstrategico[], column: string, direction: string): OrcamentoEstrategico[] {
+function sort(data: BasicAnalytic[], column: string, direction: string): BasicAnalytic[] {
   if (direction === '') {
     return data;
   } else {
@@ -36,20 +36,20 @@ function sort(data: OrcamentoEstrategico[], column: string, direction: string): 
   }
 }
 
-function matches(data: OrcamentoEstrategico, term: string, pipe: PipeTransform) {
+function matches(data: BasicAnalytic, term: string, pipe: PipeTransform) {
   return data.estado.toLowerCase().includes(term.toLowerCase())
     || pipe.transform(data.pac).includes(term)
-    || pipe.transform(data.solicitado).includes(term)
-    || pipe.transform(data.emAvaliacao).includes(term)
-    || pipe.transform(data.aprovado).includes(term)
-    || pipe.transform(data.dispensado).includes(term);
+    || pipe.transform(data.programado).includes(term)
+    || pipe.transform(data.contratado).includes(term)
+    || pipe.transform(data.saldoAta).includes(term)
+    || pipe.transform(data.distribuido).includes(term);
 }
 
 @Injectable({providedIn: 'root'})
-export class OrcamentoEstrategicoService {
+export class BasicAnalyticService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _cgafme$ = new BehaviorSubject<OrcamentoEstrategico[]>([]);
+  private _cgafb$ = new BehaviorSubject<BasicAnalytic[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
   private _state: State = {
@@ -68,14 +68,14 @@ export class OrcamentoEstrategicoService {
       delay(200),
       tap(() => this._loading$.next(false))
     ).subscribe(result => {
-      this._cgafme$.next(result.data);
+      this._cgafb$.next(result.data);
       this._total$.next(result.total);
     });
 
     this._search$.next();
   }
 
-  get cgafme$() { return this._cgafme$.asObservable(); }
+  get cgafb$() { return this._cgafb$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
   get loading$() { return this._loading$.asObservable(); }
   get page() { return this._state.page; }
@@ -97,10 +97,10 @@ export class OrcamentoEstrategicoService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
-    let data = sort(CGAFME, sortColumn, sortDirection);
+    let data = sort(CGAFB, sortColumn, sortDirection);
 
     // 2. filter
-    data = data.filter(OrcamentoEstrategico => matches(OrcamentoEstrategico, searchTerm, this.pipe));
+    data = data.filter(BasicAnalytic => matches(BasicAnalytic, searchTerm, this.pipe));
     const total = data.length;
 
     // 3. paginate
