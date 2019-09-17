@@ -10,6 +10,7 @@ import {FormElucidationComponent} from '../../pages/popular-pharmacy/notificatio
 import {OccurrenceTypesComponent} from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { from } from 'rxjs';
+import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.component';
 
 export const AppLayoutRoutes: Routes = [
   // Overview paths
@@ -22,6 +23,8 @@ export const AppLayoutRoutes: Routes = [
   { path: 'budget/strategic', component: StrategicComponent },
   { path: 'analytic/acquisition', component: StrategicComponent },
   { path: 'analytic/transfer', component: StrategicComponent },
+  { path: 'analytic/:coord', component: AnalyticComponent },
+  { path: 'analytic', component: AnalyticComponent },
 
 
 

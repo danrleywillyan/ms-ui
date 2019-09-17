@@ -17,7 +17,11 @@ import { FormElucidationComponent } from '../../pages/popular-pharmacy/notificat
 import {LoaderComponent} from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pipe';
-import {ReplacePipe} from '../../pipes/filters/replace.pipe'
+import {ReplacePipe} from '../../pipes/filters/replace.pipe';
+import { SpecializedCoordComponent } from '../../pages/analytic/specialized-coord/specialized-coord.component';
+import { BasicCoordComponent } from '../../pages/analytic/basic-coord/basic-coord.component';
+import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.component';
+
 
 @NgModule({
   imports: [
@@ -46,6 +50,9 @@ import {ReplacePipe} from '../../pipes/filters/replace.pipe'
     MulctComponent,
     TransactionsFilterPipe,
     ReplacePipe,
+    SpecializedCoordComponent,
+    BasicCoordComponent,
+    AnalyticComponent
   ]
 })
 

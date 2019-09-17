@@ -21,7 +21,9 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/tranfer', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/transfer', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/transfer', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/transfer', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
+  { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/CGAFB', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/CEAF', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/CGAFME', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/CPFP', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
+  
+   
   
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
