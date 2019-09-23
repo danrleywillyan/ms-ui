@@ -1,5 +1,14 @@
 import { BasicAnalytic } from './basicAnalytic';
 
+export interface BasicAnalytic {
+  estado: string;
+  pac: number;
+  programado: number;
+  contratado: number;
+  saldoAta: number;
+  distribuido: number;
+}
+
 export const CGAFB: BasicAnalytic[] = [
   {
     estado: 'Acre',

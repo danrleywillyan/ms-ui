@@ -1,5 +1,14 @@
 import { OrcamentoEstrategico } from './strategicBudget';
 
+export interface OrcamentoEstrategico {
+  estado: string;
+  pac: number;
+  solicitado: number;
+  emAvaliacao: number;
+  aprovado: number;
+  dispensado: number;
+}
+
 export const CGAFME: OrcamentoEstrategico[] = [
   {
     estado: 'Acre',

@@ -1,5 +1,12 @@
 import { DrugstoreAnalytic } from './drugstoreAnalytic';
 
+export interface DrugstoreAnalytic {
+  estado: string;
+  credenciadas: number;
+  emAnalise: number;
+  descredenciadas: number;
+}
+
 export const CPFP: DrugstoreAnalytic[] = [
   {
     estado: 'Acre',

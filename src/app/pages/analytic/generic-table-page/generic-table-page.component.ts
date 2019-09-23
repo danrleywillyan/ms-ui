@@ -1,47 +1,105 @@
 import {DecimalPipe} from '@angular/common';
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnInit } from '@angular/core';
 
-import { BasicAnalytic } from './basicAnalytic';
-import {BasicAnalyticService} from './basic.service';
-import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
+import {ActivatedRoute, ParamMap, Router, NavigationEnd} from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { CEAF, CGAFB, CGAFME, CPFP } from './data/fake-data';
 
 
 @Component({
-  selector: 'ngbd-table-complete',
+  selector: 'generic-table-page',
   templateUrl: './generic-table-page.component.html',
   styleUrls: ['./generic-table-page.component.scss'],
   providers:
   [
-    BasicAnalyticService, 
     DecimalPipe
   ]
 })
 
 export class GenericPage implements OnInit {
-  cgafb$: Observable<BasicAnalytic[]>;
-  total$: Observable<number>;
+  infoId;
+  analitycData: Object[];
+  headerData: Object[];
 
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
-
-  constructor(public service: BasicAnalyticService) {
-    this.cgafb$ = service.cgafb$;
-    this.total$ = service.total$;
-  }
-
-  onSort({column, direction}: SortEvent) {
-    // resetting other headers
-    this.headers.forEach(header => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
+  constructor(
+    private _Activatedroute:ActivatedRoute,
+    pipe: DecimalPipe,
+    private router:Router
+  )
+  {
+    router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.updateData( this.infoId );
     });
-
-    this.service.sortColumn = column;
-    this.service.sortDirection = direction;
   }
 
+  protected setHeaderData(data: Object[]) {
+    this.headerData = data;
+  }
+  protected getHeaderData() {
+    return this.headerData;
+  }
+
+  protected setAnalitycData(data: Object[]) {
+    this.analitycData = data;
+  }
+  protected getAnalitycData(): Object[] {
+    return this.analitycData;
+  }
+
+  sub;
   ngOnInit() {
+    this.sub = this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
+      this.infoId = params.get('id');
+    });
+    this.updateData( this.infoId );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  updateData(id: string ) {
+    switch(id) {
+      case "basic": {
+        this.setAnalitycData( CGAFB );
+        let localAnalitycData = this.getAnalitycData();
+        for( let i=0; i< localAnalitycData.length; i++ ){
+          this.setHeaderData( Object.keys( localAnalitycData[i]) );
+        }
+        break;
+      }
+      case "strategic": {
+        this.setAnalitycData( CGAFME );
+        let localAnalitycData = this.getAnalitycData();
+        for( let i=0; i< localAnalitycData.length; i++ ){
+          this.setHeaderData( Object.keys( localAnalitycData[i]) );
+        }
+        break;
+      }
+      case "specialized": {
+        this.setAnalitycData( CEAF );
+        let localAnalitycData = this.getAnalitycData();
+        for( let i=0; i< localAnalitycData.length; i++ ){
+          this.setHeaderData( Object.keys( localAnalitycData[i]) );
+        }
+        break;
+      }
+      case "farmpop": {
+        this.setAnalitycData( CPFP );
+        let localAnalitycData = this.getAnalitycData();
+        for( let i=0; i< localAnalitycData.length; i++ ){
+          this.setHeaderData( Object.keys( localAnalitycData[i]) );
+        }
+        break;
+      }
+      default: {
+        
+
+        break;
+      }
+    }
   }
 
 }
