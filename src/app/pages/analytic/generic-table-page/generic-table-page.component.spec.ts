@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AquisitionComponent } from './Aquisition.component';
+import { GenericPage } from './generic-table-page.component';
 
-describe('AquisitionComponent', () => {
-  let component: AquisitionComponent;
-  let fixture: ComponentFixture<AquisitionComponent>;
+describe('GenericPage', () => {
+  let component: GenericPage;
+  let fixture: ComponentFixture<GenericPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AquisitionComponent ]
+      declarations: [ GenericPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AquisitionComponent);
+    fixture = TestBed.createComponent(GenericPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,4 +23,3 @@ describe('AquisitionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

@@ -16,8 +16,6 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
 import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe';
-import { TransferComponent } from './pages/analytic/basic-coord/transfer/transfer.component';
-import { AquisitionComponent } from './pages/analytic/basic-coord/aquisition/aquisition.component';
 
 @NgModule({
   imports: [
@@ -35,8 +33,6 @@ import { AquisitionComponent } from './pages/analytic/basic-coord/aquisition/aqu
     AppLayoutComponent,
     TemplatesLayoutComponent,
     AuthLayoutComponent,
-    TransferComponent,
-    AquisitionComponent
   ],
   exports: [
     FormsModule,

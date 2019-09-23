@@ -21,14 +21,8 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-<<<<<<< HEAD
-  { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/CGAFB', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/CEAF', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/CGAFME', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/CPFP', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
-  
-   
-=======
-  { id: 'analytic', path: '/analytic/basic', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/drugstore', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
->>>>>>> f10ba7116bfd6f583fb05625d457d713d311be3e
-  
+  { id: 'analytic', path: '/analytic', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: 'basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: 'specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: 'strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' }, { path: 'farmpop', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
+
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},

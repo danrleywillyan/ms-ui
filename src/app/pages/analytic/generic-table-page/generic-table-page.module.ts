@@ -4,8 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbdSortableHeader } from '../sortable.directive';
-import { DrugstoreComponent } from './drugstore.component';
+import { GenericPage } from './generic-table-page.component';
 
 @NgModule({
   imports: [
@@ -15,8 +14,8 @@ import { DrugstoreComponent } from './drugstore.component';
     ReactiveFormsModule,
     NgbModule
   ],
-  declarations: [DrugstoreComponent, NgbdSortableHeader],
-  exports: [DrugstoreComponent],
-  bootstrap: [DrugstoreComponent]
+  declarations: [GenericPage],
+  exports: [GenericPage],
+  bootstrap: [GenericPage]
 })
-export class DrugstoreComponentModule {}
+export class BasicComponentModule {}

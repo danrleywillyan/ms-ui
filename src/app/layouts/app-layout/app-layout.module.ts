@@ -8,10 +8,9 @@ import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
-import { StrategicComponent } from '../../pages/analytic/strategic/strategic.component';
-import { SpecializedComponent } from '../../pages/analytic/specialized/specialized.component';
-import { BasicComponent } from '../../pages/analytic/basic/basic.component';
-import { DrugstoreComponent } from '../../pages/analytic/drugstore/drugstore.component';
+
+import { GenericPage } from '../../pages/analytic/generic-table-page/generic-table-page.component';
+
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
@@ -21,9 +20,6 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import {TransactionsFilterPipe} from '../../pipes/filters/transactions-filter.pipe';
 import {ReplacePipe} from '../../pipes/filters/replace.pipe';
-import { SpecializedCoordComponent } from '../../pages/analytic/specialized-coord/specialized-coord.component';
-import { BasicCoordComponent } from '../../pages/analytic/basic-coord/basic-coord.component';
-import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.component';
 
 
 @NgModule({
@@ -43,10 +39,7 @@ import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.comp
     LoaderComponent,
     DashboardComponent,
     PloaComponent,
-    StrategicComponent,
-    SpecializedComponent,
-    BasicComponent,
-    DrugstoreComponent,
+    GenericPage,
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,
@@ -56,9 +49,6 @@ import { AnalyticComponent } from 'src/app/pages/analytic/analytic/analytic.comp
     MulctComponent,
     TransactionsFilterPipe,
     ReplacePipe,
-    SpecializedCoordComponent,
-    BasicCoordComponent,
-    AnalyticComponent
   ]
 })
 
