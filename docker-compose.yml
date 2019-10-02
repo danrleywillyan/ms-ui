@@ -114,4 +114,3 @@ services:
        EUREKA_PORT: 8761
     ports:
       - "8447:5000" #8443 reserved for SSL (HTTPS)
-

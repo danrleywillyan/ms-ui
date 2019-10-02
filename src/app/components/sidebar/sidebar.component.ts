@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget/dashboard', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
+  { id: 'budget', path: '/budget/dashboard', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: 'ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
@@ -29,7 +29,7 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: 'notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: 'mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
