@@ -37,15 +37,15 @@ Stop all services & remove all images: ```$ docker stop $(docker ps -aq) && dock
 
 ## Build (docker)
 
-Run `docker build -t ui:latest .`. __Remember to update it version!__
+Run `docker build -t ui:remote .`. __Remember to update it version!__
 
 ## Docker publish
 
 1. Com a imagem ja criada digite o seguinte código no terminal
-`docker tag ui msdaf/ui:latest`
+`docker tag ui:remote msdaf/ui:remote`
 
 2. Insira o seguinte código para dar um push para o DockeHub e aguarde
-`docker push msdaf/ui:latest`
+`docker push msdaf/ui:remote`
 
 ## Python for Eureka
 

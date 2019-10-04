@@ -14,7 +14,7 @@ export class GatewayService {
 
   public headers = {};
   public port = '8080';
-  public host = 'gateway';
+  public host = window.location.hostname; //35.247.232.147 gateway
   public protocol = 'http';
 
   public params: object;
