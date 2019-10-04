@@ -192,7 +192,7 @@
 <div class="modal fade" id="csvUploadModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <form (ngSubmit)="loginExec()">
+    <form [formGroup]="consultGRUFormGroup" (ngSubmit)="loginExec()">
       <div class="modal-content" ng-controller="controlador" ng-app="app">
         <div class="modal-header">
 
@@ -205,31 +205,31 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="form-control-label" for="login">Login</label>
-            <input type="text" class="form-control form-control-alternative" name="login" id="login" placeholder="Digite o Login do SIAFI" required (change)="consultGRUConstruct(login,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="login" name="login" id="login" placeholder="Digite o Login do SIAFI" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Senha</label>
-            <input type="password" class="form-control form-control-alternative" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required (change)="consultGRUConstruct(pass,$event.target.value)">
+            <input type="password" class="form-control form-control-alternative" formControlName="pass" name="pass" id="pass" placeholder="Digite a Senha do SIAFI" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">UG Arrecadadora</label>
-            <input type="text" class="form-control form-control-alternative" name="ugArrecadadora" id="ugArrecadadora" placeholder="Digite a UG Arrecadadora" required (change)="consultGRUConstruct(ugArrecadadora,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="ugArrecadadora" name="ugArrecadadora" id="ugArrecadadora" placeholder="Digite a UG Arrecadadora" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">UG Emitente</label>
-            <input type="text" class="form-control form-control-alternative" name="ugEmitente" id="ugEmitente" placeholder="Digite a UG Emitente" required (change)="consultGRUConstruct(ugEmitente,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="ugEmitente" name="ugEmitente" id="ugEmitente" placeholder="Digite a UG Emitente" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Contribuinte</label>
-            <input type="text" class="form-control form-control-alternative" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite o CPF/CNPJ do Contribuinte" required (change)="consultGRUConstruct(codigoRecolhedor,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="codigoRecolhedor" name="codigoRecolhedor" id="codigoRecolhedor" placeholder="Digite o CPF/CNPJ do Contribuinte" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Data Inicial</label>
-            <input type="text" class="form-control form-control-alternative" name="dtEmissaoIN" id="dtEmissaoIN" placeholder="Digite a data inicial da consulta" required (change)="consultGRUConstruct(dtEmissaoIN,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="dtEmissaoIN" name="dtEmissaoIN" id="dtEmissaoIN" placeholder="Digite a data inicial da consulta" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="pass">Data Final</label>
-            <input type="text" class="form-control form-control-alternative" name="dtEmissaoFI" id="dtEmissaoFI" placeholder="Digite a data final da consulta" required (change)="consultGRUConstruct(dtEmissaoFI,$event.target.value)">
+            <input type="text" class="form-control form-control-alternative" formControlName="dtEmissaoFI" name="dtEmissaoFI" id="dtEmissaoFI" placeholder="Digite a data final da consulta" required>
           </div>
         </div>
         <div class="modal-footer">

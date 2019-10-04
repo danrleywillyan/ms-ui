@@ -18,7 +18,6 @@ export class ConsultsisgruService extends GatewayService{
     this.path = 'requirement';
     this.params = params;
     return this.perform();
-
   }
 
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MulctParserService} from '../../../services/refund/mulct-parser.service';
 import {ConsultsisgruService} from '../../../services/refund/consultsisgru.service';
 
@@ -21,9 +22,20 @@ export class MulctComponent implements OnInit {
   private dtEmissaoIN = null;
   private dtEmissaoFI = null;
   public hideElement= false;
+  public consultGRUFormGroup = null;
 
   public consultGRU_data= [];
-  constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private http: HttpClient) {
+  constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private fb: FormBuilder) {
+    this.consultGRUFormGroup = new FormGroup({
+      login: new FormControl(null, Validators.minLength(2)),
+      pass: new FormControl(null, Validators.minLength(2)),
+      ugArrecadadora: new FormControl(null),
+      ugEmitente: new FormControl(null),
+      codigoRecolhedor: new FormControl(null),
+      dtEmissaoIN: new FormControl(null, null),
+      dtEmissaoFI: new FormControl(null)
+    });
+
   }
 
   ngOnInit() {
@@ -59,24 +71,15 @@ export class MulctComponent implements OnInit {
 
   loginExec(counterTest = 0) {
     const formData = new FormData();
-    const login = this.consultGRU_data['login'];
-    const pass = this.consultGRU_data['pass'];
-    const ugArrecadadora = this.consultGRU_data['ugArrecadadora'];
-    const ugEmitente = this.consultGRU_data['ugEmitente'];
-    const codigoRecolhedor = this.consultGRU_data['codigoRecolhedor'];
-    const dtEmissaoIN = this.consultGRU_data['dtEmissaoIN'];
-    const dtEmissaoFI = this.consultGRU_data['dtEmissaoFI'];
-    formData.append(`user`, login);
-    formData.append(`password`, pass);
-    formData.append(`ugArrecadadora`, ugArrecadadora);
-    formData.append(`ugEmitente`, ugEmitente);
-    formData.append(`codigoRecolhedor`, codigoRecolhedor);
-    formData.append(`dtEmissaoIN`, dtEmissaoIN);
-    formData.append(`dtEmissaoFI`, dtEmissaoFI);
-
-    // this.requestXML(formData);
-
+    formData.append('user', this.consultGRUFormGroup.value.login);
+    formData.append('password', this.consultGRUFormGroup.value.pass);
+    formData.append('ugArrecadadora', this.consultGRUFormGroup.value.ugArrecadadora);
+    formData.append('ugEmitente', this.consultGRUFormGroup.value.ugEmitente);
+    formData.append('codigoRecolhedor', this.consultGRUFormGroup.value.codigoRecolhedor);
+    formData.append('dtEmissaoIN', this.consultGRUFormGroup.value.dtEmissaoIN);
+    formData.append('dtEmissaoFI', this.consultGRUFormGroup.value.dtEmissaoFI);
     const promise = this.consultSisGRUService.consultSisGRU(formData);
+
     promise.then((res) => {
       this.contructTable(res);
     }).catch((error) => {
@@ -93,10 +96,10 @@ export class MulctComponent implements OnInit {
     this.mulctParserService.downloadParsedMulct();
   }
   requestXML(formData) {//calls the api consultGRU
-    this.http.post('http://127.0.0.1:5000/requirement',formData,{ responseType: "json"}).subscribe(r => {
-
-      this.contructTable(r);
-    });
+    // this.http.post('http://127.0.0.1:5000/requirement',formData,{ responseType: "json"}).subscribe(r => {
+    //
+    //   this.contructTable(r);
+    // });
   }
   contructTable(obj){
     var x=obj.length-1
