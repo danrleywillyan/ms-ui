@@ -31,13 +31,13 @@ Run `ng build` to build the project in __development__. To build homolog run `np
 
 Stop all services & remove all images: ```$ docker stop $(docker ps -aq) && docker rm $(docker ps -qa) &&  docker rmi -f $(docker images -qa)```
 
+## Running/Debug (docker)
+
+ Run `docker run -d -p 3500:80 --name ui -it imageID`. IF stuck __or to kill the containr__ use this command to remove container: `docker rm -f containerID`. To access the Docker as BASH: ``$ docker exec -it container sh``
+
 ## Build (docker)
 
 Run `docker build -t ui:latest .`. __Remember to update it version!__
-
-## Running (docker)
-
- Run `docker run -d -p 3500:80 --name ui -it imageID`. IF stuck __or to kill the containr__ use this command to remove container: `docker rm -f containerID`. To access the Docker as BASH: ``$ docker exec -it container sh``
 
 ## Docker publish
 
@@ -67,4 +67,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ```$ flask run --host=0.0.0.0```
 
 ```$ FLASK_ENV=development flask run -h 0.0.0.0```
-
