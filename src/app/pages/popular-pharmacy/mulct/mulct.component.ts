@@ -82,6 +82,7 @@ export class MulctComponent implements OnInit {
     const promise = this.consultSisGRUService.consultSisGRU(formData);
 
     promise.then((res) => {
+      // console.log('loginExec resp:', res);
       this.contructTable(res);
     }).catch((error) => {
       console.log('error consult SISGRU error: ', error);
@@ -103,24 +104,28 @@ export class MulctComponent implements OnInit {
     // });
   }
   contructTable(obj){
-    var x=obj.length-1
-    var i=0
-    while(x>i){
-      var array=obj[i]
-      var data = []
-      data["id"]=JSON.stringify(array["id"]).replace(`\"`, '').replace(`\"`, '');
-      // data["ugEmitente"]=JSON.stringify(array["ugEmitente"]).replace(`\"`, '').replace(`\"`, '');
-      // data["ugArrecadadora"]=JSON.stringify(array["ugArrecadadora"]).replace(`\"`, '').replace(`\"`, '');
-      data["dtEmissao"]=JSON.stringify(array["dtEmissao"]).replace(`\"`, '').replace(`\"`, '');
-      data["dtContabilizacaoSiafi"]=JSON.stringify(array["dtContabilizacaoSiafi"]).replace(`\"`, '').replace(`\"`, '');
-      data["recolhimentoContabilizado"]=JSON.stringify(array["recolhimentoContabilizado"]).replace(`\"`, '').replace(`\"`, '');
-      data["codigoRecolhedor"]=JSON.stringify(array["codigoRecolhedor"]).replace(`\"`, '').replace(`\"`, '');
-      data["numReferencia"]=JSON.stringify(array["numReferencia"]).replace(`\"`, '').replace(`\"`, '');
-      data["vlTotal"]=JSON.stringify(array["vlTotal"]).replace(`\"`, '').replace(`\"`, '');
-      data["situacao"]=JSON.stringify(array["situacao"]).replace(`\"`, '').replace(`\"`, '');
-      this.grus[i]= data;
-      i++;
-    }
+    // console.log('contructTable called: ', obj);
+    // data = obj;
+    this.grus = obj;
+
+    // var x=obj.length-1
+    // var i=0
+    // while(x>i){
+    //   var array=obj[i]
+    //   var data = []
+    //   data["id"]=JSON.stringify(array["id"]).replace(`\"`, '').replace(`\"`, '');
+    //   // data["ugEmitente"]=JSON.stringify(array["ugEmitente"]).replace(`\"`, '').replace(`\"`, '');
+    //   // data["ugArrecadadora"]=JSON.stringify(array["ugArrecadadora"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["dtEmissao"]=JSON.stringify(array["dtEmissao"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["dtContabilizacaoSiafi"]=JSON.stringify(array["dtContabilizacaoSiafi"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["recolhimentoContabilizado"]=JSON.stringify(array["recolhimentoContabilizado"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["codigoRecolhedor"]=JSON.stringify(array["codigoRecolhedor"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["numReferencia"]=JSON.stringify(array["numReferencia"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["vlTotal"]=JSON.stringify(array["vlTotal"]).replace(`\"`, '').replace(`\"`, '');
+    //   data["situacao"]=JSON.stringify(array["situacao"]).replace(`\"`, '').replace(`\"`, '');
+    //   this.grus[i]= data;
+    //   i++;
+    // }
     this.hideElement=true;
     $('[data-dismiss="modal"]').click();
   }
