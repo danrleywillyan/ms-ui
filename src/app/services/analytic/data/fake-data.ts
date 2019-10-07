@@ -225,7 +225,7 @@ export interface BasicAnalytic {
       distribuido: 1785799,
     }
   ]
-  export interface SpecializedBudget {
+  export interface SpecializedAnalytic {
     estado: string;
     memCalculo: number;
     aquisicao: number;
@@ -235,7 +235,7 @@ export interface BasicAnalytic {
     distJudicial: number;
   }
   
-  export const CEAF: SpecializedBudget[] = [
+  export const CEAF: SpecializedAnalytic[] = [
     {
       estado: 'Acre',
       memCalculo: 23434,
@@ -453,7 +453,7 @@ export interface BasicAnalytic {
       distJudicial: 112
     }
   ]
-  export interface OrcamentoEstrategico {
+  export interface StrategicAnalytic {
     estado: string;
     pac: number;
     solicitado: number;
@@ -462,7 +462,7 @@ export interface BasicAnalytic {
     dispensado: number;
   }
   
-  export const CGAFME: OrcamentoEstrategico[] = [
+  export const CGAFME: StrategicAnalytic[] = [
     {
       estado: 'Alagoas',
       pac: 22225,

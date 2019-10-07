@@ -11,7 +11,8 @@ import { DecimalPipe } from '@angular/common';
 })
 
 export class AnalyticPage implements OnInit {
-  infoId: any;
+  tableOption: String;
+  tableTitle: String;
   analitycData: Object[];
   headerData: Object[];
 
@@ -45,15 +46,16 @@ export class AnalyticPage implements OnInit {
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
-      this.infoId = params.get('id');
-      this.updateData( this.infoId );
+      this.tableOption = params.get('coord');
+      this.updateData( this.tableOption );
     });
   }
 
-  updateData(id: string ) {
-    switch(id) {
+  updateData(option: String ) {
+    switch(option) {
       case "basic": {
         this.analyticService.getTableCGAFB().then(data => {
+          this.tableTitle = "Básica"
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -61,6 +63,7 @@ export class AnalyticPage implements OnInit {
       }
       case "strategic": {
         this.analyticService.getTableCGAFME().then(data => {
+          this.tableTitle = "Estratégica"
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -68,6 +71,7 @@ export class AnalyticPage implements OnInit {
       }
       case "specialized": {
         this.analyticService.getTableCEAF().then(data => {
+          this.tableTitle = "Especializada"
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -75,6 +79,7 @@ export class AnalyticPage implements OnInit {
       }
       case "farmpop": {
         this.analyticService.getTableCPFP().then(data => {
+          this.tableTitle = "Farmácia Popular"
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });

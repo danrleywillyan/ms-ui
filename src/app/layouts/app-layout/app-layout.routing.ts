@@ -22,7 +22,7 @@ export const AppLayoutRoutes: Routes = [
 
 
   //Analytic paths (Visão Analítica)
-  { path: 'analytic/:id', component: AnalyticPage },
+  { path: 'analytic/:coord', component: AnalyticPage },
 
 
   // Predictive paths
