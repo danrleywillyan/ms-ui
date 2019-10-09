@@ -46,36 +46,44 @@
             <!-- <h3 class="mb-0">Card tables</h3> -->
             <ul class="nav nav-pills">
               <li *ngFor="let pill of viewType; let i = index" class="nav-item">
-                <a *ngIf="(i == 0)" class="nav-link active" data-toggle="pill" href="#{{pill.type}}">{{pill.btnTitle}}</a>
-                <a *ngIf="(i != 0)" class="nav-link" data-toggle="pill" href="#{{pill.type}}">{{pill.btnTitle}}</a>
+                <a *ngIf="(i == 0)" class="nav-link active" data-toggle="pill" href="#{{pill.type}}" (click)="updateView(pill.type)">{{pill.btnTitle}}</a>
+                <a *ngIf="(i != 0)" class="nav-link" data-toggle="pill" href="#{{pill.type}}" (click)="updateView(pill.type)">{{pill.btnTitle}}</a>
               </li>
             </ul>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-striped">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col"> </th>
-                  <th scope="col" *ngFor="let header of headerData">
-                    {{ header }}  
-                  </th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of analitycData">
-                  <th class="text-right" scope="row">
-                    <div ngbDropdown placement="bottom-right">
-                      <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="data.estado">
-                        <i class="fas fa-eye"></i>
-                      </a>
-                    </div>
-                  </th>
-                  <td *ngFor="let header of headerData">
-                    {{ data[header] }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div class="col">
+            <div class="tab-content">
+              <div *ngFor="let pill of viewType; let i = index" id="{{pill.type}}" class="tab-pane fade active show">
+                  <h3>{{pill.btnTitle}}</h3>
+                  <!-- Tables -->
+                  <div class="table-responsive">
+                      <table class="table align-items-center table-striped">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col"> </th>
+                            <th scope="col" *ngFor="let header of headerData">
+                              {{ header }}  
+                            </th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of analitycData">
+                            <th class="text-right" scope="row">
+                              <div ngbDropdown placement="bottom-right">
+                                <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="data.estado">
+                                  <i class="fas fa-eye"></i>
+                                </a>
+                              </div>
+                            </th>
+                            <td *ngFor="let header of headerData">
+                              {{ data[header] }}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>              
+                  </div> 
+              </div>
+            </div>
           <div class="card-footer py-4 ">
 
             <nav aria-label="...">

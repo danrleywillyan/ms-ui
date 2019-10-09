@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { AnalyticService } from '../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'generic-table-page',
@@ -16,7 +17,8 @@ export class AnalyticPage implements OnInit {
   tableTitle: String;
   tableOption: String;
   tableSubOption: String;
-  viewType: Object[];
+  tableView: Number;
+  viewType: any;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -50,57 +52,97 @@ export class AnalyticPage implements OnInit {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
       this.tableSubOption = params.get('location');
-      this.updateData( this.tableOption );
+      // this.tableView = 0
+      this.updateData();
     });
   }
 
-  updateData(option: String ) {
-    switch(option) {
+  updateView(option: String) {
+    for(let i=0;i<this.viewType.length;i++){
+      if(this.viewType[i].type.includes(option)){
+        this.tableView = i;
+        this.updateData();
+        console.log(option, this.tableView);
+      }
+    }  
+  }
+
+  updateData() {
+    switch(this.tableOption) {
       case "basic": {
-        this.analyticService.getTableCGAFB().then(data => {
-          this.tableTitle = "Básica"
-          this.viewType = [
-            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-            {type: "transfer", btnTitle: "Repasses Financeiros"}
-          ]
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
+        this.tableTitle = "Básica"
+        this.viewType = [
+          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+          {type: "transfer", btnTitle: "Repasses Financeiros"}
+        ]
+        if(this.tableView == 0){
+          this.analyticService.getTableCGAFB().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });
+          console.log("basic/0");
+        }
+        if(this.tableView == 1){
+          this.analyticService.getTableCGAFB().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });
+          console.log("basic/1");
+        } 
         break;
       }
       case "strategic": {
-        this.analyticService.getTableCGAFME().then(data => {
-          this.tableTitle = "Estratégica"
-          this.viewType = [
-            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-          ]
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
+        this.tableTitle = "Estratégica"
+        this.viewType = [
+          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+        ]
+        if(this.tableView == 0){
+          this.analyticService.getTableCGAFME().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });
+          console.log("strategic/0");
+        }
         break;
       }
       case "specialized": {
-        this.analyticService.getTableCEAF().then(data => {
-          this.tableTitle = "Especializada"
-          this.viewType = [
-            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-            {type: "locale", btnTitle: "Regionalização"}
-          ]
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
+        this.tableTitle = "Especializada"
+        this.viewType = [
+          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+          {type: "locale", btnTitle: "Regionalização"}
+        ]
+        if(this.tableView == 0){
+          this.analyticService.getTableCEAF().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });
+        }
+        if(this.tableView == 1){
+          this.analyticService.getTableCEAF().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });
+        }
         break;
       }
       case "farmpop": {
-        this.analyticService.getTableCPFP().then(data => {
-          this.tableTitle = "Farmácia Popular"
-          this.viewType = [
-            {type: "pharmacy", btnTitle: "Farmácias"},
-            {type: "transfer", btnTitle: "Repasses Financeiros"}
-          ]
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
+        this.tableTitle = "Farmácia Popular"
+        this.viewType = [
+          {type: "pharmacy", btnTitle: "Farmácias"},
+          {type: "transfer", btnTitle: "Repasses Financeiros"}
+        ]
+        if(this.tableView == 0){
+          this.analyticService.getTableCPFP().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });  
+        }
+        if(this.tableView == 1){
+          this.analyticService.getTableCPFP().then(data => {
+            this.setData( data );
+            this.setHeaderData(Object.keys(data[0]));
+          });  
+        }
         break;
       }
       default: {
