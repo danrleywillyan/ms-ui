@@ -11,10 +11,12 @@ import { DecimalPipe } from '@angular/common';
 })
 
 export class AnalyticPage implements OnInit {
-  tableOption: String;
-  tableTitle: String;
-  analitycData: Object[];
   headerData: Object[];
+  analitycData: Object[];
+  tableTitle: String;
+  tableOption: String;
+  tableSubOption: String;
+  viewType: Object[];
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -47,6 +49,7 @@ export class AnalyticPage implements OnInit {
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
+      this.tableSubOption = params.get('location');
       this.updateData( this.tableOption );
     });
   }
@@ -56,6 +59,10 @@ export class AnalyticPage implements OnInit {
       case "basic": {
         this.analyticService.getTableCGAFB().then(data => {
           this.tableTitle = "Básica"
+          this.viewType = [
+            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+            {type: "transfer", btnTitle: "Repasses Financeiros"}
+          ]
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -64,6 +71,9 @@ export class AnalyticPage implements OnInit {
       case "strategic": {
         this.analyticService.getTableCGAFME().then(data => {
           this.tableTitle = "Estratégica"
+          this.viewType = [
+            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+          ]
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -72,6 +82,10 @@ export class AnalyticPage implements OnInit {
       case "specialized": {
         this.analyticService.getTableCEAF().then(data => {
           this.tableTitle = "Especializada"
+          this.viewType = [
+            {type: "aquisition", btnTitle: "Aquisição Centralizada"},
+            {type: "locale", btnTitle: "Regionalização"}
+          ]
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
@@ -80,6 +94,10 @@ export class AnalyticPage implements OnInit {
       case "farmpop": {
         this.analyticService.getTableCPFP().then(data => {
           this.tableTitle = "Farmácia Popular"
+          this.viewType = [
+            {type: "pharmacy", btnTitle: "Farmácias"},
+            {type: "transfer", btnTitle: "Repasses Financeiros"}
+          ]
           this.setData( data );
           this.setHeaderData(Object.keys(data[0]));
         });
