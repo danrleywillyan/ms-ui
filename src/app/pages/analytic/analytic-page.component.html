@@ -18,8 +18,7 @@
               <div class="form-group mb-0">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"
-                    >
+                    <span class="input-group-text">
                       <i class="fas fa-search"></i>
                     </span>
                   </div>
@@ -46,14 +45,13 @@
             <!-- <h3 class="mb-0">Card tables</h3> -->
             <ul class="nav nav-pills">
               <li *ngFor="let pill of viewType; let i = index" class="nav-item">
-                <a *ngIf="(i == 0)" class="nav-link active" data-toggle="pill" href="#{{pill.type}}" (click)="updateView(pill.type)">{{pill.btnTitle}}</a>
-                <a *ngIf="(i != 0)" class="nav-link" data-toggle="pill" href="#{{pill.type}}" (click)="updateView(pill.type)">{{pill.btnTitle}}</a>
+                <a class="nav-link" data-toggle="pill" href="#{{pill.type}}" (click)="updateView(pill.type)">{{pill.btnTitle}}</a>
               </li>
             </ul>
           </div>
           <div class="col">
             <div class="tab-content">
-              <div *ngFor="let pill of viewType; let i = index" id="{{pill.type}}" class="tab-pane fade active show">
+              <div *ngFor="let pill of viewType; let i = index" id="{{pill.type}}" class="tab-pane fade">
                   <h3>{{pill.btnTitle}}</h3>
                   <!-- Tables -->
                   <div class="table-responsive">

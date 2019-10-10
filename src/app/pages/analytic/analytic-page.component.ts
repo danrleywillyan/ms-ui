@@ -17,7 +17,7 @@ export class AnalyticPage implements OnInit {
   tableTitle: String;
   tableOption: String;
   tableSubOption: String;
-  tableView: Number;
+  tableView: Number = 0;
   viewType: any;
 
   constructor(
@@ -52,17 +52,16 @@ export class AnalyticPage implements OnInit {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
       this.tableSubOption = params.get('location');
-      // this.tableView = 0
       this.updateData();
     });
   }
 
   updateView(option: String) {
-    for(let i=0;i<this.viewType.length;i++){
+    for(let i=0; i<this.viewType.length ;i++){
       if(this.viewType[i].type.includes(option)){
         this.tableView = i;
         this.updateData();
-        console.log(option, this.tableView);
+        return;
       }
     }  
   }
@@ -70,77 +69,77 @@ export class AnalyticPage implements OnInit {
   updateData() {
     switch(this.tableOption) {
       case "basic": {
-        this.tableTitle = "Básica"
+        this.tableTitle = "Básica";
         this.viewType = [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
           {type: "transfer", btnTitle: "Repasses Financeiros"}
-        ]
+        ];
         if(this.tableView == 0){
           this.analyticService.getTableCGAFB().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.aquisition );
+            this.setHeaderData(Object.keys(data.aquisition[0]));
           });
           console.log("basic/0");
         }
         if(this.tableView == 1){
           this.analyticService.getTableCGAFB().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.transfer );
+            this.setHeaderData(Object.keys(data.transfer[0]));
           });
           console.log("basic/1");
         } 
         break;
       }
       case "strategic": {
-        this.tableTitle = "Estratégica"
+        this.tableTitle = "Estratégica";
         this.viewType = [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-        ]
+        ];
         if(this.tableView == 0){
           this.analyticService.getTableCGAFME().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.aquisition );
+            this.setHeaderData(Object.keys(data.aquisition[0]));
           });
           console.log("strategic/0");
         }
         break;
       }
       case "specialized": {
-        this.tableTitle = "Especializada"
+        this.tableTitle = "Especializada";
         this.viewType = [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
           {type: "locale", btnTitle: "Regionalização"}
-        ]
+        ];
         if(this.tableView == 0){
           this.analyticService.getTableCEAF().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.aquisition );
+            this.setHeaderData(Object.keys(data.aquisition[0]));
           });
         }
         if(this.tableView == 1){
           this.analyticService.getTableCEAF().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.locale );
+            this.setHeaderData(Object.keys(data.locale[0]));
           });
         }
         break;
       }
       case "farmpop": {
-        this.tableTitle = "Farmácia Popular"
+        this.tableTitle = "Farmácia Popular";
         this.viewType = [
           {type: "pharmacy", btnTitle: "Farmácias"},
           {type: "transfer", btnTitle: "Repasses Financeiros"}
-        ]
+        ];
         if(this.tableView == 0){
           this.analyticService.getTableCPFP().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.pharmacy );
+            this.setHeaderData(Object.keys(data.pharmacy[0]));
           });  
         }
         if(this.tableView == 1){
           this.analyticService.getTableCPFP().then(data => {
-            this.setData( data );
-            this.setHeaderData(Object.keys(data[0]));
+            this.setData( data.transfer );
+            this.setHeaderData(Object.keys(data.transfer[0]));
           });  
         }
         break;
