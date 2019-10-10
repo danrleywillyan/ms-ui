@@ -1,13 +1,25 @@
 export interface BasicAnalytic {
-    estado: string;
-    pac: number;
-    programado: number;
-    contratado: number;
-    saldoAta: number;
-    distribuido: number;
-  }
-  
-  export const CGAFB: BasicAnalytic[] = [
+  aquisition: Object[],
+  transfer: Object[]
+}
+
+export interface SpecializedAnalytic {
+  aquisition: Object[],
+  locale: Object
+}
+
+export interface PharmPopAnalytic {
+  pharmacy: Object[];
+  transfer: Object[];
+}
+
+export interface StrategicAnalytic {
+  aquisition: Object[];
+}
+
+
+export const CGAFB: BasicAnalytic = {
+  aquisition: [
     {
       estado: 'Acre',
       pac: 265,
@@ -224,18 +236,196 @@ export interface BasicAnalytic {
       saldoAta: 2232248,
       distribuido: 1785799,
     }
+  ],
+  transfer: [
+    {
+      estado: 'Acre',
+      programado: 7487885,
+      repassado: 4790310,
+      saldo: 2232248,
+      previsto: 6785799,
+    },
+    {
+      estado: 'Alagoas',
+      programado: 31487885,
+      repassado: 19790310,
+      saldo: 12232248,
+      previsto: 28785799,
+    },
+    {
+      estado: 'Amapá',
+      programado: 6487885,
+      repassado: 4790310,
+      saldo: 2232248,
+      previsto: 6785799,
+    },
+    {
+      estado: 'Amazonas',
+      programado: 35487885,
+      repassado: 21790310,
+      saldo: 14232248,
+      previsto: 31785799,
+    },
+    {
+      estado: 'Bahia',
+      programado: 143487885,
+      repassado: 82390310,
+      saldo: 57232248,
+      previsto: 128785799,
+    },
+    {
+      estado: 'Ceará',
+      programado: 83487885,
+      repassado: 52790310,
+      saldo: 32232248,
+      previsto: 77785799,
+    },
+    {
+      estado: 'Distrito Federal',
+      programado: 23487885,
+      repassado: 12790310,
+      saldo: 10232248,
+      previsto: 21785799,
+    },
+    {
+      estado: 'Espírito Santo',
+      programado: 33487885,
+      repassado: 22790310,
+      saldo: 12232248,
+      previsto: 31785799,
+    },
+    {
+      estado: 'Goiás',
+      programado: 63487885,
+      repassado: 32790310,
+      saldo: 22232248,
+      previsto: 51785799,
+    },
+    {
+      estado: 'Maranhão',
+      programado: 63487885,
+      repassado: 42790310,
+      saldo: 22232248,
+      previsto: 61785799,
+    },
+    {
+      estado: 'Mato Grosso',
+      programado: 33487885,
+      repassado: 18790310,
+      saldo: 12232248,
+      previsto: 23785799,
+    },
+    {
+      estado: 'Mato Grosso do Sul',
+      programado: 23487885,
+      repassado: 12790310,
+      saldo: 9232248,
+      previsto: 22785799,
+    },
+    {
+      estado: 'Minas Gerais',
+      programado: 193487885,
+      repassado: 119790310,
+      saldo: 72232248,
+      previsto: 171785799,
+    },
+    {
+      estado: 'Pará',
+      programado: 73487885,
+      repassado: 42790310,
+      saldo: 32232248,
+      previsto: 61785799,
+    },
+    {
+      estado: 'Paraíba',
+      programado: 33487885,
+      repassado: 22790310,
+      saldo: 12232248,
+      previsto: 31785799,
+    },
+    {
+      estado: 'Paraná',
+      programado: 103487885,
+      repassado: 62790310,
+      saldo: 42232248,
+      previsto: 91785799,
+    },
+    {
+      estado: 'Pernambuco',
+      programado: 89487885,
+      repassado: 52790310,
+      saldo: 32232248,
+      previsto: 81785799,
+    },
+    {
+      estado: 'Piauí',
+      programado: 33487885,
+      repassado: 19790310,
+      saldo: 12232248,
+      previsto: 21785799,
+    },
+    {
+      estado: 'Rio de Janeiro',
+      programado: 163487885,
+      repassado: 92790310,
+      saldo: 62232248,
+      previsto: 141785799,
+    },
+    {
+      estado: 'Rio Grande do Norte',
+      programado: 33487885,
+      repassado: 12790310,
+      saldo: 12232248,
+      previsto: 21785799,
+    },
+    {
+      estado: 'Rio Grande do Sul',
+      programado: 103487885,
+      repassado: 62790310,
+      saldo: 42232248,
+      previsto: 91785799,
+    },
+    {
+      estado: 'Rondônia',
+      programado: 13487885,
+      repassado: 92790310,
+      saldo: 62232248,
+      previsto: 11785799,
+    },
+    {
+      estado: 'Santa Catarina',
+      programado: 63487885,
+      repassado: 32790310,
+      saldo: 22232248,
+      previsto: 51785799,
+    },
+    {
+      estado: 'São Paulo',
+      programado: 423487885,
+      repassado: 252790310,
+      saldo: 162232248,
+      previsto: 371785799,
+    },
+    {
+      estado: 'Sergipe',
+      programado: 23487885,
+      repassado: 12790310,
+      saldo: 7232248,
+      previsto: 18785799,
+    },
+    {
+      estado: 'Tocatins',
+      programado: 13487885,
+      repassado: 8790310,
+      saldo: 5232248,
+      previsto: 11785799,
+    }
   ]
-  export interface SpecializedAnalytic {
-    estado: string;
-    memCalculo: number;
-    aquisicao: number;
-    programaEstadual: number;
-    estoque: number;
-    distribuido: number;
-    distJudicial: number;
-  }
-  
-  export const CEAF: SpecializedAnalytic[] = [
+}
+
+
+export const CEAF: SpecializedAnalytic = {
+  aquisition: [
     {
       estado: 'Acre',
       memCalculo: 23434,
@@ -452,17 +642,203 @@ export interface BasicAnalytic {
       distribuido: 1785799,
       distJudicial: 112
     }
+  ],
+  locale: [
+    {
+      estado: 'Acre',
+      memCalculo: 359856,
+      repassado: 287885,
+      saldo: 150310,
+      previsto: 332248
+    },
+    {
+      estado: 'Alagoas',
+      memCalculo: 64359856,
+      repassado: 3487885,
+      saldo: 2790310,
+      previsto: 6232248
+    },
+    {
+      estado: 'Amapá',
+      memCalculo: 4359856,
+      repassado: 487885,
+      saldo: 190310,
+      previsto: 232248
+    },
+    {
+      estado: 'Amazonas',
+      memCalculo: 84359856,
+      repassado: 5487885,
+      saldo: 3790310,
+      previsto: 7232248
+    },
+    {
+      estado: 'Bahia',
+      memCalculo: 136435985,
+      repassado: 83487885,
+      saldo: 52790310,
+      previsto: 126232248
+    },
+    {
+      estado: 'Ceará',
+      memCalculo: 44359856,
+      repassado: 2348885,
+      saldo: 22790310,
+      previsto: 46232248
+    },
+    {
+      estado: 'Distrito Federal',
+      memCalculo: 4435856,
+      repassado: 2487885,
+      saldo: 1790310,
+      previsto: 4232248
+    },
+    {
+      estado: 'Espírito Santo',
+      memCalculo: 8359856,
+      repassado: 5487885,
+      saldo: 3790310,
+      previsto: 7232248
+    },
+    {
+      estado: 'Goiás',
+      memCalculo: 24359856,
+      repassado: 13487885,
+      saldo: 10090310,
+      previsto: 7232248
+    },
+    {
+      estado: 'Maranhão',
+      memCalculo: 30359856,
+      repassado: 17487885,
+      saldo: 12790310,
+      previsto: 27232248
+    },
+    {
+      estado: 'Mato Grosso',
+      memCalculo: 4359856,
+      repassado: 2487885,
+      saldo: 1790310,
+      previsto: 3232248
+    },
+    {
+      estado: 'Mato Grosso do Sul',
+      memCalculo: 4359856,
+      repassado: 2487885,
+      saldo: 1790310,
+      previsto: 3232248
+    },
+    {
+      estado: 'Minas Gerais',
+      memCalculo: 226435986,
+      repassado: 153487885,
+      saldo: 122790310,
+      previsto: 246232248
+    },
+    {
+      estado: 'Pará',
+      memCalculo: 44359856,
+      repassado: 23487885,
+      saldo: 12790310,
+      previsto: 36232248
+    },
+    {
+      estado: 'Paraíba',
+      memCalculo: 64359856,
+      repassado: 3487885,
+      saldo: 2790310,
+      previsto: 6232248
+    },
+    {
+      estado: 'Paraná',
+      memCalculo: 76435956,
+      repassado: 43487885,
+      saldo: 32790310,
+      previsto: 66232248
+    },
+    {
+      estado: 'Pernambuco',
+      memCalculo: 56359856,
+      repassado: 33487885,
+      saldo: 30790310,
+      previsto: 46232248
+    },
+    {
+      estado: 'Piauí',
+      memCalculo: 64359856,
+      repassado: 4487885,
+      saldo: 2790310,
+      previsto: 6232248
+    },
+    {
+      estado: 'Rio de Janeiro',
+      memCalculo: 164359856,
+      repassado: 103487885,
+      saldo: 72790310,
+      previsto: 150232248
+    },
+    {
+      estado: 'Rio Grande do Norte',
+      memCalculo: 64359856,
+      repassado: 3487885,
+      saldo: 2790310,
+      previsto: 6232248
+    },
+    {
+      estado: 'Rio Grande do Sul',
+      memCalculo: 76435856,
+      repassado: 43487885,
+      saldo: 32790310,
+      previsto: 71232248
+    },
+    {
+      estado: 'Rondônia',
+      memCalculo: 1359856,
+      repassado: 1487885,
+      saldo: 790310,
+      previsto: 16232248
+    },
+    {
+      estado: 'Roraima',
+      memCalculo: 1559856,
+      repassado: 87885,
+      saldo: 690310,
+      previsto: 14232248
+    },
+    {
+      estado: 'Santa Catarina',
+      memCalculo: 27359856,
+      repassado: 16487885,
+      saldo: 11790310,
+      previsto: 24232248
+    },
+    {
+      estado: 'São Paulo',
+      memCalculo: 1188359856,
+      repassado: 700987885,
+      saldo: 442790310,
+      previsto: 1006232248
+    },
+    {
+      estado: 'Sergipe',
+      memCalculo: 2359856,
+      repassado: 1487885,
+      saldo: 1290310,
+      previsto: 2032248
+    },
+    {
+      estado: 'Tocantins',
+      memCalculo: 1359856,
+      repassado: 787885,
+      saldo: 590310,
+      previsto: 16232248
+    }
   ]
-  export interface StrategicAnalytic {
-    estado: string;
-    pac: number;
-    solicitado: number;
-    emAvaliacao: number;
-    aprovado: number;
-    dispensado: number;
-  }
-  
-  export const CGAFME: StrategicAnalytic[] = [
+}
+
+
+export const CGAFME: StrategicAnalytic = {
+  aquisition: [
     {
       estado: 'Alagoas',
       pac: 22225,
@@ -672,14 +1048,11 @@ export interface BasicAnalytic {
       dispensado: 1785799,
     }
   ]
-  export interface DrugstoreAnalytic {
-    estado: string;
-    credenciadas: number;
-    emAnalise: number;
-    descredenciadas: number;
-  }
-  
-  export const CPFP: DrugstoreAnalytic[] = [
+}
+
+
+export const CPFP: PharmPopAnalytic = {
+  pharmacy: [
     {
       estado: 'Acre',
       credenciadas: 265,
@@ -842,4 +1215,196 @@ export interface BasicAnalytic {
       emAnalise: 3487885,
       descredenciadas: 2790310
     }
+  ],
+  transfer: [
+    {
+      estado: 'Acre',
+      gratuidade: 155856,
+      coPagamento: 128885,
+      previstoGratuidade: 120310,
+      previstoCoPagamento: 100558
+    },
+    {
+      estado: 'Alagoas',
+      gratuidade: 619856,
+      coPagamento: 487885,
+      previstoGratuidade: 559310,
+      previstoCoPagamento: 420558
+    },
+    {
+      estado: 'Amapá',
+      gratuidade: 131856,
+      coPagamento: 102885,
+      previstoGratuidade: 118310,
+      previstoCoPagamento: 92558
+    },
+    {
+      estado: 'Amazonas',
+      gratuidade: 689856,
+      coPagamento: 537885,
+      previstoGratuidade: 615310,
+      previstoCoPagamento: 479558
+    },
+    {
+      estado: 'Bahia',
+      gratuidade: 2789856,
+      coPagamento: 2147885,
+      previstoGratuidade: 2559310,
+      previstoCoPagamento: 1920558
+    },
+    {
+      estado: 'Ceará',
+      gratuidade: 1619856,
+      coPagamento: 1227885,
+      previstoGratuidade: 1459310,
+      previstoCoPagamento: 1420558
+    },
+    {
+      estado: 'Distrito Federal',
+      gratuidade: 519856,
+      coPagamento: 457885,
+      previstoGratuidade: 359310,
+      previstoCoPagamento: 320558
+    },
+    {
+      estado: 'Espírito Santo',
+      gratuidade: 690856,
+      coPagamento: 537885,
+      previstoGratuidade: 659310,
+      previstoCoPagamento: 480558
+    },
+    {
+      estado: 'Goiás',
+      gratuidade: 1619856,
+      coPagamento: 987885,
+      previstoGratuidade: 1059310,
+      previstoCoPagamento: 820558
+    },
+    {
+      estado: 'Maranhão',
+      gratuidade: 1219856,
+      coPagamento: 1087885,
+      previstoGratuidade: 1159310,
+      previstoCoPagamento: 920558
+    },
+    {
+      estado: 'Mato Grosso',
+      gratuidade: 619856,
+      coPagamento: 487885,
+      previstoGratuidade: 559310,
+      previstoCoPagamento: 420558
+    },
+    {
+      estado: 'Mato Grosso do Sul',
+      gratuidade: 419856,
+      coPagamento: 387885,
+      previstoGratuidade: 389310,
+      previstoCoPagamento: 320558
+    },
+    {
+      estado: 'Minas Gerais',
+      gratuidade: 3619856,
+      coPagamento: 2687885,
+      previstoGratuidade: 3559310,
+      previstoCoPagamento: 2420558
+    },
+    {
+      estado: 'Pará',
+      gratuidade: 1619856,
+      coPagamento: 1487885,
+      previstoGratuidade: 1359310,
+      previstoCoPagamento: 1042558
+    },
+    {
+      estado: 'Paraíba',
+      gratuidade: 619856,
+      coPagamento: 487885,
+      previstoGratuidade: 659310,
+      previstoCoPagamento: 520558
+    },
+    {
+      estado: 'Paraná',
+      gratuidade: 2619856,
+      coPagamento: 1487885,
+      previstoGratuidade: 1859310,
+      previstoCoPagamento: 1420558
+    },
+    {
+      estado: 'Pernambuco',
+      gratuidade: 1619856,
+      coPagamento: 1487885,
+      previstoGratuidade: 1559310,
+      previstoCoPagamento: 1220558
+    },
+    {
+      estado: 'Piauí',
+      gratuidade: 619856,
+      coPagamento: 487885,
+      previstoGratuidade: 559310,
+      previstoCoPagamento: 420558
+    },
+    {
+      estado: 'Rio de Janeiro',
+      gratuidade: 3619856,
+      coPagamento: 2487885,
+      previstoGratuidade: 2059310,
+      previstoCoPagamento: 2120558
+    },
+    {
+      estado: 'Rio Grande do Norte',
+      gratuidade: 619856,
+      coPagamento: 487885,
+      previstoGratuidade: 559310,
+      previstoCoPagamento: 420558
+    },
+    {
+      estado: 'Rio Grande do Sul',
+      gratuidade: 2019856,
+      coPagamento: 1487885,
+      previstoGratuidade: 1859310,
+      previstoCoPagamento: 1420558
+    },
+    {
+      estado: 'Rondônia',
+      gratuidade: 319856,
+      coPagamento: 287885,
+      previstoGratuidade: 259310,
+      previstoCoPagamento: 220558
+    },
+    {
+      estado: 'Roraima',
+      gratuidade: 89856,
+      coPagamento: 67885,
+      previstoGratuidade: 79310,
+      previstoCoPagamento: 62558
+    },
+    {
+      estado: 'Santa Catarina',
+      gratuidade: 1219856,
+      coPagamento: 987885,
+      previstoGratuidade: 1059310,
+      previstoCoPagamento: 820558
+    },
+    {
+      estado: 'São Paulo',
+      gratuidade: 8619856,
+      coPagamento: 6487885,
+      previstoGratuidade: 7559310,
+      previstoCoPagamento: 5420558
+    },
+    {
+      estado: 'Sergipe',
+      gratuidade: 419856,
+      coPagamento: 317885,
+      previstoGratuidade: 359310,
+      previstoCoPagamento: 270558
+    },
+    {
+      estado: 'Tocantins',
+      gratuidade: 219856,
+      coPagamento: 217885,
+      previstoGratuidade: 234310,
+      previstoCoPagamento: 190558
+    }
   ]
+}
