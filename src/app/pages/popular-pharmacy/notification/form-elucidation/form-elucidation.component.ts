@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 import {Router} from '@angular/router';
@@ -33,6 +33,7 @@ export class Elucidation {
 export class FormElucidationComponent implements OnInit {
 
   public filterTransactions: string;
+  @ViewChild('t') transactionSelect: ElementRef;
 
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService, private router: Router) {
     this.authorizations = [];
@@ -62,8 +63,8 @@ export class FormElucidationComponent implements OnInit {
       authorizationCode: new FormControl(null, Validators.minLength(2)),
       remedyName: new FormControl(null, Validators.minLength(2)),
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
-      occurrences: new FormControl(null, null)
-
+      occurrences: new FormControl(null, null),
+      csvTransaction: new FormControl(null, null)
     });
   }
 
@@ -102,7 +103,6 @@ export class FormElucidationComponent implements OnInit {
     this.occurrences = this.authorization.occurrences;
     $('#authorization')[0].scrollIntoView();
   }
-
 
   _validateForm() {
     this.elucidation = {
@@ -156,6 +156,9 @@ export class FormElucidationComponent implements OnInit {
 
   removeOccurence(id) {
     this.occurrences.splice(id, 1);
+    if (!this.occurrences.length) {
+      this.remove(this.authorization.id);
+    }
   }
 
   save() {
@@ -199,6 +202,10 @@ export class FormElucidationComponent implements OnInit {
     }
   }
 
+  clearSelect($event) {
+    this.transactionSelect.nativeElement.selectedIndex = 0;
+  }
+
   clearInputs() {
     this.authorizations = [];
     this.elucidationFormGroup.controls['nup'].setValue('');
@@ -215,7 +222,7 @@ export class FormElucidationComponent implements OnInit {
     this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
     this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[4]);
     this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[2]));
-    if (csvTransaction[0] !== this.authorization.id) this.occurrences = [];
+    if (this.authorization && csvTransaction[0] !== this.authorization.id) this.occurrences = [];
     const authorization = this.authorization = {
       id: csvTransaction[0],
       date: new Date(csvTransaction[2]),
@@ -267,7 +274,6 @@ export class FormElucidationComponent implements OnInit {
     }
 
     this.elucidation.csv_authorizations = lines;
-
   }
 
   errorHandler(evt) {
@@ -275,10 +281,4 @@ export class FormElucidationComponent implements OnInit {
       alert('O arquivo não é legível!');
     }
   }
-
-
-
-
-
-
 }

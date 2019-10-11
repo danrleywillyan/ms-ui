@@ -76,7 +76,7 @@
 
             <div class="form-group">
               <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
-              <input id="filter" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
+              <input id="filter" (input)="clearSelect($event)" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
             </div>
 
             <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
