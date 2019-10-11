@@ -184,7 +184,7 @@ export class FormElucidationComponent implements OnInit {
           this.clearInputs();
           setTimeout(() => {
             alert('Solicitação registrada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+            this.router.navigateByUrl('popular-pharmacy/notification');  
           }, 300);
         });
     } else {
@@ -193,7 +193,7 @@ export class FormElucidationComponent implements OnInit {
           this.clearInputs();
           setTimeout(() => {
             alert('Solicitação alterada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+            this.router.navigateByUrl('popular-pharmacy/notification');  
           }, 300);
         });
     }
