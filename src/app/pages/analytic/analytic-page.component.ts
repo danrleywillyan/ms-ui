@@ -17,7 +17,7 @@ export class AnalyticPage implements OnInit {
   tableTitle: String;
   tableOption: String;
   tableSubOption: String;
-  tableView: Number = 0;
+  tableView: number = 0;
   viewType: any;
 
   constructor(
@@ -34,20 +34,6 @@ export class AnalyticPage implements OnInit {
     // });
   }
 
-  protected setHeaderData(data: Object[]) {
-    this.headerData = data;
-  }
-  protected getHeaderData() {
-    return this.headerData;
-  }
-
-  protected setData(data: Object[]) {
-    this.analitycData = data;
-  }
-  protected getAnalitycData(): Object[] {
-    return this.analitycData;
-  }
-
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
@@ -55,99 +41,24 @@ export class AnalyticPage implements OnInit {
       this.updateData();
     });
   }
-
+  
   updateView(option: String) {
-    for(let i=0; i<this.viewType.length ;i++){
+    for(let i = 0; i < this.viewType.length; i++){
       if(this.viewType[i].type.includes(option)){
         this.tableView = i;
         this.updateData();
         return;
       }
-    }  
-  }
-
-  updateData() {
-    switch(this.tableOption) {
-      case "basic": {
-        this.tableTitle = "Básica";
-        this.viewType = [
-          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-          {type: "transfer", btnTitle: "Repasses Financeiros"}
-        ];
-        if(this.tableView == 0){
-          this.analyticService.getTableCGAFB().then(data => {
-            this.setData( data.aquisition );
-            this.setHeaderData(Object.keys(data.aquisition[0]));
-          });
-          console.log("basic/0");
-        }
-        if(this.tableView == 1){
-          this.analyticService.getTableCGAFB().then(data => {
-            this.setData( data.transfer );
-            this.setHeaderData(Object.keys(data.transfer[0]));
-          });
-          console.log("basic/1");
-        } 
-        break;
-      }
-      case "strategic": {
-        this.tableTitle = "Estratégica";
-        this.viewType = [
-          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-        ];
-        if(this.tableView == 0){
-          this.analyticService.getTableCGAFME().then(data => {
-            this.setData( data.aquisition );
-            this.setHeaderData(Object.keys(data.aquisition[0]));
-          });
-          console.log("strategic/0");
-        }
-        break;
-      }
-      case "specialized": {
-        this.tableTitle = "Especializada";
-        this.viewType = [
-          {type: "aquisition", btnTitle: "Aquisição Centralizada"},
-          {type: "locale", btnTitle: "Regionalização"}
-        ];
-        if(this.tableView == 0){
-          this.analyticService.getTableCEAF().then(data => {
-            this.setData( data.aquisition );
-            this.setHeaderData(Object.keys(data.aquisition[0]));
-          });
-        }
-        if(this.tableView == 1){
-          this.analyticService.getTableCEAF().then(data => {
-            this.setData( data.locale );
-            this.setHeaderData(Object.keys(data.locale[0]));
-          });
-        }
-        break;
-      }
-      case "farmpop": {
-        this.tableTitle = "Farmácia Popular";
-        this.viewType = [
-          {type: "pharmacy", btnTitle: "Farmácias"},
-          {type: "transfer", btnTitle: "Repasses Financeiros"}
-        ];
-        if(this.tableView == 0){
-          this.analyticService.getTableCPFP().then(data => {
-            this.setData( data.pharmacy );
-            this.setHeaderData(Object.keys(data.pharmacy[0]));
-          });  
-        }
-        if(this.tableView == 1){
-          this.analyticService.getTableCPFP().then(data => {
-            this.setData( data.transfer );
-            this.setHeaderData(Object.keys(data.transfer[0]));
-          });  
-        }
-        break;
-      }
-      default: {
-        break;
-      }
     }
   }
-
+  
+  updateData() {
+    let configJSON = this.analyticService.configJSON(this.tableOption);
+    this.tableTitle = configJSON.tableTitle;
+    this.viewType = configJSON.viewType;
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableSubOption).then((data: any) => {
+      this.analitycData = data;
+      this.headerData = Object.keys(data[0]);
+    }); 
+  }
 }
