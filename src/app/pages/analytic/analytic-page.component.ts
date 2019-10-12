@@ -13,7 +13,7 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 
 export class AnalyticPage implements OnInit {
   headerData: Object[];
-  analitycData: Object[];
+  analyticData: Object[];
   tableTitle: String;
   tableOption: String;
   tableSubOption: String;
@@ -54,10 +54,10 @@ export class AnalyticPage implements OnInit {
   
   updateData() {
     let configJSON = this.analyticService.configJSON(this.tableOption);
-    this.tableTitle = configJSON.tableTitle;
-    this.viewType = configJSON.viewType;
+    this.tableTitle = configJSON["tableTitle"];
+    this.viewType = configJSON["viewType"];
     this.analyticService.getTable(this.tableOption, this.tableView, this.tableSubOption).then((data: any) => {
-      this.analitycData = data;
+      this.analyticData = data;
       this.headerData = Object.keys(data[0]);
     }); 
   }

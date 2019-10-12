@@ -2,7 +2,7 @@ export interface DataTable {
   basic: any,
   strategic: any,
   specialized: any,
-  pharmpop: any
+  farmpop: any
 }
 
 export const DATA: DataTable = {
@@ -1036,7 +1036,7 @@ export const DATA: DataTable = {
       }
     ]
   ],
-  pharmpop: [
+  farmpop: [
     // pharmacy
     [
       {

@@ -18,29 +18,29 @@ export class AnalyticService {
     // load external dependent data
   }
 
-  configJSON(option) {
+  configJSON(option: any) {
     let json = {
-      "basic": {
+      basic: {
         tableTitle: "Básica",
         viewType: [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
           {type: "transfer", btnTitle: "Repasses Financeiros"}
         ]
       },
-      "strategic": {
+      strategic: {
         tableTitle: "Estratégica",
         viewType: [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
         ]
       },
-      "specialized": {
+      specialized: {
         tableTitle: "Especializada",
         viewType: [
           {type: "aquisition", btnTitle: "Aquisição Centralizada"},
           {type: "locale", btnTitle: "Regionalização"}
         ]
       },
-      "pharmpop": {
+      farmpop: {
         tableTitle: "Farmácia Popular",
         viewType: [
           {type: "pharmacy", btnTitle: "Farmácias"},

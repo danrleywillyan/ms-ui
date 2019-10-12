@@ -123,7 +123,7 @@ export class ElucidationComponent implements OnInit {
 
   editElucidation(elucidation) {
     window['elucidation'] = elucidation;
-    this.router.navigate(['/popular-pharmacy/notification/elucidation/form']);
+    this.router.navigate(['/popular-pharmacy/notification/form']);
   }
 
   getParagraph(elucidation) {
