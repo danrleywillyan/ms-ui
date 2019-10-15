@@ -21,6 +21,7 @@ import { ReplacePipe } from '../../pipes/filters/replace.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/br';
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
+import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
 
 registerLocaleData(localeBr);
 
@@ -51,6 +52,7 @@ registerLocaleData(localeBr);
     MulctComponent,
     TransactionsFilterPipe,
     ReplacePipe,
+    ShortNumberPipe,
     MedicationComponent,
   ]
 })
