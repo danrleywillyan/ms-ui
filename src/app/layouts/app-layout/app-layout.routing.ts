@@ -28,15 +28,15 @@ export const AppLayoutRoutes: Routes = [
   //Analytic paths (Visão Analítica)
   { path: 'analytic/:coord/medication', component: MedicationComponent},
   { path: 'analytic/:coord', component: AnalyticPage },
+  { path: 'analytic/:coord/:location', component: AnalyticPage },
 
 
   // Predictive paths
 
 
   // Popular Pharmacy
-  { path: 'popular-pharmacy/notification', component: NotificationComponent },
-  { path: 'popular-pharmacy/notification/elucidation', component: ElucidationComponent },
-  { path: 'popular-pharmacy/notification/elucidation/form', component: FormElucidationComponent },
+  { path: 'popular-pharmacy/notification', component: ElucidationComponent },
+  { path: 'popular-pharmacy/notification/form', component: FormElucidationComponent },
   { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
   { path: 'popular-pharmacy/mulct', component: MulctComponent },
 ];
