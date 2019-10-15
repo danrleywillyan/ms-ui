@@ -10,6 +10,10 @@ import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
+import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
+
+
+import { from } from 'rxjs';
 
 export const AppLayoutRoutes: Routes = [
   // Overview paths
@@ -22,6 +26,7 @@ export const AppLayoutRoutes: Routes = [
 
 
   //Analytic paths (Visão Analítica)
+  { path: 'analytic/:coord/medication', component: MedicationComponent},
   { path: 'analytic/:coord', component: AnalyticPage },
 
 
@@ -33,6 +38,5 @@ export const AppLayoutRoutes: Routes = [
   { path: 'popular-pharmacy/notification/elucidation', component: ElucidationComponent },
   { path: 'popular-pharmacy/notification/elucidation/form', component: FormElucidationComponent },
   { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
-  { path: 'popular-pharmacy/mulct', component: MulctComponent }
-
+  { path: 'popular-pharmacy/mulct', component: MulctComponent },
 ];

@@ -18,7 +18,11 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { TransactionsFilterPipe } from '../../pipes/filters/transactions-filter.pipe';
 import { ReplacePipe } from '../../pipes/filters/replace.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/br';
+import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 
+registerLocaleData(localeBr);
 
 @NgModule({
   imports: [
@@ -47,6 +51,7 @@ import { ReplacePipe } from '../../pipes/filters/replace.pipe';
     MulctComponent,
     TransactionsFilterPipe,
     ReplacePipe,
+    MedicationComponent,
   ]
 })
 
