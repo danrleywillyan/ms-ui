@@ -7,6 +7,8 @@ import { SelectivePreloadingStrategyService } from './selective-preloading-strat
 import { TemplatesLayoutComponent } from './layouts/templates-layout/templates-layout.component';
 import {AppLayoutComponent} from './layouts/app-layout/app-layout.component';
 
+
+
 const routes: Routes = [
   // Real & Final layout routes
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'budget/dashboard'
-  }
+  },
+
 ];
 
 @NgModule({
