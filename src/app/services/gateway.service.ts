@@ -14,7 +14,7 @@ export class GatewayService {
 
   public headers = {};
   public port = '8080';
-  public host = window.location.hostname; //35.247.232.147 gateway
+  public host = '35.247.232.147'; //35.247.232.147 gateway
   public protocol = 'http';
 
   public params: object;
@@ -34,7 +34,7 @@ export class GatewayService {
     this.debugMsg = null;
 
     promise.then( data => {
-      console.log('data', data);
+      // console.log('data', data);
       setTimeout( () => { this.loader.stop(); }, 1000);
     }, error => {
       console.log('error', error);
