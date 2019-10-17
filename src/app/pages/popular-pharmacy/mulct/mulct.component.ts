@@ -110,7 +110,7 @@ export class MulctComponent implements OnInit {
       alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
     });
   }
-  fill_data_xml(){
+  fill_data_xml(counterTest = 0){
     const formData = new FormData();
 
     const files = this.filesToUpload;
