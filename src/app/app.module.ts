@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID, Provider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,15 @@ import {LoaderComponent} from './components/loader/loader.component';
 import {AppLayoutModule} from './layouts/app-layout/app-layout.module';
 import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe';
 
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData} from '@angular/common';
+import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
+
+import { from } from 'rxjs';
+
+
+registerLocaleData(localePt);
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -26,19 +35,27 @@ import { TransactionsFilterPipe } from './pipes/filters/transactions-filter.pipe
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    AppLayoutModule
+    AppLayoutModule,
+      
   ],
   declarations: [
     AppComponent,
     AppLayoutComponent,
     TemplatesLayoutComponent,
-    AuthLayoutComponent,
+    AuthLayoutComponent,    
+    FormatCurrencyPipe, 
+      
+   
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoaderComponent],
+  providers: [
+    LoaderComponent,
+     {provide: LOCALE_ID, useValue: "pt-BR"} 
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

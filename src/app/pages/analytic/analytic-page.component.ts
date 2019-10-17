@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { AnalyticService } from '../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'generic-table-page',
@@ -11,10 +12,13 @@ import { DecimalPipe } from '@angular/common';
 })
 
 export class AnalyticPage implements OnInit {
-  tableOption: String;
-  tableTitle: String;
-  analitycData: Object[];
   headerData: Object[];
+  analyticData: Object[];
+  tableTitle: String;
+  tableOption: String;
+  tableSubOption: String;
+  tableView: number = 0;
+  viewType: any;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -30,65 +34,31 @@ export class AnalyticPage implements OnInit {
     // });
   }
 
-  protected setHeaderData(data: Object[]) {
-    this.headerData = data;
-  }
-  protected getHeaderData() {
-    return this.headerData;
-  }
-
-  protected setData(data: Object[]) {
-    this.analitycData = data;
-  }
-  protected getAnalitycData(): Object[] {
-    return this.analitycData;
-  }
-
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
-      this.updateData( this.tableOption );
+      this.tableSubOption = params.get('location');
+      this.updateData();
     });
   }
-
-  updateData(option: String ) {
-    switch(option) {
-      case "basic": {
-        this.analyticService.getTableCGAFB().then(data => {
-          this.tableTitle = "Básica"
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
-        break;
-      }
-      case "strategic": {
-        this.analyticService.getTableCGAFME().then(data => {
-          this.tableTitle = "Estratégica"
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
-        break;
-      }
-      case "specialized": {
-        this.analyticService.getTableCEAF().then(data => {
-          this.tableTitle = "Especializada"
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
-        break;
-      }
-      case "farmpop": {
-        this.analyticService.getTableCPFP().then(data => {
-          this.tableTitle = "Farmácia Popular"
-          this.setData( data );
-          this.setHeaderData(Object.keys(data[0]));
-        });
-        break;
-      }
-      default: {
-        break;
+  
+  updateView(option: String) {
+    for(let i = 0; i < this.viewType.length; i++){
+      if(this.viewType[i].type.includes(option)){
+        this.tableView = i;
+        this.updateData();
+        return;
       }
     }
   }
-
+  
+  updateData() {
+    let configJSON = this.analyticService.configJSON(this.tableOption);
+    this.tableTitle = configJSON["tableTitle"];
+    this.viewType = configJSON["viewType"];
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableSubOption).then((data: any) => {
+      this.analyticData = data;
+      this.headerData = Object.keys(data[0]);
+    }); 
+  }
 }

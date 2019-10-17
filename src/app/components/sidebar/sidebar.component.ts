@@ -14,6 +14,9 @@ export const ROUTES: RouteInfo[] = [
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id:'caf', path: '/caf', title: 'Ciclo da Assistência Farmacêutica',  icon: 'ni-sound-wave text-black', class: ''},
+  { id:'leaf1', path: '/leaf1', title: 'Modelo folha 1',  icon: 'ni-sound-wave text-black', class: ''},
+  { id:'leaf2', path: '/leaf2', title: 'Modelo folha 2',  icon: 'ni-sound-wave text-black', class: ''},
+  { id:'leaf3', path: '/leaf3', title: 'Modelo folha 3',  icon: 'ni-sound-wave text-black', class: ''},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length

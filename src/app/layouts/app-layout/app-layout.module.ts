@@ -9,6 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
+//leaf pages
+import { TablesComponent } from '../../pages/tables/tables.component';
+import { OneTableComponent } from '../../pages/oneTable/oneTable.component';
+import { MedicineDetailsComponent } from '../../pages/medicine-details/medicineDetails.component';
+//leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
@@ -18,7 +23,12 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { TransactionsFilterPipe } from '../../pipes/filters/transactions-filter.pipe';
 import { ReplacePipe } from '../../pipes/filters/replace.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/br';
+import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
+import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
 
+registerLocaleData(localeBr);
 
 @NgModule({
   imports: [
@@ -38,6 +48,9 @@ import { ReplacePipe } from '../../pipes/filters/replace.pipe';
     DashboardComponent,
     PloaComponent,
     AnalyticPage,
+    TablesComponent,
+    OneTableComponent,
+    MedicineDetailsComponent,
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,
@@ -47,6 +60,8 @@ import { ReplacePipe } from '../../pipes/filters/replace.pipe';
     MulctComponent,
     TransactionsFilterPipe,
     ReplacePipe,
+    ShortNumberPipe,
+    MedicationComponent,
   ]
 })
 

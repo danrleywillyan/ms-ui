@@ -1,0 +1,122 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Raiz</li>
+        <li class="breadcrumb-item active" aria-current="page">1º nó</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+                <input
+                  class="form-control" placeholder="Pesquisar"
+                  type="text" (focus)="focus = true" name="searchTerm"
+                  (blur)="focus = false"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <!-- start of first column -->
+    <div class="col-lg-12">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Repasses Obrigatórios (Estadual)</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Total Programado (R$)</th>
+                <th scope="col">Total Repassado (R$)</th>
+                <th scope="col">Saldo (R$)</th>
+                <th scope="col">Previsto (R$)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  41.375,40	
+                </th>
+                <td>
+                  24.825,24
+                </td>
+                <td>
+                  16.550,16
+                </td>
+                <td>
+                  37.237,86
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ml-3 table-footer">
+            <p><i>Total de registros: 1</i><br>
+            <i>Fonte: Webservice em 10/10/19</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of first column -->
+    <div class="col-lg-12">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Sistema Prisional (Estadual)</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Total Programado (R$)</th>
+                <th scope="col">Total Repassado (R$)</th>
+                <th scope="col">Saldo (R$)</th>
+                <th scope="col">Previsto (R$)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  41.375,40	
+                </th>
+                <td>
+                  24.825,24
+                </td>
+                <td>
+                  16.550,16
+                </td>
+                <td>
+                  37.237,86
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ml-3 table-footer">
+          <p><i>Total de registros: 1</i><br>
+          <i>Fonte: Webservice em 10/10/19</i></p>
+        </div>
+      </div>
+    </div>
+</div>
