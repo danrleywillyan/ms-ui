@@ -246,7 +246,7 @@
 <div class="modal fade" id="csvUploadModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <form ngNoForm action="http://consulta.tesouro.fazenda.gov.br/gru_novosite/gerarPDF.asp" method="POST" target="_blank">
+    <form [formGroup]="generateGRUFormGroup" ngNoForm action="http://consulta.tesouro.fazenda.gov.br/gru_novosite/gerarPDF.asp" method="POST" target="_blank">
 
       <div class="modal-content" ng-controller="controlador" ng-app="app">
         <div class="modal-header">
@@ -262,32 +262,41 @@
           <input type="hidden" class="form-control form-control-alternative" name="campo" id="campo" value="NRCR">
           <input type="hidden" class="form-control form-control-alternative" name="ind" id="ind" value="0">
 
-          <h3 class="modal-title" id="exampleModalLabel">{{name}}</h3>
+          <h3 class="modal-title" id="exampleModalLabel">Gerar GRU</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
 
         </div>
         <div class="modal-body">
-
+          Carregar dados do XML do TCU
           <div class="container">
+            <input id="xmlgru"
+                   type="file"
+                   (change)="files($event.target.files)"
+                   name="xmlgru"
+                   accept=".xml"/>&nbsp;&nbsp;&nbsp;
+                   <button type="button" class="btn btn-primary" (click)="fill_data_xml()">Preencher</button>
+
+
+                   <br><br>
             <div class="row">
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Número de Referência </label>
-                  <input type="text" class="form-control form-control-alternative" name="referencia" id="referencia" placeholder="Digite o Número de Referência" required >
+                  <input type="text" class="form-control form-control-alternative" formControlName="referencia" name="referencia" id="referencia" placeholder="Digite o Número de Referência" required >
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Competência (mm/aaaa)</label>
-                  <input type="text" class="form-control form-control-alternative" name="competencia" id="competencia" placeholder="Digite a Competência">
+                  <input type="text" class="form-control form-control-alternative" name="competencia" formControlName="competencia" id="competencia" placeholder="Digite a Competência">
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Vencimento (dd/mm/aaaa)</label>
-                  <input type="text" class="form-control form-control-alternative" name="vencimento" id="vencimento" placeholder="Digite o Vencimento">
+                  <input type="text" class="form-control form-control-alternative" name="vencimento" formControlName="vencimento" id="vencimento" placeholder="Digite o Vencimento">
                 </div>
               </div>
             </div>
@@ -295,19 +304,19 @@
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">CNPJ ou CPF do Contribuinte</label>
-                  <input type="text" class="form-control form-control-alternative" name="cnpj_cpf" id="cnpj_cpf" placeholder="Digite o CNPJ ou CPF do Contribuinte" required>
+                  <input type="text" class="form-control form-control-alternative" name="cnpj_cpf" formControlName="cnpj_cpf" id="cnpj_cpf" placeholder="Digite o CNPJ ou CPF do Contribuinte" required>
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Nome do Contribuinte / Recolhedor</label>
-                  <input type="text" class="form-control form-control-alternative" name="nome_contribuinte" id="nome_contribuinte" placeholder="Digite o Nome do Contribuinte / Recolhedor" required >
+                  <input type="text" class="form-control form-control-alternative" name="nome_contribuinte" formControlName="nome_contribuinte" id="nome_contribuinte" placeholder="Digite o Nome do Contribuinte / Recolhedor" required >
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Valor Principal</label>
-                  <input type="text" class="form-control form-control-alternative" name="valorPrincipal" id="valorPrincipal" placeholder="Digite o Valor Principal" required>
+                  <input type="text" class="form-control form-control-alternative" name="valorPrincipal" formControlName="valorPrincipal" id="valorPrincipal" placeholder="Digite o Valor Principal" required>
                 </div>
               </div>
             </div>
@@ -315,19 +324,19 @@
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Descontos/Abatimentos</label>
-                  <input type="text" class="form-control form-control-alternative" name="descontos" id="descontos" placeholder="Digite o Descontos/Abatimentos">
+                  <input type="text" class="form-control form-control-alternative" name="descontos" formControlName="descontos" id="descontos" placeholder="Digite o Descontos/Abatimentos">
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Outras Deduções</label>
-                  <input type="text" class="form-control form-control-alternative" name="deducoes" id="deducoes" placeholder="Digite Outras Deduções">
+                  <input type="text" class="form-control form-control-alternative" name="deducoes" formControlName="deducoes" id="deducoes" placeholder="Digite Outras Deduções">
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Mora/Multa</label>
-                  <input type="text" class="form-control form-control-alternative" name="multa" id="multa" placeholder="Digite as Mora/Multa">
+                  <input type="text" class="form-control form-control-alternative" name="multa" formControlName="multa" id="multa" placeholder="Digite as Mora/Multa">
                 </div>
               </div>
             </div>
@@ -335,19 +344,19 @@
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Juros/Encargos</label>
-                  <input type="text" class="form-control form-control-alternative" name="juros" id="juros" placeholder="Digite os Juros/Encargos" required>
+                  <input type="text" class="form-control form-control-alternative" name="juros" formControlName="juros" id="juros" placeholder="Digite os Juros/Encargos" required>
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Outros Acréscimos</label>
-                  <input type="text" class="form-control form-control-alternative" name="acrescimos" id="acrescimos" placeholder="Digite Outros Acréscimos">
+                  <input type="text" class="form-control form-control-alternative" name="acrescimos" formControlName="acrescimos" id="acrescimos" placeholder="Digite Outros Acréscimos">
                 </div>
               </div>
               <div class="col-sm">
                 <div class="form-group">
                   <label class="form-control-label" for="pass">Valor Total</label>
-                  <input type="text" class="form-control form-control-alternative" name="valorTotal" id="valorTotal" placeholder="Digite o Valor Total" required>
+                  <input type="text" class="form-control form-control-alternative" name="valorTotal" formControlName="valorTotal" id="valorTotal" placeholder="Digite o Valor Total" required>
                 </div>
               </div>
             </div>

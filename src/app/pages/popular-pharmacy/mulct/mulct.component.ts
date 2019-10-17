@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MulctParserService} from '../../../services/refund/mulct-parser.service';
+import {XmlExtractorService} from '../../../services/refund/xml-extractor.service';
 import {ConsultsisgruService} from '../../../services/refund/consultsisgru.service';
+import xml2js from 'xml2js';
 
 declare var $: any;
 
@@ -14,6 +16,7 @@ declare var $: any;
 export class MulctComponent implements OnInit {
   public grus = [];
   private filesToUpload = null;
+  private xmlTofill = null;
   private login = null;
   private pass = null;
   private ugArrecadadora = null;
@@ -23,9 +26,10 @@ export class MulctComponent implements OnInit {
   private dtEmissaoFI = null;
   public hideElement= false;
   public consultGRUFormGroup = null;
+  public generateGRUFormGroup = null;
 
   public consultGRU_data= [];
-  constructor(private mulctParserService: MulctParserService, private consultSisGRUService: ConsultsisgruService, private fb: FormBuilder) {
+  constructor(private mulctParserService: MulctParserService, private xmlExtractorService: XmlExtractorService, private consultSisGRUService: ConsultsisgruService, private fb: FormBuilder,private http: HttpClient) {
     this.consultGRUFormGroup = new FormGroup({
       login: new FormControl(null, Validators.minLength(2)),
       pass: new FormControl(null, Validators.minLength(2)),
@@ -34,6 +38,22 @@ export class MulctComponent implements OnInit {
       codigoRecolhedor: new FormControl(null),
       dtEmissaoIN: new FormControl(null, null),
       dtEmissaoFI: new FormControl(null)
+    });
+
+    this.generateGRUFormGroup = new FormGroup({
+      referencia: new FormControl(null),
+      competencia: new FormControl(null),
+      vencimento: new FormControl(null),
+      cnpj_cpf: new FormControl(null),
+      nome_contribuinte: new FormControl(null),
+      valorPrincipal: new FormControl(null),
+      descontos: new FormControl(null),
+      deducoes: new FormControl(null),
+      multa: new FormControl(null),
+      juros: new FormControl(null),
+      acrescimos: new FormControl(null),
+      valorTotal: new FormControl(null),
+
     });
 
   }
@@ -59,7 +79,7 @@ export class MulctComponent implements OnInit {
     const files = this.filesToUpload;
     if(!files || !files.item) return;
     formData.append(`file`, files.item(0), files.item(0).name);
-    const promise = this.mulctParserService.parseMulct(formData);
+    const promise = this.xmlExtractorService.xmlExtractor(formData);
     promise.then(() => {
       this.downloadMulct();
       $('#file').val('');
@@ -90,6 +110,41 @@ export class MulctComponent implements OnInit {
       alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
     });
   }
+  fill_data_xml(){
+    const formData = new FormData();
+
+    const files = this.filesToUpload;
+    // if(!files || !files.item) return;
+
+    formData.append(`file`, files.item(0), files.item(0).name);
+    const promise = this.xmlExtractorService.xmlExtractor(formData);
+    promise.then((r) => {
+      this.generateGRUFormGroup.controls['valorPrincipal'].setValue(r["princ"]);
+      this.generateGRUFormGroup.controls['descontos'].setValue("0,00");
+      this.generateGRUFormGroup.controls['deducoes'].setValue("0,00");
+      this.generateGRUFormGroup.controls['multa'].setValue("0,00");
+      this.generateGRUFormGroup.controls['juros'].setValue(r["juros"]);
+      this.generateGRUFormGroup.controls['acrescimos'].setValue("0,00");
+      this.generateGRUFormGroup.controls['valorTotal'].setValue(r["total"]);
+    }).catch((error) => {
+      console.log('error xml generate error: ', error);
+      if (counterTest <= 2) return this.upload(counterTest++);
+      alert('Não foi possível processar seu arquivo, tente novamente.');
+    });
+    // const promise = this.http.post('http://0.0.0.0:80/gru',formData);
+    // this.http.post('http://0.0.0.0/gru',formData,{ responseType: "json"}).subscribe(r => {
+    //   this.generateGRUFormGroup.controls['valorPrincipal'].setValue(r["princ"]);
+    //   this.generateGRUFormGroup.controls['descontos'].setValue("0,00");
+    //   this.generateGRUFormGroup.controls['deducoes'].setValue("0,00");
+    //   this.generateGRUFormGroup.controls['multa'].setValue("0,00");
+    //   this.generateGRUFormGroup.controls['juros'].setValue(r["juros"]);
+    //   this.generateGRUFormGroup.controls['acrescimos'].setValue("0,00");
+    //   this.generateGRUFormGroup.controls['valorTotal'].setValue(r["total"]);
+    // });
+
+  }
+
+
 
   /**
    * calls the micro service Parser / Refund via GET receiving the converted file
