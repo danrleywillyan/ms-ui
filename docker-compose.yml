@@ -5,6 +5,18 @@ services:
     image: mongo
     restart: always
 
+  mysqlsrv:
+    hostname: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "MySql2019!"
+      MYSQL_DATABASE: "testedb"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/Docker/Volumes/MySql:/var/lib/mysql
+
   discovery:
     image: "gaesi/discovery" #production cloud build
     hostname: discovery
@@ -99,6 +111,18 @@ services:
     ports:
       - "8446:5000"
 
+  catmat:
+    image: "msdaf/catmat"
+    hostname: catmat
+    links:
+      - mysqlsrv
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+      RAILS_ENV: development
+    ports:
+      - "7700:3000"
+
   ui:
     image: "msdaf/ui"
     hostname: ui
@@ -114,3 +138,7 @@ services:
        EUREKA_PORT: 8761
     ports:
       - "8447:5000" #8443 reserved for SSL (HTTPS)
+
+networks:
+  mysql-compose-network:
+    driver: bridge
