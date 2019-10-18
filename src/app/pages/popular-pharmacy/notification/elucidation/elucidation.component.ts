@@ -13,6 +13,7 @@ export class ElucidationComponent implements OnInit {
   public elucidation = {};
   public paragraph = '';
   public csv_authorizations = [];
+  public loadedCSV: any;
 
   constructor(private elucidationService: ElucidationService, private router: Router) {}
 
@@ -25,7 +26,6 @@ export class ElucidationComponent implements OnInit {
     for (const authorization of elucidation.authorizations) {
       authorizations.push(authorization.id);
     }
-
     return authorizations.join();
   }
 
@@ -34,7 +34,6 @@ export class ElucidationComponent implements OnInit {
     for (const authorization of elucidation.authorizations) {
       authorizations.push(authorization.occurrences.join());
     }
-
     return authorizations.join();
   }
 
@@ -48,7 +47,6 @@ export class ElucidationComponent implements OnInit {
       // Check for the various File API support.
       if (!window['FileReader']) return alert('FileReader are not supported in this browser.');
       else this.getAsText($event.target.files[0]);
-
       // @ts-ignore
       $('#csvTransactions').val('');
     } else {
@@ -64,10 +62,8 @@ export class ElucidationComponent implements OnInit {
       // reader.result contains the contents of blob as a typed array
       // console.log('reader.result', reader.result);
     });
-
     // start reading a loaded file
     reader.readAsText(fileToRead);
-
     // Handle errors load
     reader.onload = this.loadHandler.bind(this);
     reader.onerror = this.errorHandler.bind(this);
@@ -77,34 +73,25 @@ export class ElucidationComponent implements OnInit {
     const csv = event.target.result;
     const allTextLines = csv.split(/\r\n|\n/);
     const lines = [];
+    let keys = [];
     for (let i = 0; i < allTextLines.length; i++) {
       const data = allTextLines[i].split(';');
       const tArr = [];
-      for (let j = 0; j < data.length; j++) {
-        tArr.push(data[j]);
+      if (keys.indexOf(data[0])==-1) {
+        keys.push(data[0]);
+        for (let j = 0; j < data.length; j++) {
+          tArr.push(data[j]);
+        }
+        if(i!==0)lines.push(tArr);
       }
-      lines.push(tArr);
     }
-
-    this.csv_authorizations = lines;
-    this.elucidationService.insertAuthorizations({ data: lines })
-      .then((auths: any) => {
-        console.log(auths);
-        this.csv_authorizations = [].concat(...auths.map(a => a.data));
-        window['csv_authorizations'] = this.csv_authorizations;
-
-        // @ts-ignore
-        this.elucidationService.loader.stop();
-
-        // @ts-ignore
-        $('[data-dismiss="modal"]').click();
-
-        setTimeout( () => { alert(`Registros obtidos do CSV: ${this.csv_authorizations.length} elementos`); }, 2000);
-    });
+    this.loadedCSV = lines;
+    window['loadedCSV'] = this.loadedCSV;
+    window.localStorage.setItem("loadedCSV", JSON.stringify(lines));
   }
 
   errorHandler(evt) {
-    if (evt.target.error.name === 'NotReadableError' || !this.csv_authorizations) {
+    if (evt.target.error.name === 'NotReadableError' || !this.loadedCSV) {
       alert('O arquivo não é legível!');
     }
   }
@@ -113,6 +100,7 @@ export class ElucidationComponent implements OnInit {
     this.elucidationService.getElucidations()
     .then((data: Array<any>) => {
       this.elucidations = data;
+      window.localStorage.setItem("registredElucidations", JSON.stringify(data));
     });
     this.elucidationService.getAuthorizations()
       .then((data: any) => {
