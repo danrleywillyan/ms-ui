@@ -36,6 +36,7 @@ registerLocaleData(localePt);
     RouterModule,
     AppRoutingModule,
     AppLayoutModule,
+    
       
   ],
   declarations: [
