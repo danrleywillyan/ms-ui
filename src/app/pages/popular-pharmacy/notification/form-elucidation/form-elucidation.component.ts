@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 import {Router} from '@angular/router';
+import { windowToggle } from 'rxjs/operators';
 
 declare var $: any;
 
@@ -33,6 +34,9 @@ export class Elucidation {
 export class FormElucidationComponent implements OnInit {
 
   public filterTransactions: string;
+  @ViewChild('t') transactionSelect: ElementRef;
+
+  public activateField: Boolean = false;
 
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService, private router: Router) {
     this.authorizations = [];
@@ -42,13 +46,26 @@ export class FormElucidationComponent implements OnInit {
     });
 
     this.elucidation = new Elucidation();
-    if (window['elucidation']) {
-      this.elucidation = window['elucidation'];
+    
+    if (window.localStorage.getItem('loadedCSV')) {
       window['elucidation'] = undefined;
       this.authorizations = this.elucidation.authorizations;
-      this.csvTransactions = this.elucidation.csv_authorizations;
-    }
+      // this.csvTransactions = JSON.parse(window.localStorage.getItem('loadedCSV'));
 
+      let iter, ater;
+      let canAdd = true;
+      for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
+        for(ater of JSON.parse(window.localStorage.getItem("registredElucidations"))){
+          if(iter[0] == ater.nup){
+            canAdd = false;
+          }
+        }
+        if(canAdd){
+          this.csvTransactions.push(iter);
+        }
+        canAdd = true;
+      }
+    }
 
     this.elucidationFormGroup = new FormGroup({
       nup: new FormControl(null, Validators.minLength(2)),
@@ -62,8 +79,8 @@ export class FormElucidationComponent implements OnInit {
       authorizationCode: new FormControl(null, Validators.minLength(2)),
       remedyName: new FormControl(null, Validators.minLength(2)),
       authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
-      occurrences: new FormControl(null, null)
-
+      occurrences: new FormControl(null, null),
+      csvTransaction: new FormControl(null, null)
     });
   }
 
@@ -89,6 +106,7 @@ export class FormElucidationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.elucidation.csv_authorizations = window['loadedCSV'];
   }
 
   remove(authorizationId) {
@@ -102,7 +120,6 @@ export class FormElucidationComponent implements OnInit {
     this.occurrences = this.authorization.occurrences;
     $('#authorization')[0].scrollIntoView();
   }
-
 
   _validateForm() {
     this.elucidation = {
@@ -156,6 +173,9 @@ export class FormElucidationComponent implements OnInit {
 
   removeOccurence(id) {
     this.occurrences.splice(id, 1);
+    if (!this.occurrences.length) {
+      this.remove(this.authorization.id);
+    }
   }
 
   save() {
@@ -184,7 +204,7 @@ export class FormElucidationComponent implements OnInit {
           this.clearInputs();
           setTimeout(() => {
             alert('Solicitação registrada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+            this.router.navigateByUrl('popular-pharmacy/notification');  
           }, 300);
         });
     } else {
@@ -193,10 +213,14 @@ export class FormElucidationComponent implements OnInit {
           this.clearInputs();
           setTimeout(() => {
             alert('Solicitação alterada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification/elucidation');  
+            this.router.navigateByUrl('popular-pharmacy/notification');  
           }, 300);
         });
     }
+  }
+
+  clearSelect($event) {
+    this.transactionSelect.nativeElement.selectedIndex = 0;
   }
 
   clearInputs() {
@@ -211,14 +235,18 @@ export class FormElucidationComponent implements OnInit {
 
   selectTransaction(csvTransactionID) {
     if (!csvTransactionID) return;
+
+    console.log(csvTransactionID);
+
     const csvTransaction = this.csvTransactions[csvTransactionID];
+    this.elucidationFormGroup.controls['cnpj'].setValue(csvTransaction[1]);
     this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
-    this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[4]);
-    this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[2]));
-    if (csvTransaction[0] !== this.authorization.id) this.occurrences = [];
+    this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[5]);
+    this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[3]));
+    if (this.authorization && csvTransaction[0] !== this.authorization.id) this.occurrences = [];
     const authorization = this.authorization = {
       id: csvTransaction[0],
-      date: new Date(csvTransaction[2]),
+      date: new Date(csvTransaction[3]),
       occurrences: this.occurrences
     } as Authorization;
   }
@@ -267,7 +295,8 @@ export class FormElucidationComponent implements OnInit {
     }
 
     this.elucidation.csv_authorizations = lines;
-
+    console.log("form-elucidations: ", lines);
+    
   }
 
   errorHandler(evt) {
@@ -275,10 +304,4 @@ export class FormElucidationComponent implements OnInit {
       alert('O arquivo não é legível!');
     }
   }
-
-
-
-
-
-
 }

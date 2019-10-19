@@ -1,0 +1,287 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.js"></script>
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Raiz</li>
+        <li class="breadcrumb-item active" aria-current="page">Medicamento</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+                <input class="form-control" placeholder="Pesquisar" type="text" (focus)="focus = true" name="searchTerm"
+                  (blur)="focus = false" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+   <!-- Table -->
+  <div class="row">
+    <!-- start of first column -->
+    <div class="col-lg-12">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Ficha do Medicamento</h3>
+        </div>
+
+        <!-- Tabs -->
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-orçamento-tab" data-toggle="tab" href="#nav-orçamento"
+              role="tab" aria-controls="nav-orçamento" aria-selected="true">Orçamento</a>
+
+            <a class="nav-item nav-link" id="nav-basic-tab" data-toggle="tab" href="#nav-basic" role="tab"
+              aria-controls="nav-basic" aria-selected="false">Compoente Básico</a>
+
+            <a class="nav-item nav-link" id="nav-strategic-tab" data-toggle="tab" href="#nav-strategic" role="tab"
+              aria-controls="nav-strategic" aria-selected="false">Compoente Estratégico</a>
+
+            <a class="nav-item nav-link" id="nav-specialized-tab" data-toggle="tab" href="#nav-specialized" role="tab"
+              aria-controls="nav-specialized" aria-selected="false">Compoente Especializado</a>
+
+            <a class="nav-item nav-link" id="nav-pharmacy-tab" data-toggle="tab" href="#nav-pharmacy" role="tab"
+              aria-controls="nav-pharmacy" aria-selected="false">Farmácia Popular</a>
+          </div>
+
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-orçamento" role="tabpanel" aria-labelledby="nav-orçamento-tab">
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Ação Orçamentária</th>
+                    <th scope="col">Dotação (R$)</th>
+                    <th scope="col">Empenhado (R$)</th>
+                    <th scope="col">Liquidado (R$)</th>
+                    <th scope="col">Pago (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"> 20AE </th>
+                    <th scope="row"> 57.150.000,00 </th>
+                    <td> 18.573.750,00 </td>
+                    <td> 14.859.000,00 </td>
+                    <td> 13.373.100,00 </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Físico</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td> <b>Alocação (Quantidade) </b></td>
+                          <td> 13.000 </td>
+                        </tr>
+                        <tr>
+                          <td><b>Consumo Médio Mensal (Quantidade):</b></td>
+                          <td> 1.083 </td>
+                        </tr>
+                        <tr>
+                          <td> <b>Cobertura estoque (data):</b> </td>
+                          <td> 30/01/2020 </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Financeiro</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-strategic" role="tabpanel" aria-labelledby="nav-strategic-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Físico</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td> <b>Alocação (Quantidade) </b></td>
+                          <td>   </td>
+                        </tr>
+                        <tr>
+                          <td><b>Consumo Médio Mensal (Quantidade):</b></td>
+                          <td>  </td>
+                        </tr>
+                        <tr>
+                          <td> <b>Cobertura estoque (data):</b> </td>
+                          <td>  </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Financeiro</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+                          Conteúdo
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Ciclo de Aquisição                  
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title"> </h6>
+                  <p class="card-text">Sem registros.</p>
+                  
+                </div>
+              </div>
+            </div> 
+
+          <div class="tab-pane fade" id="nav-specialized" role="tabpanel" aria-labelledby="nav-specialized-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Físico</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td> <b>Alocação (Quantidade) </b></td>
+                          <td> 13.000 </td>
+                        </tr>
+                        <tr>
+                          <td><b>Consumo Médio Mensal (Quantidade):</b></td>
+                          <td> 1.083 </td>
+                        </tr>
+                        <tr>
+                          <td> <b>Cobertura estoque (data):</b> </td>
+                          <td> 30/01/2020 </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="card">
+                    <h3 class="card-header">Financeiro</h3>
+                    <div class="card-body">
+                      <table>
+                        <tbody>
+                            Conteúdo
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="tab-pane fade" id="nav-pharmacy" role="tabpanel" aria-labelledby="nav-pharmacy-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Físico</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td> <b> Quantidade total dispensada: </b></td>
+                          <td>  </td>
+                        </tr>
+                        <tr>
+                          <td><b>Médica de dispensação mensal:</b></td>
+                          <td>  </td>
+                        </tr>
+                        <tr>
+                          <td> <b>Quantidade dispensada pela gratuidade:</b> </td>
+                          <td>   </td>
+                        </tr>
+                        <tr>
+                            <td><b>Quantidade dispensada pela co-participacação:</b> </td>
+                            <td>   </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <h3 class="card-header">Financeiro</h3>
+                  <div class="card-body">
+                    <table>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                  Ciclo de Aquisição                  
+              </div>
+              <div class="card-body">
+                <h6 class="card-title"> </h6>
+                <p class="card-text">Sem registros.</p>
+                
+              </div>
+            </div>
+
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+  <!-- end of first column -->
+
+  <div class="ml-3 table-footer">
+    <p><i>Total de registros: 1</i><br>
+      <i>Fonte: Webservice em 10/10/19</i></p>
+  </div>
+</div>

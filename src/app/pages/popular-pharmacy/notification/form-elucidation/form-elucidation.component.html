@@ -5,7 +5,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Farmácia Popular</li>
         <li class="breadcrumb-item"><a routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">Notificação</a></li>
-        <li class="breadcrumb-item"><a routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/elucidation']">Pedido de Esclarecimento</a></li>
+        <li class="breadcrumb-item"><a routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">Pedido de Esclarecimento</a></li>
         <li class="breadcrumb-item active" aria-current="page">Novo Pedido</li>
       </ol>
     </nav>
@@ -37,9 +37,31 @@
         </div>
         <div class="card-body">
           <form [formGroup]="elucidationFormGroup" (ngSubmit)="save()">
-            <h6 class="heading-small text-muted mb-4">Informações desta Solicitação</h6>
+            <h6 class="heading-small text-muted mb-1">Cadastrar Transação com pendências</h6>
             <div class="pl-lg-4">
               <div class="row">
+
+                <div class="row mr-4">
+                  <div class="form-group" *ngIf="csvTransactions && csvTransactions.length > 0">
+                      <hr class="my-4" />
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <!-- <h6 class="heading-small text-muted mb-4">Transações encontradas no arquivo CSV enviado</h6> -->
+                        </div>
+                      </div>
+          
+                      <div class="form-group">
+                        <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
+                        <input id="filter" (input)="clearSelect($event)" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
+                      </div>
+          
+                      <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
+                        <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
+                        <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[1]}} </option>
+                      </select>
+                    </div>
+                  </div>
+                  
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="nup">Número Único do Processo (NUP)</label>
@@ -50,45 +72,18 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="cnpj">CNPJ vinculado</label>
-                    <input type="text" class="form-control form-control-alternative" formControlName="cnpj" name="cnpj" id="cnpj" placeholder="CNPJ da empresa notificada" required value="{{elucidation.cnpj}}">
+                    <input type="text" class="form-control form-control-alternative" formControlName="cnpj" name="cnpj" id="cnpj" placeholder="CNPJ da empresa notificada" required value="{{elucidation.cnpj}}" disabled='[[activateField]]'>
                   </div>
                 </div>
 
-               <div class="col-lg-4">
-                 <div class="form-group">
-                   <label class="form-control-label" for="date">Importar CSV</label>
-                   <input type="file" class="form-control form-control-alternative" formControlName="csv" name="file" id="file" (change)="processCSV($event)"
-                   accept=".csv">
-
-                 </div>
-               </div>
               </div>
             </div>
           </form>
 
-          <div *ngIf="csvTransactions && csvTransactions.length > 0">
-            <hr class="my-4" />
-            <div class="row">
-              <div class="col-lg-8">
-                <h6 class="heading-small text-muted mb-4">Transações encontradas no arquivo CSV enviado</h6>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
-              <input id="filter" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
-            </div>
-
-            <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
-              <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
-              <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[2] +' - '+ csvTransaction[5]}} </option>
-            </select>
-          </div>
-
           <hr class="my-4" />
           <div class="row">
             <div class="col-lg-8">
-              <h6 class="heading-small text-muted mb-4" id="authorization">Cadastrar Transação com pendências</h6>
+              <!-- <h6 class="heading-small text-muted mb-4" id="authorization">Cadastrar Transação com pendências</h6> -->
             </div>
           </div>
 
@@ -98,13 +93,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="authorizationCode">Número da Autorização</label>
-                    <input type="text" class="form-control form-control-alternative" formControlName="authorizationCode" name="authorizationCode" id="authorizationCode" placeholder="Informe uma Autorização já importada ou crie uma nova!" required>
+                    <input type="text" disabled='[[activateField]]' class="form-control form-control-alternative" formControlName="authorizationCode" name="authorizationCode" id="authorizationCode" placeholder="Informe uma Autorização já importada ou crie uma nova!" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="authorizedAt">Data da Autorização</label>
-                    <input type="date" class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
+                    <input type="date" disabled='[[activateField]]' class="form-control form-control-alternative" formControlName="authorizedAt" name="authorizedAt" id="authorizedAt" placeholder="Data da Autorização" required>
                   </div>
                 </div>
               </div>

@@ -17,11 +17,11 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget/dashboard', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: '/budget/dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: '/budget/ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
+  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: 'ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'analytic', path: '/analytic/transfer', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: '/analytic/basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: '/analytic/CEAF', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: '/analytic/strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' }, { path: '/analytic/generic-table-page', title: 'Página Genérica', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },{ path: '/analytic/CPFP', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
+  { id: 'analytic', path: '/analytic', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: 'basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: 'specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: 'strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' }, { path: 'farmpop', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
@@ -29,11 +29,17 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: '/popular-pharmacy/notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: '/popular-pharmacy/mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: 'notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: 'mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]}
+  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'leafs', path: '/leafs', title: 'Modelos de folha',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'leaf1', title: 'folha 1', icon: 'ni-chart-pie-35 text-teal' }, { path: 'leaf2', title: 'Folha 2', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf3', title: 'Folha 3', icon: 'ni-bullet-list-67 text-teal' }]}
+
+
 ];
 
 @Component({
