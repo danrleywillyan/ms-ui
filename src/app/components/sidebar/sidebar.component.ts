@@ -14,9 +14,6 @@ export const ROUTES: RouteInfo[] = [
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id:'caf', path: '/caf', title: 'Ciclo da Assistência Farmacêutica',  icon: 'ni-sound-wave text-black', class: ''},
-  { id:'leaf1', path: '/leaf1', title: 'Modelo folha 1',  icon: 'ni-sound-wave text-black', class: ''},
-  { id:'leaf2', path: '/leaf2', title: 'Modelo folha 2',  icon: 'ni-sound-wave text-black', class: ''},
-  { id:'leaf3', path: '/leaf3', title: 'Modelo folha 3',  icon: 'ni-sound-wave text-black', class: ''},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
@@ -36,7 +33,13 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]}
+  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]},
+
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'leafs', path: '/leafs', title: 'Modelos de folha',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'leaf1', title: 'folha 1', icon: 'ni-chart-pie-35 text-teal' }, { path: 'leaf2', title: 'Folha 2', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf3', title: 'Folha 3', icon: 'ni-bullet-list-67 text-teal' }]}
+
+
 ];
 
 @Component({

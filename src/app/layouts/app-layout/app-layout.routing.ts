@@ -22,9 +22,9 @@ export const AppLayoutRoutes: Routes = [
   // Overview paths
   { path: '', component: RemedyLifecycleComponent },
   { path: 'caf', component: RemedyLifecycleComponent },
-  { path: 'leaf1', component: TablesComponent },
-  { path: 'leaf2', component: OneTableComponent },
-  { path: 'leaf3', component: MedicineDetailsComponent },
+  { path: 'leafs/leaf1', component: TablesComponent },
+  { path: 'leafs/leaf2', component: OneTableComponent },
+  { path: 'leafs/leaf3', component: MedicineDetailsComponent },
 
   // Budget paths (Orçamento)
   { path: 'budget/dashboard', component: DashboardComponent },

@@ -44,4 +44,4 @@ venv
 __pycache__
 public
 .firebase
-packege-lock.json
+package-lock.json
