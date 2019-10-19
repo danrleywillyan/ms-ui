@@ -9,7 +9,10 @@ export class MedicationComponent implements OnInit {
 
   constructor() { }
 
+  
+
   ngOnInit() {
-  }
+  } 
 
 }
+

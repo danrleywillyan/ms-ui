@@ -32,7 +32,7 @@ export const AppLayoutRoutes: Routes = [
 
 
   //Analytic paths (Visão Analítica)
-  { path: 'analytic/:coord/medication', component: MedicationComponent},
+  { path: 'analytic/medication/:coord', component: MedicationComponent},
   { path: 'analytic/:coord', component: AnalyticPage },
   { path: 'analytic/:coord/:location', component: AnalyticPage },
 
