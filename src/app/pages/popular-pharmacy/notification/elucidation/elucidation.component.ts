@@ -23,8 +23,10 @@ export class ElucidationComponent implements OnInit {
 
   getAuthorizationsIds(elucidation) {
     const authorizations = [];
-    for (const authorization of elucidation.authorizations) {
-      authorizations.push(authorization.id);
+    if(elucidation.authorizations){
+      for (const authorization of elucidation.authorizations) {
+        authorizations.push(authorization.id);
+      }
     }
     return authorizations.join();
   }
@@ -104,12 +106,13 @@ export class ElucidationComponent implements OnInit {
     });
     this.elucidationService.getAuthorizations()
       .then((data: any) => {
-      this.csv_authorizations = data.data;
-      window['csv_authorizations'] = this.csv_authorizations;
+        this.csv_authorizations = data.data;
+        window['csv_authorizations'] = this.csv_authorizations;
     });
   }
 
   editElucidation(elucidation) {
+    console.log(elucidation);
     window['elucidation'] = elucidation;
     this.router.navigate(['/popular-pharmacy/notification/form']);
   }

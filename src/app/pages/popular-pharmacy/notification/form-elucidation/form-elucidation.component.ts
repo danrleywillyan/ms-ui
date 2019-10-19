@@ -178,18 +178,34 @@ export class FormElucidationComponent implements OnInit {
     }
   }
 
+  processRegistredList(){
+    let iter, ater;
+    let canAdd = true;
+    for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
+      for(ater of JSON.parse(window.localStorage.getItem("registredElucidations"))){
+        if(iter[0] == ater.nup){
+          canAdd = false;
+        }
+      }
+      if(canAdd){
+        this.csvTransactions.push(iter);
+      }
+      canAdd = true;
+    }
+  }
+
   save() {
     if (!this.elucidation._id) {
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data:Elucidation) => {
-          this.csvTransactions = data.csv_authorizations;
+          this.processRegistredList();
           this.elucidation = data;
           setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
         });
     } else {
       this.elucidationService.updateElucidation(this.elucidation)
         .then((data:Elucidation) => {
-          this.csvTransactions = data.csv_authorizations;
+          this.processRegistredList();
           this.elucidation = data;
           setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
         });
@@ -236,7 +252,7 @@ export class FormElucidationComponent implements OnInit {
   selectTransaction(csvTransactionID) {
     if (!csvTransactionID) return;
 
-    console.log(csvTransactionID);
+    // console.log(csvTransactionID);
 
     const csvTransaction = this.csvTransactions[csvTransactionID];
     this.elucidationFormGroup.controls['cnpj'].setValue(csvTransaction[1]);
@@ -293,10 +309,7 @@ export class FormElucidationComponent implements OnInit {
       }
       if(i!==0)lines.push(tArr);
     }
-
     this.elucidation.csv_authorizations = lines;
-    console.log("form-elucidations: ", lines);
-    
   }
 
   errorHandler(evt) {
