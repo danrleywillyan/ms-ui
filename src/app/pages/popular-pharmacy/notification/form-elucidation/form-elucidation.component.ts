@@ -38,6 +38,28 @@ export class FormElucidationComponent implements OnInit {
 
   public activateField: Boolean = false;
 
+  public date: Date;
+  public csvTransactions = [];
+  public occurrencesTypes = [];
+  public csvSelectedTransaction: object;
+  public authorizations: Authorization[] = [];
+  public authorization: Authorization;
+  public occurrences: Occurrence[];
+  public elucidation: Elucidation;
+  public elucidationFormGroup: FormGroup;
+  public authorizationFormGroup: FormGroup;
+
+  public static formattedDate(deformedVal) {
+    const datePieces = deformedVal.split('/');
+
+    const day = `0${datePieces[0]}`.slice(-2);
+    const month = `0${datePieces[1]}`.slice(-2);
+    const year = datePieces[2].split(' ')[0];
+
+    return `${year}-${month}-${day}`;
+  }
+
+
   constructor(private fb: FormBuilder, private elucidationService: ElucidationService, private router: Router) {
     this.authorizations = [];
     this.occurrences = [];
@@ -66,21 +88,23 @@ export class FormElucidationComponent implements OnInit {
     
     if (window.localStorage.getItem('loadedCSV')) {
       // window['elucidation'] = undefined;
+      this.csvTransactions = [];
       if(window['elucidation'] != undefined){
         this.elucidation = window['elucidation'];
         this.authorizationFormGroup.controls['authorizedAt'].setValue(this.elucidation.authorizations[0].date);
         this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
         window['elucidation'] = undefined;
-
+        this.authorizations = this.elucidation.authorizations;
+        return;
       }
-      this.authorizations = this.elucidation.authorizations;
       // this.csvTransactions = JSON.parse(window.localStorage.getItem('loadedCSV'));
+
 
       let iter, ater;
       let canAdd = true;
       for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
         for(ater of JSON.parse(window.localStorage.getItem("registredElucidations"))){
-          if(iter[0] == ater.nup){
+          if(iter[0] == ater.authorizations[0].id){
             canAdd = false;
           }
         }
@@ -90,27 +114,6 @@ export class FormElucidationComponent implements OnInit {
         canAdd = true;
       }
     }
-  }
-
-  public date: Date;
-  public csvTransactions = [];
-  public occurrencesTypes = [];
-  public csvSelectedTransaction: object;
-  public authorizations: Authorization[] = [];
-  public authorization: Authorization;
-  public occurrences: Occurrence[];
-  public elucidation: Elucidation;
-  public elucidationFormGroup: FormGroup;
-  public authorizationFormGroup: FormGroup;
-
-  public static formattedDate(deformedVal) {
-    const datePieces = deformedVal.split('/');
-
-    const day = `0${datePieces[0]}`.slice(-2);
-    const month = `0${datePieces[1]}`.slice(-2);
-    const year = datePieces[2].split(' ')[0];
-
-    return `${year}-${month}-${day}`;
   }
 
   ngOnInit() {
@@ -187,34 +190,26 @@ export class FormElucidationComponent implements OnInit {
   }
 
   processRegistredList(elucidation){
+    this.csvTransactions = [];
+
     let iter, ater, registred;
     let canAdd = true;
     registred = JSON.parse(window.localStorage.getItem("registredElucidations"))
+    console.log(registred);
     registred.push(elucidation);
-
-    for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
-      for(ater of registred){
-        if(iter[0] == ater.nup){
-          canAdd = false;
-        }
-      }
-      if(canAdd){
-        this.csvTransactions.push(iter);
-      }
-      canAdd = true;
-    }
+    window.localStorage.setItem("registredElucidations", JSON.stringify(registred));
   }
 
   save() {
-    console.log(this.elucidation);
     let aux: Authorization = new Authorization();
     aux = {
       id: this.authorizationFormGroup.value.authorizationCode,
       date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.occurrences
     }as Authorization
+    
     if(this.elucidation.authorizations == undefined) this.elucidation.authorizations = [aux];
-    // if(this.elucidation.date == undefined) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
+    if(this.elucidation.date == undefined) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
     if (!this.elucidation._id) {
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data:Elucidation) => {
@@ -233,28 +228,6 @@ export class FormElucidationComponent implements OnInit {
     // this.authorizationFormGroup.controls['authorizationCode'].setValue('');
   }
 
-  saveAndClear() {
-    if (!this.elucidation._id) {
-      this.elucidationService.insertElucidation(this.elucidation)
-        .then((data) => {
-          this.clearInputs();
-          setTimeout(() => {
-            alert('Solicitação registrada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification');  
-          }, 300);
-        });
-    } else {
-      this.elucidationService.updateElucidation(this.elucidation)
-        .then((data) => {
-          this.clearInputs();
-          setTimeout(() => {
-            alert('Solicitação alterada com sucesso!');
-            this.router.navigateByUrl('popular-pharmacy/notification');  
-          }, 300);
-        });
-    }
-  }
-
   clearSelect($event) {
     this.transactionSelect.nativeElement.selectedIndex = 0;
   }
@@ -271,8 +244,6 @@ export class FormElucidationComponent implements OnInit {
 
   selectTransaction(csvTransactionID) {
     if (!csvTransactionID) return;
-
-    // console.log(csvTransactionID);
 
     const csvTransaction = this.csvTransactions[csvTransactionID];
     this.elucidationFormGroup.controls['cnpj'].setValue(csvTransaction[1]);
