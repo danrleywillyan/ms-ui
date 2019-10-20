@@ -46,13 +46,32 @@ export class FormElucidationComponent implements OnInit {
     });
 
     this.elucidation = new Elucidation();
+
+    this.elucidationFormGroup = new FormGroup({
+      nup: new FormControl(null, Validators.minLength(2)),
+      cnpj: new FormControl(null, Validators.minLength(2)),
+      date: new FormControl(null),
+      authorizations: new FormControl(null),
+      csv: new FormControl(null, null)
+    });
+
+    this.authorizationFormGroup = new FormGroup({
+      authorizationCode: new FormControl(null, Validators.minLength(2)),
+      remedyName: new FormControl(null, Validators.minLength(2)),
+      authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
+      occurrences: new FormControl(null, null),
+      csvTransaction: new FormControl(null, null)
+    });
+
     
     if (window.localStorage.getItem('loadedCSV')) {
       // window['elucidation'] = undefined;
       if(window['elucidation'] != undefined){
-        console.log(window['elucidation']);
         this.elucidation = window['elucidation'];
+        this.authorizationFormGroup.controls['authorizedAt'].setValue(this.elucidation.authorizations[0].date);
+        this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
         window['elucidation'] = undefined;
+
       }
       this.authorizations = this.elucidation.authorizations;
       // this.csvTransactions = JSON.parse(window.localStorage.getItem('loadedCSV'));
@@ -71,22 +90,6 @@ export class FormElucidationComponent implements OnInit {
         canAdd = true;
       }
     }
-
-    this.elucidationFormGroup = new FormGroup({
-      nup: new FormControl(null, Validators.minLength(2)),
-      cnpj: new FormControl(null, Validators.minLength(2)),
-      date: new FormControl(null),
-      authorizations: new FormControl(null),
-      csv: new FormControl(null, null)
-    });
-
-    this.authorizationFormGroup = new FormGroup({
-      authorizationCode: new FormControl(null, Validators.minLength(2)),
-      remedyName: new FormControl(null, Validators.minLength(2)),
-      authorizedAt: new FormControl(null, Validators.pattern(/^\d{1,2}\/\d{1,2}\/\d{4}$/)),
-      occurrences: new FormControl(null, null),
-      csvTransaction: new FormControl(null, null)
-    });
   }
 
   public date: Date;
@@ -204,10 +207,15 @@ export class FormElucidationComponent implements OnInit {
 
   save() {
     console.log(this.elucidation);
+    let aux: Authorization = new Authorization();
+    aux = {
+      id: this.authorizationFormGroup.value.authorizationCode,
+      date: this.authorizationFormGroup.value.authorizedAt,
+      occurrences: this.occurrences
+    }as Authorization
+    if(this.elucidation.authorizations == undefined) this.elucidation.authorizations = [aux];
+    // if(this.elucidation.date == undefined) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
     if (!this.elucidation._id) {
-      if(this.elucidation.authorizations == undefined){
-        this.elucidation.authorizations = [this.authorizationFormGroup.value.authorizationCode];
-      }
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data:Elucidation) => {
           this.processRegistredList(data);
@@ -277,56 +285,5 @@ export class FormElucidationComponent implements OnInit {
       date: new Date(csvTransaction[3]),
       occurrences: this.occurrences
     } as Authorization;
-  }
-
-  processCSV($event) {
-    if ($event.target.files && $event.target.files[0]) {
-      // Check for the various File API support.
-      if (!window['FileReader']) return alert('FileReader are not supported in this browser.');
-      else this.getAsText($event.target.files[0]);
-
-      // @ts-ignore
-      $('#csvTransactions').val('');
-    } else {
-      return alert('Nenhum arquivo encontrado, tente novamente');
-    }
-  }
-
-  getAsText(fileToRead) {
-    const reader = new FileReader();
-
-    // attach event, that will be fired, when read is end
-    reader.addEventListener('loadend', function() {
-      // reader.result contains the contents of blob as a typed array
-      // console.log('reader.result', reader.result);
-    });
-
-    // start reading a loaded file
-    reader.readAsText(fileToRead);
-
-    // Handle errors load
-    reader.onload = this.loadHandler.bind(this);
-    reader.onerror = this.errorHandler.bind(this);
-  }
-
-  loadHandler(event) {
-    const csv = event.target.result;
-    const allTextLines = csv.split(/\r\n|\n/);
-    const lines = [];
-    for (let i = 0; i < allTextLines.length; i++) {
-      const data = allTextLines[i].split(';');
-      const tArr = [];
-      for (let j = 0; j < data.length; j++) {
-        tArr.push(data[j]);
-      }
-      if(i!==0)lines.push(tArr);
-    }
-    this.elucidation.csv_authorizations = lines;
-  }
-
-  errorHandler(evt) {
-    if (evt.target.error.name === 'NotReadableError' || !this.elucidation.csv_authorizations) {
-      alert('O arquivo não é legível!');
-    }
   }
 }
