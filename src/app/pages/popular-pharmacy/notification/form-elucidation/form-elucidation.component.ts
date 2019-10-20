@@ -48,7 +48,12 @@ export class FormElucidationComponent implements OnInit {
     this.elucidation = new Elucidation();
     
     if (window.localStorage.getItem('loadedCSV')) {
-      window['elucidation'] = undefined;
+      // window['elucidation'] = undefined;
+      if(window['elucidation'] != undefined){
+        console.log(window['elucidation']);
+        this.elucidation = window['elucidation'];
+        window['elucidation'] = undefined;
+      }
       this.authorizations = this.elucidation.authorizations;
       // this.csvTransactions = JSON.parse(window.localStorage.getItem('loadedCSV'));
 
@@ -88,7 +93,7 @@ export class FormElucidationComponent implements OnInit {
   public csvTransactions = [];
   public occurrencesTypes = [];
   public csvSelectedTransaction: object;
-  public authorizations: Authorization[];
+  public authorizations: Authorization[] = [];
   public authorization: Authorization;
   public occurrences: Occurrence[];
   public elucidation: Elucidation;
@@ -156,7 +161,7 @@ export class FormElucidationComponent implements OnInit {
       date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.occurrences
     } as Authorization;
-
+    
     // tslint:disable-next-line:forin
     for (const i in this.authorizations) {
       const iAuthorization = this.authorizations[i];
@@ -178,11 +183,14 @@ export class FormElucidationComponent implements OnInit {
     }
   }
 
-  processRegistredList(){
-    let iter, ater;
+  processRegistredList(elucidation){
+    let iter, ater, registred;
     let canAdd = true;
+    registred = JSON.parse(window.localStorage.getItem("registredElucidations"))
+    registred.push(elucidation);
+
     for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
-      for(ater of JSON.parse(window.localStorage.getItem("registredElucidations"))){
+      for(ater of registred){
         if(iter[0] == ater.nup){
           canAdd = false;
         }
@@ -195,22 +203,26 @@ export class FormElucidationComponent implements OnInit {
   }
 
   save() {
+    console.log(this.elucidation);
     if (!this.elucidation._id) {
+      if(this.elucidation.authorizations == undefined){
+        this.elucidation.authorizations = [this.authorizationFormGroup.value.authorizationCode];
+      }
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data:Elucidation) => {
-          this.processRegistredList();
+          this.processRegistredList(data);
           this.elucidation = data;
           setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
         });
     } else {
       this.elucidationService.updateElucidation(this.elucidation)
         .then((data:Elucidation) => {
-          this.processRegistredList();
+          this.processRegistredList(data);
           this.elucidation = data;
           setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
         });
     }
-    this.authorizationFormGroup.controls['authorizationCode'].setValue('');
+    // this.authorizationFormGroup.controls['authorizationCode'].setValue('');
   }
 
   saveAndClear() {

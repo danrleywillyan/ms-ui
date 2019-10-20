@@ -40,8 +40,9 @@ export class ElucidationComponent implements OnInit {
   }
 
   remove(elucidation) {
-    this.elucidationService.deleteElucidation(elucidation);
-    this.setupList();
+    this.elucidationService.deleteElucidation(elucidation).then(() => {
+      this.setupList();
+    });
   }
 
   processCSV($event) {
