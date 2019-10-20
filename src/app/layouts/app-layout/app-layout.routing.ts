@@ -5,6 +5,7 @@ import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { OneTableComponent } from '../../pages/oneTable/oneTable.component';
+import { TwoColumnsTablesComponent } from '../../pages/two-columns-tables/twoColumnsTables.component';
 import { MedicineDetailsComponent } from '../../pages/medicine-details/medicineDetails.component';
 
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
@@ -25,6 +26,7 @@ export const AppLayoutRoutes: Routes = [
   { path: 'leafs/leaf1', component: TablesComponent },
   { path: 'leafs/leaf2', component: OneTableComponent },
   { path: 'leafs/leaf3', component: MedicineDetailsComponent },
+  { path: 'leafs/leaf4', component: TwoColumnsTablesComponent },
 
   // Budget paths (Orçamento)
   { path: 'budget/dashboard', component: DashboardComponent },

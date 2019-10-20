@@ -13,6 +13,7 @@ import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { OneTableComponent } from '../../pages/oneTable/oneTable.component';
 import { MedicineDetailsComponent } from '../../pages/medicine-details/medicineDetails.component';
+import { TwoColumnsTablesComponent } from '../../pages/two-columns-tables/twoColumnsTables.component';
 //leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
@@ -51,6 +52,7 @@ registerLocaleData(localeBr);
     TablesComponent,
     OneTableComponent,
     MedicineDetailsComponent,
+    TwoColumnsTablesComponent,
     ElucidationComponent,
     NotificationComponent,
     DashboardComponent,

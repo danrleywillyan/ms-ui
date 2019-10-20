@@ -37,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'leafs', path: '/leafs', title: 'Modelos de folha',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'leaf1', title: 'folha 1', icon: 'ni-chart-pie-35 text-teal' }, { path: 'leaf2', title: 'Folha 2', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf3', title: 'Folha 3', icon: 'ni-bullet-list-67 text-teal' }]}
+  { id: 'leafs', path: '/leafs', title: 'Modelos de folha',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'leaf1', title: 'folha 1', icon: 'ni-chart-pie-35 text-teal' }, { path: 'leaf2', title: 'Folha 2', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf3', title: 'Folha 3', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf4', title: 'folha 4', icon: 'ni-chart-pie-35 text-teal' }]}
 
 
 ];
