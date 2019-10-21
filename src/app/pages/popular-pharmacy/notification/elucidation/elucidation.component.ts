@@ -14,11 +14,15 @@ export class ElucidationComponent implements OnInit {
   public paragraph = '';
   public csv_authorizations = [];
   public loadedCSV: any;
+  public hasUploaded: boolean = false;
 
   constructor(private elucidationService: ElucidationService, private router: Router) {}
 
   ngOnInit() {
     this.setupList();
+    if(window.localStorage.getItem("loadedCSV") != undefined){
+      this.hasUploaded = true;
+    }
   }
 
   getAuthorizationsIds(elucidation) {
@@ -91,6 +95,7 @@ export class ElucidationComponent implements OnInit {
     this.loadedCSV = lines;
     window['loadedCSV'] = this.loadedCSV;
     window.localStorage.setItem("loadedCSV", JSON.stringify(lines));
+    this.hasUploaded = true;
   }
 
   errorHandler(evt) {

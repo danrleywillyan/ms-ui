@@ -87,30 +87,23 @@ export class FormElucidationComponent implements OnInit {
 
     
     if (window.localStorage.getItem('loadedCSV')) {
-      // window['elucidation'] = undefined;
       this.csvTransactions = [];
-      if(window['elucidation'] != undefined){
+      if(window['elucidation'] != undefined) {
         this.elucidation = window['elucidation'];
         this.authorizationFormGroup.controls['authorizedAt'].setValue(this.elucidation.authorizations[0].date);
         this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
-        window['elucidation'] = undefined;
         this.authorizations = this.elucidation.authorizations;
+        window['elucidation'] = undefined;
         return;
       }
-      // this.csvTransactions = JSON.parse(window.localStorage.getItem('loadedCSV'));
 
-
-      let iter, ater;
-      let canAdd = true;
+      let iter: any, ater: any;
+      let canAdd: boolean = true;
       for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
         for(ater of JSON.parse(window.localStorage.getItem("registredElucidations"))){
-          if(iter[0] == ater.authorizations[0].id){
-            canAdd = false;
-          }
+          if(iter[0] == ater.authorizations[0].id) canAdd = false;
         }
-        if(canAdd){
-          this.csvTransactions.push(iter);
-        }
+        if(canAdd) this.csvTransactions.push(iter);
         canAdd = true;
       }
     }
@@ -192,10 +185,9 @@ export class FormElucidationComponent implements OnInit {
   processRegistredList(elucidation){
     this.csvTransactions = [];
 
-    let iter, ater, registred;
-    let canAdd = true;
+    let registred;
     registred = JSON.parse(window.localStorage.getItem("registredElucidations"))
-    console.log(registred);
+    console.log("reg: ", registred);
     registred.push(elucidation);
     window.localStorage.setItem("registredElucidations", JSON.stringify(registred));
   }
@@ -208,21 +200,23 @@ export class FormElucidationComponent implements OnInit {
       occurrences: this.occurrences
     }as Authorization
     
-    if(this.elucidation.authorizations == undefined) this.elucidation.authorizations = [aux];
-    if(this.elucidation.date == undefined) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
+    if(this.elucidation.authorizations.length == 0) this.elucidation.authorizations.push(aux);
+    else console.log("implement this case.");
+    if(!this.elucidation.date) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
     if (!this.elucidation._id) {
       this.elucidationService.insertElucidation(this.elucidation)
         .then((data:Elucidation) => {
           this.processRegistredList(data);
           this.elucidation = data;
-          setTimeout(() => alert('Solicitação registrada com sucesso!'), 300);
+          console.log(data);      
+          // setTimeout(() => alert('Solicitação registrada com sucesso!'));
         });
     } else {
       this.elucidationService.updateElucidation(this.elucidation)
         .then((data:Elucidation) => {
           this.processRegistredList(data);
           this.elucidation = data;
-          setTimeout(() => alert('Solicitação atualizada com sucesso!'), 300);
+          // setTimeout(() => alert('Solicitação atualizada com sucesso!'));
         });
     }
     // this.authorizationFormGroup.controls['authorizationCode'].setValue('');

@@ -15,12 +15,13 @@
       <!-- Card stats -->
       <div class="row">
         <div class="col-xl-4 col-lg-4">
-          <div class="card card-stats mb-4 mb-xl-0">
+          <div class=" controls card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Importar CSV</h5>
-                  <p class="h5 font-weight-bold mb-0">Faça a importação dos dados.<br><br></p>
+                  <p class="h5 font-weight-bold mb-0">Faça a importação dos dados.<br></p>
+                  <p class="h5 mt-0 mb-0" *ngIf="hasUploaded">Aviso: CSV Carregado. Para atualizar faça um novo upload!</p>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
@@ -28,12 +29,12 @@
                   </div>
                 </div>
               </div>
-              <input type="file" name="file" id="file" (change)="processCSV($event)" accept=".csv">
+              <input style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;" type="file" name="file" id="file" (change)="processCSV($event)" accept=".csv">
             </div>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4">
-            <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card controls  card-stats mb-4 mb-xl-0">
               <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form']">
                 <div class="row">
                   <div class="col">
@@ -50,7 +51,7 @@
             </div>
           </div>  
         <div class="col-xl-4 col-lg-4">
-          <div class="card card-stats mb-4 mb-xl-0">
+          <div class="card controls card-stats mb-4 mb-xl-0">
             <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/occurrences-types']">
               <div class="row">
                 <div class="col">
