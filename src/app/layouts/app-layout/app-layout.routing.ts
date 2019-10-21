@@ -3,10 +3,10 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
-import { TablesComponent } from '../../pages/tables/tables.component';
-import { OneTableComponent } from '../../pages/oneTable/oneTable.component';
-import { TwoColumnsTablesComponent } from '../../pages/two-columns-tables/twoColumnsTables.component';
-import { MedicineDetailsComponent } from '../../pages/medicine-details/medicineDetails.component';
+import { TablesComponent } from '../../pages/leaf-pages/tables/tables.component';
+import { OneTableComponent } from '../../pages/leaf-pages/oneTable/oneTable.component';
+import { TwoColumnsTablesComponent } from '../../pages/leaf-pages/two-columns-tables/twoColumnsTables.component';
+import { MedicineDetailsComponent } from '../../pages/leaf-pages/medicine-details/medicineDetails.component';
 
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
