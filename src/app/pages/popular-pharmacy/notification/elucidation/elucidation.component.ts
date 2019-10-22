@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 import { ElucidationService } from '../../../../services/elucidation/elucidation.service';
 
 @Component({
@@ -9,6 +11,9 @@ import { ElucidationService } from '../../../../services/elucidation/elucidation
 })
 export class ElucidationComponent implements OnInit {
 
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage: string;
   public elucidations = [];
   public elucidation = {};
   public paragraph = '';
@@ -19,6 +24,12 @@ export class ElucidationComponent implements OnInit {
   constructor(private elucidationService: ElucidationService, private router: Router) {}
 
   ngOnInit() {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+
     this.setupList();
     if(window.localStorage.getItem("loadedCSV") != undefined){
       this.hasUploaded = true;
@@ -96,6 +107,7 @@ export class ElucidationComponent implements OnInit {
     window['loadedCSV'] = this.loadedCSV;
     window.localStorage.setItem("loadedCSV", JSON.stringify(lines));
     this.hasUploaded = true;
+    this._success.next("Arquivo importado com sucesso");
   }
 
   errorHandler(evt) {
