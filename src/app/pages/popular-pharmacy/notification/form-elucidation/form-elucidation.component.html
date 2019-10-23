@@ -37,6 +37,7 @@
           </div>
         </div>
         <div class="card-body">
+          <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
           <div class="modal-body" *ngIf="paragraph">
             <h4>Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h4>
             <ul>

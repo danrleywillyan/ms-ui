@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { windowToggle } from 'rxjs/operators';
+import {Subject} from "rxjs/index";
+import {debounceTime} from 'rxjs/operators';
 
 declare var $: any;
 
@@ -41,6 +43,9 @@ export class FormElucidationComponent implements OnInit {
   public date: Date;
   public csvTransactions = [];
   public occurrencesTypes = [];
+  public successMessage: string;
+  public staticAlertClosed = false;
+  private _success = new Subject<string>();
   public csvSelectedTransaction: object;
   public authorizations: Authorization[] = [];
   public authorization: Authorization;
@@ -117,6 +122,11 @@ export class FormElucidationComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
     this.elucidation.csv_authorizations = window['loadedCSV'];
   }
 
@@ -180,6 +190,7 @@ export class FormElucidationComponent implements OnInit {
     // @ts-ignore
     $('#occurrences option:selected').prop('selected', false);
     if (!alreadyPersisted) this.authorizations.push(authorization);
+
   }
 
   removeOccurence(id) {
@@ -224,6 +235,7 @@ export class FormElucidationComponent implements OnInit {
           this.processRegistredList(data);
           this.elucidation = data;
           this.router.navigate(['/popular-pharmacy/notification/form/' + this.elucidation._id ]);
+          this._success.next("Cadastro feito com sucesso!");
           // setTimeout(() => alert('Solicitação registrada com sucesso!'));
         });
     } else {
@@ -232,6 +244,7 @@ export class FormElucidationComponent implements OnInit {
           this.processRegistredList(data);
           this.elucidation = data;
           this.router.navigate(['/popular-pharmacy/notification/form/' + this.elucidation._id ]);
+          this._success.next("Atualização feito com sucesso!");
           // setTimeout(() => alert('Solicitação atualizada com sucesso!'));
         });
     }
