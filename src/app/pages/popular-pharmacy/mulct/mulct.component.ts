@@ -4,7 +4,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {MulctParserService} from '../../../services/refund/mulct-parser.service';
 import {XmlExtractorService} from '../../../services/refund/xml-extractor.service';
 import {ConsultsisgruService} from '../../../services/refund/consultsisgru.service';
-import xml2js from 'xml2js';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+
 
 declare var $: any;
 
@@ -16,7 +17,6 @@ declare var $: any;
 export class MulctComponent implements OnInit {
   public grus = [];
   private filesToUpload = null;
-  private xmlTofill = null;
   private login = null;
   private pass = null;
   private ugArrecadadora = null;
@@ -27,9 +27,11 @@ export class MulctComponent implements OnInit {
   public hideElement= false;
   public consultGRUFormGroup = null;
   public generateGRUFormGroup = null;
+  protected loader: LoaderComponent;
 
   public consultGRU_data= [];
-  constructor(private mulctParserService: MulctParserService, private xmlExtractorService: XmlExtractorService, private consultSisGRUService: ConsultsisgruService, private fb: FormBuilder,private http: HttpClient) {
+  constructor(private mulctParserService: MulctParserService, private xmlExtractorService: XmlExtractorService, private consultSisGRUService: ConsultsisgruService, private fb: FormBuilder,private http: HttpClient, public lc: LoaderComponent) {
+    this.loader = lc;
     this.consultGRUFormGroup = new FormGroup({
       login: new FormControl(null, Validators.minLength(2)),
       pass: new FormControl(null, Validators.minLength(2)),
@@ -41,6 +43,18 @@ export class MulctComponent implements OnInit {
     });
 
     this.generateGRUFormGroup = new FormGroup({
+
+      codigo_favorecido: new FormControl(null),
+      gestao: new FormControl(null),
+      codigo_correlacao: new FormControl(null),
+      nome_favorecido: new FormControl(null),
+      codigo_recolhimento: new FormControl(null),
+      nome_recolhimento: new FormControl(null),
+      boleto: new FormControl(null),
+      impressao: new FormControl(null),
+      pagamento: new FormControl(null),
+      campo: new FormControl(null),
+      ind: new FormControl(null),
       referencia: new FormControl(null),
       competencia: new FormControl(null),
       vencimento: new FormControl(null),
@@ -55,6 +69,18 @@ export class MulctComponent implements OnInit {
       valorTotal: new FormControl(null),
 
     });
+
+    this.generateGRUFormGroup.controls['codigo_favorecido'].setValue("257001");
+    this.generateGRUFormGroup.controls['gestao'].setValue("00001");
+    this.generateGRUFormGroup.controls['codigo_correlacao'].setValue("4399");
+    this.generateGRUFormGroup.controls['nome_favorecido'].setValue("DIRETORIA EXECUTIVA DO FUNDO NAC. DE SAUDE");
+    this.generateGRUFormGroup.controls['codigo_recolhimento'].setValue("28852-7");
+    this.generateGRUFormGroup.controls['nome_recolhimento'].setValue("OUTRAS RESTITUIÇÕES");
+    this.generateGRUFormGroup.controls['boleto'].setValue("1");
+    this.generateGRUFormGroup.controls['impressao'].setValue("SA");
+    this.generateGRUFormGroup.controls['pagamento'].setValue("0");
+    this.generateGRUFormGroup.controls['campo'].setValue("NRCR");
+    this.generateGRUFormGroup.controls['ind'].setValue("0");
 
   }
 
@@ -79,7 +105,7 @@ export class MulctComponent implements OnInit {
     const files = this.filesToUpload;
     if(!files || !files.item) return;
     formData.append(`file`, files.item(0), files.item(0).name);
-    const promise = this.xmlExtractorService.xmlExtractor(formData);
+    const promise = this.mulctParserService.parseMulct(formData);
     promise.then(() => {
       this.downloadMulct();
       $('#file').val('');
@@ -88,6 +114,13 @@ export class MulctComponent implements OnInit {
       if (counterTest <= 2) return this.upload(counterTest++);
       alert('Não foi possível processar seu arquivo, tente novamente.');
     });
+    // alert("teste")
+    // this.loader.start();
+    // this.http.post('http://localhost:80/refund',formData,{ responseType: "json"}).subscribe(r => {
+    //   this.loader.stop();
+    //   window.open('http://localhost:80/refund', '_blank');
+    // });
+
   }
 
   loginExec(counterTest = 0) {
@@ -110,37 +143,37 @@ export class MulctComponent implements OnInit {
       alert('Não foi possível consultar o sistema SISGRU, tente novamente.');
     });
   }
-  fill_data_xml(counterTest = 0){
+  fill_data_xml(){
     const formData = new FormData();
-
     const files = this.filesToUpload;
-    // if(!files || !files.item) return;
-
     formData.append(`file`, files.item(0), files.item(0).name);
+
     const promise = this.xmlExtractorService.xmlExtractor(formData);
-    promise.then((r) => {
-      this.generateGRUFormGroup.controls['valorPrincipal'].setValue(r["princ"]);
-      this.generateGRUFormGroup.controls['descontos'].setValue("0,00");
-      this.generateGRUFormGroup.controls['deducoes'].setValue("0,00");
-      this.generateGRUFormGroup.controls['multa'].setValue("0,00");
-      this.generateGRUFormGroup.controls['juros'].setValue(r["juros"]);
-      this.generateGRUFormGroup.controls['acrescimos'].setValue("0,00");
-      this.generateGRUFormGroup.controls['valorTotal'].setValue(r["total"]);
+    promise.then(() => {
+      this.valorPrincipal = r["princ"]
+      this.descontos = "0,00"
+      this.deducoes = "0,00"
+      this.multa = "0,00"
+      this.juros = r["juros"]
+      this.acrescimos = "0,00"
+      this.valorTotal = r["total"]
+      $('#xmlgru').val('');
     }).catch((error) => {
-      console.log('error xml generate error: ', error);
+      console.log('error mulct parser error: ', error);
       if (counterTest <= 2) return this.upload(counterTest++);
-      alert('Não foi possível processar seu arquivo, tente novamente.');
+      alert('Não foi possível processar seu arquivo XML, tente novamente.');
     });
-    // const promise = this.http.post('http://0.0.0.0:80/gru',formData);
-    // this.http.post('http://0.0.0.0/gru',formData,{ responseType: "json"}).subscribe(r => {
-    //   this.generateGRUFormGroup.controls['valorPrincipal'].setValue(r["princ"]);
-    //   this.generateGRUFormGroup.controls['descontos'].setValue("0,00");
-    //   this.generateGRUFormGroup.controls['deducoes'].setValue("0,00");
-    //   this.generateGRUFormGroup.controls['multa'].setValue("0,00");
-    //   this.generateGRUFormGroup.controls['juros'].setValue(r["juros"]);
-    //   this.generateGRUFormGroup.controls['acrescimos'].setValue("0,00");
-    //   this.generateGRUFormGroup.controls['valorTotal'].setValue(r["total"]);
-    // });
+    // this.http.post('http://localhost:80/gru',formData,{ responseType: "json"}).subscribe(r => {
+    //   this.valorPrincipal = r["princ"]
+    //   this.descontos = "0,00"
+    //   this.deducoes = "0,00"
+    //   this.multa = "0,00"
+    //   this.juros = r["juros"]
+    //   this.acrescimos = "0,00"
+    //   this.valorTotal = r["total"]
+
+    });
+
 
   }
 
