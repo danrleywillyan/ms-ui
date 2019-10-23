@@ -36,7 +36,7 @@
         </div>
         <div class="col-xl-4 col-lg-4" [class.disabled]="hasUploaded ? false : true">
             <div class="card controls  card-stats mb-4 mb-xl-0">
-              <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form']">
+              <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Solicitar Esclarescimento</h5>
@@ -116,7 +116,7 @@
 <!--                {{elucidation.date | date: 'dd/MM/yyyy'}}-->
 <!--              </td>-->
               <td>
-                <button type="button" (click)="getParagraph(elucidation)" data-toggle="modal" data-target="#paragraphModal" class="btn btn-outline-success sidebar-icon mr-2"><i class="fas fa-file"></i></button>
+                <!--<button type="button" (click)="getParagraph(elucidation)" data-toggle="modal" data-target="#paragraphModal" class="btn btn-outline-success sidebar-icon mr-2"><i class="fas fa-file"></i></button>-->
                 <button type="button" (click)="editElucidation(elucidation)" class="btn btn-outline-primary sidebar-icon mr-2"><i class="fas fa-pencil-alt"></i></button>
                 <button type="button" class="btn btn-outline-danger sidebar-icon mr-2" (click)="remove(elucidation)"><i class="fas fa-trash"></i></button>
               </td>

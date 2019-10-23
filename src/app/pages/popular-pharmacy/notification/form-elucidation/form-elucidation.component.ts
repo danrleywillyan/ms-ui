@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { windowToggle } from 'rxjs/operators';
 
 declare var $: any;
@@ -46,6 +46,7 @@ export class FormElucidationComponent implements OnInit {
   public authorization: Authorization;
   public occurrences: Occurrence[];
   public elucidation: Elucidation;
+  public paragraph = '';
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
 
@@ -60,7 +61,10 @@ export class FormElucidationComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder, private elucidationService: ElucidationService, private router: Router) {
+  constructor(private fb: FormBuilder
+              , private elucidationService: ElucidationService
+              , private route: ActivatedRoute
+              , private router: Router) {
     this.authorizations = [];
     this.occurrences = [];
     this.elucidationService.getOccurrencesTypes().then( (data: any) => {
@@ -85,18 +89,21 @@ export class FormElucidationComponent implements OnInit {
       csvTransaction: new FormControl(null, null)
     });
 
-    
+    this.route.paramMap.subscribe( paramMap => {
+      if (paramMap.get('id') == 'null') {
+        console.log('teste');
+      } else {
+        elucidationService.getElucidationBody({_id: paramMap.get('id')}).then((data: any) => {
+          this.elucidation = data.elucidation;
+          this.paragraph = data.body.map(line => line.replace(/\(([0-9]{4})-([0-9]{2})-([0-9]{2})\)/g,'($3/$2/$1)')).filter((line, i, data) => line !== data[i+1]);
+          this.occurrences = data.elucidation.authorizations[0].occurrences;
+          this.authorizationFormGroup.controls['authorizedAt'].setValue(this.elucidation.authorizations[0].date);
+          this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
+        });
+      }
+    })
     if (window.localStorage.getItem('loadedCSV')) {
       this.csvTransactions = [];
-      if(window['elucidation'] != undefined) {
-        this.elucidation = window['elucidation'];
-        this.authorizationFormGroup.controls['authorizedAt'].setValue(this.elucidation.authorizations[0].date);
-        this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
-        this.authorizations = this.elucidation.authorizations;
-        window['elucidation'] = undefined;
-        return;
-      }
-
       let iter: any, ater: any;
       let canAdd: boolean = true;
       for(iter of JSON.parse(window.localStorage.getItem('loadedCSV'))) {
@@ -160,7 +167,7 @@ export class FormElucidationComponent implements OnInit {
       date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.occurrences
     } as Authorization;
-    
+
     // tslint:disable-next-line:forin
     for (const i in this.authorizations) {
       const iAuthorization = this.authorizations[i];
@@ -191,6 +198,9 @@ export class FormElucidationComponent implements OnInit {
     registred.push(elucidation);
     window.localStorage.setItem("registredElucidations", JSON.stringify(registred));
   }
+  new() {
+    this.router.navigate(['/popular-pharmacy/notification/form/null' ]);
+  }
 
   save() {
     let aux: Authorization = new Authorization();
@@ -199,7 +209,7 @@ export class FormElucidationComponent implements OnInit {
       date: this.authorizationFormGroup.value.authorizedAt,
       occurrences: this.occurrences
     }as Authorization
-    
+
     if(this.elucidation.authorizations.length == 0) this.elucidation.authorizations.push(aux);
     else console.log("implement this case.");
     if(!this.elucidation.date) this.elucidation.date = this.authorizationFormGroup.value.authorizedAt;
@@ -208,7 +218,7 @@ export class FormElucidationComponent implements OnInit {
         .then((data:Elucidation) => {
           this.processRegistredList(data);
           this.elucidation = data;
-          console.log(data);      
+          this.router.navigate(['/popular-pharmacy/notification/form/' + this.elucidation._id ]);
           // setTimeout(() => alert('Solicitação registrada com sucesso!'));
         });
     } else {
@@ -216,6 +226,7 @@ export class FormElucidationComponent implements OnInit {
         .then((data:Elucidation) => {
           this.processRegistredList(data);
           this.elucidation = data;
+          this.router.navigate(['/popular-pharmacy/notification/form/' + this.elucidation._id ]);
           // setTimeout(() => alert('Solicitação atualizada com sucesso!'));
         });
     }

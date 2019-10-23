@@ -31,28 +31,40 @@
             </div>
             <div class="col-4 text-right">
               <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="_validateForm()">Salvar</button>
+              <button class="btn btn-sm btn-warning" (click)="new()">Novo</button>
             </div>
           </div>
         </div>
         <div class="card-body">
+          <div class="modal-body" *ngIf="paragraph">
+            <h4>Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h4>
+            <ul>
+              <li *ngFor="let line of paragraph; index as i;">
+                {{line}}
+              </li>
+            </ul>
+            <div class="col-4 text-right">
+              <button class="btn btn-sm btn-default" type="button" ngxClipboard [cbContent]="paragraph">Copiar</button>
+            </div>
+          </div>
           <form [formGroup]="elucidationFormGroup" (ngSubmit)="save()">
             <!-- <h6 class="heading-small text-muted mb-1">Cadastrar Transação com pendências</h6> -->
             <div class="col">
               <div class="row">
                 <div class="col-lg-8">
-                  <div class="form-group" *ngIf="csvTransactions && csvTransactions.length > 0">
+                  <div class="form-group" *ngIf="csvTransactions && csvTransactions.length > 0 && !elucidation._id">
                       <!-- <hr class="my-4" /> -->
                       <div class="row">
                         <div class="col-lg-12">
                           <!-- <h6 class="heading-small text-muted mb-4">Transações encontradas no arquivo CSV enviado</h6> -->
                         </div>
                       </div>
-          
+
                       <div class="form-group">
                         <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
                         <input id="filter" (input)="clearSelect($event)" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" [ngModelOptions]="{standalone: true}" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
                       </div>
-          
+
                       <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
                         <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
                         <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[1]}} </option>
@@ -120,10 +132,10 @@
             </div>
           </form>
 
-          <div *ngIf="authorization">
+          <div *ngIf="occurrences">
             <hr class="my-4"/>
             <h6 class="heading-small text-muted mb-4">Ocorrências Cadastradas</h6>
-            
+
             <div class="card shadow">
               <div class="table-responsive">
                 <!-- Projects table -->
@@ -153,12 +165,12 @@
             </div>
           </div>
 
-          <hr class="my-4"/>
-          <h6 class="heading-small text-muted mb-4">Autorizações Cadastradas</h6>
+          <!--<hr class="my-4"/>
+          <h6 class="heading-small text-muted mb-4">Autorizações Cadastradas</h6>-->
 
-          <div class="card shadow">
+          <!--<div class="card shadow">
             <div class="table-responsive">
-              <!-- Projects table -->
+              &lt;!&ndash; Projects table &ndash;&gt;
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                 <tr>
@@ -187,7 +199,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

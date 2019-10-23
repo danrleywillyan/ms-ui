@@ -44,7 +44,7 @@ export const AppLayoutRoutes: Routes = [
 
   // Popular Pharmacy
   { path: 'popular-pharmacy/notification', component: ElucidationComponent },
-  { path: 'popular-pharmacy/notification/form', component: FormElucidationComponent },
+  { path: 'popular-pharmacy/notification/form/:id', component: FormElucidationComponent },
   { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
   { path: 'popular-pharmacy/mulct', component: MulctComponent },
 ];
