@@ -198,6 +198,11 @@ export class FormElucidationComponent implements OnInit {
     registred.push(elucidation);
     window.localStorage.setItem("registredElucidations", JSON.stringify(registred));
   }
+
+  voltar() {
+    this.router.navigate(['/popular-pharmacy/notification' ]);
+  }
+
   new() {
     this.router.navigate(['/popular-pharmacy/notification/form/null' ]);
   }
