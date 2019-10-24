@@ -399,7 +399,151 @@ exports.chartExample1 = {
             },
         ]
     }
-};
+// };
+// exports.chartCommittedPercentageData = {
+//   options: {
+//       scales: {
+//           yAxes: [{
+//                   gridLines: {
+//                       color: colors.gray[900],
+//                       zeroLineColor: colors.gray[900]
+//                   },
+//                   ticks: {
+//                       callback: function (value) {
+//                           if (!(value % 10)) {
+//                               return '$' + value + 'k';
+//                           }
+//                       }
+//                   }
+//               }]
+//       },
+//       stacked: true
+//   },
+//   data: {
+//       labels: ['20AE', '20AH', '20K5', '20YR', '20YS', '4368', '4705'],
+//       datasets: [{
+//               // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+//               label: '% Empenhado',
+//               data: [44.59, 33.48, 0, 68.58, 58.31, 0, 3.95],
+//               backgroundColor: [
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//               ],
+//               borderColor: [
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//                   'rgba(05, 63, 91, 1)',
+//               ],
+//               borderWidth: 1
+//           },
+//           {
+//               // 20AH - Organização dos serviços de assistência farmacêutica no SUS
+//               label: 'Empenhado',
+//               data: [504282824.58, 0, 0, 586211380.38, 140702249.16, 21468296.91, 1752881924.67],
+//               backgroundColor: [
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//               ],
+//               borderColor: [
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//                   'rgba(88, 82, 139, 1)',
+//               ],
+//               borderWidth: 1
+//           },
+//           {
+//               // 20K5 - Apoio ao uso de plantas medicinais e fitoterápicos no SUS
+//               label: 'Liquidado',
+//               data: [385928659.66, 0, 0, 586125835.98, 140697803.39, 21468296.91, 298213837.88],
+//               backgroundColor: [
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//               ],
+//               borderColor: [
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//                   'rgba(186, 83, 143, 1)',
+//               ],
+//               borderWidth: 1
+//           },
+//           {
+//               // 20YR - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de gratuidade
+//               label: 'Pago',
+//               data: [385928659.66, 0, 0, 586125835.98, 140697803.39, 21468296.91, 247413593.42],
+//               backgroundColor: [
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//               ],
+//               borderColor: [
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//                   'rgba(252, 100, 101, 1)',
+//               ],
+//               borderWidth: 1
+//           },
+//           {
+//               // 20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento
+//               label: 'Disponível',
+//               data: [1305717175.42, 88728508, 0, 1445789218.62, 421650750.84, 239770445.76, 3490720529.31],
+//               backgroundColor: [
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//               ],
+//               borderColor: [
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//                   'rgba(253, 165, 40, 1)',
+//               ],
+//               borderWidth: 1
+//           },
+//       ]
+//   }
+// };
 exports.chartExample2 = {
     options: {
         scales: {
