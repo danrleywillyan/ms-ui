@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {ElucidationService} from '../../../../services/elucidation/elucidation.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { windowToggle } from 'rxjs/operators';
+// import { windowToggle } from 'rxjs/operators';
 import {Subject} from "rxjs/index";
 import {debounceTime} from 'rxjs/operators';
 
@@ -46,6 +46,7 @@ export class FormElucidationComponent implements OnInit {
   public successMessage: string;
   public staticAlertClosed = false;
   private _success = new Subject<string>();
+  public selectedOccurrence: any;
   public csvSelectedTransaction: object;
   public authorizations: Authorization[] = [];
   public authorization: Authorization;
@@ -54,6 +55,7 @@ export class FormElucidationComponent implements OnInit {
   public paragraph = '';
   public elucidationFormGroup: FormGroup;
   public authorizationFormGroup: FormGroup;
+  public currentTransactionID: any;
 
   public static formattedDate(deformedVal) {
     const datePieces = deformedVal.split('/');
@@ -96,9 +98,9 @@ export class FormElucidationComponent implements OnInit {
 
     this.route.paramMap.subscribe( paramMap => {
       if (paramMap.get('id') == 'null') {
-        console.log('teste');
+        this.clearInputs();
       } else {
-        elucidationService.getElucidationBody({_id: paramMap.get('id')}).then((data: any) => {
+        this.elucidationService.getElucidationBody({_id: paramMap.get('id')}).then((data: any) => {
           this.elucidation = data.elucidation;
           this.paragraph = data.body.map(line => line.replace(/\(([0-9]{4})-([0-9]{2})-([0-9]{2})\)/g,'($3/$2/$1)')).filter((line, i, data) => line !== data[i+1]);
           this.occurrences = data.elucidation.authorizations[0].occurrences;
@@ -106,7 +108,23 @@ export class FormElucidationComponent implements OnInit {
           this.authorizationFormGroup.controls['authorizationCode'].setValue(this.elucidation.authorizations[0].id);
         });
       }
-    })
+    });
+
+    this.prepareTransactions();
+    
+  }
+
+  ngOnInit() {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+    this.elucidation.csv_authorizations = window['loadedCSV'];
+  }
+
+  prepareTransactions(){
+
     if (window.localStorage.getItem('loadedCSV')) {
       this.csvTransactions = [];
       let iter: any, ater: any;
@@ -119,15 +137,7 @@ export class FormElucidationComponent implements OnInit {
         canAdd = true;
       }
     }
-  }
-
-  ngOnInit() {
-    setTimeout(() => this.staticAlertClosed = true, 20000);
-    this._success.subscribe((message) => this.successMessage = message);
-    this._success.pipe(
-      debounceTime(5000)
-    ).subscribe(() => this.successMessage = null);
-    this.elucidation.csv_authorizations = window['loadedCSV'];
+    return this.csvTransactions;
   }
 
   remove(authorizationId) {
@@ -188,9 +198,8 @@ export class FormElucidationComponent implements OnInit {
     }
 
     // @ts-ignore
-    $('#occurrences option:selected').prop('selected', false);
+    // $('#occurrences option:selected').prop('selected', false);
     if (!alreadyPersisted) this.authorizations.push(authorization);
-
   }
 
   removeOccurence(id) {
@@ -210,12 +219,15 @@ export class FormElucidationComponent implements OnInit {
     window.localStorage.setItem("registredElucidations", JSON.stringify(registred));
   }
 
-  voltar() {
-    this.router.navigate(['/popular-pharmacy/notification' ]);
-  }
-
-  new() {
-    this.router.navigate(['/popular-pharmacy/notification/form/null' ]);
+  updateRemedyField() {
+    const csvTransactionID = this.currentTransactionID
+    if (!csvTransactionID) return;
+    const csvTransaction = this.csvTransactions[csvTransactionID];
+    console.log(this.checkShowRemedyField());
+    
+    if(this.checkShowRemedyField()) {
+      this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[5]);
+    }
   }
 
   save() {
@@ -249,6 +261,13 @@ export class FormElucidationComponent implements OnInit {
         });
     }
     // this.authorizationFormGroup.controls['authorizationCode'].setValue('');
+    this.currentTransactionID = undefined;
+  }
+
+  checkShowRemedyField() {
+    const aux: boolean = (this.selectedOccurrence != undefined && (this.selectedOccurrence == 15 || this.selectedOccurrence == 9));
+    console.log(aux);
+    return (aux);
   }
 
   clearSelect($event) {
@@ -256,22 +275,27 @@ export class FormElucidationComponent implements OnInit {
   }
 
   clearInputs() {
+    this.elucidation._id = undefined;
     this.authorizations = [];
     this.elucidationFormGroup.controls['nup'].setValue('');
     this.elucidationFormGroup.controls['cnpj'].setValue('');
     this.elucidationFormGroup.controls['date'].setValue('');
     this.authorizationFormGroup.controls['authorizedAt'].setValue('');
     this.authorizationFormGroup.controls['authorizationCode'].setValue('');
-    this.csvTransactions = [];
+    this.paragraph = undefined;
+    this.prepareTransactions();
   }
 
   selectTransaction(csvTransactionID) {
     if (!csvTransactionID) return;
-
+    this.currentTransactionID = csvTransactionID;
     const csvTransaction = this.csvTransactions[csvTransactionID];
     this.elucidationFormGroup.controls['cnpj'].setValue(csvTransaction[1]);
     this.authorizationFormGroup.controls['authorizationCode'].setValue(csvTransaction[0]);
-    this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[5]);
+    // TO-DO: Fazer condicional para escrever o nome do remédio apenas quando estiver nas lista de permissões
+    if(this.checkShowRemedyField()) {
+      this.authorizationFormGroup.controls['remedyName'].setValue(csvTransaction[5]);
+    }
     this.authorizationFormGroup.controls['authorizedAt'].setValue(FormElucidationComponent.formattedDate(csvTransaction[3]));
     if (this.authorization && csvTransaction[0] !== this.authorization.id) this.occurrences = [];
     const authorization = this.authorization = {

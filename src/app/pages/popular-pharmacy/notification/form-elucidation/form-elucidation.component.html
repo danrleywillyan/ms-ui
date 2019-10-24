@@ -27,12 +27,16 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <button class="btn btn-sm btn-warning" (click)="voltar()">Voltar</button>
               <h3 class="mb-0">Cadastrar ou alterar Solicitação de Esclarecimento</h3>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-8 text-right">
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">
+                  <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">Voltar</a>
+              </button>
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
+                <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">Novo</a>
+              </button>
               <button class="btn btn-sm btn-info" (click)="save()" [disabled]="_validateForm()">Salvar</button>
-              <button class="btn btn-sm btn-default" (click)="new()">Novo</button>
             </div>
           </div>
         </div>
@@ -45,7 +49,7 @@
                 {{line}}
               </li>
             </ul>
-            <div class="col-4 text-right">
+            <div class="col-6 text-right">
               <button class="btn btn-sm btn-default" type="button" ngxClipboard [cbContent]="paragraph">Copiar</button>
             </div>
           </div>
@@ -116,13 +120,13 @@
               <div class="row">
                 <div class="col-lg-5">
                   <label for="occurrences">Código da ocorrência</label>
-                  <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
+                  <select [(ngModel)]="selectedOccurrence" (change)="updateRemedyField()" formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
                     <option selected="selected">Selecione os Códigos dos tipos de Ocorrências...</option>
                     <option *ngFor="let occurrenceType of occurrencesTypes" [value]="occurrenceType.id">{{occurrenceType.id}} - {{occurrenceType.name}} </option>
                   </select>
                 </div>
                 <div class="col-lg-5">
-                  <div class="form-group">
+                  <div class="form-group" *ngIf="selectedOccurrence != undefined && (selectedOccurrence == 15 || selectedOccurrence == 9)">
                     <label class="form-control-label" for="remedyName">Nome da Medicação e/ou observação</label>
                     <input type="text" class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
                   </div>
@@ -207,7 +211,9 @@
           <div class="row align-items-end">
             <div class="col-12 text-right" style="float:right;">
               <button class="btn btn-sm btn-info" (click)="save()" [disabled]="_validateForm()">Salvar</button>
-              <button class="btn btn-sm btn-default" (click)="new()">Novo</button>
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
+                <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">Novo</a>
+              </button>
             </div>
           </div>
         </div>
