@@ -425,6 +425,298 @@ export const chartExample1 = {
   }
 }
 
+export const chartCommittedPercentageData = {
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          color: colors.gray[900],
+          zeroLineColor: colors.gray[900]
+        },
+        ticks: {
+          callback: function(value) {
+            if (!(value % 10)) {
+              return '' + value + '%';
+            }
+          }
+        }
+      }]
+    },
+    stacked: true
+  },
+  data: {
+    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
+    datasets: [{
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: '% Empenhado',
+        data: [44.59, 33.48, 0, 68.58, 58.31, 0, 3.95],
+        backgroundColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderWidth: 1
+      }
+    ]
+  }
+}
+
+export const chartCommittedHistoryData = {
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          color: colors.gray[900],
+          zeroLineColor: colors.gray[900]
+        },
+        ticks: {
+          callback: function(value) {
+            if (!(value % 10)) {
+              return '$' + value + 'k';
+            }
+          }
+        }
+      }]
+    },
+    stacked: true
+  },
+  data: {
+    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
+    datasets: [{
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Empenhado 2019',
+        data: [640108729.68, 29701948.00, 0, 1399025416.94, 327917322.01, 0, 215061077.87],
+        backgroundColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Empenhado 2018',
+        data: [550108729.68, 12701948.00, 0, 999025416.94, 256817322.01, 0, 365061077.87],
+        backgroundColor: [
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+        ],
+        borderColor: [
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Empenhado 2017',
+        data: [218108729.68, 33701948.00, 0, 1119025416.94, 126917322.01, 0, 155061077.87],
+        backgroundColor: [
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+        ],
+        borderColor: [
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+        ],
+        borderWidth: 1
+      }
+    ]
+  }
+}
+
+export const chartCommittedEvolutionData = {
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          color: colors.gray[900],
+          zeroLineColor: colors.gray[900]
+        },
+        ticks: {
+          callback: function(value) {
+            if (!(value % 10)) {
+              return '$' + value + 'k';
+            }
+          }
+        }
+      }]
+    },
+    stacked: true
+  },
+  data: {
+    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
+    datasets: [{
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Dotação 2019',
+        data: [1435676100.25, 88728508.00, 0, 2040000000.00, 562353000.00, 330742306.14, 5443281270.99],
+        backgroundColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Dotação 2018',
+        data: [550108729.68, 12701948.00, 0, 999025416.94, 256817322.01, 100100550, 365061077.87],
+        backgroundColor: [
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+        ],
+        borderColor: [
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+          'rgba(88, 82, 139, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: 'Dotação 2017',
+        data: [518108729.68, 22705548.00, 0, 160025416.94, 555557322.01, 0, 1122261077.87],
+        backgroundColor: [
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+        ],
+        borderColor: [
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+          'rgba(253, 165, 40, 1)',
+        ],
+        borderWidth: 1
+      }
+    ]
+  }
+}
+
+export const chartComparativeData = {
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          color: colors.gray[900],
+          zeroLineColor: colors.gray[900]
+        },
+        ticks: {
+          callback: function(value) {
+            if (!(value % 10)) {
+              return '' + value + '%';
+            }
+          }
+        }
+      }]
+    },
+    stacked: true
+  },
+  data: {
+    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
+    datasets: [{
+        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+        label: '% Pago/Emp 2019',
+        data: [100, 100, 0, 100, 0, 100],
+        backgroundColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderColor: [
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+          'rgba(05, 63, 91, 1)',
+        ],
+        borderWidth: 1
+      }
+    ]
+  }
+}
+
 export const chartExample2 = {
   options: {
     scales: {

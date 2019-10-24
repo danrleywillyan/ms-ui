@@ -75,7 +75,45 @@ var json = [
   "batteryavg": "1752881924.67"
 }, 
 
+//test
+// {
+//   "model": "20AE - Promoção da Assistência Farmacêutica e Insumos Estratégicos na Atenção Básica em Saúde",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100.58"
+// }, 
+// {
+//   "model": "20AH - Organização dos Serviços de Assistência Farmacêutica no SUS",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100"
+// }, 
 
+// {
+//   "model": "20K5 - Apoio ao Uso de Plantas Medicinais e Fitoterápicos no SUS",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100"
+// }, 
+// {
+//   "model": "20YR - Manutenção e Funcionamento do Programa Farmácia Popular do Brasil Pelo Sistema de Gratuidade",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100.38"
+// }, 
+// {
+//   "model": "20YS - Manutenção e Funcionamento do Programa Farmácia Popular do Brasil pelo Sistema de Co-pagamento",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100.16"
+// }, 
+// {
+//   "model": "4368 - Promoção da Assistência Farmacêutica por meio da aquisição de medicamentos do Componente Estratégico",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100.97"
+// }, 
+
+// {
+//   "model": "4705 - Apoio Financeiro para Aquisição e Distribuição de Medicamentos do Componente Especializado da Assistência Farmacêutica",
+//   "osversion": "% Empenhado",
+//   "batteryavg": "100.67"
+// }, 
+//test
 
 {
   "model": "20AE - Promoção da Assistência Farmacêutica e Insumos Estratégicos na Atenção Básica em Saúde",

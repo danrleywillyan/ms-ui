@@ -29,53 +29,66 @@
             <div class="col-8">
               <h3 class="mb-0">Cadastrar ou alterar Solicitação de Esclarecimento</h3>
             </div>
-            <div class="col-4 text-right">
-              <button class="btn btn-sm btn-warning" (click)="save()" [disabled]="_validateForm()">Salvar</button>
-              <button class="btn btn-sm btn-outline-warning" style="border:none;padding: 0.3rem 0.5rem;" (click)="saveAndClear()" [disabled]="_validateForm()">Salvar e sair</button>
+            <div class="col-8 text-right">
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">
+                  <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification']">Voltar</a>
+              </button>
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
+                <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">Novo</a>
+              </button>
+              <button class="btn btn-sm btn-info" (click)="save()" [disabled]="_validateForm()">Salvar</button>
             </div>
           </div>
         </div>
         <div class="card-body">
+          <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+          <div class="modal-body" *ngIf="paragraph">
+            <h4>Corpo gerado NUP {{elucidation.nup}} para inserção no SEI</h4>
+            <ul>
+              <li *ngFor="let line of paragraph; index as i;">
+                {{line}}
+              </li>
+            </ul>
+            <div class="col-6 text-right">
+              <button class="btn btn-sm btn-default" type="button" ngxClipboard [cbContent]="paragraph">Copiar</button>
+            </div>
+          </div>
           <form [formGroup]="elucidationFormGroup" (ngSubmit)="save()">
-            <h6 class="heading-small text-muted mb-1">Cadastrar Transação com pendências</h6>
-            <div class="pl-lg-4">
+            <!-- <h6 class="heading-small text-muted mb-1">Cadastrar Transação com pendências</h6> -->
+            <div class="col">
               <div class="row">
-
-                <div class="row mr-4">
-                  <div class="form-group" *ngIf="csvTransactions && csvTransactions.length > 0">
-                      <hr class="my-4" />
+                <div class="col-lg-8">
+                  <div class="form-group" *ngIf="csvTransactions && csvTransactions.length > 0 && !elucidation._id">
+                      <!-- <hr class="my-4" /> -->
                       <div class="row">
                         <div class="col-lg-12">
                           <!-- <h6 class="heading-small text-muted mb-4">Transações encontradas no arquivo CSV enviado</h6> -->
                         </div>
                       </div>
-          
+
                       <div class="form-group">
                         <label class="form-control-label" for="filter">Filtre/Pesquise Transações por número, medicamento e/ou data</label>
-                        <input id="filter" (input)="clearSelect($event)" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
+                        <input id="filter" (input)="clearSelect($event)" type="text" class="form-control form-control-alternative" [(ngModel)]="filterTransactions" [ngModelOptions]="{standalone: true}" placeholder="Filtre/Pesquise Transações por número, medicamento e/ou data">
                       </div>
-          
+
                       <select class="custom-select" name="csvTransaction" id="csvTransaction" #t (change)="selectTransaction(t.value)" required>
                         <option disabled="disabled">Selecione os Códigos das transações a serem adicionadas a este NUP</option>
                         <option *ngFor="let csvTransaction of csvTransactions | transactionsFilter: filterTransactions" value="{{csvTransactions.indexOf(csvTransaction)}}"> {{csvTransaction[0] +' - '+ csvTransaction[1]}} </option>
                       </select>
                     </div>
                   </div>
-                  
-                <div class="col-lg-4">
+                </div>
+                  <div class="row">
+                <div class="col-lg-8">
                   <div class="form-group">
                     <label class="form-control-label" for="nup">Número Único do Processo (NUP)</label>
                     <input type="text" class="form-control form-control-alternative" formControlName="nup" name="nup" id="nup" placeholder="Número Único do Processo desta Solicitação" required value="{{elucidation.nup}}">
                   </div>
-                </div>
-
-                <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="cnpj">CNPJ vinculado</label>
                     <input type="text" class="form-control form-control-alternative" formControlName="cnpj" name="cnpj" id="cnpj" placeholder="CNPJ da empresa notificada" required value="{{elucidation.cnpj}}" disabled='[[activateField]]'>
                   </div>
                 </div>
-
               </div>
             </div>
           </form>
@@ -107,13 +120,13 @@
               <div class="row">
                 <div class="col-lg-5">
                   <label for="occurrences">Código da ocorrência</label>
-                  <select formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
+                  <select [(ngModel)]="selectedOccurrence" (change)="updateRemedyField()" formControlName="occurrences" class="custom-select" name="occurrences" id="occurrences" required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
                     <option selected="selected">Selecione os Códigos dos tipos de Ocorrências...</option>
                     <option *ngFor="let occurrenceType of occurrencesTypes" [value]="occurrenceType.id">{{occurrenceType.id}} - {{occurrenceType.name}} </option>
                   </select>
                 </div>
                 <div class="col-lg-5">
-                  <div class="form-group">
+                  <div class="form-group" *ngIf="selectedOccurrence != undefined && (selectedOccurrence == 15 || selectedOccurrence == 9)">
                     <label class="form-control-label" for="remedyName">Nome da Medicação e/ou observação</label>
                     <input type="text" class="form-control form-control-alternative" formControlName="remedyName" name="remedyName" id="remedyName"required [disabled]="(!authorizationFormGroup.value.authorizationCode)">
                   </div>
@@ -125,10 +138,10 @@
             </div>
           </form>
 
-          <div *ngIf="authorization">
+          <div *ngIf="occurrences">
             <hr class="my-4"/>
             <h6 class="heading-small text-muted mb-4">Ocorrências Cadastradas</h6>
-            
+
             <div class="card shadow">
               <div class="table-responsive">
                 <!-- Projects table -->
@@ -158,12 +171,12 @@
             </div>
           </div>
 
-          <hr class="my-4"/>
-          <h6 class="heading-small text-muted mb-4">Autorizações Cadastradas</h6>
+          <!--<hr class="my-4"/>
+          <h6 class="heading-small text-muted mb-4">Autorizações Cadastradas</h6>-->
 
-          <div class="card shadow">
+          <!--<div class="card shadow">
             <div class="table-responsive">
-              <!-- Projects table -->
+              &lt;!&ndash; Projects table &ndash;&gt;
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                 <tr>
@@ -191,6 +204,16 @@
                 </tr>
                 </tbody>
               </table>
+            </div>
+          </div>-->
+        </div>
+        <div class="card-footer bg-white border-0">
+          <div class="row align-items-end">
+            <div class="col-12 text-right" style="float:right;">
+              <button class="btn btn-sm btn-info" (click)="save()" [disabled]="_validateForm()">Salvar</button>
+              <button class="btn btn-sm btn-info" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
+                <a style="color: white;" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">Novo</a>
+              </button>
             </div>
           </div>
         </div>

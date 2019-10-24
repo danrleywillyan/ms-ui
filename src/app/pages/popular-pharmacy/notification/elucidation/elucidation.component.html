@@ -12,15 +12,17 @@
 
   <div class="container-fluid">
     <div class="header-body">
+      <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
       <!-- Card stats -->
       <div class="row">
         <div class="col-xl-4 col-lg-4">
-          <div class="card card-stats mb-4 mb-xl-0">
+          <div class=" controls card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Importar CSV</h5>
-                  <p class="h5 font-weight-bold mb-0">Faça a importação dos dados.<br><br></p>
+                  <p class="h5 font-weight-bold mb-0">Faça a importação dos dados.<br></p>
+                  <p class="h5 mt-0 mb-0" *ngIf="hasUploaded">Aviso: CSV Carregado. Para atualizar faça um novo upload!</p>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
@@ -28,13 +30,13 @@
                   </div>
                 </div>
               </div>
-              <input type="file" class="form-control form-control-alternative" formControlName="csv" name="file" id="file" (change)="processCSV($event)" accept=".csv">
+              <input style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;" type="file" name="file" id="file" (change)="processCSV($event)" accept=".csv">
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-4">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form']">
+        <div class="col-xl-4 col-lg-4" [class.disabled]="hasUploaded ? false : true">
+            <div class="card controls  card-stats mb-4 mb-xl-0">
+              <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/form/null']">
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Solicitar Esclarescimento</h5>
@@ -48,9 +50,9 @@
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
         <div class="col-xl-4 col-lg-4">
-          <div class="card card-stats mb-4 mb-xl-0">
+          <div class="card controls card-stats mb-4 mb-xl-0">
             <div class="card-body" routerLinkActive="active" [routerLink]="['/popular-pharmacy/notification/occurrences-types']">
               <div class="row">
                 <div class="col">
@@ -114,7 +116,7 @@
 <!--                {{elucidation.date | date: 'dd/MM/yyyy'}}-->
 <!--              </td>-->
               <td>
-                <button type="button" (click)="getParagraph(elucidation)" data-toggle="modal" data-target="#paragraphModal" class="btn btn-outline-success sidebar-icon mr-2"><i class="fas fa-file"></i></button>
+                <!--<button type="button" (click)="getParagraph(elucidation)" data-toggle="modal" data-target="#paragraphModal" class="btn btn-outline-success sidebar-icon mr-2"><i class="fas fa-file"></i></button>-->
                 <button type="button" (click)="editElucidation(elucidation)" class="btn btn-outline-primary sidebar-icon mr-2"><i class="fas fa-pencil-alt"></i></button>
                 <button type="button" class="btn btn-outline-danger sidebar-icon mr-2" (click)="remove(elucidation)"><i class="fas fa-trash"></i></button>
               </td>
