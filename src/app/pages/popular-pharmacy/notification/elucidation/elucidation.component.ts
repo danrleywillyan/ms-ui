@@ -40,7 +40,7 @@ export class ElucidationComponent implements OnInit {
     const authorizations = [];
     if(elucidation.authorizations){
       for (const authorization of elucidation.authorizations) {
-        authorizations.push(authorization.id);
+          authorizations.push(authorization.id);
       }
     }
     return authorizations.join();
@@ -119,7 +119,7 @@ export class ElucidationComponent implements OnInit {
   setupList() {
     this.elucidationService.getElucidations()
     .then((data: Array<any>) => {
-      this.elucidations = data;
+      this.elucidations = data.reverse();
       window.localStorage.setItem("registredElucidations", JSON.stringify(data));
     });
     this.elucidationService.getAuthorizations()
