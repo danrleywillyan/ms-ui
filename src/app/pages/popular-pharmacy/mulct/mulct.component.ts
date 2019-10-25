@@ -116,7 +116,7 @@ export class MulctComponent implements OnInit {
     const files = this.filesToUpload;
     if(!files || !files.item) return;
     formData.append(`file`, files.item(0), files.item(0).name);
-    const promise = this.consultSisGRUService.consultSisGRU(formData);
+    const promise = this.mulctParserService.parseMulct(formData);
     promise.then(() => {
       this.downloadMulct();
       $('#file').val('');
