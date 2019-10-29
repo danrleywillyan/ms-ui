@@ -35,10 +35,6 @@ export const ROUTES: RouteInfo[] = [
   // tslint:disable-next-line:max-line-length
   { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]},
 
-  // @ts-ignore
-  // tslint:disable-next-line:max-line-length
-  { id: 'leafs', path: '/leafs', title: 'Modelos de folha',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'leaf1', title: 'folha 1', icon: 'ni-chart-pie-35 text-teal' }, { path: 'leaf2', title: 'Folha 2', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf3', title: 'Folha 3', icon: 'ni-bullet-list-67 text-teal' }, { path: 'leaf4', title: 'folha 4', icon: 'ni-chart-pie-35 text-teal' }]}
-
 
 ];
 

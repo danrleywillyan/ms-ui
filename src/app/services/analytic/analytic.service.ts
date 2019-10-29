@@ -43,8 +43,8 @@ export class AnalyticService {
       farmpop: {
         tableTitle: "Farmácia Popular",
         viewType: [
-          {type: "pharmacy", btnTitle: "Farmácias"},
-          {type: "transfer", btnTitle: "Repasses Financeiros"}
+          {type: "transfer", btnTitle: "Repasses Financeiros"},
+          {type: "pharmacy", btnTitle: "Farmácias"}
         ]
       }
     };
@@ -52,7 +52,7 @@ export class AnalyticService {
     return json[option];
   }
 
-  getTable(coord, view, location) {
+  getTable(coord, view, aggregator) {
     return new Promise(resolve => {
       this.http.get('http://localhost:4200/', {
         headers: new HttpHeaders({

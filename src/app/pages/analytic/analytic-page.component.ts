@@ -16,15 +16,16 @@ export class AnalyticPage implements OnInit {
   analyticData: Object[];
   tableTitle: String;
   tableOption: String;
-  tableSubOption: String;
+  tableAggregator: String;
+  tableDetail: String;
   tableView: number = 0;
   viewType: any;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
     private analyticService: AnalyticService,
+    private router: Router, 
     // pipe: DecimalPipe,
-    // private router: Router, 
   )
   {
     // router.events.pipe(
@@ -37,7 +38,18 @@ export class AnalyticPage implements OnInit {
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
-      this.tableSubOption = params.get('location');
+      this.tableView = Number(params.get('view'));
+      this.tableAggregator = params.get('aggreg');
+      this.tableDetail = params.get('detail');
+
+      console.log(this.tableOption,
+        this.tableView,
+        this.tableAggregator,
+        this.tableDetail);
+      
+
+      this.headerData = [];
+      this.analyticData = [];
       this.updateData();
     });
   }
@@ -56,9 +68,41 @@ export class AnalyticPage implements OnInit {
     let configJSON = this.analyticService.configJSON(this.tableOption);
     this.tableTitle = configJSON["tableTitle"];
     this.viewType = configJSON["viewType"];
-    this.analyticService.getTable(this.tableOption, this.tableView, this.tableSubOption).then((data: any) => {
-      this.analyticData = data;
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator).then((data: any) => {
       this.headerData = Object.keys(data[0]);
-    }); 
+      this.analyticData = data;
+      // @ts-ignore
+      $(`.pill-${this.tableView}`).click();
+      if(this.tableAggregator){
+        // @ts-ignore
+        $(`.nav-pills`).hide();
+      }
+      else{
+        // @ts-ignore
+        $(`.nav-pills`).show();
+      }
+    });
   }
+
+  createLink(data: any) {
+    const info = Object.values(data)[0];
+    if(!this.tableAggregator){
+      return `${this.tableView}/${info}`;
+    }
+    //Ficha do medicamento (componente básico)
+    else if(this.tableView == 0){
+      return `${info}/leaf3`;
+    }
+    //Pagina com duas colunas
+    else if(this.tableOption == 'basic'){
+      return `${info}/leaf1`;
+    }
+    else if(this.tableOption == 'specialized'){
+      return `${info}/leaf4`;
+    }
+    else if(this.tableOption == 'farmpop'){
+      return `${info}/leaf2`;
+    }
+  }
+
 }
