@@ -44,7 +44,7 @@ registerLocaleData(localePt);
     AppLayoutComponent,
     TemplatesLayoutComponent,
     AuthLayoutComponent,    
-    FormatCurrencyPipe, 
+    FormatCurrencyPipe 
       
    
   ],
