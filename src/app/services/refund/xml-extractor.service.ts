@@ -6,18 +6,22 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultsisgruService extends GatewayService{
+export class XmlExtractorService extends GatewayService {
 
   constructor(protected http: HttpClient, protected loader: LoaderComponent) {
     super(http, loader);
-    this.app = 'consultgru';
+    this.app = 'parsers';
   }
 
-  consultSisGRU(params){
+  xmlExtractor(params) {
     this.method = 'post';
-    this.path = 'requirement';
+    this.path = 'gru';
     this.params = params;
     return this.perform();
+  }
+
+  downloadParsedMulct() {
+    window.open(this.mountURL(), '_blank');
   }
 
 }

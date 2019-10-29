@@ -29,6 +29,9 @@ import localeBr from '@angular/common/locales/br';
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
 
+import { DataTableComponent } from '../../components/data-table/data-table.component';
+
+
 registerLocaleData(localeBr);
 
 @NgModule({
@@ -64,6 +67,7 @@ registerLocaleData(localeBr);
     ReplacePipe,
     ShortNumberPipe,
     MedicationComponent,
+    DataTableComponent
   ]
 })
 

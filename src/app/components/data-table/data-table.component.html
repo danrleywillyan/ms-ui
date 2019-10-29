@@ -1,0 +1,16 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-striped">
+    <thead class="thead-light">
+      <th scope="col" *ngFor="let header of headerTableKeys">
+        {{ headerTable[0][header] }}
+      </th>
+    </thead>
+    <tbody >
+      <tr *ngFor="let data of contentTable">
+        <td *ngFor="let headerContent of headerContentTable">
+          {{ data[headerContent] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -68,6 +68,7 @@ export class ElucidationService extends GatewayService {
     this.method = 'post';
     this.path = 'elucidations';
     this.params = params;
+    console.log("Creating new Elucidation", params);
     return this.perform();
   }
 
@@ -82,6 +83,7 @@ export class ElucidationService extends GatewayService {
 
   // DELETE Elucidations records
   deleteElucidation(params) {
+    console.log("Deleting Elucidation", params);
     this.method = 'delete';
     this.path = `elucidations/${params._id}`;
     return this.perform();
@@ -109,6 +111,7 @@ export class ElucidationService extends GatewayService {
   getElucidationBody(params) {
     this.method = 'get';
     this.path = `elucidations/${params._id}/body`;
+    console.log("Elucidation body: ", params);
     return this.perform();
   }
 }

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+
+import { DATA } from '../../../services/dashboard/fake-data';
+
+// import DataTableComponent from '../../../components/data-table/data-table.component';
+
 import {
   chartOptions,
   parseOptions,
@@ -22,6 +27,14 @@ export class DashboardComponent implements OnInit {
     [0, 20, 10, 30, 15, 40, 20, 60, 60],
     [0, 20, 5, 25, 10, 30, 15, 40, 40]
   ];
+
+  //array with table data
+  currentData = this.getDataFrom('current');
+  percentageData = this.getDataFrom('percentage');
+  historyData = this.getDataFrom('history');
+  evolutionData = this.getDataFrom('evolution');
+  comparativeData = this.getDataFrom('comparative');
+  controlData = this.getDataFrom('control');
 
   constructor() { }
 
@@ -76,6 +89,10 @@ export class DashboardComponent implements OnInit {
       options: chartComparativeData.options,
       data: chartComparativeData.data
     });
+  }
+
+  getDataFrom(dataType: string) {  
+    return DATA[dataType];
   }
 
 }

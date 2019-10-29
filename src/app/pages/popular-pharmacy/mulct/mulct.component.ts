@@ -116,21 +116,20 @@ export class MulctComponent implements OnInit {
     const files = this.filesToUpload;
     if(!files || !files.item) return;
     formData.append(`file`, files.item(0), files.item(0).name);
-    // const promise = this.xmlExtractorService.xmlExtractor(formData);
-    // promise.then(() => {
-    //   this.downloadMulct();
-    //   $('#file').val('');
-    // }).catch((error) => {
-    //   console.log('error mulct parser error: ', error);
-    //   if (counterTest <= 2) return this.upload(counterTest++);
-    //   alert('Não foi possível processar seu arquivo, tente novamente.');
-    // });
-    // alert("teste")
-    this.loader.start();
-    this.http.post('http://localhost:80/refund',formData,{ responseType: "json"}).subscribe(r => {
-      this.loader.stop();
-      window.open('http://localhost:80/refund', '_blank');
+    const promise = this.mulctParserService.parseMulct(formData);
+    promise.then(() => {
+      this.downloadMulct();
+      $('#file').val('');
+    }).catch((error) => {
+      console.log('error mulct parser error: ', error);
+      if (counterTest <= 2) return this.upload(counterTest++);
+      alert('Não foi possível processar seu arquivo, tente novamente.');
     });
+    // this.loader.start();
+    // this.http.post('http://localhost:80/refund',formData,{ responseType: "json"}).subscribe(r => {
+    //   this.loader.stop();
+    //   window.open('http://localhost:80/refund', '_blank');
+    // });
 
   }
 
