@@ -54,17 +54,10 @@ export class AnalyticService {
 
   getTable(coord, view, aggregator) {
     return new Promise(resolve => {
-      this.http.get('http://localhost:4200/', {
-        headers: new HttpHeaders({
-          // 'Authorization': `Bearer ${user.stsTokenManager.accessToken}`,
-          'x-header': 'x-value',
-        }),
-      })
-      .subscribe(data => {
-        // Fix line below after correctly requests data from API.
+      setTimeout(() => {
         this.dataJSON = DATA[coord][view];
         resolve(this.dataJSON);
-      });
+      }, 300);
     });
   }
 }
