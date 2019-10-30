@@ -13,17 +13,19 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
+  { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [
+    { path: '/predictive/epidemiological-research', title: 'Físico', icon: 'ni-app text-orange', disabled: true },
+    { path: '/predictive/remedy-demand', title: 'Orçamentário', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id: 'budget', path: '/budget', title: 'Visão Orçamentária',  icon: 'ni-money-coins text-teal', class: '', subItems: [
-    { path: 'deals', title: 'Gestão de Contratos', icon: 'ni-chart-pie-35 text-teal', disabled: true },
     { path: 'dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' },
-    { path: 'ploa', title: 'Orçamento', icon: 'ni-bullet-list-67 text-teal' },
-    { path: 'basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' },
-    { path: 'specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' },
-    { path: 'strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },
+    { path: 'ploa', title: 'Visão Analítica', icon: 'ni-bullet-list-67 text-teal' },
+    { path: 'deals', title: 'Gestão Administrativa', icon: 'ni-chart-pie-35 text-teal', disabled: true },
+    { path: 'basic', title: 'Básico (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' },
+    { path: 'specialized', title: 'Especializado (CEAF)', icon: 'fa fa-pills fa-4x text-pink' },
+    { path: 'strategic', title: 'Estratégico (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },
     { path: 'farmpop', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }
   
   ]},
@@ -42,11 +44,13 @@ export const ROUTES: RouteInfo[] = [
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id: 'research', path: '/research', title: 'Estudos e Publicações',  icon: 'ni-book-bookmark text-indigo', class: '', subItems: [
+    { path: '/training/processes', title: 'Processos', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/courses', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/events', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/workshops', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/workshops', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    
   ]},
 
   
