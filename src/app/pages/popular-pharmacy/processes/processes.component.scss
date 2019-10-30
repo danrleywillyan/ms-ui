@@ -1,0 +1,14 @@
+@media only screen and (min-width: 991px) {
+    .controls {
+        min-height: 133px;
+    }
+  }
+
+
+  @media only screen and (max-width: 992px) {
+  }
+  .disabled > .card {
+    pointer-events: none;
+    cursor: default;
+    background-color: #cccccc;
+  }

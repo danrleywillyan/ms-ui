@@ -16,6 +16,7 @@ import { MedicineDetailsComponent } from '../../pages/analytic/leaf-pages/medici
 import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-columns-tables/twoColumnsTables.component';
 //leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
+import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
@@ -57,6 +58,7 @@ registerLocaleData(localeBr);
     MedicineDetailsComponent,
     TwoColumnsTablesComponent,
     ElucidationComponent,
+    ProcessesComponent,
     NotificationComponent,
     DashboardComponent,
     RemedyLifecycleComponent,
