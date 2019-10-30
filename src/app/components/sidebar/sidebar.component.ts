@@ -13,29 +13,42 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id:'caf', path: '/caf', title: 'Ciclo da Assistência Farmacêutica',  icon: 'ni-sound-wave text-black', class: ''},
-
-  // @ts-ignore
-  // tslint:disable-next-line:max-line-length
-  { id: 'budget', path: '/budget', title: 'Orçamento',  icon: 'ni-money-coins text-teal', class: '', subItems: [{ path: 'dashboard', title: 'Painel', icon: 'ni-chart-pie-35 text-teal' }, { path: 'ploa', title: 'Visão', icon: 'ni-bullet-list-67 text-teal' }]},
-
-  // @ts-ignore
-  // tslint:disable-next-line:max-line-length
-  { id: 'analytic', path: '/analytic', title: 'Visão Analítica',  icon: 'ni-ruler-pencil text-pink', class: '', subItems: [{ path: 'basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' }, { path: 'specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' }, { path: 'strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' }, { path: 'farmpop', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }]},
-
-  // @ts-ignore
-  // tslint:disable-next-line:max-line-length
   { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [{ path: '/predictive/epidemiological-research', title: 'Levantamento Epidemiológico', icon: 'ni-app text-orange', disabled: true }, { path: '/predictive/remedy-demand', title: 'Previsão de Compras', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Monitoramento', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: 'notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: 'mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
+  { id: 'budget', path: '/budget', title: 'Visão Orçamentária',  icon: 'ni-money-coins text-teal', class: '', subItems: [
+    { path: 'deals', title: 'Gestão de Contratos', icon: 'ni-chart-pie-35 text-teal', disabled: true },
+    { path: 'dashboard', title: 'Painel Orçamentário', icon: 'ni-chart-pie-35 text-teal' },
+    { path: 'ploa', title: 'Orçamento', icon: 'ni-bullet-list-67 text-teal' },
+    { path: 'basic', title: 'Básica (CGAFB)', icon: 'fa fa-stethoscope fa-4x text-pink' },
+    { path: 'specialized', title: 'Especializada (CEAF)', icon: 'fa fa-pills fa-4x text-pink' },
+    { path: 'strategic', title: 'Estratégica (CGAFME)', icon: 'fa fa-prescription-bottle-alt fa-4x text-pink' },
+    { path: 'farmpop', title: 'FarmPop (CPFP)', icon: 'fa fa-clinic-medical fa-4x text-pink' }
+  
+  ]},
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [{ path: '/training/courses', title: 'Cursos', icon: 'ni-books text-indigo', disabled: true }, { path: '/training/events', title: 'Eventos', icon: 'ni-book-bookmark text-indigo', disabled: true }, { path: '/training/workshops', title: 'Workshops', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }]},
+  { id: 'popular-pharmacy', path: '/popular-pharmacy', title: 'Farmácia Popular',  icon: 'ni-shop text-blue', class: '', subItems: [/*{ path: '/popular-pharmacy/dispensacao', title: 'Dispensação', icon: 'ni-box-2 text-blue', disabled: true },*/ { path: '/popular-pharmacy/monitoramento', title: 'Processos', icon: 'ni-sound-wave text-blue', disabled: true }, /*{ path: '/popular-pharmacy/analise-fraude', title: 'Indicadores de Fraude', icon: 'ni-bulb-61 text-blue', disabled: true }, { path: '/popular-pharmacy/auditoria', title: 'Auditoria', icon: 'ni-paper-diploma text-blue', disabled: true }, */ { path: 'notification', title: 'Notificação', icon: 'ni-bell-55 text-blue' }, { path: 'mulct', title: 'Ressarcimento', icon: 'ni-single-copy-04 text-blue' }]},
 
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [
+    { path: '/training/courses', title: 'Educação Permanente em Saúde (Publicação)', icon: 'ni-books text-indigo', disabled: true },
+    { path: '/training/events', title: 'Eventos', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }
+  ]},
 
+  // @ts-ignore
+  // tslint:disable-next-line:max-line-length
+  { id: 'research', path: '/research', title: 'Estudos e Publicações',  icon: 'ni-book-bookmark text-indigo', class: '', subItems: [
+    { path: '/training/courses', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: '/training/events', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: '/training/workshops', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: '/training/workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true }
+  ]},
+
+  
 ];
 
 @Component({
