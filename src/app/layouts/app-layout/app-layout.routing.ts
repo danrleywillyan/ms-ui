@@ -32,17 +32,16 @@ export const AppLayoutRoutes: Routes = [
   //=====================================================================================================
   //Analytic paths (Visão Analítica)
   { path: 'analytic/medication/:coord', component: MedicationComponent},
-  { path: 'analytic/:coord', component: AnalyticPage },
-  // { path: 'analytic/:coord/:location', component: AnalyticPage }, //remover após refatoração de rotas.
   
   //-----------------------------------------------------------------------------------------------------
-  { path: 'analytic/:coord/:view', component: AnalyticPage },
-  { path: 'analytic/:coord/:view/:aggreg', component: AnalyticPage },
-  { path: 'analytic/:coord/:view/:aggreg/:detail', component: AnalyticPage },
-  { path: 'analytic/:coord/:view/:aggreg/:detail/leaf1', component: TablesComponent },
-  { path: 'analytic/:coord/:view/:aggreg/:detail/leaf2', component: OneTableComponent },
-  { path: 'analytic/:coord/:view/:aggreg/:detail/leaf3', component: MedicineDetailsComponent },
-  { path: 'analytic/:coord/:view/:aggreg/:detail/leaf4', component: TwoColumnsTablesComponent },
+  { path: 'budget/:coord', component: AnalyticPage },
+  { path: 'budget/:coord/:view', component: AnalyticPage },
+  { path: 'budget/:coord/:view/:aggreg', component: AnalyticPage },
+  { path: 'budget/:coord/:view/:aggreg/:detail', component: AnalyticPage },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf1', component: TablesComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf2', component: OneTableComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf3', component: MedicineDetailsComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf4', component: TwoColumnsTablesComponent },
   //-----------------------------------------------------------------------------------------------------
   //=====================================================================================================
   // Predictive paths

@@ -45,7 +45,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/training/courses', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/events', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: '/training/workshops', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true }
+    { path: '/training/workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: '/training/workshops', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
   ]},
 
   
