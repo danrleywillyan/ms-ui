@@ -3,10 +3,10 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
-import { TablesComponent } from '../../pages/analytic/leaf-pages/tables/tables.component';
-import { OneTableComponent } from '../../pages/analytic/leaf-pages/oneTable/oneTable.component';
-import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-columns-tables/twoColumnsTables.component';
-import { MedicineDetailsComponent } from '../../pages/analytic/leaf-pages/medicine-details/medicineDetails.component';
+import { TablesComponent } from '../../pages/leaf-pages/tables/tables.component';
+import { OneTableComponent } from '../../pages/leaf-pages/oneTable/oneTable.component';
+import { TwoColumnsTablesComponent } from '../../pages/leaf-pages/two-columns-tables/twoColumnsTables.component';
+import { MedicineDetailsComponent } from '../../pages/leaf-pages/medicine-details/medicineDetails.component';
 
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
@@ -17,7 +17,7 @@ import { FormElucidationComponent } from '../../pages/popular-pharmacy/notificat
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
-
+import { CoursesComponent } from 'src/app/pages/courses/courses.component';
 
 import { from } from 'rxjs';
 
@@ -60,4 +60,7 @@ export const AppLayoutRoutes: Routes = [
   // Research paths
   { path: 'research/processes', component: SProcessesComponent },
 
+  //=====================================================================================================
+  // Trainning
+  { path: 'training/courses', component: CoursesComponent },
 ];

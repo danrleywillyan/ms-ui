@@ -10,10 +10,10 @@ import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.compo
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
 //leaf pages
-import { TablesComponent } from '../../pages/analytic/leaf-pages/tables/tables.component';
-import { OneTableComponent } from '../../pages/analytic/leaf-pages/oneTable/oneTable.component';
-import { MedicineDetailsComponent } from '../../pages/analytic/leaf-pages/medicine-details/medicineDetails.component';
-import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-columns-tables/twoColumnsTables.component';
+import { TablesComponent } from '../../pages/leaf-pages/tables/tables.component';
+import { OneTableComponent } from '../../pages/leaf-pages/oneTable/oneTable.component';
+import { MedicineDetailsComponent } from '../../pages/leaf-pages/medicine-details/medicineDetails.component';
+import { TwoColumnsTablesComponent } from '../../pages/leaf-pages/two-columns-tables/twoColumnsTables.component';
 //leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
@@ -30,8 +30,9 @@ import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/br';
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DataTableComponent } from '../../components/data-table/data-table.component';
+import { CoursesComponent } from '../../pages/courses/courses.component';
 
 
 registerLocaleData(localeBr);
@@ -44,7 +45,8 @@ registerLocaleData(localeBr);
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PdfViewerModule
   ],
   exports: [
     LoaderComponent
@@ -71,7 +73,8 @@ registerLocaleData(localeBr);
     ReplacePipe,
     ShortNumberPipe,
     MedicationComponent,
-    DataTableComponent
+    DataTableComponent,
+    CoursesComponent
   ]
 })
 
