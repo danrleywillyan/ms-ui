@@ -17,6 +17,7 @@ import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-c
 //leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
+import { SProcessesComponent } from '../../pages/research/processes/processes.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
@@ -59,6 +60,7 @@ registerLocaleData(localeBr);
     TwoColumnsTablesComponent,
     ElucidationComponent,
     ProcessesComponent,
+    SProcessesComponent,
     NotificationComponent,
     DashboardComponent,
     RemedyLifecycleComponent,

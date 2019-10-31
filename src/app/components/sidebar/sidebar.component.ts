@@ -44,12 +44,12 @@ export const ROUTES: RouteInfo[] = [
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id: 'research', path: '/research', title: 'Estudos e Publicações',  icon: 'ni-book-bookmark text-indigo', class: '', subItems: [
-    { path: '/training/processes', title: 'Processos', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/courses', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/events', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/workshops', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: '/training/workshops', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'processes', title: 'Processos', icon: 'ni-bullet-list-67 text-indigo' },
+    { path: 'courses', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'events', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'workshops', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'workshops', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'workshops', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     
   ]},
 
