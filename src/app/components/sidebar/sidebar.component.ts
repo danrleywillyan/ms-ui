@@ -38,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
   // tslint:disable-next-line:max-line-length
   { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [
     { path: 'courses', title: 'Educação Permanente em Saúde (Publicação)', icon: 'ni-books text-indigo'},
-    { path: 'events', title: 'Eventos', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }
+    { path: 'events', title: 'Evento', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }
   ]},
 
   // @ts-ignore
