@@ -45,10 +45,10 @@ export const ROUTES: RouteInfo[] = [
   // tslint:disable-next-line:max-line-length
   { id: 'research', path: '/research', title: 'Estudos e Publicações',  icon: 'ni-book-bookmark text-indigo', class: '', subItems: [
     { path: 'processes', title: 'Processos', icon: 'ni-bullet-list-67 text-indigo' },
-    { path: 'reportdata', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: 'reportcnes', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: 'reportia', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: 'reportiaf', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
+    { path: 'reportdata', title: 'Relatório de Dados', icon: 'ni-bullet-list-67 text-indigo'},
+    { path: 'reportcnes', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo'},
+    { path: 'reportia', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo'},
+    { path: 'reportiaf', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo'},
     { href: 'https://gaesi.gitlab.io/msdaf/wiki', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo'}
   ]},
 

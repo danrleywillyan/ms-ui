@@ -33,6 +33,10 @@ import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DataTableComponent } from '../../components/data-table/data-table.component';
 import { CoursesComponent } from '../../pages/courses/courses.component';
+import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.component';
+import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
+import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
+import { ReportDataComponent } from 'src/app/pages/reports/report-data/report-data.component';
 
 
 registerLocaleData(localeBr);
@@ -74,7 +78,11 @@ registerLocaleData(localeBr);
     ShortNumberPipe,
     MedicationComponent,
     DataTableComponent,
-    CoursesComponent
+    CoursesComponent,
+    ReportIAFComponent,
+    ReportIAComponent,
+    ReportCNESComponent,
+    ReportDataComponent
   ]
 })
 

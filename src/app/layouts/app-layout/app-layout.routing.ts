@@ -19,6 +19,11 @@ import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.compone
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 import { CoursesComponent } from 'src/app/pages/courses/courses.component';
 
+import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.component';
+import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
+import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
+import { ReportDataComponent } from 'src/app/pages/reports/report-data/report-data.component';
+
 import { from } from 'rxjs';
 
 export const AppLayoutRoutes: Routes = [
@@ -59,6 +64,10 @@ export const AppLayoutRoutes: Routes = [
   //=====================================================================================================
   // Research paths
   { path: 'research/processes', component: SProcessesComponent },
+  { path: 'research/reportdata', component: ReportDataComponent },
+  { path: 'research/reportcnes', component: ReportCNESComponent },
+  { path: 'research/reportia', component: ReportIAComponent },
+  { path: 'research/reportiaf', component: ReportIAFComponent },
 
   //=====================================================================================================
   // Trainning

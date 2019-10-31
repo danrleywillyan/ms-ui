@@ -48,3 +48,7 @@ select[multiple].custom-select {
 .disabled {
   pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
 }
+
+pdf-viewer {
+  margin-top: -120px;
+}
