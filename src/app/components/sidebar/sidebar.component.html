@@ -106,7 +106,11 @@
           <div class="collapse" [class.show]="isActiveRoute(menuItem)" id="{{menuItem.id}}" [attr.aria-expanded]="isActiveRoute(menuItem)" *ngIf="menuItem.subItems">
             <ul class="flex-column pl-2 nav">
               <li class="nav-item" *ngFor="let subItem of menuItem.subItems">
-                <a class="nav-link " routerLinkActive="active" [routerLink]="[menuItem.path,subItem.path]" [ngClass]="{disabled: subItem.disabled}"> <!-- py-0 class to remove padding -->
+                <a *ngIf="!subItem.href" class="nav-link " routerLinkActive="active" [routerLink]="[menuItem.path,subItem.path]" [ngClass]="{disabled: subItem.disabled}"> <!-- py-0 class to remove padding -->
+                  <i class="ni {{subItem.icon}}"></i>
+                  {{subItem.title}}
+                </a>
+                <a *ngIf="subItem.href" class="nav-link " routerLinkActive="active" href="{{subItem.href}}" target="blank" [ngClass]="{disabled: subItem.disabled}"> <!-- py-0 class to remove padding -->
                   <i class="ni {{subItem.icon}}"></i>
                   {{subItem.title}}
                 </a>

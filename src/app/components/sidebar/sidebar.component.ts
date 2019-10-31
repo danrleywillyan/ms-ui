@@ -49,7 +49,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'reportcnes', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: 'reportia', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
     { path: 'reportiaf', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo', disabled: true },
-    { path: 'wiki', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo', disabled: true }
+    { href: 'https://gaesi.gitlab.io/msdaf/wiki', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo'}
   ]},
 
   
