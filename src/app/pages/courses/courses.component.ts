@@ -10,7 +10,6 @@ export class CoursesComponent implements OnInit {
 
   
   @Input()
-  inputData: any;
   pdf: any;
 
   constructor() { }
