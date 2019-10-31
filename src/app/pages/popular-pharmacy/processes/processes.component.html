@@ -33,7 +33,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col"></th>
               <th scope="col">Processo</th>
               <th scope="col">Situação</th>
               <th scope="col">Link</th>
@@ -42,7 +42,7 @@
             <tbody>
             <tr *ngFor="let proc of processes; index as i;">
               <td>
-                {{i}}
+                <button type="button" (click)="setPdf(proc.pdf)" data-toggle="modal" data-target="#pdfModal" class="btn sidebar-icon mr-2"><i class="fas fa-eye"></i></button>
               </td>
               <td>
                 {{proc.title}}
@@ -60,6 +60,16 @@
         <div class="card-footer py-4">
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height: calc(100vh - 30px); overflow: scroll;">
+        <pdf-viewer [src]="pdf" [render-text]="true" style="display: block;">
+              </pdf-viewer>
     </div>
   </div>
 </div>

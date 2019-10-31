@@ -2,8 +2,10 @@
     .controls {
         min-height: 133px;
     }
+    .modal-dialog {
+      max-width: 900px;
+    }
   }
-
 
   @media only screen and (max-width: 992px) {
   }
