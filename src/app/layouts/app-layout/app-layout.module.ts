@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AppLayoutRoutes } from './app-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialComponent } from '../../pages/predictive/material/material.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
@@ -57,6 +58,7 @@ registerLocaleData(localeBr);
   ],
   declarations: [
     LoaderComponent,
+    MaterialComponent,
     DashboardComponent,
     PloaComponent,
     AnalyticPage,

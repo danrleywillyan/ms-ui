@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { MaterialComponent } from '../../pages/predictive/material/material.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
@@ -30,6 +31,10 @@ export const AppLayoutRoutes: Routes = [
   // Overview paths
   { path: '', component: RemedyLifecycleComponent },
   { path: 'caf', component: RemedyLifecycleComponent },
+
+  //=====================================================================================================
+  // Predictive paths
+  { path: 'predictive/material', component:MaterialComponent },
 
   //=====================================================================================================
   // Budget paths (Orçamento)
