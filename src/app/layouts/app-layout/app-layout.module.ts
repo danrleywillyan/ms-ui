@@ -17,7 +17,6 @@ import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-c
 //leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
-import { SProcessesComponent } from '../../pages/research/processes/processes.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
@@ -33,6 +32,7 @@ import { ShortNumberPipe } from 'src/app/pipes/short-number.pipe';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DataTableComponent } from '../../components/data-table/data-table.component';
 import { CoursesComponent } from '../../pages/courses/courses.component';
+import { SProcessesComponent } from '../../pages/reports/processes/processes.component';
 import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.component';
 import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
 import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';

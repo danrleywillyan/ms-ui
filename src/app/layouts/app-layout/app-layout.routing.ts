@@ -12,13 +12,13 @@ import { NotificationComponent } from '../../pages/popular-pharmacy/notification
 import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
-import { SProcessesComponent } from '../../pages/research/processes/processes.component';
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 import { CoursesComponent } from 'src/app/pages/courses/courses.component';
 
+import { SProcessesComponent } from '../../pages/reports/processes/processes.component';
 import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.component';
 import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
 import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
