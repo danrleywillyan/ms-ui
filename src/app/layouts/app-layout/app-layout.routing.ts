@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MaterialComponent } from '../../pages/predictive/material/material.component';
+import { MaterialDetailComponent } from '../../pages/predictive/material/material-detail/material-detail.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
@@ -35,6 +36,7 @@ export const AppLayoutRoutes: Routes = [
   //=====================================================================================================
   // Predictive paths
   { path: 'predictive/material', component:MaterialComponent },
+  { path: 'predictive/material/:id', component:MaterialDetailComponent },
 
   //=====================================================================================================
   // Budget paths (Orçamento)

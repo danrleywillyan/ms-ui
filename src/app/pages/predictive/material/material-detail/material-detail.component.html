@@ -54,9 +54,7 @@
             <tbody>
             <tr *ngFor="let medicine of medicines; index as i;">
               <td>
-                  <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="medicine.id">
-                      <i class="fas fa-eye"></i>
-                  </a>
+                <button type="button" (click)="openMedicine(medicine.id)" data-toggle="modal" data-target="#pdfModal" class="btn sidebar-icon mr-2"><i class="fas fa-eye"></i></button>
               </td>
               <td>
                 {{medicine.name}}

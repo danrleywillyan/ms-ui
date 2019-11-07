@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
   { id: 'predictive', path: '/predictive', title: 'Preditivos',  icon: 'ni-atom text-orange', class: '', subItems: [
-    { path: 'material', title: 'Físico', icon: 'ni-app text-orange' },
+    { path: 'material', title: 'Preditivo Físico', icon: 'ni-app text-orange' },
     { path: 'budget', title: 'Orçamentário', icon: 'ni-basket text-orange', disabled: true }, /*{ path: '/predictive/shortage', title: 'Previsão de Desabastecimento', icon: 'ni-delivery-fast text-orange', disabled: true }*/]},
 
   // @ts-ignore
