@@ -40,14 +40,7 @@ export class AnalyticPage implements OnInit {
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
       this.tableAggregator = params.get('aggreg');
-      this.tableDetail = params.get('detail');
-
-      console.log(this.tableOption,
-        this.tableView,
-        this.tableAggregator,
-        this.tableDetail);
-      
-
+      this.tableDetail = params.get('detail');      
       this.headerData = [];
       this.analyticData = [];
       this.updateData();
