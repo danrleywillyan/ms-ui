@@ -267,7 +267,7 @@ exports.chartExample1 = {
                     ticks: {
                         callback: function (value) {
                             if (!(value % 10)) {
-                                return '$' + value + 'k';
+                                return 'R$ ' + Math.round(value/1000) + 'k';
                             }
                         }
                     }
