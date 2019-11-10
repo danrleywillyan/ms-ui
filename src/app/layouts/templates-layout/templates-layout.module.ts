@@ -11,7 +11,7 @@ import { DashboardComponent } from '../../pages/templates/dashboard/dashboard.co
 import { IconsComponent } from '../../pages/templates/icons/icons.component';
 import { MapsComponent } from '../../pages/templates/maps/maps.component';
 import { UserProfileComponent } from '../../pages/templates/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/templates/tables/tables.component';
+import { TwoTableComponent } from '../../pages/templates/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -27,7 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     UserProfileComponent,
     DashboardComponent,
-    TablesComponent,
+    TwoTableComponent,
     IconsComponent,
     MapsComponent
   ]

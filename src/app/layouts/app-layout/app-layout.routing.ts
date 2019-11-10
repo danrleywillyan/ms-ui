@@ -4,20 +4,19 @@ import { MaterialDetailComponent } from '../../pages/predictive/material/materia
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
-import { AnalyticPage } from '../../pages/analytic/analytic-page.component';
-import { TablesComponent } from '../../pages/analytic/leaf-pages/tables/tables.component';
-import { OneTableComponent } from '../../pages/analytic/leaf-pages/oneTable/oneTable.component';
-import { TwoColumnsTablesComponent } from '../../pages/analytic/leaf-pages/two-columns-tables/twoColumnsTables.component';
-import { MedicineDetailsComponent } from '../../pages/analytic/leaf-pages/medicine-details/medicineDetails.component';
+import { AnalyticPage } from '../../pages/budget/analytic/analytic-page.component';
+import { TwoTableComponent } from '../../pages/budget/analytic/details/two-tables/two-tables.component';
+import { BigTableComponent } from '../../pages/budget/analytic/details/big-table/big-table.component';
+import { FourTableComponent } from '../../pages/budget/analytic/details/four-tables/four-tables.component';
+import { MedicationDetailsComponent } from '../../pages/budget/analytic/details/medication-details/medication-details.component';
 
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
-import { RemedyLifecycleComponent } from '../../pages/budget/remedy-lifecycle/remedy-lifecycle.component';
+import { MagStartComponent } from '../../pages/budget/mag-start/mag-start.component';
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
-import { MedicationComponent } from 'src/app/pages/analytic/medication/medication.component';
 import { CoursesComponent } from 'src/app/pages/courses/courses.component';
 
 import { SProcessesComponent } from '../../pages/reports/processes/processes.component';
@@ -26,12 +25,10 @@ import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.com
 import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
 import { ReportDataComponent } from 'src/app/pages/reports/report-data/report-data.component';
 
-import { from } from 'rxjs';
-
 export const AppLayoutRoutes: Routes = [
   // Overview paths
-  { path: '', component: RemedyLifecycleComponent },
-  { path: 'caf', component: RemedyLifecycleComponent },
+  { path: '', component: MagStartComponent },
+  { path: 'caf', component: MagStartComponent },
 
   //=====================================================================================================
   // Predictive paths
@@ -45,17 +42,17 @@ export const AppLayoutRoutes: Routes = [
 
   //=====================================================================================================
   //Analytic paths (Visão Analítica)
-  { path: 'analytic/medication/:coord', component: MedicationComponent},
+  { path: 'analytic/medication/:coord', component: MedicationDetailsComponent},
   
   //-----------------------------------------------------------------------------------------------------
   { path: 'budget/:coord', component: AnalyticPage },
   { path: 'budget/:coord/:view', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg/:detail', component: AnalyticPage },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf1', component: TablesComponent },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf2', component: OneTableComponent },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf3', component: MedicineDetailsComponent },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf4', component: TwoColumnsTablesComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf1', component: TwoTableComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf2', component: BigTableComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf3', component: MedicationDetailsComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/leaf4', component: FourTableComponent },
   //-----------------------------------------------------------------------------------------------------
   //=====================================================================================================
   // Predictive paths

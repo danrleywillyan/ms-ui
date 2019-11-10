@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
-import { AnalyticService } from '../../services/analytic/analytic.service';
+import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'generic-table-page',
@@ -61,7 +60,7 @@ export class AnalyticPage implements OnInit {
     let configJSON = this.analyticService.configJSON(this.tableOption);
     this.tableTitle = configJSON["tableTitle"];
     this.viewType = configJSON["viewType"];
-    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator).then((data: any) => {
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator, this.tableDetail).then((data: any) => {
       this.headerData = Object.keys(data[0]);
       this.analyticData = data;
       // @ts-ignore

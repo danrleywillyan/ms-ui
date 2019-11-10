@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { DATA } from './data/fake-data';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,11 +9,7 @@ export class AnalyticService {
   dataJSON: any;
 
   constructor(private http: HttpClient) {
-    this.load();
-  }
 
-  load() {
-    // load external dependent data
   }
 
   configJSON(option: any) {
@@ -51,52 +45,39 @@ export class AnalyticService {
     return json[option];
   }
 
-  getTable(coord, view, aggregator) {
+  getTable(coord, view, aggregator, detail) {
 
+    const year = 2019;
     let urlDataM;
+    let url: any;
 
-    if(!aggregator){
-      urlDataM = {
-        basic:{
-          0: "http://localhost:5000/basic/acquisition/2019", 
-          1: "http://localhost:5000/basic/transfer"
-        },
-        strategic:{
-          0: "http://localhost:5000/strategic/acquisition/2019"
-        },
-        specialized:{
-          0: "http://localhost:5000/specialized/acquisition/2019",
-          1: "http://localhost:5000/specialized/transfer"
-        },
-        farmpop:{
-          0: "http://localhost:5000/farmpop/financial",
-          1: "http://localhost:5000/farmpop/pharmacies"
-        }
+    urlDataM = {
+      basic:{
+        0: `http://localhost:5000/basic/acquisition/${year}`, 
+        1: `http://localhost:5000/basic/transfer`
+      },
+      strategic:{
+        0: `http://localhost:5000/strategic/acquisition/${year}`
+      },
+      specialized:{
+        0: `http://localhost:5000/specialized/acquisition/${year}`,
+        1: `http://localhost:5000/specialized/transfer`
+      },
+      farmpop:{
+        0: `http://localhost:5000/farmpop/financial/${year}`,
+        1: `http://localhost:5000/farmpop/pharmacies`
       }
     }
-    else{
-      urlDataM = {
-        basic:{
-          0: `http://localhost:5000/basic/acquisition/2019/${aggregator}`, 
-          1: `http://localhost:5000/basic/transfer/${aggregator}`
-        },
-        strategic:{
-          0: `http://localhost:5000/strategic/acquisition/2019/${aggregator}`
-        },
-        specialized:{
-          0: `http://localhost:5000/specialized/acquisition/2019/${aggregator}`,
-          1: `http://localhost:5000/specialized/transfer/${aggregator}`
-        },
-        farmpop:{
-          0: `http://localhost:5000/farmpop/financial/${aggregator}`,
-          1: `http://localhost:5000/farmpop/pharmacies/${aggregator}`
-        }
-      }
-    }
+
+    url = urlDataM[coord][view];
+    if(aggregator) url += `/${aggregator}`;
+    if(detail) url += `/${detail}`;
 
     return new Promise(resolve => {
-      this.http.get(urlDataM[coord][view]).subscribe(response => {
+      this.http.get(url).subscribe(response => {
+        // console.log(response);
         this.dataJSON = response;
+        console.log(this.dataJSON);
         resolve(this.dataJSON);
       });
     });
