@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
-import { AnalyticService } from '../../services/analytic/analytic.service';
+import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'generic-table-page',
@@ -40,14 +39,7 @@ export class AnalyticPage implements OnInit {
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
       this.tableAggregator = params.get('aggreg');
-      this.tableDetail = params.get('detail');
-
-      console.log(this.tableOption,
-        this.tableView,
-        this.tableAggregator,
-        this.tableDetail);
-      
-
+      this.tableDetail = params.get('detail');      
       this.headerData = [];
       this.analyticData = [];
       this.updateData();
@@ -68,9 +60,12 @@ export class AnalyticPage implements OnInit {
     let configJSON = this.analyticService.configJSON(this.tableOption);
     this.tableTitle = configJSON["tableTitle"];
     this.viewType = configJSON["viewType"];
-    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator).then((data: any) => {
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator, this.tableDetail).then((data: any) => {
       this.headerData = Object.keys(data[0]);
       this.analyticData = data;
+      if(!data) {
+        this.headerData = ["Sem dados para exibir"]
+      }
       // @ts-ignore
       $(`.pill-${this.tableView}`).click();
       if(this.tableAggregator){
@@ -85,7 +80,13 @@ export class AnalyticPage implements OnInit {
   }
 
   createLink(data: any) {
-    const info = Object.values(data)[0];
+
+    if(!Object.values(data)[0]) return``
+
+    let info: string;
+    info = Object.values(data)[0].toString();
+    info = info.replace("/", "$$$");
+
     if(!this.tableAggregator){
       return `${this.tableView}/${info}`;
     }
@@ -95,10 +96,10 @@ export class AnalyticPage implements OnInit {
     }
     //Pagina com duas colunas
     else if(this.tableOption == 'basic'){
-      return `${info}/leaf1`;
+      return `${info}/leaf4`;
     }
     else if(this.tableOption == 'specialized'){
-      return `${info}/leaf4`;
+      return `${info}/leaf1`;
     }
     else if(this.tableOption == 'farmpop'){
       return `${info}/leaf2`;

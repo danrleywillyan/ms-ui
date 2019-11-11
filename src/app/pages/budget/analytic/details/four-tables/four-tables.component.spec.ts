@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OneTableComponent } from './oneTable.component';
+import { FourTableComponent } from './four-tables.component';
 
-describe('OneTableComponent', () => {
-  let component: OneTableComponent;
-  let fixture: ComponentFixture<OneTableComponent>;
+describe('FourTableComponent', () => {
+  let component: FourTableComponent;
+  let fixture: ComponentFixture<FourTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OneTableComponent ]
+      declarations: [ FourTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OneTableComponent);
+    fixture = TestBed.createComponent(FourTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,91 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Preditivo</li>
+        <li class="breadcrumb-item active" aria-current="page">Físico</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-lg-12">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Predição por Medicamentos</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-sm btn-primary">
+                <i class="fas fa-search mr-1"></i>
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" class="col-6">Nome</th>
+              <th scope="col" class="col-1">Arima</th>
+              <th scope="col" class="col-1">RNA</th>
+              <th scope="col" class="col-1">LSTM</th>
+              <th scope="col" class="col-1">Indicação</th>
+              <th scope="col" class="col-1">Preço Médio</th>
+              <th scope="col" class="col-1">Valor total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let medicine of medicines; index as i;">
+              <td>
+                  <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="medicine.id">
+                      <i class="fas fa-eye"></i>
+                  </a>
+              </td>
+              <td>
+                {{medicine.name}}
+              </td>
+              <td>
+                {{medicine.predictions.arima}}
+              </td>
+              <td>
+                {{medicine.predictions.RNA}}
+              </td>
+              <td>
+                {{medicine.predictions.LSTM}}
+              </td>
+              <td>
+                {{medicine.selection}}
+              </td>
+              <td>
+                {{medicine.price}}
+              </td>
+              <td>
+                {{computeValue(medicine)}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

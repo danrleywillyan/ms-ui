@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TwoTableComponent } from './tables.component';
+import { MagStartComponent } from './mag-start.component';
 
-describe('TwoTableComponent', () => {
-  let component: TwoTableComponent;
-  let fixture: ComponentFixture<TwoTableComponent>;
+describe('MagStartComponent', () => {
+  let component: MagStartComponent;
+  let fixture: ComponentFixture<MagStartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TwoTableComponent ]
+      declarations: [ MagStartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TwoTableComponent);
+    fixture = TestBed.createComponent(MagStartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,89 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Preditivo</li>
+        <li class="breadcrumb-item active" aria-current="page">Físico</li>
+        <li class="breadcrumb-item active" aria-current="page">{{medicine.name}}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-lg-12">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+                <h3 class="mb-0">Predição de {{medicine.name}} por Estados (preço médio R$ {{medicine.price}})</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-sm btn-primary">
+                <i class="fas fa-search mr-1"></i>
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="chart mb-5">
+          <canvas id="chart-values" class="chart-canvas"></canvas>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col"><input type="checkbox" (click)="selectAll($event)"></th>
+              <th scope="col" class="col-6">Nome</th>
+              <th scope="col" class="col-1">Arima</th>
+              <th scope="col" class="col-1">RNA</th>
+              <th scope="col" class="col-1">LSTM</th>
+              <th scope="col" class="col-1">Indicação</th>
+              <th scope="col" class="col-1">Valor total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let state of totalStates; index as i;">
+              <td>
+                  <input type="checkbox" data-name="{{state.name}}" (click)="selectStates()">
+              </td>
+              <td>
+                {{state.name}}
+              </td>
+              <td>
+                {{state.predictions.arima}}
+              </td>
+              <td>
+                {{state.predictions.RNA}}
+              </td>
+              <td>
+                {{state.predictions.LSTM}}
+              </td>
+              <td>
+                {{state.selection}}
+              </td>
+              <td>
+                {{computeValue(state)}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

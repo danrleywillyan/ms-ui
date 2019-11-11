@@ -1,0 +1,86 @@
+<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+  <div class="container-fluid breadcrumbs">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Analítica</li>
+        <li class="breadcrumb-item active" aria-current="page">FarmPop</li>
+        <li class="breadcrumb-item active" aria-current="page">Farmácias</li>
+        <li class="breadcrumb-item active" aria-current="page">Estado</li>
+        <li class="breadcrumb-item active" aria-current="page">Tabelas únicas</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+                <input
+                  class="form-control" placeholder="Pesquisar"
+                  type="text" (focus)="focus = true" name="searchTerm"
+                  (blur)="focus = false"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <!-- start of first column -->
+    <div class="col-lg-12">
+      <div class="card shadow">
+        <div class="table-responsive">
+          <div *ngFor="let pill of viewType; let i = index" id="{{pill.type}}" class="tab-pane fade">
+            <h3 style="margin:20px;">{{pill.btnTitle}}</h3>
+            <!-- Tables -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col" *ngFor="let header of headerData">
+                                {{ header }}  
+                            </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of analyticData">
+                            <th class="text-right" scope="row">
+                                <div ngbDropdown placement="bottom-right">
+                                    <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="createLink(data)">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                            </th>
+                            <td *ngFor="let header of headerData">
+                                {{ data[header] }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>              
+        </div>
+            <div class="ml-3 table-footer">
+            <p><i>Total de registros: 5</i><br>
+            <i>Fonte: Webservice em 13/10/19</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
