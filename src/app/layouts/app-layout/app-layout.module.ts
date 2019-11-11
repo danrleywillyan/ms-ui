@@ -24,6 +24,7 @@ import { MagStartComponent } from '../../pages/budget/mag-start/mag-start.compon
 import { OccurrenceTypesComponent } from '../../pages/popular-pharmacy/notification/occurrence-types/occurrence-types.component';
 import { FormElucidationComponent } from '../../pages/popular-pharmacy/notification/form-elucidation/form-elucidation.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
+import { LoginComponent } from '../../components/login/login.component';
 import { MulctComponent } from '../../pages/popular-pharmacy/mulct/mulct.component';
 import { TransactionsFilterPipe } from '../../pipes/filters/transactions-filter.pipe';
 import { ReplacePipe } from '../../pipes/filters/replace.pipe';
@@ -54,10 +55,12 @@ registerLocaleData(localeBr);
     PdfViewerModule
   ],
   exports: [
+    LoginComponent,
     LoaderComponent
   ],
   declarations: [
     LoaderComponent,
+    LoginComponent,
     MaterialComponent,
     MaterialDetailComponent,
     DashboardComponent,
