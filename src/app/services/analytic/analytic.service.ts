@@ -70,16 +70,21 @@ export class AnalyticService {
     }
 
     url = urlDataM[coord][view];
-    if(aggregator) url += `/${aggregator}`;
-    if(detail) url += `/${detail}`;
+    if(aggregator) url += `/${aggregator.replace('/','$$')}`;
+    if(detail) url += `/${detail.replace('/','$$')}`;
 
     return new Promise(resolve => {
       this.http.get(url).subscribe(response => {
-        // console.log(response);
-        this.dataJSON = response;
-        console.log(this.dataJSON);
+        //check if is a 2x2 matrix
+        //todo: make the pos be passed by url (pills)
+        if(Array.isArray(response[0])) this.dataJSON = this.resolveMatrix(response, 0);
+        else this.dataJSON = response;
         resolve(this.dataJSON);
       });
     });
+  }
+
+  resolveMatrix(data, pos){
+    return data[pos];
   }
 }
