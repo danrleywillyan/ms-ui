@@ -49,11 +49,9 @@ export const AppLayoutRoutes: Routes = [
   { path: 'budget/:coord/:view', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg/:detail', component: AnalyticPage },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf4', component: AnalyticPage },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf1', component: TwoTableComponent },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf2', component: BigTableComponent },
-  { path: 'budget/:coord/:view/:aggreg/:detail/leaf3', component: MedicationDetailsComponent },
-  // { path: 'budget/:coord/:view/:aggreg/:detail/leaf4', component: FourTableComponent },
+  // the most generic page must be first.
+  { path: 'budget/:coord/:view/:aggreg/:detail/medication', component: MedicationDetailsComponent },
+  { path: 'budget/:coord/:view/:aggreg/:detail/:subview', component: AnalyticPage },
   //-----------------------------------------------------------------------------------------------------
   //=====================================================================================================
   // Predictive paths

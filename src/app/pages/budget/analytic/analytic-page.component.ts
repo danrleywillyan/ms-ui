@@ -18,6 +18,7 @@ export class AnalyticPage implements OnInit {
   tableAggregator: String;
   tableDetail: String;
   tableView: number = 0;
+  tableSubView: number = 0;
   viewType: any;
 
   constructor(
@@ -39,7 +40,7 @@ export class AnalyticPage implements OnInit {
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
       this.tableAggregator = params.get('aggreg');
-      this.tableDetail = params.get('detail');      
+      this.tableDetail = params.get('detail');
       this.headerData = [];
       this.analyticData = [];
       this.updateData();
@@ -47,36 +48,56 @@ export class AnalyticPage implements OnInit {
   }
   
   updateView(option: String) {
-    for(let i = 0; i < this.viewType.length; i++){
-      if(this.viewType[i].type.includes(option)){
-        this.tableView = i;
-        this.updateData();
-        return;
+    if(this.tableDetail){
+      for(let i = 0; i < this.viewType.length; i++){
+        if(this.viewType[i].type.includes(option)){
+          this.tableSubView = i;
+          this.updateData();
+          return;
+        }
+      }  
+    }
+    else{
+      for(let i = 0; i < this.viewType.length; i++){
+        if(this.viewType[i].type.includes(option)){
+          this.tableView = i;
+          this.updateData();
+          return;
+        }
       }
     }
   }
   
   updateData() {
-    let configJSON = this.analyticService.configJSON(this.tableOption);
+    let configJSON = this.analyticService.configJSON({
+      coord: this.tableOption,
+      view: this.tableView,
+      detail: this.tableDetail
+    });
+    console.log("configJSON: ", configJSON);
     this.tableTitle = configJSON["tableTitle"];
     this.viewType = configJSON["viewType"];
-    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator, this.tableDetail).then((data: any) => {
-      this.headerData = Object.keys(data[0]);
-      this.analyticData = data;
-      if(!data) {
-        this.headerData = ["Sem dados para exibir"]
-      }
-      // @ts-ignore
-      $(`.pill-${this.tableView}`).click();
-      if(this.tableAggregator){
-        // @ts-ignore
-        $(`.nav-pills`).hide();
-      }
-      else{
-        // @ts-ignore
-        $(`.nav-pills`).show();
-      }
-    });
+    this.analyticService.getTable(this.tableOption,this.tableView,this.tableAggregator, this.tableDetail,this.tableSubView)
+      .then((data: any) => {
+        this.headerData = Object.keys(data[0]);
+        this.analyticData = data;
+        if(!data) this.headerData = ["Sem dados para exibir"]
+        if(this.tableDetail){
+          // @ts-ignore
+          $(`.pill-${this.tableSubView}`).click();
+        }else{
+          // @ts-ignore
+          $(`.pill-${this.tableView}`).click();
+        }
+        if(this.tableAggregator && !this.tableDetail){
+          // @ts-ignore
+          $(`.nav-pills`).hide();
+        }
+        else{
+          // @ts-ignore
+          $(`.nav-pills`).show();
+        }
+      });
   }
 
   createLink(data: any) {
@@ -92,17 +113,11 @@ export class AnalyticPage implements OnInit {
     }
     //Ficha do medicamento (componente básico)
     else if(this.tableView == 0){
-      return `${info}/leaf3`;
+      return `${info}/medication`;
     }
     //Pagina com duas colunas
-    else if(this.tableOption == 'basic'){
-      return `${info}/leaf4`;
-    }
-    else if(this.tableOption == 'specialized'){
-      return `${info}/leaf1`;
-    }
-    else if(this.tableOption == 'farmpop'){
-      return `${info}/leaf2`;
+    else {
+      return `${info}`;
     }
   }
 
