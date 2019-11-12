@@ -45,7 +45,7 @@
               <th scope="col" class="col-6">Nome</th>
               <th scope="col" class="col-1">Arima</th>
               <th scope="col" class="col-1">RNA</th>
-              <th scope="col" class="col-1">LSTM</th>
+              <th scope="col" class="col-1">Manual</th>
               <th scope="col" class="col-1">Indicação</th>
               <th scope="col" class="col-1">Preço Médio</th>
               <th scope="col" class="col-1">Valor total</th>
@@ -54,27 +54,27 @@
             <tbody>
             <tr *ngFor="let medicine of medicines; index as i;">
               <td>
-                  <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="medicine.id">
+                  <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="medicine.nome">
                       <i class="fas fa-eye"></i>
                   </a>
               </td>
-              <td>
-                {{medicine.name}}
+              <td style="width: 400px; text-overflow: ellipsis; display: inline-block; overflow: hidden;">
+                {{medicine.nome}}
               </td>
               <td>
-                {{medicine.predictions.arima}}
+                {{medicine.arima}}
               </td>
               <td>
-                {{medicine.predictions.RNA}}
+                {{medicine.rna}}
               </td>
               <td>
-                {{medicine.predictions.LSTM}}
+                  --
+              </td>
+              <td style="text-transform: uppercase">
+                {{medicine.indicacao}}
               </td>
               <td>
-                {{medicine.selection}}
-              </td>
-              <td>
-                {{medicine.price}}
+                {{medicine.precomedio}}
               </td>
               <td>
                 {{computeValue(medicine)}}
