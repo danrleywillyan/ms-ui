@@ -40,9 +40,10 @@ export class MedicationDetailsComponent implements OnInit {
   }
 
   updateData() {
-    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator, this.tableDetail).then((data: any) => {
+    this.analyticService.getTable(this.tableOption, this.tableView, this.tableAggregator, this.tableDetail, "").then((data: any) => {
       this.headerData = Object.keys(data[0]);
       this.analyticData = data;
+      console.log(Object.keys(data[0]), data);
     });
   }
 

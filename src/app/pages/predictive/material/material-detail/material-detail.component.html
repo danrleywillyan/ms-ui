@@ -27,7 +27,7 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-                <h3 class="mb-0">Predição de {{medicine.name}} por Estados (preço médio R$ {{medicine.price}})</h3>
+                <h3 class="mb-0">Predição de {{medicine.nome}} por Estados (preço médio R$ {{medicine.precomedio}})</h3>
             </div>
             <div class="col text-right">
               <button class="btn btn-sm btn-primary">
@@ -49,7 +49,7 @@
               <th scope="col" class="col-6">Nome</th>
               <th scope="col" class="col-1">Arima</th>
               <th scope="col" class="col-1">RNA</th>
-              <th scope="col" class="col-1">LSTM</th>
+              <th scope="col" class="col-1">Manual</th>
               <th scope="col" class="col-1">Indicação</th>
               <th scope="col" class="col-1">Valor total</th>
             </tr>
@@ -69,7 +69,7 @@
                 {{state.predictions.RNA}}
               </td>
               <td>
-                {{state.predictions.LSTM}}
+                {{state.predictions.Manual}}
               </td>
               <td>
                 {{state.selection}}
