@@ -4,8 +4,8 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-home"></i> Analítica</li>
-        <li class="breadcrumb-item active" aria-current="page">1º nó</li>
-        <li class="breadcrumb-item active" aria-current="page">Ficha detalhada dos medicamentos com diferentes tabs</li>
+        <li class="breadcrumb-item active" aria-current="page">Aquisição</li>
+        <li class="breadcrumb-item active" aria-current="page">Ficha de medicamento</li>
       </ol>
     </nav>
   </div>
@@ -79,113 +79,29 @@
     <ngb-tab>
       <ng-template ngbTabTitle>Orçamentário</ng-template>
       <ng-template ngbTabContent>
-          <div class="table-responsive mt-4">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Ação Orçamentária</th>
-                  <th scope="col">Dotação (R$)</th>
-                  <th scope="col">Empenhado (R$)</th>
-                  <th scope="col">Liquidado (R$)</th>
-                  <th scope="col">Pago (R$)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">
-                    Multa Aplicada
-                  </th>
-                  <td>
-                    GRU 3455623453/2019
-                  </td>
-                  <td>
-                    08/06/2019
-                  </td>
-                  <td>
-                    -2.567,00
-                  </td>
-                  <td>
-                    -2.567,00
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    Repasse mês 08/2019
-                  </th>
-                  <td>
-                    2019OB466405
-                  </td>
-                  <td>
-                    12/09/2019
-                  </td>
-                  <td>
-                    7.655,00
-                  </td>
-                  <td>
-                    7.655,00
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    Repasse mês 07/2019
-                  </th>
-                  <td>
-                    2019OB453401
-                  </td>
-                  <td>
-                    05/08/2019
-                  </td>
-                  <td>
-                    9.367,00
-                  </td>
-                  <td>
-                    7.655,00
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    Repasse mês 06/2019
-                  </th>
-                  <td>
-                    2019OB455602
-                  </td>
-                  <td>
-                    08/07/2019
-                  </td>
-                  <td>
-                    4.567,00
-                  </td>
-                  <td>
-                    7.655,00
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    Repasse mês 05/2019
-                  </th>
-                  <td>
-                    2019OB456702
-                  </td>
-                  <td>
-                    10/06/2019
-                  </td>
-                  <td>
-                    44.567,00
-                  </td>
-                  <td>
-                    7.655,00
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="ml-3 table-footer">
-              <p><i>Total de registros: 5</i><br>
-              <i>Fonte: Webservice em 13/10/19</i></p>
-            </div>
-          </div>
+        <!-- Tables -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-striped">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col" *ngFor="let header of headerData">
+                  {{ header }}  
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of analyticData">
+                <td></td>
+                <td *ngFor="let header of headerData">
+                  {{ data[header] }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>              
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="Componente Básico">
+    <!-- <ngb-tab title="Componente Básico">
       <ng-template ngbTabContent>
         <div class="row mt-4">
           <div class="col-lg-6">
@@ -278,12 +194,12 @@
             </div>
           </div>
       </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Disabled" [disabled]="true">
+    </ngb-tab> -->
+    <!-- <ngb-tab title="Disabled" [disabled]="true">
       <ng-template ngbTabContent>
         <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
       </ng-template>
-    </ngb-tab>
+    </ngb-tab> -->
   </ngb-tabset>
     <!--  -->
 </div>

@@ -124,7 +124,7 @@ export class AnalyticService {
   resolveMatrix(data, pos){
     let aux = data[pos];
     console.log("unpacking matrix", data, aux);
-    if(Array.isArray(aux[Number(pos)])) this.resolveMatrix(aux, pos);
+    if(Array.isArray(aux[Number(pos)])) return this.resolveMatrix(aux, pos);
     return aux
   }
 }
