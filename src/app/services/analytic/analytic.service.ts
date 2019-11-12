@@ -84,19 +84,19 @@ export class AnalyticService {
 
     urlDataM = {
       basic:{
-        0: `http://localhost:5000/basic/acquisition/${year}`, 
-        1: `http://localhost:5000/basic/transfer`
+        0: `http://34.95.145.8:8080/budget/basic/acquisition/${year}`, 
+        1: `http://34.95.145.8:8080/budget/basic/transfer`
       },
       strategic:{
-        0: `http://localhost:5000/strategic/acquisition/${year}`
+        0: `http://34.95.145.8:8080/budget/strategic/acquisition/${year}`
       },
       specialized:{
-        0: `http://localhost:5000/specialized/acquisition/${year}`,
-        1: `http://localhost:5000/specialized/transfer`
+        0: `http://34.95.145.8:8080/budget/specialized/acquisition/${year}`,
+        1: `http://34.95.145.8:8080/budget/specialized/transfer`
       },
       farmpop:{
-        0: `http://localhost:5000/farmpop/financial/${year}`,
-        1: `http://localhost:5000/farmpop/pharmacies`
+        0: `http://34.95.145.8:8080/budget/farmpop/financial/${year}`,
+        1: `http://34.95.145.8:8080/budget/farmpop/pharmacies`
       }
     }
 
