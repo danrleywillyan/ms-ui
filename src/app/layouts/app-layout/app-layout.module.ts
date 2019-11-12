@@ -9,7 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialComponent } from '../../pages/predictive/material/material.component';
 import { MaterialDetailComponent } from '../../pages/predictive/material/material-detail/material-detail.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
-import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 import { AnalyticPage } from '../../pages/budget/analytic/analytic-page.component';
 //leaf pages
 import { TwoTableComponent } from '../../pages/budget/analytic/details/two-tables/two-tables.component';
@@ -39,6 +38,10 @@ import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.
 import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
 import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
 import { ReportDataComponent } from 'src/app/pages/reports/report-data/report-data.component';
+import { from } from 'rxjs';
+import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
+
+
 
 
 registerLocaleData(localeBr);
@@ -53,6 +56,7 @@ registerLocaleData(localeBr);
     ClipboardModule,
     ReactiveFormsModule,
     PdfViewerModule
+    
   ],
   exports: [
     LoginComponent,
@@ -65,6 +69,7 @@ registerLocaleData(localeBr);
     MaterialDetailComponent,
     DashboardComponent,
     PloaComponent,
+        
     AnalyticPage,
     TwoTableComponent,
     BigTableComponent,

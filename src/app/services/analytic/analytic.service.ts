@@ -127,4 +127,22 @@ export class AnalyticService {
     if(Array.isArray(aux[Number(pos)])) return this.resolveMatrix(aux, pos);
     return aux
   }
+
+  getBudgetary() {
+    let year = "2019";
+    let url = `http://localhost:5000/budgetary/${year}`;
+
+    return new Promise(resolve => {
+      this.http.get(url).subscribe(response => {
+        console.log("trdglhuigyft");
+        
+        //check if is a 2x2 matrix
+        //todo: make the pos be passed by url (pills)
+        if(Array.isArray(response[0])) this.dataJSON = this.resolveMatrix(response, 0);
+        else this.dataJSON = response;
+        resolve(this.dataJSON);
+      });
+    });
+
+  }
 }

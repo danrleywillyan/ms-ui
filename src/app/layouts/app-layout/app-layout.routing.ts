@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { MaterialComponent } from '../../pages/predictive/material/material.component';
 import { MaterialDetailComponent } from '../../pages/predictive/material/material-detail/material-detail.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
-import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
 
 import { AnalyticPage } from '../../pages/budget/analytic/analytic-page.component';
 import { TwoTableComponent } from '../../pages/budget/analytic/details/two-tables/two-tables.component';
@@ -24,6 +23,8 @@ import { ReportIAFComponent } from 'src/app/pages/reports/report-iaf/report-iaf.
 import { ReportIAComponent } from 'src/app/pages/reports/report-ia/report-ia.component';
 import { ReportCNESComponent } from 'src/app/pages/reports/report-cnes/report-cnes.component';
 import { ReportDataComponent } from 'src/app/pages/reports/report-data/report-data.component';
+import { PloaComponent } from '../../pages/budget/ploa/ploa.component';
+
 
 export const AppLayoutRoutes: Routes = [
   // Overview paths
@@ -39,6 +40,7 @@ export const AppLayoutRoutes: Routes = [
   // Budget paths (Orçamento)
   { path: 'budget/dashboard', component: DashboardComponent },
   { path: 'budget/ploa', component: PloaComponent },
+  
 
   //=====================================================================================================
   //Analytic paths (Visão Analítica)

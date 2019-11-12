@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenericPage } from './generic-table-page.component';
+import { AnalyticPage } from './analytic-page.component';
 
-describe('GenericPage', () => {
-  let component: GenericPage;
-  let fixture: ComponentFixture<GenericPage>;
+describe('AnalyticPage', () => {
+  let component: AnalyticPage;
+  let fixture: ComponentFixture<AnalyticPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GenericPage ]
+      declarations: [ AnalyticPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenericPage);
+    fixture = TestBed.createComponent(AnalyticPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

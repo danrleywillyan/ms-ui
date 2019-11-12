@@ -4,7 +4,7 @@ import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'generic-table-page',
+  selector: 'ngbd-table-complete',
   templateUrl: './analytic-page.component.html',
   styleUrls: ['./analytic-page.component.scss'],
   providers:[DecimalPipe]
@@ -35,7 +35,7 @@ export class AnalyticPage implements OnInit {
     // });
   }
 
-  ngOnInit() {
+  ngOnInit(){
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
@@ -44,7 +44,7 @@ export class AnalyticPage implements OnInit {
       this.headerData = [];
       this.analyticData = [];
       this.updateData();
-    });
+    }); 
   }
   
   updateView(option: String) {

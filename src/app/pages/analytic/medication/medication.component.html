@@ -33,349 +33,333 @@
     </div>
   </div>
 </div>
-
-
 <!-- Page content -->
-<div class="container-fluid mt--7">
-  <!-- Table -->
-  <div class="row">
-    <!-- start of first column -->
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="mb-0">Ficha do Medicamento</h3>
-          <div class="card-text" style="float: left">
-            <table>
+<div class="row">
+  <div class="container-fluid mt--7 mb-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card shadow">
+         <!-- <div class="header border-0">
+            <h3 class="mb-0">Ficha de Medicamento</h3>
+          </div>-->
+          <table class="table table-striped">              
               <tbody>
                 <tr>
-                  <td> <b>Unidade:</b> </td>
-                  <td> Unidade </td>
-                </tr>
-                <tr>
-                  <td> <b>Fornecedor:</b> </td>
-                  <td> - </td>
-                </tr>
-                <tr>
-                  <td> <b>Estoque atual:</b> </td>
-                  <td> 1.234 </td>
-                </tr>
+                  <th scope="row"><h3>Ficha de Medicamento</h3></th>                  
+                  <td></td>
+                </tr>                
               </tbody>
             </table>
-          </div>
-          <div style="float: left; padding-left: 30px;">
-            <table>
-              <tbody>
-                <tr>
-                  <td> <b>CATMAT:</b> </td>
-                  <td> - </td>
-                </tr>
-                <tr>
-                  <td> <b>Utilização:</b> </td>
-                  <td> Insulina </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style="float: left; padding-left: 30px;">
-            <table>
-              <tbody>
-                <tr>
-                  <td> <b>Coordenações:</b> </td>
-                  <td> CGAFB </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-
-
-        <!-- Tabs -->
-        <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-orçamento-tab" data-toggle="tab" href="#nav-orçamento"
-              role="tab" aria-controls="nav-orçamento" aria-selected="true">Orçamento</a>
-
-            <a class="nav-item nav-link" id="nav-basic-tab" data-toggle="tab" href="#nav-basic" role="tab"
-              aria-controls="nav-basic" aria-selected="false">Compoente Básico</a>
-
-            <a class="nav-item nav-link" id="nav-strategic-tab" data-toggle="tab" href="#nav-strategic" role="tab"
-              aria-controls="nav-strategic" aria-selected="false">Compoente Estratégico</a>
-
-            <a class="nav-item nav-link" id="nav-specialized-tab" data-toggle="tab" href="#nav-specialized" role="tab"
-              aria-controls="nav-specialized" aria-selected="false">Compoente Especializado</a>
-
-            <a class="nav-item nav-link" id="nav-pharmacy-tab" data-toggle="tab" href="#nav-pharmacy" role="tab"
-              aria-controls="nav-pharmacy" aria-selected="false">Farmácia Popular</a>
-          </div>
-
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-orçamento" role="tabpanel" aria-labelledby="nav-orçamento-tab">
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Ação Orçamentária</th>
-                    <th scope="col">Dotação (R$)</th>
-                    <th scope="col">Empenhado (R$)</th>
-                    <th scope="col">Liquidado (R$)</th>
-                    <th scope="col">Pago (R$)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row"> 20AE </th>
-                    <th scope="row"> 57.150.000,00 </th>
-                    <td> 18.573.750,00 </td>
-                    <td> 14.859.000,00 </td>
-                    <td> 13.373.100,00 </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Gráficos Dinâmicos Charts -->
-
-            <div id="val-atual" class="tab-pane fade active show" style="height: 50%; width: 50%; left:50% ">
-              <h3>Valores Atuais</h3>
-              <div class="chart">
-                <canvas id="chart-current-values" class="chart-canvas"></canvas>
+          <div class="row pl-4">
+            <div class="col-lg-3">
+              <div>
+                <b>Unidade</b>: Unidade
+              </div>
+              <div>
+                <b>Fornecedor</b>: -
+              </div>
+              <div>
+                <b>Estoque Atual</b>: 1.234
               </div>
             </div>
-
-          </div>
-          <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Físico</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Alocação (Quantidade):</th>
-                        <th scope="row"> 13.000</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
-                        <th scope="row"> 1.083</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Cobertura estoque (Data):</th>
-                        <th scope="row"> 30/01/2020 </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            <div class="col-lg-3">
+              <div>
+                <b>CATMAT</b>: -
               </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Financeiro</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Sem conteúdo</th>
-                        <th scope="row"> </th>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div>
+                <b>Utilização</b>: Insulina
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div>
+                <b>Coordenações</b>: CGFB 
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="nav-strategic" role="tabpanel" aria-labelledby="nav-strategic-tab">
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Físico</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Alocação (Quantidade):</th>
-                        <th scope="row"> 13.000 </th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Consumo Médio Mensal (Quantidade): </th>
-                        <th scope="row"> 1.083 </th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Cobertura estoque (Data):</th>
-                        <th scope="row"> 30/01/2020 </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Financeiro</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Sem conteúdo</th>
-                        <th scope="row"> </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-specialized" role="tabpanel" aria-labelledby="nav-specialized-tab">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Físico</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Alocação (Quantidade):</th>
-                        <th scope="row"> 13.000</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
-                        <th scope="row"> 1.083</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Cobertura estoque (Data):</th>
-                        <th scope="row"> 30/01/2020 </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Financeiro</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Sem conteúdo</th>
-                        <th scope="row"> </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-pharmacy" role="tabpanel" aria-labelledby="nav-pharmacy-tab">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Físico</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Alocação (Quantidade):</th>
-                        <th scope="row"> 13.000</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
-                        <th scope="row"> 1.083</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> Cobertura estoque (Data):</th>
-                        <th scope="row"> 30/01/2020 </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">
-                          <h4>Financeiro</h4>
-                        </th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"> Sem conteúdo</th>
-                        <th scope="row"> </th>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- end of first column -->
-
         </div>
       </div>
     </div>
-    <div class="ml-3 table-footer">
-      <p><i>Total de registros: 1</i><br>
-        <i>Fonte: Webservice em 10/10/19</i></p>
-    </div>
   </div>
 </div>
+<!-- Table -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-orçamento-tab" data-toggle="tab" href="#nav-orçamento" role="tab"
+      aria-controls="nav-orçamento" aria-selected="true">Orçamento</a>
 
+    <a class="nav-item nav-link" id="nav-basic-tab" data-toggle="tab" href="#nav-basic" role="tab"
+      aria-controls="nav-basic" aria-selected="false">Compoente Básico</a>
+
+    <a class="nav-item nav-link" id="nav-strategic-tab" data-toggle="tab" href="#nav-strategic" role="tab"
+      aria-controls="nav-strategic" aria-selected="false">Compoente Estratégico</a>
+
+    <a class="nav-item nav-link" id="nav-specialized-tab" data-toggle="tab" href="#nav-specialized" role="tab"
+      aria-controls="nav-specialized" aria-selected="false">Compoente Especializado</a>
+
+    <a class="nav-item nav-link" id="nav-pharmacy-tab" data-toggle="tab" href="#nav-pharmacy" role="tab"
+      aria-controls="nav-pharmacy" aria-selected="false">Farmácia Popular</a>
+  </div>
+
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-orçamento" role="tabpanel" aria-labelledby="nav-orçamento-tab">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Ação Orçamentária</th>
+            <th scope="col">Dotação (R$)</th>
+            <th scope="col">Empenhado (R$)</th>
+            <th scope="col">Liquidado (R$)</th>
+            <th scope="col">Pago (R$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"> 20AE </th>
+            <th scope="row"> 57.150.000,00 </th>
+            <td> 18.573.750,00 </td>
+            <td> 14.859.000,00 </td>
+            <td> 13.373.100,00 </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gráficos Dinâmicos Charts -->
+
+    <div id="val-atual" class="tab-pane fade active show" style="height: 50%; width: 50%; left:50% ">
+      <h3>Valores Atuais</h3>
+      <div class="chart">
+        <canvas id="chart-current-values" class="chart-canvas"></canvas>
+      </div>
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Físico</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Alocação (Quantidade):</th>
+                <th scope="row"> 13.000</th>
+              </tr>
+              <tr>
+                <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
+                <th scope="row"> 1.083</th>
+              </tr>
+              <tr>
+                <th scope="row"> Cobertura estoque (Data):</th>
+                <th scope="row"> 30/01/2020 </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Financeiro</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Sem conteúdo</th>
+                <th scope="row"> </th>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-strategic" role="tabpanel" aria-labelledby="nav-strategic-tab">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Físico</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Alocação (Quantidade):</th>
+                <th scope="row"> 13.000 </th>
+              </tr>
+              <tr>
+                <th scope="row"> Consumo Médio Mensal (Quantidade): </th>
+                <th scope="row"> 1.083 </th>
+              </tr>
+              <tr>
+                <th scope="row"> Cobertura estoque (Data):</th>
+                <th scope="row"> 30/01/2020 </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Financeiro</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Sem conteúdo</th>
+                <th scope="row"> </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-specialized" role="tabpanel" aria-labelledby="nav-specialized-tab">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Físico</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Alocação (Quantidade):</th>
+                <th scope="row"> 13.000</th>
+              </tr>
+              <tr>
+                <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
+                <th scope="row"> 1.083</th>
+              </tr>
+              <tr>
+                <th scope="row"> Cobertura estoque (Data):</th>
+                <th scope="row"> 30/01/2020 </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Financeiro</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Sem conteúdo</th>
+                <th scope="row"> </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-pharmacy" role="tabpanel" aria-labelledby="nav-pharmacy-tab">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Físico</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Alocação (Quantidade):</th>
+                <th scope="row"> 13.000</th>
+              </tr>
+              <tr>
+                <th scope="row"> Consumo Médio Mensal (Quantidade):</th>
+                <th scope="row"> 1.083</th>
+              </tr>
+              <tr>
+                <th scope="row"> Cobertura estoque (Data):</th>
+                <th scope="row"> 30/01/2020 </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">
+                  <h4>Financeiro</h4>
+                </th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> Sem conteúdo</th>
+                <th scope="row"> </th>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of first column -->
+</div>
+
+<div class="ml-3 table-footer">
+  <p><i>Total de registros: 1</i><br>
+    <i>Fonte: Webservice em 10/10/19</i></p>
+</div>

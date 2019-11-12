@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbdSortableHeader } from '../sortable.directive';
+import { RouterModule, Routes } from "@angular/router";
 import { PloaComponent } from './ploa.component';
 
 @NgModule({
@@ -13,7 +14,9 @@ import { PloaComponent } from './ploa.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule
+    
   ],
   declarations: [PloaComponent, NgbdSortableHeader],
   exports: [PloaComponent],
