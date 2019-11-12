@@ -99,9 +99,9 @@ services:
     ports:
       - "8446:5000"
 
-  data-mag:
-    image: "msdaf/data-mag"
-    hostname: data-mag
+  budget:
+    image: "msdaf/budget"
+    hostname: budget
     restart: always
     environment:
       EUREKA_HOST: discovery
