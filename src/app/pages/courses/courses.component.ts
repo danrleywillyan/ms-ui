@@ -15,6 +15,6 @@ export class CoursesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.pdf = `http://${window.location.host}/static/assets/pdfs/Assistência Farmacêutica 4.0  caminhos para a implementação.pdf`;
+    this.pdf = `http://${window.location.host}/static/assets/pdfs/AssistFarm40.pdf`;
   }
 }

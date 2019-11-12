@@ -36,9 +36,9 @@ export const ROUTES: RouteInfo[] = [
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  { id: 'training', path: '/training', title: 'Capacitação',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [
-    { path: 'courses', title: 'Educação Permanente em Saúde (Publicação)', icon: 'ni-books text-indigo'},
-    { path: 'events', title: 'Evento', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }
+  { id: 'training', path: '/training', title: 'Seminário',  icon: 'ni-hat-3 text-indigo', class: '', subItems: [
+    { path: 'structure', title: 'Estrutura', icon: 'ni-books text-indigo', disabled: true },
+    { path: 'documentation', title: 'Documentação', icon: 'ni-calendar-grid-58 text-indigo', disabled: true }
   ]},
 
   // @ts-ignore
@@ -49,6 +49,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'reportcnes', title: 'Relatório CNES', icon: 'ni-bullet-list-67 text-indigo'},
     { path: 'reportia', title: 'Relatório IA', icon: 'ni-bullet-list-67 text-indigo'},
     { path: 'reportiaf', title: 'Relatório IA Farmpop', icon: 'ni-bullet-list-67 text-indigo'},
+    { path: 'courses', title: 'AF 4.0 - Caminhos', icon: 'ni-bullet-list-67 text-indigo'},
     { href: 'https://gaesi.gitlab.io/msdaf/wiki', title: 'Wiki', icon: 'ni-bullet-list-67 text-indigo'}
   ]},
 

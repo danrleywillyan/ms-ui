@@ -73,8 +73,8 @@ export const AppLayoutRoutes: Routes = [
   { path: 'research/reportcnes', component: ReportCNESComponent },
   { path: 'research/reportia', component: ReportIAComponent },
   { path: 'research/reportiaf', component: ReportIAFComponent },
+  { path: 'research/courses', component: CoursesComponent },
 
   //=====================================================================================================
   // Trainning
-  { path: 'training/courses', component: CoursesComponent },
 ];
