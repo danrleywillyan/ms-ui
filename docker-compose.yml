@@ -97,7 +97,17 @@ services:
       EUREKA_HOST: discovery
       EUREKA_PORT: 8761
     ports:
-      - "8450:5000"
+      - "8446:5000"
+
+  data-mag:
+    image: "msdaf/data-mag"
+    hostname: data-mag
+    restart: always
+    environment:
+      EUREKA_HOST: discovery
+      EUREKA_PORT: 8761
+    ports:
+      - "8447:5000"
 
   elucidation:
     image: "msdaf/elucidation"
@@ -109,7 +119,7 @@ services:
       EUREKA_HOST: discovery
       EUREKA_PORT: 8761
     ports:
-      - "8446:5000"
+      - "8448:5000"
 
   catmat:
     image: "msdaf/catmat"
@@ -121,7 +131,7 @@ services:
       EUREKA_PORT: 8761
       RAILS_ENV: development
     ports:
-      - "7700:3000"
+      - "8449:3000"
 
   ui:
     image: "msdaf/ui"
@@ -137,7 +147,7 @@ services:
        EUREKA_HOST: discovery
        EUREKA_PORT: 8761
     ports:
-      - "8447:5000" #8443 reserved for SSL (HTTPS)
+      - "8450:5000" #8443 reserved for SSL (HTTPS)
 
 networks:
   mysql-compose-network:
