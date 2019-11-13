@@ -94,47 +94,32 @@
             <div class="card-header border-0">
               <!-- <h3 class="mb-0">Card tables</h3> -->
             </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-striped">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col"> Ação Orçamentária </th>
-                    <th scope="col"> Dotação (R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> Reprogramado (R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> Saldo Rep. (R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> Empenhado (R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> Saldo Empenhado (R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> PLOA 2020 (enviado)(R$) </th>
-                    <th scope="col"  class="text-wrap text-center"> PLOA 2020 (previsto)(R$) </th>
-                    <th scope="col"> Enviado vs Previsto </th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let val of data" >
-                      <td>  <div class="text-wrap">{{val.acao}}</div> </td>
-                      <td>{{val.dotacao | currency:'R$'}}</td>
-                      <td>{{val.reprogramado | currency:'R$'}}</td>
-                      <td>{{val.saldo_rep | currency:'R$'}}</td>
-                      <td>{{val.empenhado | currency:'R$'}}</td>
-                      <td>{{val.saldo_empenhado | currency:'R$'}}</td>
-                      <td>{{val.ploa_enviado | currency:'R$'}}</td>
-                      <td>{{val.ploa_prevista | currency:'R$'}}</td>
-
-                      <td>
-                        <span _ngcontent-c5="" class="mr-2" [ngClass]="(val.ploa_enviado >= val.ploa_prevista)?'text-success':'text-danger'"><i _ngcontent-c5="" [ngClass]="(val.ploa_enviado >= val.ploa_prevista)?'fa-arrow-up':'fa-arrow-down'" class="fas"></i> {{diffPercent(val) | percent:'1.1-2':'br'}} </span>
-                      </td>
-  
-                      <!--
-                        <td *ngFor="let attr of attrs">
-                            {{ val[attr] }}
-                        </td>
-                        -->
-                    </tr>
-                </tbody>
-              </table>            
-            </div>
-                     
+                <div class="table-responsive">
+                  <table class="table align-items-center table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col" *ngFor="let header of headerData">
+                                {{ header }}  
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of ploaData">
+                            <th class="text-right" scope="row">
+                                <div ngbDropdown placement="bottom-right">
+                                    <a class="btn btn-sm btn-icon-only text-light">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                            </th>
+                            <td *ngFor="let header of headerData">
+                                {{ data[header] }}
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>  
             <div class="card-footer py-4 ">
   
               <nav aria-label="...">
