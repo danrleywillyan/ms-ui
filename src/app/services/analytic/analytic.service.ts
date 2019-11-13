@@ -81,22 +81,23 @@ export class AnalyticService {
     const year = 2019;
     let urlDataM;
     let url: any;
+    let urlAPI = "http://34.95.145.8:8080";
 
     urlDataM = {
       basic:{
-        0: `http://34.95.145.8:8080/budget/basic/acquisition/${year}`, 
-        1: `http://34.95.145.8:8080/budget/basic/transfer`
+        0: `${urlAPI}/budget/basic/acquisition/${year}`, 
+        1: `${urlAPI}/budget/basic/transfer`
       },
       strategic:{
-        0: `http://34.95.145.8:8080/budget/strategic/acquisition/${year}`
+        0: `${urlAPI}/budget/strategic/acquisition/${year}`
       },
       specialized:{
-        0: `http://34.95.145.8:8080/budget/specialized/acquisition/${year}`,
-        1: `http://34.95.145.8:8080/budget/specialized/transfer`
+        0: `${urlAPI}/budget/specialized/acquisition/${year}`,
+        1: `${urlAPI}/budget/specialized/transfer`
       },
       farmpop:{
-        0: `http://34.95.145.8:8080/budget/farmpop/financial/${year}`,
-        1: `http://34.95.145.8:8080/budget/farmpop/pharmacies`
+        0: `${urlAPI}/budget/farmpop/financial/${year}`,
+        1: `${urlAPI}/budget/farmpop/pharmacies`
       }
     }
 
