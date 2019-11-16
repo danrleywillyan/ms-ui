@@ -7,9 +7,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AnalyticService {
 
   dataJSON: any;
-
+  public urlAPI = `http://${location.hostname}:`;
+  public port = '8080/budget';
   constructor(private http: HttpClient) {
-    
+    if (this.urlAPI.includes('localhost')) this.port = '5000';
+    this.urlAPI += this.port;
   }
 
   configJSON(option: any) {
@@ -81,24 +83,22 @@ export class AnalyticService {
     const year = 2019;
     let urlDataM;
     let url: any;
-    // let urlAPI = "http://34.95.145.8:8080/budget";
-    let urlAPI = "http://localhost:5000";
 
     urlDataM = {
       basic:{
-        0: `${urlAPI}/basic/acquisition/${year}`, 
-        1: `${urlAPI}/basic/transfer`
+        0: `${this.urlAPI}/basic/acquisition/${year}`, 
+        1: `${this.urlAPI}/basic/transfer`
       },
       strategic:{
-        0: `${urlAPI}/strategic/acquisition/${year}`
+        0: `${this.urlAPI}/strategic/acquisition/${year}`
       },
       specialized:{
-        0: `${urlAPI}/specialized/acquisition/${year}`,
-        1: `${urlAPI}/specialized/transfer`
+        0: `${this.urlAPI}/specialized/acquisition/${year}`,
+        1: `${this.urlAPI}/specialized/transfer`
       },
       farmpop:{
-        0: `${urlAPI}/farmpop/financial/${year}`,
-        1: `${urlAPI}/farmpop/pharmacies`
+        0: `${this.urlAPI}/farmpop/financial/${year}`,
+        1: `${this.urlAPI}/farmpop/pharmacies`
       }
     }
 
@@ -129,9 +129,7 @@ export class AnalyticService {
   getPloaTable(){
     const year = 2019;
     let url: any;
-    // let urlAPI = "http://34.95.145.8:8080/budget";
-    let urlAPI = "http://localhost:5000";
-    url = `${urlAPI}/budgetary/${year}`;
+    url = `${this.urlAPI}/budgetary/${year}`;
 
     return new Promise(resolve => {
       this.http.get(url).subscribe(response => {
