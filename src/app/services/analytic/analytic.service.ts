@@ -70,7 +70,7 @@ export class AnalyticService {
       }    
     };
     
-    console.log(option);
+    // console.log(option);
     
     if(option.detail) return json[option.coord]["detail"];
     return json[option.coord];
@@ -81,22 +81,24 @@ export class AnalyticService {
     const year = 2019;
     let urlDataM;
     let url: any;
+    // let urlAPI = "http://34.95.145.8:8080/budget";
+    let urlAPI = "http://localhost:5000";
 
     urlDataM = {
       basic:{
-        0: `http://34.95.145.8:8080/budget/basic/acquisition/${year}`, 
-        1: `http://34.95.145.8:8080/budget/basic/transfer`
+        0: `${urlAPI}/basic/acquisition/${year}`, 
+        1: `${urlAPI}/basic/transfer`
       },
       strategic:{
-        0: `http://34.95.145.8:8080/budget/strategic/acquisition/${year}`
+        0: `${urlAPI}/strategic/acquisition/${year}`
       },
       specialized:{
-        0: `http://34.95.145.8:8080/budget/specialized/acquisition/${year}`,
-        1: `http://34.95.145.8:8080/budget/specialized/transfer`
+        0: `${urlAPI}/specialized/acquisition/${year}`,
+        1: `${urlAPI}/specialized/transfer`
       },
       farmpop:{
-        0: `http://34.95.145.8:8080/budget/farmpop/financial/${year}`,
-        1: `http://34.95.145.8:8080/budget/farmpop/pharmacies`
+        0: `${urlAPI}/farmpop/financial/${year}`,
+        1: `${urlAPI}/farmpop/pharmacies`
       }
     }
 
@@ -108,14 +110,10 @@ export class AnalyticService {
 
     return new Promise(resolve => {
       this.http.get(url).subscribe(response => {
-
         //check if is a 2x2 matrix
-        //todo: make the pos be passed by url (pills)
         if(Array.isArray(response[Number(subview)])) this.dataJSON = this.resolveMatrix(response, Number(subview));
         else this.dataJSON = response;
-
-        console.log(response);
-
+        // console.log(response);
         resolve(this.dataJSON);
       });
     });
@@ -123,26 +121,25 @@ export class AnalyticService {
 
   resolveMatrix(data, pos){
     let aux = data[pos];
-    console.log("unpacking matrix", data, aux);
+    // console.log("unpacking matrix", data, aux);
     if(Array.isArray(aux[Number(pos)])) return this.resolveMatrix(aux, pos);
     return aux
   }
 
-  getBudgetary() {
-    let year = "2019";
-    let url = `http://localhost:5000/budgetary/${year}`;
+  getPloaTable(){
+    const year = 2019;
+    let url: any;
+    // let urlAPI = "http://34.95.145.8:8080/budget";
+    let urlAPI = "http://localhost:5000";
+    url = `${urlAPI}/budgetary/${year}`;
 
     return new Promise(resolve => {
       this.http.get(url).subscribe(response => {
-        console.log("trdglhuigyft");
-        
-        //check if is a 2x2 matrix
-        //todo: make the pos be passed by url (pills)
-        if(Array.isArray(response[0])) this.dataJSON = this.resolveMatrix(response, 0);
-        else this.dataJSON = response;
+        this.dataJSON = response;
+        // console.log(this.dataJSON);
         resolve(this.dataJSON);
       });
     });
-
+    
   }
 }

@@ -1,24 +1,50 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
+=======
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
+import { AnalyticService } from '../../../services/analytic/analytic.service';
+import {DecimalPipe} from '@angular/common';
+import {Observable} from 'rxjs';
+
+import {NgbdSortableHeader, SortEvent} from '../sortable.directive';
+>>>>>>> aecdb832d44144b20d22ce2d32de1b177a8e461f
 
 
 @Component({
   selector: 'ngbd-table-complete',
   templateUrl: './ploa.component.html',
   styleUrls: ['./ploa.component.scss'],
+<<<<<<< HEAD
   providers:[DecimalPipe]
 })
 
 export class PloaComponent implements OnInit {
   headerData: Object[];
   analyticData: Object[];
+=======
+  providers:
+  [
+    DecimalPipe
+  ]
+})
+
+export class PloaComponent implements OnInit {
+  total$: Observable<number>;
+
+  attrs: String[];
+  headerData: Object[];
+  ploaData: Object[];
+>>>>>>> aecdb832d44144b20d22ce2d32de1b177a8e461f
   tableTitle: String;
   tableOption: String;
   tableAggregator: String;
   tableDetail: String;
   tableView: number = 0;
+<<<<<<< HEAD
   viewType: any;
   ploaData: any;
 
@@ -46,6 +72,27 @@ export class PloaComponent implements OnInit {
       this.analyticData = [];
       
     }); 
+=======
+  tableSubView: number = 0;
+  viewType: any;
+
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+
+  constructor(
+    private analyticService: AnalyticService,
+    private _Activatedroute: ActivatedRoute,
+    ) {
+  
+    }
+
+  onSort({column, direction}: SortEvent) {
+    // resetting other headers
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+    });
+>>>>>>> aecdb832d44144b20d22ce2d32de1b177a8e461f
   }
   
   updateView(option: String) {
@@ -57,6 +104,7 @@ export class PloaComponent implements OnInit {
       }
     }
   }
+<<<<<<< HEAD
   
   updateData() {
     // let configJSON = this.analyticService.configJSON(this.tableOption);
@@ -79,6 +127,31 @@ export class PloaComponent implements OnInit {
         // @ts-ignore
         $(`.nav-pills`).show();
       }
+=======
+
+  public diffPercent(ploa) {
+    //return (this.dif(ploa)*100)/ploa.ploa_prevista;
+    return this.dif(ploa);
+  } 
+  ngOnInit() {
+    this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
+      this.tableOption = params.get('coord');
+      this.tableView = Number(params.get('view'));
+      this.tableAggregator = params.get('aggreg');
+      this.tableDetail = params.get('detail');
+      this.headerData = [];
+      this.ploaData = [];
+      this.updateData();
+    });
+
+    //this.attrs = Object.keys(this.data[0]);
+
+
+    /*
+    this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
+      this.tableOption = params.get('coord');
+      this.updateData( this.tableOption );
+>>>>>>> aecdb832d44144b20d22ce2d32de1b177a8e461f
     });
   }
 
@@ -109,4 +182,12 @@ export class PloaComponent implements OnInit {
     }
   }
 
+  updateData() {
+    this.analyticService.getPloaTable()
+      .then((data: any) => {
+        this.headerData = Object.keys(data[0]);
+        this.ploaData = data;
+        if(!data) this.headerData = ["Sem dados para exibir"]
+      });
+  }
 }
