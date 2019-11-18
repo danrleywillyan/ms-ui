@@ -80,7 +80,7 @@ export class AnalyticService {
 
   getTable(coord, view, aggregator, detail, subview) {
 
-    const year = 2019;
+    const year = this.utf8ToB64('2019');
     let urlDataM;
     let url: any;
 
@@ -103,8 +103,8 @@ export class AnalyticService {
     }
 
     url = urlDataM[coord][view];
-    if(aggregator) url += `/${aggregator.replace(/\//g,'$$$')}`;
-    if(detail) url += `/${detail.replace(/\//g,'$$$')}`;
+    if(aggregator) url += this.utf8ToB64(aggregator);
+    if(detail) url += this.utf8ToB64(detail);
 
     console.log(subview, "url: ", url);
 
@@ -154,5 +154,8 @@ export class AnalyticService {
       promises.push(this.http.get(url).toPromise());
     }
     return Promise.all(promises).then(res => res);
+  }
+  utf8ToB64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
   }
 }
