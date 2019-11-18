@@ -138,6 +138,21 @@ export class AnalyticService {
         resolve(this.dataJSON);
       });
     });
-    
+  }
+
+  getDashGraph(){
+
+    const promises = [];
+    const prefix = "/painel/"
+    const year = 2019;
+    let url: any;
+    let urls: any;
+    urls = ["current", "committed", "history", "evolution", "committedpaid", "rapcurrent", "rapaccumulated", "control"];
+
+    for(let i of urls){
+      url = `${this.urlAPI}${prefix}${i}/${year}`;
+      promises.push(this.http.get(url).toPromise());
+    }
+    return Promise.all(promises).then(res => res);
   }
 }

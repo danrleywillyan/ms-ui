@@ -1,16 +1,27 @@
+<!-- Tables -->
 <div class="table-responsive">
   <table class="table align-items-center table-striped">
-    <thead class="thead-light">
-      <th scope="col" *ngFor="let header of headerTableKeys">
-        {{ headerTable[0][header] }}
-      </th>
-    </thead>
-    <tbody >
-      <tr *ngFor="let data of contentTable">
-        <td *ngFor="let headerContent of headerContentTable">
-          {{ data[headerContent] }}
-        </td>
-      </tr>
-    </tbody>
+      <thead class="thead-light">
+          <tr>
+              <!-- this should show only in case there is a button to clicks -->
+              <!-- <th scope="col"> </th> -->
+              <th scope="col" *ngFor="let header of headerData">
+                  {{ header }}  
+              </th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let data of analyticData">
+              <!-- <th class="text-right" scope="row">
+                  <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="createLink(data)">
+                          <i class="fas fa-eye"></i>
+                      </a>
+                  </div>
+              </th> -->
+              <td *ngFor="let header of headerData">
+                  {{ data[header] }}
+              </td>
+          </tr>
+      </tbody>
   </table>
 </div>
