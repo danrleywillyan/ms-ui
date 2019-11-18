@@ -280,6 +280,55 @@ export const parseOptions = (parent, options) => {
 		}
 	}
 
+  export const chartPercentData = {
+    options: {
+      scales: {
+        yAxes: [{
+          gridLines: {
+            color: colors.gray[900],
+            zeroLineColor: colors.gray[900]
+          },
+          ticks: {
+            callback: function(value) {
+              if (!(value % 10)) {
+                return '' + value + '%';
+              }
+            }
+          }
+        }]
+      },
+      stacked: true
+    },
+    data: {
+      labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
+      datasets: [{
+          // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
+          label: '% Pago/Emp 2019',
+          data: [100, 100, 0, 100, 0, 100],
+          backgroundColor: [
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+          ],
+          borderColor: [
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+            'rgba(05, 63, 91, 1)',
+          ],
+          borderWidth: 1
+        }
+      ]
+    }
+  }  
+
 export const chartExample1 = {
   options: {
     scales: {
@@ -400,6 +449,30 @@ export const chartExample1 = {
       {
         // 20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento
         label: 'Disponível',
+        data: [1305717175.42, 88728508, 0, 1445789218.62, 421650750.84, 239770445.76, 3490720529.31],
+        backgroundColor: [
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+          'rgba(251, 99, 64, 0.3)',
+        ],
+        borderColor: [
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+          'rgba(251, 99, 64, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        // 20YS - Manutenção e funcionamento do programa de farmácia popular no Brasil pelo sistema de co-pagamento
+        label: 'RAP Acumulado',
         data: [1305717175.42, 88728508, 0, 1445789218.62, 421650750.84, 239770445.76, 3490720529.31],
         backgroundColor: [
           'rgba(253, 165, 40, 0.3)',
@@ -661,55 +734,6 @@ export const chartCommittedEvolutionData = {
           'rgba(253, 165, 40, 1)',
           'rgba(253, 165, 40, 1)',
           'rgba(253, 165, 40, 1)',
-        ],
-        borderWidth: 1
-      }
-    ]
-  }
-}
-
-export const chartComparativeData = {
-  options: {
-    scales: {
-      yAxes: [{
-        gridLines: {
-          color: colors.gray[900],
-          zeroLineColor: colors.gray[900]
-        },
-        ticks: {
-          callback: function(value) {
-            if (!(value % 10)) {
-              return '' + value + '%';
-            }
-          }
-        }
-      }]
-    },
-    stacked: true
-  },
-  data: {
-    labels: ['20AE','20AH','20K5','20YR','20YS','4368','4705'],
-    datasets: [{
-        // 20AE - Promoção da assistência farmacêutica e insumos estratégicos na atenção basica em saúde
-        label: '% Pago/Emp 2019',
-        data: [100, 100, 0, 100, 0, 100],
-        backgroundColor: [
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-        ],
-        borderColor: [
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
-          'rgba(05, 63, 91, 1)',
         ],
         borderWidth: 1
       }
