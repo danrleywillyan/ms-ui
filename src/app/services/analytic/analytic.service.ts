@@ -103,8 +103,8 @@ export class AnalyticService {
     }
 
     url = urlDataM[coord][view];
-    if(aggregator) url += this.utf8ToB64(aggregator);
-    if(detail) url += this.utf8ToB64(detail);
+    if(aggregator) url += `/${this.utf8ToB64(aggregator)}`;
+    if(detail) url += `/${this.utf8ToB64(detail)}`;
 
     console.log(subview, "url: ", url);
 
@@ -127,7 +127,7 @@ export class AnalyticService {
   }
 
   getPloaTable(){
-    const year = 2019;
+    const year = this.utf8ToB64('2019');
     let url: any;
     url = `${this.urlAPI}/budgetary/${year}`;
 
@@ -141,10 +141,9 @@ export class AnalyticService {
   }
 
   getDashGraph(){
-
     const promises = [];
     const prefix = "/painel/"
-    const year = 2019;
+    const year = this.utf8ToB64('2019');
     let url: any;
     let urls: any;
     urls = ["current", "committed", "history", "evolution", "committedpaid", "rapcurrent", "rapaccumulated", "control"];
@@ -155,6 +154,7 @@ export class AnalyticService {
     }
     return Promise.all(promises).then(res => res);
   }
+
   utf8ToB64(str) {
     return btoa(unescape(encodeURIComponent(str)));
   }
