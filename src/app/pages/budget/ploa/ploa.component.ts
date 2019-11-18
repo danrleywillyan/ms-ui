@@ -59,7 +59,12 @@ export class PloaComponent implements OnInit {
     }
   }
   updateData() {
-    throw new Error("Method not implemented.");
+    this.analyticService.getPloaTable()
+      .then((data: any) => {
+        this.headerData = Object.keys(data[0]);
+        this.ploaData = data;
+        if(!data) this.headerData = ["Sem dados para exibir"]
+      });
   }
 
   public diffPercent(ploa) {
