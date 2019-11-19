@@ -70,11 +70,11 @@ export class AnalyticService {
             {type: "fit", btnTitle: "Repasses Fitoterápicos"}
           ]
         }
-      }    
+      }
     };
-    
+
     // console.log(option);
-    
+
     if(option.detail) return json[option.coord]["detail"];
     return json[option.coord];
   }
@@ -88,7 +88,7 @@ export class AnalyticService {
 
     urlDataM = {
       basic:{
-        0: `${this.urlAPI}/basic/acquisition/${year}`, 
+        0: `${this.urlAPI}/basic/acquisition/${year}`,
         1: `${this.urlAPI}/basic/transfer`
       },
       strategic:{

@@ -15,16 +15,18 @@ services:
     restart: always
 
   mysqlsrv:
-    hostname: mysql
     image: mysql:5.7
+    restart: always
+    # volumes:
+    #   - data:/var/lib/mysql
+    #   - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
-      MYSQL_ROOT_PASSWORD: "MySql2019!"
-      MYSQL_DATABASE: "testedb"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     ports:
-      - "3306:3306"
-    volumes:
-      - ~/Docker/Volumes/MySql:/var/lib/mysql
+      - "3307:3306"
 
   discovery:
     image: "gaesi/discovery" #production cloud build
@@ -134,15 +136,26 @@ services:
 
   catmat:
     image: "msdaf/catmat"
+    restart: always
     hostname: catmat
     links:
       - mysqlsrv
+    depends_on:
+      - mysqlsrv
+      - discovery
     environment:
       EUREKA_HOST: discovery
       EUREKA_PORT: 8761
       RAILS_ENV: development
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: pass
+      DB_DATABASE: mydb
+      DB_HOST: mysqlsrv
+      SRV_PORT: 8450
+    command: /bin/sh -c "rake db:create && rake db:recreate && rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
     ports:
-      - "8449:3000"
+      - "8450:3000"
 
   ui:
     image: "msdaf/ui"
@@ -159,4 +172,3 @@ services:
        EUREKA_PORT: 8761
     ports:
       - "8450:5000" #8443 reserved for SSL (HTTPS)
-
