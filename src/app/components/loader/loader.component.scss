@@ -31,12 +31,6 @@
 }
 
 
-/** MODAL STYLING **/
-.modal-content {
-  border-radius: 0;
-  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
-}
-
 .modal-backdrop.show {
   opacity: 0.75;
   //@include bg-gradient-variant(".bg-gradient-#{$teal}", $darker);
