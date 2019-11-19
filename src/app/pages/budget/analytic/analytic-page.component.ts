@@ -118,7 +118,7 @@ export class AnalyticPage implements OnInit {
     else if(this.tableView == 0 && this.tableOption !== 'farmpop'){
       return `${info}/medication`;
     }
-    else if(this.tableOption == 'farmpop') {
+    else if(this.tableView == 0 && this.tableOption == 'farmpop') {
       return;
     }
     //Pagina com duas colunas
