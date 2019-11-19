@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AnalyticService {
   dataJSON: any;
   public urlAPI = `http://${location.hostname}:`;
   public port = '8080/budget';
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public loader: LoaderComponent) {
     if (this.urlAPI.includes('localhost')) this.port = '5000';
     this.urlAPI += this.port;
   }
@@ -80,6 +81,7 @@ export class AnalyticService {
 
   getTable(coord, view, aggregator, detail, subview) {
 
+    this.loader.start();
     const year = this.utf8ToB64('2019');
     let urlDataM;
     let url: any;
@@ -115,6 +117,7 @@ export class AnalyticService {
         else this.dataJSON = response;
         // console.log(response);
         resolve(this.dataJSON);
+        setTimeout( () => { this.loader.stop(); }, 1000);
       });
     });
   }
@@ -127,6 +130,7 @@ export class AnalyticService {
   }
 
   getPloaTable(){
+    this.loader.start();
     const year = this.utf8ToB64('2019');
     let url: any;
     url = `${this.urlAPI}/budgetary/${year}`;
@@ -136,11 +140,13 @@ export class AnalyticService {
         this.dataJSON = response;
         // console.log(this.dataJSON);
         resolve(this.dataJSON);
+        setTimeout( () => { this.loader.stop(); }, 1000);
       });
     });
   }
 
   getDashGraph(){
+    this.loader.start();
     const promises = [];
     const prefix = "/painel/"
     const year = this.utf8ToB64('2019');
@@ -152,7 +158,10 @@ export class AnalyticService {
       url = `${this.urlAPI}${prefix}${i}/${year}`;
       promises.push(this.http.get(url).toPromise());
     }
-    return Promise.all(promises).then(res => res);
+    return Promise.all(promises).then((res) => {
+      setTimeout( () => { this.loader.stop(); }, 1000);
+      return res;
+    });
   }
 
   utf8ToB64(str) {

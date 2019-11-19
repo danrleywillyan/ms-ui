@@ -3,8 +3,6 @@ import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router
 import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
 
-import { LoaderComponent } from '../../../components/loader/loader.component';
-
 @Component({
   selector: 'ngbd-table-complete',
   templateUrl: './analytic-page.component.html',
@@ -26,8 +24,7 @@ export class AnalyticPage implements OnInit {
   constructor(
     private _Activatedroute: ActivatedRoute,
     private analyticService: AnalyticService,
-    private router: Router,
-    private loaderComponent: LoaderComponent
+    private router: Router
     // pipe: DecimalPipe,
   )
   {
@@ -39,7 +36,6 @@ export class AnalyticPage implements OnInit {
   }
 
   ngOnInit(){
-    this.loaderComponent.start();
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
@@ -103,9 +99,6 @@ export class AnalyticPage implements OnInit {
           // @ts-ignore
           $(`.nav-pills`).show();
         }
-
-        this.loaderComponent.stop();
-
       });
     }
 
@@ -122,8 +115,11 @@ export class AnalyticPage implements OnInit {
       return `${this.tableView}/${info}`;
     }
     //Ficha do medicamento (componente básico)
-    else if(this.tableView == 0){
+    else if(this.tableView == 0 && this.tableOption !== 'farmpop'){
       return `${info}/medication`;
+    }
+    else if(this.tableOption == 'farmpop') {
+      return;
     }
     //Pagina com duas colunas
     else {
