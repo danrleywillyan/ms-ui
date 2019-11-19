@@ -19,6 +19,13 @@ export class MedicationDetailsComponent implements OnInit {
   tableDetail: String;
   tableView: number = 0;
 
+  translate_coords = {
+    basic: "Básica",
+    strategic: "Estratégica",
+    specialized: "Especializada",
+    farmpop: "Farmácia Popular"
+  }
+
   constructor(
     private _Activatedroute: ActivatedRoute,
     private analyticService: AnalyticService,

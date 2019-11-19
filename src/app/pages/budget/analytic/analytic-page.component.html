@@ -57,14 +57,14 @@
                             <table class="table align-items-center table-striped">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col"> </th>
+                                        <th *ngIf="!tableDetail" scope="col"> </th>
                                         <th scope="col" *ngFor="let header of headerData">
                                             {{ header }}  
                                         </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let data of analyticData">
-                                        <th class="text-right" scope="row">
+                                        <th *ngIf="!tableDetail" class="text-right" scope="row">
                                             <div ngbDropdown placement="bottom-right">
                                                 <a class="btn btn-sm btn-icon-only text-light" routerLinkActive="active" [routerLink]="createLink(data)">
                                                     <i class="fas fa-eye"></i>

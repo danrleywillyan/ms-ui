@@ -47,26 +47,18 @@
           <div class="row pl-4">
             <div class="col-lg-3">
               <div>
-                <b>Unidade</b>: Unidade
-              </div>
-              <div>
-                <b>Fornecedor</b>: -
-              </div>
-              <div>
-                <b>Estoque Atual</b>: 1.234
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div>
                 <b>CATMAT</b>: -
               </div>
               <div>
-                <b>Utilização</b>: Insulina
+                <b>Utilização</b>: {{ tableDetail }}
               </div>
             </div>
             <div class="col-lg-3">
               <div>
-                <b>Coordenações</b>: CEAF ou CGFB ou CGFME ou CPFP
+                <b>Coordenação</b>: {{ translate_coords[tableOption] }}
+              </div>
+              <div>
+                <b>Agregador</b>: {{ tableAggregator }}
               </div>
             </div>
           </div>

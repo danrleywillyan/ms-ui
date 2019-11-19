@@ -103,6 +103,7 @@ export class AnalyticPage implements OnInit {
   createLink(data: any) {
 
     if(!Object.values(data)[0]) return``
+    if(this.tableDetail) return
 
     let info: string;
     info = Object.values(data)[0].toString();
