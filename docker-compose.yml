@@ -152,7 +152,7 @@ services:
       DB_PASSWORD: pass
       DB_DATABASE: mydb
       DB_HOST: mysqlsrv
-      SRV_PORT: 8450
+      SRV_PORT: 3000
     command: /bin/sh -c "rake db:create && rake db:recreate && rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
     ports:
       - "8450:3000"

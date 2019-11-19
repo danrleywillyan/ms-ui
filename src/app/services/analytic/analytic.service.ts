@@ -8,7 +8,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 export class AnalyticService {
 
   dataJSON: any;
-  public urlAPI = `http://${location.hostname}:`;
+  public urlAPI = `http://${location.hostname}:`; //${location.hostname} msdaf.gaesi.org.br
   public port = '8080/budget';
   constructor(private http: HttpClient, public loader: LoaderComponent) {
     if (this.urlAPI.includes('localhost')) this.port = '5000';
