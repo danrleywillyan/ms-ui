@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router
 import { AnalyticService } from '../../../services/analytic/analytic.service';
 import { DecimalPipe } from '@angular/common';
 
+import { LoaderComponent } from '../../../components/loader/loader.component';
+
 @Component({
   selector: 'ngbd-table-complete',
   templateUrl: './analytic-page.component.html',
@@ -24,7 +26,8 @@ export class AnalyticPage implements OnInit {
   constructor(
     private _Activatedroute: ActivatedRoute,
     private analyticService: AnalyticService,
-    private router: Router, 
+    private router: Router,
+    private loaderComponent: LoaderComponent
     // pipe: DecimalPipe,
   )
   {
@@ -36,6 +39,7 @@ export class AnalyticPage implements OnInit {
   }
 
   ngOnInit(){
+    this.loaderComponent.start();
     this._Activatedroute.paramMap.subscribe((params : ParamMap)=> { 
       this.tableOption = params.get('coord');
       this.tableView = Number(params.get('view'));
@@ -81,7 +85,9 @@ export class AnalyticPage implements OnInit {
       .then((data: any) => {
         this.headerData = Object.keys(data[0]);
         this.analyticData = data;
+
         if(!data) this.headerData = ["Sem dados para exibir"]
+
         if(this.tableDetail){
           // @ts-ignore
           $(`.pill-${this.tableSubView}`).click();
@@ -97,8 +103,11 @@ export class AnalyticPage implements OnInit {
           // @ts-ignore
           $(`.nav-pills`).show();
         }
+
+        this.loaderComponent.stop();
+
       });
-  }
+    }
 
   createLink(data: any) {
 

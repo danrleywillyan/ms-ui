@@ -24,11 +24,15 @@ export class LoaderComponent implements OnInit {
       keyboard: false, // remove option to close with keyboard
       show: true // Display loader!
     });
+    console.log("chamando start loader");
+
   }
 
   stop() {
     // @ts-ignore
     $('#loader').modal('hide');
+    console.log("chamando stop loader");
+    
   }
 
 }
