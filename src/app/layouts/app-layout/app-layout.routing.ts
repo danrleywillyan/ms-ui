@@ -4,9 +4,6 @@ import { MaterialDetailComponent } from '../../pages/predictive/material/materia
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 
 import { AnalyticPage } from '../../pages/budget/analytic/analytic-page.component';
-import { TwoTableComponent } from '../../pages/budget/analytic/details/two-tables/two-tables.component';
-import { BigTableComponent } from '../../pages/budget/analytic/details/big-table/big-table.component';
-import { FourTableComponent } from '../../pages/budget/analytic/details/four-tables/four-tables.component';
 import { MedicationDetailsComponent } from '../../pages/budget/analytic/details/medication-details/medication-details.component';
 
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
@@ -51,7 +48,6 @@ export const AppLayoutRoutes: Routes = [
   { path: 'budget/:coord/:view', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg', component: AnalyticPage },
   { path: 'budget/:coord/:view/:aggreg/:detail', component: AnalyticPage },
-  // the most generic page must be first.
   { path: 'budget/:coord/:view/:aggreg/:detail/medication', component: MedicationDetailsComponent },
   { path: 'budget/:coord/:view/:aggreg/:detail/:subview', component: AnalyticPage },
   //-----------------------------------------------------------------------------------------------------
@@ -60,10 +56,10 @@ export const AppLayoutRoutes: Routes = [
 
   //=====================================================================================================
   // Popular Pharmacy
-  { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
-  { path: 'popular-pharmacy/notification/form/:id', component: FormElucidationComponent },
-  { path: 'popular-pharmacy/notification/form', component: FormElucidationComponent },
   { path: 'popular-pharmacy/notification', component: ElucidationComponent },
+  { path: 'popular-pharmacy/notification/form', component: FormElucidationComponent },
+  { path: 'popular-pharmacy/notification/form/:id', component: FormElucidationComponent },
+  { path: 'popular-pharmacy/notification/occurrences-types', component: OccurrenceTypesComponent },
   { path: 'popular-pharmacy/mulct', component: MulctComponent },
   { path: 'popular-pharmacy/processes', component: ProcessesComponent },
   //=====================================================================================================

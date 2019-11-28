@@ -10,12 +10,7 @@ import { MaterialComponent } from '../../pages/predictive/material/material.comp
 import { MaterialDetailComponent } from '../../pages/predictive/material/material-detail/material-detail.component';
 import { DashboardComponent } from '../../pages/budget/dashboard/dashboard.component';
 import { AnalyticPage } from '../../pages/budget/analytic/analytic-page.component';
-//leaf pages
-import { TwoTableComponent } from '../../pages/budget/analytic/details/two-tables/two-tables.component';
-import { BigTableComponent } from '../../pages/budget/analytic/details/big-table/big-table.component';
 import { MedicationDetailsComponent } from '../../pages/budget/analytic/details/medication-details/medication-details.component';
-import { FourTableComponent } from '../../pages/budget/analytic/details/four-tables/four-tables.component';
-//leaf pages' end
 import { ElucidationComponent } from '../../pages/popular-pharmacy/notification/elucidation/elucidation.component';
 import { ProcessesComponent } from '../../pages/popular-pharmacy/processes/processes.component';
 import { NotificationComponent } from '../../pages/popular-pharmacy/notification/notification/notification.component';
@@ -71,10 +66,7 @@ registerLocaleData(localeBr);
     PloaComponent,
         
     AnalyticPage,
-    TwoTableComponent,
-    BigTableComponent,
     MedicationDetailsComponent,
-    FourTableComponent,
     ElucidationComponent,
     ProcessesComponent,
     SProcessesComponent,
