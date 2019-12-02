@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TemplateSidebarComponent } from './templates-sidebar/templates-sidebar.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,15 @@ import { LoaderComponent } from './loader/loader.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    TemplateSidebarComponent
+    TemplateSidebarComponent,
+    ChartComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    TemplateSidebarComponent
+    TemplateSidebarComponent,
+    ChartComponent
   ]
 })
 export class ComponentsModule { }
