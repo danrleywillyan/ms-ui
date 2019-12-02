@@ -1,4 +1,4 @@
-<div class="header bg-gradient-teal pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-teal pb-2 pt-5 pt-md-8">
   <div class="container-fluid breadcrumbs">
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb">
@@ -37,40 +37,55 @@
   </div>
 </div>
 <!-- Page content -->
-<div class="container-fluid mt--7 mb-4">
-  <div class="row">
+<div class="container-fluid mb-4">
+  <div class="mb-4">
+    <h2 class="">FICHA DO MEDICAMENTO</h2>
+  </div>
+  <div class="row mb-2">
     <div class="col-lg-12">
-        <div class="card shadow">
-          <div class="header border-0">
-            <h3 class="mb-0">Ficha de Medicamento</h3>
-          </div>
-          <div class="row pl-4">
-            <div class="col-lg-3">
-              <div>
-                <b>CATMAT</b>: -
-              </div>
-              <div>
-                <b>Utilização</b>: {{ tableDetail }}
-              </div>
+      <div class="card rectangle-box">
+        <div class="mb-2 pl-2 pt-2">
+          <h4 class="">DETALHES DO MEDICAMENTO</h4>
+        </div>
+        <div class="row pl-4">
+          <div class="col-lg-3">
+            <div>
+              <b>CATMAT</b>: -
             </div>
-            <div class="col-lg-3">
-              <div>
-                <b>Coordenação</b>: {{ translate_coords[tableOption] }}
-              </div>
-              <div>
-                <b>Agregador</b>: {{ tableAggregator }}
-              </div>
+            <div>
+              <b>Utilização</b>: {{ tableDetail }}
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div>
+              <b>Coordenação</b>: {{ translate_coords[tableOption] }}
+            </div>
+            <div>
+              <b>Agregador</b>: {{ tableAggregator }}
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
-<div class="container-fluid">
-  <ngb-tabset>
-    <ngb-tab>
-      <ng-template ngbTabTitle>Orçamentário</ng-template>
-      <ng-template ngbTabContent>
+  </div>
+  <!-- row end -->
+  <div class="row mb-2">
+    <div class="col-lg-12">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">HISTÓRICO DE COMPRAS</h4>
+        </div>
+        <ChartComponent></ChartComponent>
+      </div>
+    </div>
+  </div>
+  <!-- row end -->
+  <div class="row mb-2">
+    <div class="col-lg-12">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">ORÇAMENTÁRIO</h4>
+        </div>
         <!-- Tables -->
         <div class="table-responsive">
           <table class="table align-items-center table-striped">
@@ -90,108 +105,46 @@
               </tr>
             </tbody>
           </table>
-        </div>              
-      </ng-template>
-    </ngb-tab>
-    <!-- <ngb-tab title="Componente Básico">
-      <ng-template ngbTabContent>
-        <div class="row mt-4">
-          <div class="col-lg-6">
-            <div class="card shadow margin-all">
-              <div class="header border-0">
-                <h3 class="mb-0">Físico</h3>
-              </div>
-              <div class="col-lg-12 pl-4">
-                <div>
-                    <b>Unidade</b>: Unidade
-                  </div>
-                  <div>
-                    <b>Fornecedor</b>: -
-                  </div>
-                  <div>
-                    <b>Estoque Atual</b>: 1.234
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card shadow margin-all pb-9">
-              <div class="header border-2">
-                <h3 class="mb-0">Financeiro</h3>
-              </div>
-              <div class="col-lg-12 pl-4">
-                <div>
-                    <b>Unidade</b>: Unidade
-                  </div>
-                  <div>
-                    <b>Fornecedor</b>: -
-                  </div>
-                  <div>
-                    <b>Estoque Atual</b>: 1.234
-                  </div>
-              </div>
-            </div>
-          </div>
+        </div> 
+        <!-- end Tables -->
+      </div>
+    </div>
+  </div>
+  <!-- row end -->
+  <!-- acompanhamento bloco -->
+  <div class="mb-2 pl-2 pt-2">
+    <h4 class="">ACOMPANHAMENTO</h4>
+  </div>
+  <div class="row mb-2">
+    <div class="col-lg-3">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">ORÇAMENTÁRIO</h4>
         </div>
-        <div class="row mt-4">
-            <div class="col-lg-12">
-              <div class="card shadow margin-all">
-                <div class="header border-0">
-                  <h3 class="mb-0">Ciclo de Aquisição</h3>
-                </div>
-                <div class="row ml-3">
-                  <div class="col-lg-2 pl-4 ml-3 mb-3 mb-3 pb-6 pt-1 alert-success">
-                    <div>
-                        <b>1/2019<br>PAC</b>
-                      </div>
-                      <div>
-                        Sem dados adicionais
-                      </div>
-                  </div>
-                  <div class="col-lg-2 pl-4 ml-3 mb-3 mb-3 pb-6 pt-1 alert-success">
-                    <div>
-                        <b>1/2019<br>Programação</b>
-                      </div>
-                      <div>
-                        Sem dados adicionais
-                      </div>
-                  </div>
-                  <div class="col-lg-2 pl-4 ml-3 mb-3 mb-3 pb-6 pt-1 alert-success">
-                    <div>
-                        <b>1/2019<br>Processo de Aquisição</b>
-                      </div>
-                      <div>
-                        Sem dados adicionais
-                      </div>
-                  </div>
-                  <div class="col-lg-2 pl-4 ml-3 mb-3 mb-3 pb-6 pt-1 alert-warning">
-                    <div>
-                        <b>1/2019<br>Contratação</b>
-                      </div>
-                      <div>
-                        Verificar contrato 213254687/2019, validade próxima (25/10/2019)
-                      </div>
-                  </div>
-                  <div class="col-lg-2 pl-4 ml-3 mb-3 mb-3 pb-6 pt-1 alert-success">
-                    <div>
-                        <b>1/2019<br>Distribuição</b>
-                      </div>
-                      <div>
-                        Sem dados adicionais
-                      </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-      </ng-template>
-    </ngb-tab> -->
-    <!-- <ngb-tab title="Disabled" [disabled]="true">
-      <ng-template ngbTabContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
-      </ng-template>
-    </ngb-tab> -->
-  </ngb-tabset>
-    <!--  -->
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">ORÇAMENTÁRIO</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">ORÇAMENTÁRIO</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card rectangle-box">
+        <div class="pl-2 pt-2">
+          <h4 class="">ORÇAMENTÁRIO</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+  <!-- end acompanhamento bloco -->
 </div>
